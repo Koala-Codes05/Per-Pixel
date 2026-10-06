@@ -1273,11 +1273,6 @@ html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="tru
   transform: translateY(20px);
 }
 
-.reveal[data-reveal="footer"].is-ready:not(.is-in) {
-  opacity: 0.8;
-  transform: translateY(18px);
-}
-
 .reveal[data-reveal="media"].is-ready:not(.is-in) img {
   transform: scale(1.02);
 }

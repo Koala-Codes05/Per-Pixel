@@ -1,15 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
-import Reveal from "@/components/Reveal";
+import { motion, useScroll, useTransform } from "motion/react";
 import { NAV_LINKS, PROJECTS } from "@/lib/site";
+import { useReducedMotionPreference } from "@/lib/use-media-query";
 
 export default function Footer() {
   const [note, setNote] = useState<string | null>(null);
+  const ref = useRef<HTMLElement>(null);
+  const reducedMotion = useReducedMotionPreference();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
+  const markY = useTransform(scrollYProgress, [0, 1], ["30%", "8%"]);
 
   return (
-    <footer className="relative mt-24 overflow-hidden rounded-t-[2rem] bg-coral text-ink" suppressHydrationWarning>
+    <footer ref={ref} className="relative mt-24 overflow-hidden rounded-t-[2rem] bg-coral text-ink" suppressHydrationWarning>
       <div className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -96,15 +101,13 @@ export default function Footer() {
         </div>
       </div>
 
-      <Reveal variant="footer">
-        <div
-          className="footer-mark pointer-events-none select-none whitespace-nowrap text-center font-sans font-black leading-[0.78] tracking-[-0.04em] text-paper"
-          style={{ fontSize: "clamp(6rem, 21.5vw, 24rem)" }}
-          aria-hidden="true"
-        >
-          PERPIXEL
-        </div>
-      </Reveal>
+      <motion.div
+        className="footer-mark pointer-events-none select-none whitespace-nowrap text-center font-sans font-black leading-[0.78] tracking-[-0.04em] text-paper"
+        style={{ fontSize: "clamp(6rem, 21.5vw, 24rem)", y: reducedMotion ? "8%" : markY }}
+        aria-hidden="true"
+      >
+        PERPIXEL
+      </motion.div>
     </footer>
   );
 }
