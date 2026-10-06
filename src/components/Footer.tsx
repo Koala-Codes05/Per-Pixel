@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { NAV_LINKS, PROJECTS } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/use-media-query";
 
@@ -11,7 +11,8 @@ export default function Footer() {
   const ref = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotionPreference();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
-  const markY = useTransform(scrollYProgress, [0, 1], ["30%", "8%"]);
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
+  const markY = useTransform(smoothProgress, [0, 1], ["30%", "8%"]);
 
   return (
     <footer ref={ref} className="relative mt-24 overflow-hidden rounded-t-[2rem] bg-coral text-ink" suppressHydrationWarning>

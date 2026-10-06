@@ -1,5 +1,17 @@
 # Last summary — PerPixel
 
+## 2026-10-06 (later) — Footer wordmark spring smoothing
+
+### Changed
+- `src/components/Footer.tsx` — footer mark progress now passes through `useSpring(scrollYProgress, { stiffness: 120, damping: 30 })` before `useTransform` → the 30%→8% rise eases and settles instead of tracking scroll 1:1. Overdamped (ζ≈1.37): smooth, no bounce. Reduced motion still static 8%.
+
+### Verified
+- Instant jump to page bottom: mark eases 30%→8% over ~1.3s in ~13 visible steps (24.4→17.7→13.5→…→8); reverse scroll settles back toward 30%. Smooth even when scroll input moves in a single step.
+- `npm run lint` clean; `npm run build` exit 0.
+
+### State
+- Dev server on :3000; pushed as `main` commit after `500a444`; Vercel auto-deploys.
+
 ## 2026-10-06 — Footer wordmark scroll trigger + smooth-scroll investigation
 
 ### Changed
