@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ghaslet — Hot Sauce With Zero Brakes</title>
+<script>document.documentElement.className='js'</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Caveat+Brush&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#e8271c;--yel:#ffc21a;--org:#ff6a13;--blu:#2347ff;--ink:#120d0a;--pap:#fff3d6;--bg:var(--pap);--fg:var(--ink);--d:'Bowlby One','Arial Black',Impact,sans-serif;--s:'DM Sans',system-ui,sans-serif;--h:'Caveat Brush','Segoe Print','Comic Sans MS',cursive;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#17110d;--fg:var(--pap)}}
+:root[data-theme=dark]{--bg:#17110d;--fg:var(--pap)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 17px/1.55 var(--s);overflow-x:hidden}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.14;mix-blend-mode:multiply;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+a{color:inherit}:focus-visible{outline:4px solid var(--blu);outline-offset:3px}
+.d{font-family:var(--d);text-transform:uppercase;line-height:.9;font-weight:400}
+.hand{font-family:var(--h);font-size:1.5rem;line-height:1.05;margin:0}
+.c{max-width:1180px;margin:0 auto;padding:0 20px}
+[data-s]{translate:0 var(--py,0px);rotate:var(--pr,0deg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:10px 20px;background:var(--ink);color:var(--pap)}
+nav a{text-decoration:none;font-weight:700;font-size:.9rem}
+nav .lg{font:400 1.35rem var(--d);color:var(--yel)}
+nav .lk{display:flex;gap:20px}
+.bag{background:var(--yel);color:var(--ink);padding:6px 14px;border-radius:99px;border:2px solid var(--pap)}
+@media(max-width:640px){nav .lk{display:none}}
+.btn{display:inline-block;font:400 1.05rem var(--d);text-transform:uppercase;text-decoration:none;background:var(--ink);color:var(--yel);padding:16px 26px;border-radius:14px 22px 16px 24px;border:3px solid var(--ink);box-shadow:5px 5px 0 var(--pap);cursor:pointer;transition:transform .25s cubic-bezier(.2,1.8,.3,1),box-shadow .25s}
+.btn:hover{transform:translate(-3px,-3px) rotate(-1.5deg);box-shadow:9px 9px 0 var(--pap)}
+.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--pap)}
+.btn.alt{background:var(--yel);color:var(--ink);box-shadow:5px 5px 0 var(--ink)}
+.btn.alt:hover{box-shadow:9px 9px 0 var(--ink)}
+/* generated Ghaslet photography */
+.hero-photo{width:min(72vw,720px);height:100%;max-height:470px;object-fit:cover;object-position:center 42%;border:5px solid var(--ink);border-radius:44% 42% 18% 18%;box-shadow:12px 12px 0 var(--ink);rotate:3deg;filter:saturate(1.1) contrast(1.04)}
+.hero .hb{align-items:center}
+@media(max-width:640px){.hero-photo{width:86vw;height:300px;max-height:300px}.hb{height:320px!important}}
+/* hero */
+.hero{position:relative;min-height:calc(100svh - 56px);background:linear-gradient(180deg,var(--yel) 0%,var(--org) 45%,var(--red) 100%);overflow:hidden;padding:30px 0 80px;text-align:center}
+.big{font-size:clamp(54px,17vw,240px);margin:.1em 0 0;color:var(--pap);-webkit-text-stroke:max(2px,.014em) var(--ink);text-shadow:.04em .05em 0 var(--ink);letter-spacing:-.02em;white-space:nowrap}
+.big span{display:inline-block;animation:snap 1s cubic-bezier(.2,1.5,.3,1) both;animation-delay:calc(var(--i)*70ms + 150ms)}
+.big span:nth-child(odd){--x:-110vw}.big span:nth-child(even){--x:110vw}
+.big span:nth-child(3n){rotate:-3deg}.big span:nth-child(4n){rotate:2.5deg}
+@keyframes snap{from{transform:translateX(var(--x)) rotate(calc(var(--i)*9deg - 30deg))}}
+.hb{--fs:clamp(6px,1.9vw,12px);position:relative;display:flex;justify-content:center;align-items:flex-end;margin-top:-5vw;height:clamp(290px,50vw,470px)}
+.bw{font-size:var(--fs);perspective:900px;transform:rotate(var(--r,0deg));transform-origin:50% 100%;position:relative;z-index:var(--z,1)}
+.bw.c{font-size:calc(var(--fs)*1.5)}
+.an{position:absolute;left:max(3vw,5%);top:16%;rotate:-8deg;font-size:clamp(1.3rem,3.4vw,2.2rem);color:var(--ink);z-index:5}
+.sub{display:inline-block;background:var(--ink);color:var(--yel);padding:10px 20px;rotate:-2deg;font-size:clamp(20px,3.4vw,38px);margin:28px 0 24px}
+.cta{display:flex;gap:18px;justify-content:center;flex-wrap:wrap}
+.hero .btn{box-shadow:5px 5px 0 var(--ink)}
+.st{position:absolute;width:9em;height:9em;display:grid;place-items:center;text-align:center;font:400 1.1rem/1 var(--d);text-transform:uppercase;isolation:isolate;filter:drop-shadow(.2rem .2rem 0 var(--ink))}
+.st::before,.st::after{content:"";position:absolute;inset:.9em;background:var(--bgc);z-index:-1}
+.st::after{transform:rotate(45deg)}
+.mq{background:var(--ink);color:var(--yel);overflow:hidden;white-space:nowrap;font:400 1.3rem var(--d);text-transform:uppercase;padding:12px 0;rotate:-1.2deg;margin:-26px -12px -26px;position:relative;z-index:4;border-block:3px solid var(--pap)}
+.mq div{display:inline-block;animation:mq 30s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* bottle */
+.bt{position:relative;width:9.6em;height:27em;transform-style:preserve-3d;animation:sw 6s ease-in-out infinite alternate;animation-delay:var(--dl,0s)}
+@keyframes sw{from{transform:rotateY(-26deg) rotateZ(-2deg)}to{transform:rotateY(26deg) rotateZ(2deg) translateY(-1.2em)}}
+.bt i{position:absolute;display:block;font-style:normal}
+.cap{left:3.1em;top:0;width:3.4em;height:4em;background:repeating-linear-gradient(90deg,#2a2a2a 0 .3em,#0a0a0a .3em .6em);border-radius:.6em .6em .2em .2em}
+.nk{left:3.4em;top:3.8em;width:2.8em;height:5em;background:linear-gradient(90deg,#4a0b06,#c81f10 45%,#4a0b06)}
+.bd{left:0;top:8em;width:9.6em;height:19em;border-radius:2.6em 2.6em 1.4em 1.4em;background:linear-gradient(90deg,#5a0b05,#d9220f 30%,#ff5a2a 48%,#c01a0b 75%,#4a0904);border:.25em solid var(--ink);box-shadow:inset -1em 0 1.5em rgba(0,0,0,.35)}
+.bd::after{content:"";position:absolute;left:.9em;top:1.2em;width:.8em;height:14em;border-radius:1em;background:rgba(255,255,255,.35)}
+.lb{left:.5em;top:11.4em;width:8.6em;height:12.4em;background:var(--c);color:var(--t);border:.25em solid var(--ink);border-radius:.5em;transform:translateZ(.6em) rotate(-1.5deg);display:flex;flex-direction:column;align-items:center;justify-content:space-around;text-align:center;font-family:var(--d);padding:.4em .2em}
+.lb b{font-weight:400;font-size:1.25em}.lb svg{width:4.4em;height:4.4em}.lb u{text-decoration:none;font-size:1.25em;line-height:.95}
+/* sections */
+.sec{position:relative;padding:120px 0 96px}
+.zz::before{content:"";position:absolute;left:0;right:0;top:-19px;height:20px;background:linear-gradient(135deg,var(--zc) 25%,transparent 25%) -10px 0/20px 20px,linear-gradient(225deg,var(--zc) 25%,transparent 25%) -10px 0/20px 20px}
+.t{font-size:clamp(40px,8vw,104px);margin:0 0 .3em}
+.t .hand{display:block;font-size:.28em;margin-top:.5em;text-transform:none;line-height:1.1}
+.js .rv{opacity:0;transform:translateX(-90px) skewX(-8deg);transition:transform .9s cubic-bezier(.2,1.5,.3,1),opacity .4s}
+.js .rv.r{transform:translateX(90px) skewX(8deg)}
+.js .rv.in{opacity:1;transform:none}
+.js .pg{transform-origin:50% 0;transform:perspective(1400px) rotateX(-7deg) translateY(40px);opacity:0;transition:transform 1s cubic-bezier(.16,1,.3,1),opacity .6s}
+.js .pg.in{transform:none;opacity:1}
+#range{--zc:var(--pap);background:var(--pap);color:var(--ink)}
+.cds{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:40px}
+.cd{background:var(--cc);color:var(--ct);border:4px solid var(--ink);border-radius:26px 8px 30px 10px;padding:22px;box-shadow:8px 8px 0 var(--ink);text-align:center;transition:transform .3s cubic-bezier(.2,1.7,.3,1)}
+.cd:nth-child(2){rotate:1.5deg}.cd:nth-child(3){rotate:-1.2deg}
+.cd:hover{transform:translateY(-10px) rotate(-2deg)}
+.bs{font-size:11px;height:340px;display:flex;align-items:flex-end;justify-content:center;perspective:800px;padding-bottom:14px}
+.cd h3{font:400 2rem/.95 var(--d);text-transform:uppercase;margin:6px 0 10px}
+.hm i{display:inline-block;width:22px;height:22px;border-radius:50%;border:3px solid currentColor;background:currentColor;margin:0 3px}.hm i.off{background:none}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:16px;flex-wrap:wrap}
+.cd .btn{padding:12px 16px;font-size:.9rem}
+#heat{--zc:var(--ink);background:var(--ink);color:var(--pap)}
+.hg{display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:center}
+@media(max-width:760px){.hg{grid-template-columns:1fr}}
+.tl{width:130px;background:#1c1c1c;border:4px solid #4a4a4a;border-radius:30px;padding:16px;display:grid;gap:14px;margin:auto;rotate:-3deg}
+.bl{display:block;aspect-ratio:1;border-radius:50%;background:var(--bc);opacity:.16;transition:opacity .25s,box-shadow .25s}
+.bl.on{opacity:1;box-shadow:0 0 44px var(--bc)}
+.num{font-size:clamp(100px,19vw,230px);color:var(--hc);transition:color .2s;line-height:.85}
+#hl{font-size:clamp(1.8rem,4vw,2.8rem);min-height:1.2em;margin:6px 0 18px}
+.shake .num{animation:shk .22s linear infinite}
+@keyframes shk{25%{translate:3px -2px;rotate:1deg}75%{translate:-3px 2px;rotate:-1deg}}
+input[type=range]{-webkit-appearance:none;appearance:none;background:none;width:100%;height:46px;margin:0 0 20px;cursor:grab}
+input[type=range]::-webkit-slider-runnable-track{height:16px;border-radius:9px;background:linear-gradient(90deg,#21d45c,var(--yel),var(--org),var(--red));border:3px solid var(--pap)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:42px;height:42px;margin-top:-16px;border-radius:50%;background:var(--yel);border:4px solid var(--ink);box-shadow:0 0 0 3px var(--pap)}
+input[type=range]::-moz-range-track{height:10px;border-radius:9px;background:linear-gradient(90deg,#21d45c,var(--yel),var(--org),var(--red));border:3px solid var(--pap)}
+input[type=range]::-moz-range-thumb{width:34px;height:34px;border-radius:50%;background:var(--yel);border:4px solid var(--ink);box-shadow:0 0 0 3px var(--pap)}
+#heat .btn{box-shadow:5px 5px 0 var(--red)}
+#eat{--zc:var(--yel);background:var(--yel);color:var(--ink)}
+.pr{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;margin-top:34px}
+.pc{background:var(--pap);border:3px solid var(--ink);padding:18px;border-radius:6px 22px 8px 20px;box-shadow:5px 5px 0 var(--ink);transition:transform .3s cubic-bezier(.2,1.7,.3,1)}
+.pc:nth-child(odd){rotate:-1.6deg}.pc:nth-child(even){rotate:1.4deg}
+.pc:hover{transform:scale(1.06) rotate(2deg)}
+.pc h4{font:400 1.5rem/1 var(--d);text-transform:uppercase;margin:0 0 8px}
+.pc i{display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--c);border:2px solid var(--ink);margin-right:6px}
+.pc .hand{font-size:1.4rem}
+#story{--zc:var(--blu);background:var(--blu);color:var(--pap);overflow:hidden}
+.mast{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;border-block:3px solid var(--pap);font:700 .85rem var(--s);padding:6px 0;margin-bottom:34px}
+.sg{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
+@media(max-width:860px){.sg{grid-template-columns:1fr}}
+.col{columns:2 230px;column-gap:30px}
+.col p{margin:0 0 1em}
+.col p:first-child::first-letter{font:400 4.4em/.8 var(--d);float:left;color:var(--yel);padding:.05em .1em 0 0}
+.pq{font:400 clamp(34px,5vw,58px)/.95 var(--h);color:var(--yel);rotate:-2deg;margin:30px 0 0}
+.ph{margin:0;background:radial-gradient(circle at 40% 28%,#fff 0,#ffd98a 14%,#e8271c 55%,#2a0805 100%);border:10px solid var(--pap);border-bottom-width:44px;rotate:3deg;height:440px;display:flex;align-items:flex-end;justify-content:center;box-shadow:10px 12px 0 var(--ink);overflow:hidden;padding-bottom:20px}
+#shop{--zc:var(--red);background:var(--red);color:var(--pap);text-align:center}
+.box{background:var(--pap);color:var(--ink);border:4px solid var(--ink);border-radius:30px 10px 30px 10px;padding:30px;max-width:760px;margin:36px auto 0;box-shadow:10px 10px 0 var(--ink);text-align:left}
+.ch{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:24px}
+.ch button{font:400 1rem var(--d);text-transform:uppercase;padding:14px 10px;border:3px solid var(--ink);border-radius:12px;background:#fff;cursor:pointer;color:var(--ink);transition:transform .25s cubic-bezier(.2,1.7,.3,1)}
+.ch button[aria-pressed=true]{background:var(--sc);color:var(--sc2);transform:rotate(-2deg) scale(1.06);box-shadow:4px 4px 0 var(--ink)}
+.qr{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.qt{display:flex;align-items:center;gap:12px;font:400 1.6rem var(--d)}
+.qt button{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--yel);font:400 1.4rem var(--d);cursor:pointer}
+.box .btn{box-shadow:5px 5px 0 var(--red)}
+#soc{--zc:var(--bg);background:var(--bg);color:var(--fg)}
+.ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin-top:30px}
+.tile{aspect-ratio:4/5;border:3px solid var(--ink);border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;color:var(--tc);font:400 1.3rem/1 var(--d);text-transform:uppercase;overflow:hidden;transition:transform .3s cubic-bezier(.2,1.7,.3,1)}
+.tile:nth-child(odd){rotate:-1.5deg}.tile:nth-child(even){rotate:1.5deg}
+.tile:hover{transform:scale(1.05) rotate(2deg);z-index:2}
+.tile small{font:400 1.4rem var(--h);text-transform:none}
+.lt{display:flex;gap:6px}.lt i{width:22px;height:22px;border-radius:50%;border:2px solid #111}
+footer{background:var(--ink);color:var(--pap);padding:70px 20px 40px;text-align:center;overflow:hidden}
+.ft{font-size:clamp(56px,21vw,320px);color:transparent;-webkit-text-stroke:3px var(--yel);margin-bottom:10px}
+footer p{margin:6px 0}
+.ts{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translate(-50%,250%);background:var(--ink);color:var(--yel);font:700 .95rem var(--s);padding:12px 22px;border-radius:99px;border:3px solid var(--yel);z-index:100;transition:transform .5s cubic-bezier(.2,1.6,.3,1);white-space:nowrap}
+.ts.on{transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .rv,.js .pg{opacity:1;transform:none}}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="f" viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#ffd9a0" stroke="#111" stroke-width="2.5"/><path d="M9 11l7 3M31 11l-7 3" stroke="#111" stroke-width="3" stroke-linecap="round"/><circle cx="14" cy="19" r="2.5" fill="#111"/><circle cx="26" cy="19" r="2.5" fill="#111"/><path d="M11 27q9 8 18 0z" fill="#e8271c" stroke="#111" stroke-width="2"/></symbol></svg>
+
+<nav><a class="lg" href="#top">GHASLET</a><div class="lk"><a href="#range">Range</a><a href="#heat">Heat</a><a href="#eat">Eat</a><a href="#story">Story</a></div><a class="bag" href="#shop">Bag <span id="bg">0</span></a></nav>
+
+<header class="hero" id="top">
+<p class="hand" style="font-size:clamp(1.3rem,3vw,1.9rem);rotate:-3deg">hot sauce, issue no. 1</p>
+<h1 class="big d" aria-label="Ghaslet">GHASLET</h1>
+<div class="hb">
+<span class="hand an">start here, then keep going</span>
+<div class="bw" data-b="y" style="--r:-10deg;margin-right:-1.2em"></div>
+<div class="bw c" data-b="b" style="--z:3"></div>
+<div class="bw" data-b="r" style="--r:9deg;margin-left:-1.2em"></div>
+</div>
+<p class="d sub">Sauce with zero brakes</p>
+<div class="cta"><a class="btn alt" href="#shop">Grab a bottle</a><a class="btn" href="#heat">How far can you go?</a></div>
+<div class="st" style="right:3%;top:5%;--bgc:var(--blu);color:var(--yel)" data-s="0" data-r=".03"><span>100%<br>no<br>brakes</span></div>
+<div class="st" style="left:2%;bottom:3%;--bgc:var(--ink);color:var(--yel)" data-s="0" data-r="-.03"><span>Loud<br>by<br>design</span></div>
+</header>
+<div class="mq"><div id="mq">NO BRAKES ✱ SAUCE FIRST ✱ START HERE ✱ GO FURTHER ✱ </div></div>
+
+<section class="sec pg zz" id="range"><div class="c">
+<h2 class="t d rv">Three bottles<span class="hand">one question: how far can you actually go?</span></h2>
+<div class="cds rv" id="cds"></div>
+</div></section>
+
+<section class="sec pg zz" id="heat"><div class="c hg" id="hs">
+<div class="tl" data-s="0" data-r="-.01"><i class="bl" style="--bc:#ff2d1f"></i><i class="bl" style="--bc:#ffc21a"></i><i class="bl" style="--bc:#21d45c"></i></div>
+<div>
+<h2 class="t d rv" style="font-size:clamp(34px,6vw,76px)">Find your limit</h2>
+<div class="num d" id="hn">3</div>
+<p class="hand" id="hl"></p>
+<input id="hr" type="range" min="1" max="10" value="3" aria-label="Your heat tolerance from 1 to 10">
+<button class="btn" id="hrec">Pick</button>
+</div></div></section>
+
+<section class="sec pg zz" id="eat"><div class="c">
+<h2 class="t d rv">Put it on<br>everything<span class="hand">chefs: glaze it, spike it, finish with it.</span></h2>
+<div class="food-feature"><img src="assets/food-wings.jpg" alt="Sticky, spicy glazed wings"><img src="assets/food-pairings.jpg" alt="Food pairing ideas for hot sauce"></div><div class="pr rv r" id="pr"></div>
+</div></section>
+
+<section class="sec pg zz" id="story"><div class="c">
+<div class="mast"><span>Ghaslet Quarterly</span><span>Issue 01</span><span>Free with every bottle</span></div>
+<div class="sg"><div>
+<h2 class="t d rv">Loud on purpose</h2>
+<div class="col"><p>Most hot sauce is either shy or showing off. Ghaslet is neither. It's a bottle with a face, a label with opinions, and a heat scale that works like a traffic light.</p><p>Start where you're comfortable. Go where you're not. Pour it on eggs at breakfast, glaze wings at midnight, and pass the bottle around the table. Someone will say a word they can't repeat.</p></div>
+<p class="pq" data-s="0" data-r=".006">"If it doesn't make you swear, it isn't done."</p>
+</div>
+<div class="rv r"><figure class="ph"><img src="assets/story-lifestyle.jpg" alt="Ghaslet hot sauce in a candid food moment" style="width:100%;height:100%;object-fit:cover;object-position:center;border:0"></figure><p class="hand" style="margin-top:20px;rotate:-2deg">fig. 1: the classic, 2am, flash on</p></div>
+</div></div></section>
+
+<section class="sec pg zz" id="shop"><div class="c">
+<h2 class="t d rv">Go on.<br>Order a bottle</h2>
+<p class="hand" style="font-size:2rem">your table is about to get loud.</p>
+<div class="box"><div class="ch" id="ch"></div>
+<div class="qr"><div class="qt"><button id="mn" aria-label="One fewer">−</button><span id="q">1</span><button id="pl" aria-label="One more">+</button></div><b class="d" style="font-size:2rem" id="tot">₹399</b><button class="btn" id="ord">Order now</button></div></div>
+</div></section>
+
+<section class="sec pg zz" id="soc"><div class="c">
+<h2 class="t d rv">On the feed<span class="hand">flash photos, bad decisions, good sauce</span></h2>
+<div class="ig rv" id="ig"></div>
+</div></section>
+
+<footer><div class="ft d" data-s="0" data-r=".004">GHASLET</div><p class="hand">stay loud.</p><p><a href="https://www.instagram.com/ghaslet.in/" target="_blank" rel="noopener">@ghaslet.in on Instagram</a></p></footer>
+<div class="ts" id="ts" role="status" aria-live="polite"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const K={b:{n:'The Classic',c:'#2347ff',t:'#fff',h:1,tag:'starts here'},y:{n:'Hits Harder',c:'#ffc21a',t:'#120d0a',h:2,tag:'this one hits harder'},r:{n:'Wrecks You',c:'#e8271c',t:'#fff',h:3,tag:'this one just wrecks you'}};
+const IG='https://www.instagram.com/ghaslet.in/';
+$('.big').innerHTML=[...'GHASLET'].map((c,i)=>`<span style="--i:${i}">${c}</span>`).join('');
+$('#mq').innerHTML=$('#mq').textContent.repeat(6);
+$('#cds').innerHTML=Object.entries(K).map(([k,v])=>`<article class="cd" style="--cc:${v.c};--ct:${v.t}"><p class="hand">${v.tag}</p><div class="bs"><img class="product-photo" src="assets/${k==='b'?'classic-bottle.jpg':k==='y'?'spicy-bottle.jpg':'smokey-bottle.jpg'}" alt="${v.n} Ghaslet hot sauce bottle"></div><h3>${v.n}</h3><div class="hm" aria-label="Heat ${v.h} of 3">${[1,2,3].map(i=>`<i class="${i>v.h?'off':''}"></i>`).join('')}</div><div class="row"><b class="d">₹399</b><button class="btn alt" data-add="${k}">Add to bag</button></div></article>`).join('');
+$('#pr').innerHTML=[['Masala omelette','b','a gentle start'],['Cheese toast','b','melt, then drizzle'],['Fried chicken','y','the sticky kind'],['Momos','y','dunk, don\'t dab'],['Instant noodles','r','stir it in'],['Pizza crust','r','save the best for last']].map(([n,k,h])=>`<div class="pc"><h4>${n}</h4><p class="hand"><i style="--c:${K[k].c}"></i>${K[k].n}: ${h}</p></div>`).join('');
+$('#ch').innerHTML=Object.entries(K).map(([k,v])=>`<button data-k="${k}" aria-pressed="false" style="--sc:${v.c};--sc2:${v.t}">${v.n}</button>`).join('');
+const T=[
+['url(assets/food-wings.jpg) center/cover','#fff','Wings hit different','<small>hot, sticky, gone</small>'],
+['url(assets/hero-product.jpg) center/cover','#fff','Flash on','<small>the classic</small>'],
+['url(assets/story-lifestyle.jpg) center/cover','#fff','Good food, better days','<small>real food, real heat</small>'],
+['url(assets/spicy-bottle.jpg) center/cover','#fff','Starts here','<small>then keep going</small>'],
+['url(assets/bottle-trio.jpg) center/cover','#fff','Bottle service','<small>three kinds of chaos</small>'],
+['url(assets/food-pairings.jpg) center/cover','#fff','Follow @ghaslet.in','<small>see more on Instagram</small>']];
+$('#ig').innerHTML=T.map(([b,c,t,x])=>`<a class="tile" href="${IG}" target="_blank" rel="noopener" style="background:${b};--tc:${c}"><span>${t}</span><div>${x}</div></a>`).join('');
+$$('[data-b]').forEach(e=>{const v=K[e.dataset.b],[a,b]=v.n.toUpperCase().split(' ');e.innerHTML=`<div class="bt" style="--c:${v.c};--t:${v.t};--dl:${-Math.random()*4}s"><i class="cap"></i><i class="nk"></i><i class="bd"></i><i class="lb"><b>GHASLET</b><svg viewBox="0 0 40 40"><use href="#f" width="40" height="40"/></svg><u>${a}<br>${b}</u></i></div>`});
+/* heat */
+const P=['Barely a whisper','Warm hello','Pleasant tingle','Now we\'re talking','Sweat on the lip','Hiccups incoming','Napkins, plural','Regret loading','Call your mum','Absolute wreckage'],hr=$('#hr');
+function heat(){const v=+hr.value,k=v<4?'b':v<8?'y':'r';$('#hn').textContent=v;$('#hl').textContent=P[v-1];$('#hs').style.setProperty('--hc',`hsl(${130-v*12} 95% 55%)`);$$('.bl').forEach((e,i)=>e.classList.toggle('on',i==(k=='b'?2:k=='y'?1:0)));$('#hs').classList.toggle('shake',v>8);$('#hrec').textContent='Try '+K[k].n;$('#hrec').dataset.k=k}
+hr.oninput=heat;heat();
+$('#hrec').onclick=()=>{pick($('#hrec').dataset.k);$('#shop').scrollIntoView()};
+/* shop */
+let sel='b',q=1,bag=0,tt;
+function toast(m){const t=$('#ts');t.textContent=m;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2400)}
+function pick(k){sel=k;$$('#ch button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.k==k))}
+function tot(){$('#q').textContent=q;$('#tot').textContent='₹'+q*399}
+function add(k,n){bag+=n;$('#bg').textContent=bag;toast(n+' × '+K[k].n+' in the bag')}
+$$('#ch button').forEach(b=>b.onclick=()=>pick(b.dataset.k));
+$('#mn').onclick=()=>{q=Math.max(1,q-1);tot()};$('#pl').onclick=()=>{q=Math.min(12,q+1);tot()};
+$('#ord').onclick=()=>add(sel,q);
+$$('[data-add]').forEach(b=>b.onclick=()=>{pick(b.dataset.add);add(b.dataset.add,1)});
+pick('b');
+/* motion */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.08});
+$$('.rv,.pg').forEach(e=>io.observe(e));
+const ps=$$('[data-s]');let tk=0;
+function px(){tk=0;ps.forEach(e=>{const r=e.getBoundingClientRect(),k=r.top+r.height/2-innerHeight/2;e.style.setProperty('--py',k*e.dataset.s+'px');e.style.setProperty('--pr',k*(e.dataset.r||0)+'deg')})}
+addEventListener('scroll',()=>{tk||(tk=requestAnimationFrame(px))},{passive:true});px();
+</script></body></html>

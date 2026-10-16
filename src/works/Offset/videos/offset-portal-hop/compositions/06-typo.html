@@ -1,0 +1,35 @@
+<template>
+<style>
+  @font-face { font-family: "zentry"; src: url("assets/fonts/zentry-regular.woff2") format("woff2"); }
+  @font-face { font-family: "general"; src: url("assets/fonts/general.woff2") format("woff2"); }
+  @font-face { font-family: "robert"; src: url("assets/fonts/robert-medium.woff2") format("woff2"); }
+
+  #f6 {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: #dfdff0; color: #0E041D; display: flex; flex-direction: column; justify-content: center; padding: 0 100px;
+  }
+  .f6-hero-word { font-family: "zentry", sans-serif; font-weight: 900; font-size: 340px; line-height: 0.82; text-transform: uppercase; letter-spacing: -0.02em; display: flex; justify-content: center; }
+  .f6-char { display: inline-block; background-size: cover; background-position: center; -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .f6-char.inked { color: #0E041D !important; background-image: none !important; }
+  .f6-label { font-family: "general", sans-serif; font-size: 24px; letter-spacing: .16em; text-transform: uppercase; margin-top: 30px; text-align: center; font-weight: 700; }
+</style>
+<div data-hf-id="hf-9bu1" id="f6" data-composition-id="f6" data-start="0" data-duration="1.85">
+  <div data-hf-id="hf-x2t0" class="f6-hero-word" id="heroWord">
+    <span data-hf-id="hf-4nns" class="f6-char" id="chA1" style="background-image:url('assets/images/thumb_3d.jpg')">A</span>
+    <span data-hf-id="hf-ks5i" class="f6-char" id="chN" style="background-image:url('assets/images/thumb_glass.jpg')">N</span>
+    <span data-hf-id="hf-32eh" class="f6-char" id="chA2" style="background-image:url('assets/images/thumb_hud.jpg')">A</span>
+    <span data-hf-id="hf-m9hk" class="f6-char" id="chK" style="background-image:url('assets/images/thumb_synth.jpg')">K</span>
+    <span data-hf-id="hf-w4pu" class="f6-char" id="chI" style="background-image:url('assets/images/thumb_liquid.jpg')">I</span>
+    <span data-hf-id="hf-n1l9" class="f6-char" id="chN2" style="background-image:url('assets/images/thumb_bauhaus.jpg')">N</span>
+  </div>
+  <div data-hf-id="hf-e7d4" class="f6-label" id="f6Label">ONE DIRECTOR. EVERY DISCIPLINE.</div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#f6", { scale: 0.03 }, { scale: 1, duration: 0.95, ease: "power4.out" }, 0.0)
+    .fromTo("#f6Label", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power4.out" }, 0.55)
+    .to("#f6 .f6-char", { color: "#0E041D", backgroundImage: "none", stagger: 0.06, duration: 0.25 }, 1.15);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["f6"] = tl;
+</script>
+</template>

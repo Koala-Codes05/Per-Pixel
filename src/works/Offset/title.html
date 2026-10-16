@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Offset 2027 | Main title, 12 s loop</title>
+<meta name="description" content="A 12-second looping title sequence for Offset, a fictional festival of design in motion. Lisboa, 14 to 16 May 2027.">
+<meta name="theme-color" content="#161616">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anybody:ital,wdth,wght@0,50..150,100..900;1,50..150,100..900&family=Geist+Mono:wght@400..600&display=swap">
+<style>
+  :root {
+    --cyan: #00A0E3;
+    --magenta: #E6007E;
+    --magenta-ink: #C2006B;
+    --yellow: #FFE500;
+    --key: #1A1A1A;
+    --paper: #F3F1EC;
+
+    --ui-0: #121212;
+    --ui-1: #1B1B1B;
+    --ui-2: #242424;
+    --ui-3: #303030;
+    --ui-line: #3A3A3A;
+    --ui-text: #C9C9C9;
+    --ui-dim: #8A8A8A;
+    --cti: #2D8CEB;
+
+    --f-display: 'Anybody', system-ui, sans-serif;
+    --f-mono: 'Geist Mono', ui-monospace, monospace;
+    --f-ui: system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --bar-h: 84px;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--ui-0); color: var(--ui-text);
+    font-family: var(--f-ui); font-size: 13px;
+    -webkit-font-smoothing: antialiased; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button { font: inherit; color: inherit; }
+  ::selection { background: var(--cti); color: #fff; }
+  :focus-visible { outline: 2px solid var(--cti); outline-offset: 2px; border-radius: 4px; }
+
+  .app { position: fixed; inset: 0; display: grid; grid-template-rows: auto 1fr auto; }
+
+  /* ---------- Viewer chrome ---------- */
+  .tabs {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    height: 34px; padding: 0 12px; background: var(--ui-1); border-bottom: 1px solid var(--ui-0);
+  }
+  .tab { display: inline-flex; align-items: center; gap: 8px; height: 26px; padding: 0 12px; border-radius: 4px 4px 0 0; background: var(--ui-2); color: #e6e6e6; }
+  .tab i { width: 9px; height: 9px; border-radius: 2px; background: #A79BFF; }
+  .tabs__meta { color: var(--ui-dim); font-family: var(--f-mono); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .viewer { position: relative; display: grid; place-items: center; overflow: hidden; background: #161616; }
+  .viewer__foot {
+    position: absolute; left: 12px; bottom: 8px; display: flex; gap: 14px;
+    font-family: var(--f-mono); font-size: 11px; color: var(--ui-dim); font-variant-numeric: tabular-nums;
+  }
+  .comp-wrap { position: relative; box-shadow: 0 0 0 1px #2A2A2A, 0 24px 60px -20px rgb(0 0 0 / .8); }
+
+  /* ---------- Composition (authored at 1920×1080) ---------- */
+  .comp { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; overflow: hidden; background: var(--paper); }
+  .comp-inner { position: absolute; inset: 0; transform-origin: 50% 46%; }
+  .comp svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .hairline { fill: none; stroke: var(--key); stroke-width: 1.6; }
+  .reg circle { fill: none; stroke: var(--key); stroke-width: 1.6; }
+  .reg line { stroke: var(--key); stroke-width: 1.6; }
+
+  .slug {
+    position: absolute; font-family: var(--f-mono); font-size: 15px; letter-spacing: .04em; color: var(--key);
+    white-space: nowrap; font-variant-numeric: tabular-nums;
+  }
+  .slug b { color: var(--magenta-ink); font-weight: 600; }
+  .slug .type { display: inline-block; }
+
+  .halftone circle { fill: var(--magenta); }
+  .halftone { mix-blend-mode: multiply; }
+
+  .word { position: absolute; left: 50%; top: 50%; }
+  .plate {
+    display: flex; white-space: nowrap;
+    font-family: var(--f-display); font-weight: 900; font-size: 292px; line-height: .8; letter-spacing: -.01em;
+    font-variation-settings: "wdth" var(--wdth, 150);
+    mix-blend-mode: multiply;
+  }
+  .plate + .plate { position: absolute; inset: 0; }
+  .plate .ch { display: block; }
+  .plate--k { color: var(--key); }
+  .plate--c { color: var(--cyan); }
+  .plate--m { color: var(--magenta); }
+  .plate--y { color: var(--yellow); }
+
+  .cross { position: absolute; background: var(--magenta); mix-blend-mode: multiply; }
+  .cross--h { left: 0; right: 0; top: 50%; height: 2px; margin-top: -1px; }
+  .cross--v { top: 0; bottom: 0; left: 50%; width: 2px; margin-left: -1px; }
+
+  .info { position: absolute; left: 150px; bottom: 150px; display: grid; gap: 4px; }
+  .info__line { position: relative; font-family: var(--f-display); font-size: 66px; line-height: 1.02; letter-spacing: -.01em; white-space: nowrap; }
+  .info__line span { display: block; }
+  .info__line .m { position: absolute; inset: 0; color: var(--magenta); mix-blend-mode: multiply; }
+  .info__line .k { position: relative; color: var(--key); mix-blend-mode: multiply; }
+  .info__line--a { font-weight: 800; font-variation-settings: "wdth" 112; }
+  .info__line--b { font-weight: 300; font-variation-settings: "wdth" 100; }
+  .programme { position: absolute; right: 150px; bottom: 156px; display: grid; gap: 6px; text-align: right; }
+  .programme .slug { position: static; font-size: 22px; letter-spacing: .08em; }
+
+  .sheet { position: absolute; inset: 0; background: var(--yellow); }
+
+  .guides { position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .15s ease; }
+  .guides.is-on { opacity: 1; }
+  .guides i { position: absolute; border: 1.5px solid rgb(0 160 227 / .75); }
+  .guides .g-action { inset: 5%; }
+  .guides .g-title { inset: 10%; }
+  .guides .g-c1, .guides .g-c2 { border: 0; background: rgb(0 160 227 / .75); left: 50%; top: 50%; }
+  .guides .g-c1 { width: 40px; height: 1.5px; margin-left: -20px; }
+  .guides .g-c2 { width: 1.5px; height: 40px; margin-top: -20px; }
+
+  /* ---------- Transport ---------- */
+  .transport {
+    display: grid; grid-template-columns: auto auto minmax(0, 1fr) auto auto;
+    align-items: center; gap: 14px;
+    min-height: var(--bar-h); padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    background: var(--ui-1); border-top: 1px solid #000;
+  }
+  .t-btn {
+    position: relative; display: inline-grid; place-items: center;
+    height: 36px; min-width: 40px; padding: 0 12px; border: 0; border-radius: 6px;
+    background: var(--ui-3); color: #EDEDED; cursor: pointer;
+    transition: background-color .15s ease, transform .16s cubic-bezier(.23, 1, .32, 1);
+  }
+  .t-btn:active { transform: scale(.96); }
+  .t-btn[aria-pressed="true"] { background: #3d4a5c; color: #fff; }
+  .t-play { width: 44px; height: 44px; padding: 0; border-radius: 50%; background: #E9E9E9; color: #111; }
+  .t-play svg {
+    grid-area: 1 / 1; width: 18px; height: 18px;
+    transition: opacity .2s cubic-bezier(.2, 0, 0, 1), transform .2s cubic-bezier(.2, 0, 0, 1), filter .2s cubic-bezier(.2, 0, 0, 1);
+  }
+  .t-play .i-play { transform: translateX(1.5px); }
+  .t-play[data-state="playing"] .i-play, .t-play[data-state="paused"] .i-pause { opacity: 0; transform: scale(.25); filter: blur(4px); }
+  @media (hover: hover) and (pointer: fine) {
+    .t-btn:hover { background: #3a3a3a; }
+    .t-play:hover { background: #fff; }
+  }
+  .t-time { display: grid; gap: 2px; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+  .t-tc { font-size: 22px; font-weight: 500; color: var(--cti); letter-spacing: .02em; line-height: 1; }
+  .t-sub { font-size: 11px; color: var(--ui-dim); white-space: nowrap; }
+
+  .scrub { position: relative; height: 58px; cursor: ew-resize; touch-action: none; user-select: none; -webkit-user-select: none; outline-offset: 4px; }
+  .scrub__markers { position: absolute; left: 0; right: 0; top: 0; height: 18px; }
+  .marker {
+    position: absolute; top: 0; transform: translateX(-1px);
+    display: flex; align-items: center; gap: 5px; height: 16px; padding: 0 6px 0 4px;
+    font-size: 10.5px; color: #111; white-space: nowrap; border-radius: 2px 3px 3px 0;
+    background: var(--c); cursor: pointer; border: 0;
+  }
+  .marker::before { content: ""; position: absolute; left: 0; top: 100%; width: 1px; height: 40px; background: var(--c); opacity: .45; }
+  .scrub__ruler { position: absolute; left: 0; right: 0; top: 22px; height: 16px; border-bottom: 1px solid var(--ui-line); }
+  .tick { position: absolute; bottom: 0; width: 1px; height: 5px; background: #5a5a5a; }
+  .tick--major { height: 9px; background: #8a8a8a; }
+  .tick span { position: absolute; bottom: 10px; left: 3px; font-family: var(--f-mono); font-size: 10px; color: var(--ui-dim); font-variant-numeric: tabular-nums; }
+  .scrub__bar { position: absolute; left: 0; right: 0; top: 42px; height: 12px; border-radius: 2px; background: #3B3F45; overflow: hidden; }
+  .scrub__played { position: absolute; inset: 0; transform-origin: 0 50%; background: #4E5D72; }
+  .cti { position: absolute; top: 18px; bottom: 0; left: 0; width: 0; will-change: transform; pointer-events: none; }
+  .cti::after { content: ""; position: absolute; top: 4px; bottom: 0; left: -0.5px; width: 1px; background: var(--cti); }
+  .cti__head {
+    position: absolute; top: 0; left: -7px; width: 14px; height: 18px; background: var(--cti);
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+  }
+
+  .t-seg { display: inline-flex; padding: 3px; border-radius: 8px; background: var(--ui-0); gap: 2px; }
+  .t-seg button {
+    height: 32px; min-width: 52px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; color: var(--ui-dim);
+    font-family: var(--f-mono); font-size: 13px; cursor: pointer; font-variant-numeric: tabular-nums;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .t-seg button[aria-pressed="true"] { background: var(--ui-3); color: #fff; }
+  .t-note { position: absolute; right: 14px; bottom: calc(var(--bar-h) + 10px); max-width: 320px; padding: 8px 12px; border-radius: 6px; background: var(--ui-2); color: var(--ui-text); font-size: 12px; display: none; }
+  .reduced .t-note { display: block; }
+
+  @media (max-width: 760px) {
+    :root { --bar-h: 132px; }
+    .tabs__meta { display: none; }
+    .transport {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      grid-template-areas: "play time speed" "scrub scrub scrub";
+      gap: 10px 12px; padding-top: 8px;
+    }
+    .t-play { grid-area: play; }
+    .t-time { grid-area: time; }
+    .t-seg { grid-area: speed; }
+    .scrub { grid-area: scrub; }
+    .t-guides { display: none; }
+    .marker { font-size: 0; padding: 0; width: 10px; }
+    .tick span { font-size: 9px; }
+    .tick--half span { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="tabs">
+    <div style="display:flex;align-items:center;gap:6px;">
+      <span class="tab"><i aria-hidden="true"></i>Offset_MainTitle_12s</span>
+      <a class="tab" href="showreel.html" style="background:#181A22;color:#00F0FF;text-decoration:none;"><i style="background:#00F0FF;" aria-hidden="true"></i>Showreel_15s_Master</a>
+    </div>
+    <span class="tabs__meta">1920 × 1080 · 30 fps · Δ 0:00:12:00 · loop</span>
+  </div>
+
+  <main class="viewer">
+    <div class="comp-wrap" id="compWrap">
+      <div class="comp" id="comp" role="img" aria-label="Title sequence: Offset. A festival for design that moves. Lisboa, 14 to 16 May 2027. Talks, workshops, print room, late screenings.">
+        <div class="comp-inner" aria-hidden="true">
+          <!-- Make-ready: crop marks, registration targets, colour bar -->
+          <svg viewBox="0 0 1920 1080" class="marks">
+            <g class="crops">
+              <line class="hairline crop" pathLength="1" x1="30" y1="90" x2="72" y2="90"/>
+              <line class="hairline crop" pathLength="1" x1="90" y1="30" x2="90" y2="72"/>
+              <line class="hairline crop" pathLength="1" x1="1890" y1="90" x2="1848" y2="90"/>
+              <line class="hairline crop" pathLength="1" x1="1830" y1="30" x2="1830" y2="72"/>
+              <line class="hairline crop" pathLength="1" x1="30" y1="990" x2="72" y2="990"/>
+              <line class="hairline crop" pathLength="1" x1="90" y1="1050" x2="90" y2="1008"/>
+              <line class="hairline crop" pathLength="1" x1="1890" y1="990" x2="1848" y2="990"/>
+              <line class="hairline crop" pathLength="1" x1="1830" y1="1050" x2="1830" y2="1008"/>
+            </g>
+            <g class="reg" transform="translate(960 46)"><circle pathLength="1" r="14"/><line x1="-26" x2="26"/><line y1="-26" y2="26"/></g>
+            <g class="reg" transform="translate(960 1034)"><circle pathLength="1" r="14"/><line x1="-26" x2="26"/><line y1="-26" y2="26"/></g>
+            <g class="reg" transform="translate(46 540)"><circle pathLength="1" r="14"/><line x1="-26" x2="26"/><line y1="-26" y2="26"/></g>
+            <g class="reg" transform="translate(1874 540)"><circle pathLength="1" r="14"/><line x1="-26" x2="26"/><line y1="-26" y2="26"/></g>
+            <g class="colorbar" transform="translate(1180 1022)">
+              <rect class="patch" x="0" width="28" height="18" fill="#00A0E3"/>
+              <rect class="patch" x="28" width="28" height="18" fill="#E6007E"/>
+              <rect class="patch" x="56" width="28" height="18" fill="#FFE500"/>
+              <rect class="patch" x="84" width="28" height="18" fill="#1A1A1A"/>
+              <rect class="patch" x="112" width="28" height="18" fill="#80CFF1"/>
+              <rect class="patch" x="140" width="28" height="18" fill="#F380BE"/>
+              <rect class="patch" x="168" width="28" height="18" fill="#FFF280"/>
+              <rect class="patch" x="196" width="28" height="18" fill="#8C8C8C"/>
+              <rect class="patch" x="224" width="28" height="18" fill="#2E3092"/>
+              <rect class="patch" x="252" width="28" height="18" fill="#E30613"/>
+              <rect class="patch" x="280" width="28" height="18" fill="#009640"/>
+              <rect class="patch" x="308" width="28" height="18" fill="#C6C6C6"/>
+            </g>
+          </svg>
+
+          <div class="slug" style="left:120px;top:32px"><span class="type">OFFSET 2027 — MAIN TITLE — SHEET <b>01</b>/01</span></div>
+          <div class="slug" style="right:120px;top:32px"><span class="type">C 15° · M 75° · Y 0° · K 45° — 175 LPI</span></div>
+          <div class="slug" style="left:120px;bottom:28px"><span class="type">LISBOA · 14—16.05.2027</span></div>
+
+          <!-- Halftone: magenta screen at 15°, dot size falls off from the centre of the word -->
+          <svg viewBox="0 0 1920 1080" class="halftone"><g id="dots" transform="rotate(15 960 390)"></g></svg>
+
+          <div class="cross cross--h"></div>
+          <div class="cross cross--v"></div>
+
+          <div class="word" id="word">
+            <div class="plate plate--k"><span class="ch">O</span><span class="ch">F</span><span class="ch">F</span><span class="ch">S</span><span class="ch">E</span><span class="ch">T</span></div>
+            <div class="plate plate--y"><span class="ch">O</span><span class="ch">F</span><span class="ch">F</span><span class="ch">S</span><span class="ch">E</span><span class="ch">T</span></div>
+            <div class="plate plate--m"><span class="ch">O</span><span class="ch">F</span><span class="ch">F</span><span class="ch">S</span><span class="ch">E</span><span class="ch">T</span></div>
+            <div class="plate plate--c"><span class="ch">O</span><span class="ch">F</span><span class="ch">F</span><span class="ch">S</span><span class="ch">E</span><span class="ch">T</span></div>
+          </div>
+
+          <div class="info">
+            <div class="info__line info__line--a"><span class="m">A festival for design that moves.</span><span class="k">A festival for design that moves.</span></div>
+            <div class="info__line info__line--b"><span class="m">Lisboa, 14—16 May 2027</span><span class="k">Lisboa, 14—16 May 2027</span></div>
+          </div>
+          <div class="programme">
+            <div class="slug"><span class="type">TALKS</span></div>
+            <div class="slug"><span class="type">WORKSHOPS</span></div>
+            <div class="slug"><span class="type">PRINT ROOM</span></div>
+            <div class="slug"><span class="type">LATE SCREENINGS</span></div>
+          </div>
+
+          <div class="sheet"></div>
+        </div>
+        <div class="guides" id="guides" aria-hidden="true"><i class="g-action"></i><i class="g-title"></i><i class="g-c1"></i><i class="g-c2"></i></div>
+      </div>
+    </div>
+    <div class="viewer__foot" aria-hidden="true"><span id="zoom">Fit</span><span>Full</span><span>Active camera</span></div>
+  </main>
+
+  <div class="transport" role="group" aria-label="Playback">
+    <button class="t-play" id="play" type="button" aria-label="Pause" data-state="playing">
+      <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="i-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4.8v14.4a1 1 0 0 0 1.5.86l11.6-7.2a1 1 0 0 0 0-1.72L8.5 3.94A1 1 0 0 0 7 4.8z"/></svg>
+    </button>
+    <div class="t-time">
+      <span class="t-tc" id="tc">0:00:00:00</span>
+      <span class="t-sub"><span id="frames">00000</span> · <span id="scene">Make-ready</span></span>
+    </div>
+    <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Playhead" aria-valuemin="0" aria-valuemax="12" aria-valuenow="0" aria-valuetext="0.0 seconds">
+      <div class="scrub__markers" id="markers"></div>
+      <div class="scrub__ruler" id="ruler"></div>
+      <div class="scrub__bar"><div class="scrub__played" id="played"></div></div>
+      <div class="cti" id="cti"><div class="cti__head"></div></div>
+    </div>
+    <div class="t-seg" role="group" aria-label="Playback speed">
+      <button type="button" data-speed="0.25" aria-pressed="false">0.25×</button>
+      <button type="button" data-speed="1" aria-pressed="true">1×</button>
+    </div>
+    <button class="t-btn t-guides" id="guidesBtn" type="button" aria-pressed="false">Safe zones</button>
+  </div>
+  <p class="t-note" role="note">Reduced motion is on, so this is paused on a still. Press play to run it.</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script>
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  gsap.registerPlugin(CustomEase);
+
+  /* ------------------------------------------------------------------
+     EASING: every curve on the timeline is one of these, by name.
+
+     platen     expo.out
+                A plate dropping onto the press bed: all the speed up front,
+                then a long, heavy settle. Used for every arrival.
+     kiss       CustomEase  M0,0 C0.32,0 0.18,1.14 0.5,1.06 0.68,1.01 0.8,1 1,1
+                The moment the plates come into register. Slow to commit,
+                a 6% overshoot past true, then locked.
+     pressRoll  CustomEase  M0,0 C0.7,0 0.15,1 1,1
+                The roller travelling across the sheet. A heavy ease-in-out
+                for anything that moves while it is already on screen.
+     sheetFeed  CustomEase  M0,0 C0.92,0 0.08,1 1,1
+                A sheet pulled through the feeder: it hesitates, then whips.
+                Only the yellow sheet that wipes the loop uses it.
+     inkDraw    power2.inOut
+                Hairlines drawing on: crop marks, registration targets.
+     wobble     sine.inOut
+                Misregistration drift. Unhurried, almost organic.
+     typeset    steps(n)
+                Slug lines set one character at a time, like a typesetter.
+     ------------------------------------------------------------------ */
+  gsap.registerEase('platen', gsap.parseEase('expo.out'));
+  CustomEase.create('kiss', 'M0,0 C0.32,0 0.18,1.14 0.5,1.06 0.68,1.01 0.8,1 1,1');
+  CustomEase.create('pressRoll', 'M0,0 C0.7,0 0.15,1 1,1');
+  CustomEase.create('sheetFeed', 'M0,0 C0.92,0 0.08,1 1,1');
+  gsap.registerEase('inkDraw', gsap.parseEase('power2.inOut'));
+  gsap.registerEase('wobble', gsap.parseEase('sine.inOut'));
+
+  const FPS = 30, DUR = 12;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) document.body.classList.add('reduced');
+
+  /* ---------- Fit the 1920×1080 comp into the viewer ---------- */
+  const comp = $('#comp'), wrap = $('#compWrap'), viewer = $('.viewer'), zoomEl = $('#zoom');
+  const fit = () => {
+    const r = viewer.getBoundingClientRect();
+    const s = Math.min((r.width - 32) / 1920, (r.height - 48) / 1080);
+    comp.style.transform = `scale(${s})`;
+    wrap.style.width = 1920 * s + 'px';
+    wrap.style.height = 1080 * s + 'px';
+    zoomEl.textContent = `Fit (${Math.round(s * 100)}%)`;
+  };
+  new ResizeObserver(fit).observe(viewer);
+  fit();
+
+  /* ---------- Halftone dots ---------- */
+  const dotsG = $('#dots'), NS = 'http://www.w3.org/2000/svg';
+  const CX = 960, CY = 390, R = 470, STEP = 46;
+  for (let y = CY - R; y <= CY + R; y += STEP) {
+    for (let x = CX - R; x <= CX + R; x += STEP) {
+      const d = Math.hypot(x - CX, y - CY);
+      if (d > R) continue;
+      const c = document.createElementNS(NS, 'circle');
+      c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 0);
+      c.dataset.r = (STEP * 0.5 * Math.pow(1 - d / R, 0.7)).toFixed(2);
+      c.dataset.d = (d / R).toFixed(3);
+      dotsG.appendChild(c);
+    }
+  }
+  const dots = $$('#dots circle');
+
+  /* ---------- Elements ---------- */
+  const inner = $('.comp-inner');
+  const crops = $$('.crop'), regs = $$('.reg'), patches = $$('.patch');
+  const topSlugs = $$('.comp-inner > .slug .type');
+  const progSlugs = $$('.programme .type');
+  const word = $('#word');
+  const K = $('.plate--k'), C = $('.plate--c'), M = $('.plate--m'), Y = $('.plate--y');
+  const kChars = $$('.ch', K);
+  const plates = [C, M, Y, K];
+  const lines = $$('.info__line');
+  const crossH = $('.cross--h'), crossV = $('.cross--v');
+  const sheet = $('.sheet');
+
+  const OFF = { C: { x: -26, y: -16 }, M: { x: 22, y: 12 }, Y: { x: -10, y: 24 } };
+  const SHUT = 'inset(0% 100% 0% 0%)', OPEN = 'inset(0% 0% 0% 0%)', GONE = 'inset(0% 0% 0% 100%)';
+
+  /* =================================================================
+     The master timeline. One timeline, 12.000 s, loops forever.
+     ================================================================= */
+  const tl = gsap.timeline({ repeat: -1, paused: true, defaults: { ease: 'platen' } });
+
+  // Frame 0: clean paper. The last frame returns here, so the loop has no seam.
+  tl.set(word, { xPercent: -50, yPercent: -50, x: 0, y: 0, scale: 1 }, 0)
+    .set(plates, { '--wdth': 60, x: 0, y: 0 }, 0)
+    .set(C, { x: -1500, y: OFF.C.y }, 0)
+    .set(M, { x: 1500, y: OFF.M.y }, 0)
+    .set(Y, { x: OFF.Y.x, y: -950 }, 0)
+    .set(kChars, { y: -1150, rotation: 0 }, 0)
+    .set(crops, { strokeDasharray: 1, strokeDashoffset: 1 }, 0)
+    .set(regs, { rotation: -120, scale: .4, transformOrigin: '50% 50%' }, 0)
+    .set($$('.reg circle'), { strokeDasharray: 1, strokeDashoffset: 1 }, 0)
+    .set(patches, { scaleY: 0, transformOrigin: '50% 100%' }, 0)
+    .set([...topSlugs, ...progSlugs], { clipPath: SHUT }, 0)
+    .set(dots, { attr: { r: 0 } }, 0)
+    .set(crossH, { scaleX: 0 }, 0)
+    .set(crossV, { scaleY: 0 }, 0)
+    .set($$('.info__line .k'), { clipPath: SHUT }, 0)
+    .set($$('.info__line .m'), { clipPath: SHUT, x: 140, y: 0 }, 0)
+    .set(sheet, { clipPath: SHUT }, 0)
+    .set(inner, { scale: 1 }, 0);
+
+  /* --- 0:00 → 1:06  Make-ready ------------------------------------ */
+  tl.addLabel('Make-ready', 0)
+    .to(crops, { strokeDashoffset: 0, duration: .7, stagger: .05, ease: 'inkDraw' }, 0.1)
+    .to(regs, { rotation: 0, scale: 1, duration: .9, stagger: .07, ease: 'platen' }, 0.25)
+    .to($$('.reg circle'), { strokeDashoffset: 0, duration: .7, stagger: .07, ease: 'inkDraw' }, 0.3)
+    .to(patches, { scaleY: 1, duration: .5, stagger: .035, ease: 'platen' }, 0.45)
+    .to(topSlugs, { clipPath: OPEN, duration: .8, stagger: .12, ease: 'steps(30)' }, 0.4);
+
+  /* --- 1:06 → 3:12  Plates ---------------------------------------- */
+  tl.addLabel('Plates', 1.2)
+    .to(C, { x: OFF.C.x, '--wdth': 150, duration: 1.15 }, 1.2)
+    .to(M, { x: OFF.M.x, '--wdth': 150, duration: 1.15 }, 1.42)
+    .to(Y, { y: OFF.Y.y, '--wdth': 150, duration: 1.15 }, 1.64)
+    .to(K, { '--wdth': 150, duration: 1.1 }, 1.9)
+    .to(kChars, { y: 0, duration: .95, stagger: .06 }, 1.95);
+
+  /* --- 3:12 → 4:03  Kiss: the plates come into register ------------ */
+  tl.addLabel('Kiss', 3.4)
+    .to([C, M, Y], { x: 0, y: 0, duration: .5, stagger: .045, ease: 'kiss' }, 3.4)
+    .to(inner, { keyframes: { scale: [1, 1.035, 1], easeEach: 'pressRoll' }, duration: .55 }, 3.47)
+    .to(crossH, { scaleX: 1, duration: .32, ease: 'platen' }, 3.5)
+    .to(crossV, { scaleY: 1, duration: .32, ease: 'platen' }, 3.53)
+    .to(crossH, { scaleX: 0, transformOrigin: '100% 50%', duration: .28, ease: 'pressRoll' }, 3.86)
+    .to(crossV, { scaleY: 0, transformOrigin: '50% 100%', duration: .28, ease: 'pressRoll' }, 3.88)
+    .set(crossH, { transformOrigin: '50% 50%' }, 4.2)
+    .set(crossV, { transformOrigin: '50% 50%' }, 4.2);
+
+  /* --- 4:03 → 7:06  Programme ------------------------------------- */
+  tl.addLabel('Programme', 4.1)
+    .to(word, { y: -150, scale: .64, duration: .95, ease: 'pressRoll' }, 4.1)
+    .to(dots, { attr: { r: (i, el) => el.dataset.r }, duration: .7, ease: 'platen', stagger: (i, el) => el.dataset.d * .8 }, 4.3);
+  lines.forEach((ln, i) => {
+    const at = 4.75 + i * .26;
+    tl.to($('.k', ln), { clipPath: OPEN, duration: .75, ease: 'pressRoll' }, at)
+      .to($('.m', ln), { clipPath: OPEN, duration: .75, ease: 'pressRoll' }, at + .06)
+      .to($('.m', ln), { x: 5, y: 3, duration: 1.0, ease: 'kiss' }, at + .06);
+  });
+  tl.to(progSlugs, { clipPath: OPEN, duration: .5, stagger: .14, ease: 'steps(16)' }, 5.1);
+
+  /* --- 7:06 → 9:18  Drift: the press goes out of register ---------- */
+  tl.addLabel('Drift', 7.2)
+    .to([...$$('.info__line .k'), ...$$('.info__line .m')], { clipPath: GONE, duration: .5, stagger: .05, ease: 'pressRoll' }, 7.2)
+    .to(progSlugs, { clipPath: GONE, duration: .35, stagger: .06, ease: 'steps(12)' }, 7.25)
+    .to(dots, { attr: { r: 0 }, duration: .4, ease: 'pressRoll', stagger: (i, el) => (1 - el.dataset.d) * .55 }, 7.3)
+    .to(word, { y: 0, scale: 1, duration: .95, ease: 'pressRoll' }, 7.45)
+    .to(C, { x: -72, y: -40, duration: 1.1, ease: 'wobble' }, 8.1)
+    .to(M, { x: 66, y: 34, duration: 1.1, ease: 'wobble' }, 8.16)
+    .to(Y, { x: -24, y: 60, duration: 1.1, ease: 'wobble' }, 8.22)
+    .to(kChars, { y: (i) => [-46, 34, -22, 46, -34, 22][i], rotation: (i) => [-3, 2, -1, 3, -2, 1][i], duration: .85, stagger: .05, ease: 'pressRoll' }, 8.1)
+    .to(plates, { '--wdth': 56, duration: .95, ease: 'pressRoll' }, 8.55);
+
+  /* --- 9:18 → 12:00  Wipe: a fresh sheet feeds through, back to blank */
+  tl.addLabel('Wipe', 9.6)
+    .to(sheet, { clipPath: OPEN, duration: .55, ease: 'sheetFeed' }, 9.6)
+    .set(C, { x: -1500, y: OFF.C.y, '--wdth': 60 }, 10.16)
+    .set(M, { x: 1500, y: OFF.M.y, '--wdth': 60 }, 10.16)
+    .set(Y, { x: OFF.Y.x, y: -950, '--wdth': 60 }, 10.16)
+    .set(K, { '--wdth': 60 }, 10.16)
+    .set(kChars, { y: -1150, rotation: 0 }, 10.16)
+    .set([...$$('.info__line .k'), ...$$('.info__line .m'), ...progSlugs], { clipPath: SHUT }, 10.16)
+    .set($$('.info__line .m'), { x: 140, y: 0 }, 10.16)
+    .to(sheet, { clipPath: GONE, duration: .55, ease: 'sheetFeed' }, 10.2)
+    .set(sheet, { clipPath: SHUT }, 10.8)
+    .to(topSlugs, { clipPath: GONE, duration: .45, stagger: .08, ease: 'steps(20)' }, 10.8)
+    .to(crops, { strokeDashoffset: -1, duration: .6, stagger: .04, ease: 'inkDraw' }, 10.9)
+    .to($$('.reg circle'), { strokeDashoffset: -1, duration: .55, stagger: .05, ease: 'inkDraw' }, 10.95)
+    .to(regs, { rotation: 120, scale: .4, duration: .6, stagger: .05, ease: 'pressRoll' }, 11.0)
+    .to(patches, { scaleY: 0, duration: .35, stagger: .025, ease: 'pressRoll' }, 11.05)
+    .set({}, {}, DUR);
+
+  /* =================================================================
+     Transport
+     ================================================================= */
+  const playBtn = $('#play'), tcEl = $('#tc'), framesEl = $('#frames'), sceneEl = $('#scene');
+  const scrub = $('#scrub'), cti = $('#cti'), played = $('#played');
+  const SCENES = [
+    { name: 'Make-ready', c: '#B7B7B7' },
+    { name: 'Plates', c: '#7FD0F2' },
+    { name: 'Kiss', c: '#F27DB8' },
+    { name: 'Programme', c: '#FFE97A' },
+    { name: 'Drift', c: '#A9E28B' },
+    { name: 'Wipe', c: '#E8C08A' }
+  ].map(s => ({ ...s, t: tl.labels[s.name] }));
+
+  // Ruler: a tick every half second, a label every second.
+  const ruler = $('#ruler');
+  for (let i = 0; i <= DUR * 2; i++) {
+    const t = i / 2, tick = document.createElement('div');
+    tick.className = 'tick' + (i % 2 === 0 ? ' tick--major' : ' tick--half');
+    tick.style.left = (t / DUR * 100) + '%';
+    if (i % 2 === 0 && t < DUR) tick.innerHTML = `<span>${String(t).padStart(2, '0')}s</span>`;
+    ruler.appendChild(tick);
+  }
+  const markersEl = $('#markers');
+  SCENES.forEach(s => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'marker'; b.style.left = (s.t / DUR * 100) + '%'; b.style.setProperty('--c', s.c);
+    b.textContent = s.name; b.setAttribute('aria-label', `Jump to ${s.name}, ${s.t.toFixed(1)} seconds`);
+    b.addEventListener('pointerdown', e => e.stopPropagation());
+    b.addEventListener('click', () => seek(s.t));
+    markersEl.appendChild(b);
+  });
+
+  const pad = n => String(n).padStart(2, '0');
+  const sceneAt = t => SCENES.reduce((a, s) => (t >= s.t ? s : a), SCENES[0]).name;
+  let lastFrame = -1, scrubW = scrub.clientWidth;
+  new ResizeObserver(() => { scrubW = scrub.clientWidth; lastFrame = -1; }).observe(scrub);
+
+  const render = () => {
+    const t = tl.time();
+    const f = Math.min(Math.floor(t * FPS + 1e-4), DUR * FPS - 1);
+    cti.style.transform = `translateX(${(t / DUR) * scrubW}px)`;
+    played.style.transform = `scaleX(${t / DUR})`;
+    if (f === lastFrame) return;
+    lastFrame = f;
+    tcEl.textContent = `0:00:${pad(Math.floor(f / FPS))}:${pad(f % FPS)}`;
+    framesEl.textContent = String(f).padStart(5, '0');
+    const sc = sceneAt(t);
+    sceneEl.textContent = sc;
+    scrub.setAttribute('aria-valuenow', t.toFixed(2));
+    scrub.setAttribute('aria-valuetext', `${t.toFixed(1)} seconds, ${sc}`);
+  };
+  gsap.ticker.add(render);
+
+  const setPlaying = (on) => {
+    on ? tl.play() : tl.pause();
+    playBtn.dataset.state = on ? 'playing' : 'paused';
+    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
+  };
+  const seek = (t) => { tl.time(gsap.utils.clamp(0, DUR - 1 / FPS, t), false); render(); };
+  playBtn.addEventListener('click', () => setPlaying(tl.paused()));
+
+  // Scrubber: drag anywhere on it. Pointer capture keeps the drag alive off the bar.
+  let dragging = false, resumeAfter = false;
+  const timeFromX = (clientX) => {
+    const r = scrub.getBoundingClientRect();
+    return gsap.utils.clamp(0, 1, (clientX - r.left) / r.width) * DUR;
+  };
+  scrub.addEventListener('pointerdown', (e) => {
+    if (dragging || e.button > 0) return;
+    dragging = true;
+    resumeAfter = !tl.paused();
+    tl.pause();
+    scrub.setPointerCapture(e.pointerId);
+    seek(timeFromX(e.clientX));
+  });
+  scrub.addEventListener('pointermove', (e) => { if (dragging) seek(timeFromX(e.clientX)); });
+  const endDrag = () => { if (!dragging) return; dragging = false; if (resumeAfter) tl.play(); };
+  scrub.addEventListener('pointerup', endDrag);
+  scrub.addEventListener('pointercancel', endDrag);
+
+  // Keyboard: arrows step a frame (Shift = 1 s), Home/End jump, Space toggles play.
+  const step = (dt) => { if (!tl.paused()) setPlaying(false); seek(tl.time() + dt); };
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('button') && (e.code === 'Space' || e.code === 'Enter')) return;
+    if (e.code === 'Space') { e.preventDefault(); setPlaying(tl.paused()); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); step(e.shiftKey ? 1 : 1 / FPS); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); step(e.shiftKey ? -1 : -1 / FPS); }
+    else if (e.key === 'Home') { e.preventDefault(); step(-DUR); }
+    else if (e.key === 'End') { e.preventDefault(); step(DUR); }
+  });
+
+  // Speed
+  const speedBtns = $$('.t-seg button');
+  speedBtns.forEach(b => b.addEventListener('click', () => {
+    tl.timeScale(+b.dataset.speed);
+    speedBtns.forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+  }));
+
+  // Safe zones
+  const guidesBtn = $('#guidesBtn'), guides = $('#guides');
+  guidesBtn.addEventListener('click', () => {
+    const on = guidesBtn.getAttribute('aria-pressed') !== 'true';
+    guidesBtn.setAttribute('aria-pressed', String(on));
+    guides.classList.toggle('is-on', on);
+  });
+
+  const start = () => {
+    if (reduced) { seek(6.2); setPlaying(false); }
+    else { tl.time(0); setPlaying(true); }
+  };
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1500))]).then(start);
+})();
+</script>
+</body>
+</html>

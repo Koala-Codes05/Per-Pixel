@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>DUNE — 15s Dynamic Motion Graphics Brand Reel (2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;600;800;900&family=Instrument+Serif:ital,wght@0,400;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand: #efe3d0;
+      --ink: #140a06;
+      --clay: #b5703f;
+      --ochre: #c4864f;
+      --copper: #d4662f;
+      --dawn-blue: #86aed0;
+      --dark-sand: #2a130b;
+      --gold: #f3cfa3;
+      --ui-border: rgba(239, 227, 208, 0.18);
+      --ui-bg: rgba(20, 10, 6, 0.78);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: #090503;
+      color: var(--sand);
+      font-family: 'Space Mono', monospace;
+      overflow: hidden;
+    }
+
+    /* THEATRICAL CONTAINER */
+    #stage-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 50%, #1f100a 0%, #090403 100%);
+      perspective: 1200px;
+      overflow: hidden;
+    }
+
+    /* VIEWPORT FRAME */
+    #viewport {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      max-width: 100vw;
+      max-height: 100vh;
+      aspect-ratio: 2.39 / 1;
+      overflow: hidden;
+      border-radius: clamp(18px, 2.5vw, 36px);
+      isolation: isolate;
+      background: #000;
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9), 0 0 1px 1px var(--ui-border);
+      transition: aspect-ratio 0.6s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.6s, max-height 0.6s;
+    }
+
+    #viewport.ratio-16-9 {
+      aspect-ratio: 16 / 9;
+      max-width: min(100vw, 177.78vh);
+      max-height: min(100vh, 56.25vw);
+    }
+
+    #viewport.ratio-239-1 {
+      aspect-ratio: 2.39 / 1;
+      max-width: min(100vw, 239vh);
+      max-height: min(100vh, 41.84vw);
+    }
+
+    #viewport.ratio-9-16 {
+      aspect-ratio: 9 / 16;
+      max-width: min(100vw, 56.25vh);
+      max-height: min(100vh, 177.78vw);
+    }
+
+    #motion-stage {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* CANVAS OVERLAY FOR DUST PARTICLES & FILM GRAIN */
+    #fx-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 25;
+      mix-blend-mode: screen;
+      opacity: 0.85;
+    }
+
+    #grain-overlay {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 26;
+      opacity: 0.08;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* VIGNETTE & LETTERBOX ACCENTS */
+    .cinematic-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 24;
+      pointer-events: none;
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(10, 5, 2, 0.45) 80%, rgba(0, 0, 0, 0.85) 100%);
+    }
+
+    /* SCENE LAYERS */
+    .scene {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(1.05);
+      transition: opacity 0.5s ease;
+    }
+
+    .scene.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* VIDEO BACKGROUNDS */
+    .bg-video-wrap {
+      position: absolute;
+      inset: -5%;
+      width: 110%;
+      height: 110%;
+      overflow: hidden;
+    }
+
+    .bg-video-wrap video, .bg-video-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 45%;
+      will-change: transform, filter;
+    }
+
+    /* GRAPHIC OVERLAYS & HUD */
+    .hud-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 30;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(14px, 2.5vw, 28px);
+      font-size: clamp(9px, 0.85vw, 12px);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(239, 227, 208, 0.7);
+    }
+
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--ui-border);
+      padding-bottom: 10px;
+    }
+
+    .hud-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      color: var(--sand);
+    }
+
+    .hud-dot {
+      width: 8px;
+      height: 8px;
+      background: #e53e3e;
+      border-radius: 50%;
+      animation: pulseRecord 1.2s infinite ease-in-out;
+      box-shadow: 0 0 10px #e53e3e;
+    }
+
+    @keyframes pulseRecord {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .hud-timecode {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+    }
+
+    .hud-scene-name {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .hud-badge {
+      background: rgba(239, 227, 208, 0.12);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--ui-border);
+      color: var(--sand);
+    }
+
+    .hud-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid var(--ui-border);
+      padding-top: 10px;
+    }
+
+    .hud-coords {
+      opacity: 0.65;
+    }
+
+    .hud-audio-viz {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 18px;
+    }
+
+    .audio-bar {
+      width: 3px;
+      background: var(--gold);
+      border-radius: 1px;
+      height: 4px;
+      transition: height 0.08s ease;
+    }
+
+    /* SCENE 01: ORIGIN / DAWN */
+    #scene-1 .horizon-slit {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffd9a0 50%, transparent);
+      box-shadow: 0 0 25px 4px #f2a96b;
+      transform: translateY(-50%);
+      z-index: 10;
+    }
+
+    .kinetic-title-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 12;
+      text-align: center;
+    }
+
+    .big-dune {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(3.5rem, 15vw, 14rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: 0.18em;
+      color: var(--sand);
+      text-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      perspective: 800px;
+    }
+
+    .big-dune span {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+
+    .sub-poetic {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 4vw, 3.8rem);
+      color: var(--gold);
+      margin-top: clamp(10px, 2vh, 25px);
+      letter-spacing: 0.03em;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.9);
+      will-change: transform, opacity;
+    }
+
+    .tag-editorial {
+      font-size: clamp(0.65rem, 1.1vw, 1rem);
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      color: var(--sand);
+      margin-top: 12px;
+    }
+
+    /* SCENE 02: MULTI-PANE EDITORIAL */
+    #scene-2 .triptych {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 12px;
+      padding: clamp(20px, 3.5vw, 40px);
+      z-index: 5;
+    }
+
+    .pane {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--ui-border);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7);
+    }
+
+    .pane video, .pane img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .pane-tag {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      z-index: 3;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      background: rgba(20, 10, 6, 0.85);
+      padding: 4px 10px;
+      border: 1px solid var(--ui-border);
+    }
+
+    .center-overlay-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 14;
+      pointer-events: none;
+    }
+
+    .huge-stroke {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(2.5rem, 10vw, 9rem);
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--gold);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      text-shadow: 0 0 40px rgba(243, 207, 163, 0.4);
+    }
+
+    .stream-ticker {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      display: flex;
+      margin-top: 15px;
+      background: rgba(20, 10, 6, 0.8);
+      border-top: 1px solid var(--ui-border);
+      border-bottom: 1px solid var(--ui-border);
+      padding: 8px 0;
+    }
+
+    .ticker-inner {
+      display: flex;
+      gap: 40px;
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1.2rem, 2.5vw, 2.4rem);
+      color: var(--sand);
+      will-change: transform;
+    }
+
+    /* SCENE 03: SOLAR SPECTRUM & TEXTURE */
+    #scene-3 .texture-grid {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      padding: clamp(20px, 4vw, 60px);
+      z-index: 5;
+      gap: 40px;
+    }
+
+    .texture-frame {
+      position: relative;
+      height: 80%;
+      border: 1px solid var(--ui-border);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+    }
+
+    .texture-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .compass-dial {
+      position: absolute;
+      top: 50%;
+      right: 8%;
+      transform: translateY(-50%);
+      width: clamp(220px, 26vw, 420px);
+      aspect-ratio: 1;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    .palette-strips {
+      display: flex;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .palette-strip {
+      flex: 1;
+      height: 70px;
+      border: 1px solid var(--ui-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6px;
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    /* SCENE 04: HORIZON DUSK / CAPE */
+    #scene-4 .hero-model-wrap {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 6;
+    }
+
+    #scene-4 .hero-model-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 30%;
+    }
+
+    .russian-quote {
+      position: absolute;
+      bottom: 14%;
+      left: 6%;
+      right: 6%;
+      z-index: 15;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .rq-main {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-size: clamp(2.4rem, 6.5vw, 6.5rem);
+      color: #fff;
+      line-height: 1;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.9);
+    }
+
+    .rq-sub {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(0.8rem, 1.6vw, 1.8rem);
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      text-transform: uppercase;
+      text-shadow: 0 5px 20px rgba(0,0,0,0.9);
+    }
+
+    /* SCENE 05: THE LOCKUP */
+    #scene-5 .final-lockup {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 18;
+      text-align: center;
+      background: radial-gradient(circle at center, rgba(35, 17, 10, 0.7) 0%, rgba(10, 5, 2, 0.95) 100%);
+    }
+
+    .lockup-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(4rem, 16vw, 15rem);
+      font-weight: 900;
+      letter-spacing: 0.22em;
+      color: var(--sand);
+      margin-left: 0.22em;
+      line-height: 0.9;
+      text-shadow: 0 20px 80px rgba(181, 112, 63, 0.4);
+    }
+
+    .lockup-campaign {
+      font-family: 'Instrument Serif', serif;
+      font-style: italic;
+      font-size: clamp(1.8rem, 4.5vw, 4.2rem);
+      color: var(--gold);
+      margin-top: 15px;
+    }
+
+    .lockup-specs {
+      display: flex;
+      gap: 24px;
+      margin-top: 25px;
+      font-size: clamp(9px, 1vw, 13px);
+      letter-spacing: 0.3em;
+      color: rgba(239, 227, 208, 0.7);
+      text-transform: uppercase;
+    }
+
+    .replay-cta-wrap {
+      margin-top: 35px;
+      display: flex;
+      gap: 16px;
+      z-index: 20;
+    }
+
+    .reel-btn {
+      font-family: 'Space Mono', monospace;
+      font-size: clamp(10px, 0.9vw, 13px);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 14px 28px;
+      border-radius: 99px;
+      border: 1px solid var(--gold);
+      background: transparent;
+      color: var(--gold);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .reel-btn.primary {
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+      border-color: var(--gold);
+    }
+
+    .reel-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 15px 40px rgba(243, 207, 163, 0.3);
+    }
+
+    /* CONTROL PANEL (BOTTOM DESK) */
+    #reel-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(180deg, transparent 0%, rgba(9, 4, 2, 0.95) 40%, #090403 100%);
+      padding: 24px clamp(16px, 4vw, 40px) 18px;
+      z-index: 50;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      backdrop-filter: blur(12px);
+    }
+
+    .timeline-bar-wrap {
+      position: relative;
+      width: 100%;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .timeline-track {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      background: rgba(239, 227, 208, 0.15);
+      border-radius: 3px;
+      overflow: visible;
+    }
+
+    .timeline-progress {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      background: linear-gradient(90deg, var(--clay), var(--gold));
+      border-radius: 3px;
+      box-shadow: 0 0 12px var(--gold);
+    }
+
+    .timeline-playhead {
+      position: absolute;
+      top: 50%;
+      left: 0%;
+      width: 16px;
+      height: 16px;
+      background: #fff;
+      border: 2px solid var(--ochre);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
+      pointer-events: none;
+      transition: transform 0.1s ease;
+    }
+
+    .timeline-bar-wrap:hover .timeline-playhead {
+      transform: translate(-50%, -50%) scale(1.3);
+    }
+
+    /* CHAPTER MARKERS */
+    .chapter-markers {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .chapter-pin {
+      position: absolute;
+      top: -12px;
+      transform: translateX(-50%);
+      font-size: 9px;
+      color: rgba(239, 227, 208, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .chapter-pin::after {
+      content: '';
+      width: 1px;
+      height: 8px;
+      background: rgba(239, 227, 208, 0.4);
+    }
+
+    /* CONTROL BUTTONS ROW */
+    .controls-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+    }
+
+    .ctrl-left, .ctrl-center, .ctrl-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      color: var(--sand);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 10px;
+      border-radius: 6px;
+      background: rgba(239, 227, 208, 0.06);
+      border: 1px solid var(--ui-border);
+      transition: all 0.2s ease;
+      font-family: inherit;
+      font-size: 11px;
+      gap: 6px;
+    }
+
+    .icon-btn:hover {
+      background: rgba(239, 227, 208, 0.18);
+      color: #fff;
+      border-color: var(--gold);
+    }
+
+    .icon-btn.active {
+      background: var(--gold);
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .ratio-switcher {
+      display: flex;
+      background: rgba(239, 227, 208, 0.06);
+      border-radius: 6px;
+      border: 1px solid var(--ui-border);
+      padding: 2px;
+    }
+
+    .ratio-btn {
+      background: none;
+      border: none;
+      color: rgba(239, 227, 208, 0.6);
+      font-family: inherit;
+      font-size: 10px;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ratio-btn.active {
+      background: rgba(239, 227, 208, 0.2);
+      color: var(--gold);
+    }
+
+    /* UNMUTE PROMPT BANNER */
+    #audio-prompt {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 60;
+      background: rgba(20, 10, 6, 0.92);
+      border: 1px solid var(--gold);
+      padding: 10px 22px;
+      border-radius: 99px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      animation: bouncePrompt 2s infinite ease-in-out;
+    }
+
+    @keyframes bouncePrompt {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -4px); }
+    }
+
+    #audio-prompt:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* TOP EXIT BUTTON */
+    .exit-btn {
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      z-index: 60;
+      background: rgba(20, 10, 6, 0.7);
+      border: 1px solid var(--ui-border);
+      color: var(--sand);
+      padding: 8px 16px;
+      border-radius: 99px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(8px);
+      transition: all 0.2s ease;
+    }
+
+    .exit-btn:hover {
+      background: var(--sand);
+      color: var(--ink);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="stage-container">
+
+    <!-- AUDIO UNMUTE CTA BANNER -->
+    <div id="audio-prompt">
+      <span>✦ CLICK TO UNMUTE PROCEDURAL SOUNDSCAPE</span>
+    </div>
+
+    <!-- BACK TO SITE BUTTON -->
+    <a href="DUNE%20%E2%80%94%20Freedom%20to%20be%20yourself.html" class="exit-btn">
+      <span>← RETURN TO EDITORIAL</span>
+    </a>
+
+    <!-- THEATRICAL VIEWPORT -->
+    <div id="viewport" class="ratio-239-1">
+      <div id="motion-stage">
+
+        <!-- REALTIME SAND DUST & GRAIN FX -->
+        <canvas id="fx-canvas"></canvas>
+        <div id="grain-overlay"></div>
+        <div class="cinematic-vignette"></div>
+
+        <!-- HUD LAYER (TIME, FPS, COORDS, AUDIO SPECTRUM) -->
+        <div class="hud-layer">
+          <div class="hud-top">
+            <div class="hud-brand">
+              <div class="hud-dot"></div>
+              <span>DUNE / BRAND REEL 2026</span>
+            </div>
+            <div class="hud-scene-name">
+              <span class="hud-badge" id="scene-indicator">SCENE 01 / ORIGIN</span>
+              <span id="fps-counter">60.0 FPS</span>
+            </div>
+            <div class="hud-timecode" id="timecode-display">00:00:00</div>
+          </div>
+          <div class="hud-bottom">
+            <div class="hud-coords">
+              <span>LAT: 24°48'14"N &nbsp; LON: 12°15'09"E &nbsp; // ALT: 412M</span>
+            </div>
+            <div class="hud-audio-viz" id="audio-spectrum">
+              <div class="audio-bar" style="height: 4px;"></div>
+              <div class="audio-bar" style="height: 8px;"></div>
+              <div class="audio-bar" style="height: 14px;"></div>
+              <div class="audio-bar" style="height: 6px;"></div>
+              <div class="audio-bar" style="height: 12px;"></div>
+              <div class="audio-bar" style="height: 16px;"></div>
+              <div class="audio-bar" style="height: 8px;"></div>
+              <div class="audio-bar" style="height: 10px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- SCENE 01: ORIGIN / 05:00 DAWN (0.00s - 2.80s) -->
+        <!-- ============================================ -->
+        <section class="scene active" id="scene-1">
+          <div class="bg-video-wrap">
+            <video id="vid-1" src="assets/videos/sand_dunes_aerial.webm" muted playsinline preload="auto" loop></video>
+          </div>
+          <div class="horizon-slit" id="s1-slit"></div>
+          <div class="kinetic-title-wrap">
+            <h1 class="big-dune" id="s1-dune-title">
+              <span>D</span><span>U</span><span>N</span><span>E</span>
+            </h1>
+            <p class="sub-poetic" id="s1-poetic">People who move like weather.</p>
+            <p class="tag-editorial" id="s1-tag">05:00 AM · FIRST QUIET LIGHT</p>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SCENE 02: KINETIC FORM / TRIPTYCH (2.80s - 6.00s) -->
+        <!-- ============================================ -->
+        <section class="scene" id="scene-2">
+          <div class="triptych">
+            <div class="pane" id="s2-pane-left">
+              <video id="vid-2" src="assets/videos/dunes_golden.webm" muted playsinline preload="auto" loop></video>
+              <div class="pane-tag">01 // TERRA</div>
+            </div>
+            <div class="pane" id="s2-pane-center">
+              <img id="s2-flow-img" src="assets/images/hero_editorial_flow.jpg" alt="Editorial flow">
+              <div class="pane-tag">02 // SILK & WIND</div>
+            </div>
+            <div class="pane" id="s2-pane-right">
+              <video id="vid-3" src="assets/videos/desert_wind_trees.webm" muted playsinline preload="auto" loop></video>
+              <div class="pane-tag">03 // HORIZON</div>
+            </div>
+          </div>
+          <div class="center-overlay-text">
+            <h2 class="huge-stroke" id="s2-stroke-text">MOVEMENT</h2>
+            <div class="stream-ticker">
+              <div class="ticker-inner" id="s2-ticker">
+                <span>ROBES</span> ✦ <span>SETS</span> ✦ <span>OUTER</span> ✦ <span>TROUSERS</span> ✦ <span>СВОБОДА ДВИЖЕНИЯ</span> ✦ <span>NATURAL FABRICS</span> ✦
+                <span>ROBES</span> ✦ <span>SETS</span> ✦ <span>OUTER</span> ✦ <span>TROUSERS</span> ✦ <span>СВОБОДА ДВИЖЕНИЯ</span> ✦ <span>NATURAL FABRICS</span> ✦
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SCENE 03: SOLAR SPECTRUM & TEXTURE (6.00s - 9.40s) -->
+        <!-- ============================================ -->
+        <section class="scene" id="scene-3">
+          <div class="bg-video-wrap" style="filter: brightness(0.65) saturate(1.2);">
+            <img src="assets/images/hero_editorial_dawn.jpg" id="s3-bg-dawn" alt="Dawn model portrait">
+          </div>
+          <div class="texture-grid">
+            <div class="texture-info">
+              <p style="font-size: 11px; letter-spacing: 0.3em; color: var(--gold);">THE FOUR HOURS OF SAND</p>
+              <h2 style="font-family: 'Unbounded', sans-serif; font-size: clamp(2rem, 5vw, 4.2rem); font-weight: 800; line-height: 1; margin: 12px 0; color: var(--sand);">
+                ONE PALETTE.<br><em style="font-family: 'Instrument Serif'; font-style: italic; color: var(--gold); font-weight: 400;">Pure Earth.</em>
+              </h2>
+              <p style="font-size: clamp(10px, 0.9vw, 12px); line-height: 1.8; opacity: 0.8; max-width: 32rem;">
+                Dune is tailored from unhurried shapes borrowed directly from the desert at four distinct hours: pale dawn light, noon warmth, copper dusk, and deep cocoa night.
+              </p>
+              <div class="palette-strips">
+                <div class="palette-strip" style="background: #e3c5a4; color: #140a06;"><span>DAWN</span><span>#E3C5A4</span></div>
+                <div class="palette-strip" style="background: #c4864f; color: #140a06;"><span>NOON</span><span>#C4864F</span></div>
+                <div class="palette-strip" style="background: #7a3f22; color: #efe3d0;"><span>DUSK</span><span>#7A3F22</span></div>
+                <div class="palette-strip" style="background: #2a130b; color: #efe3d0;"><span>NIGHT</span><span>#2A130B</span></div>
+              </div>
+            </div>
+            <div class="compass-dial">
+              <svg viewBox="0 0 400 400" width="100%" height="100%" style="transform-origin: center;" id="s3-dial-svg">
+                <circle cx="200" cy="200" r="180" fill="none" stroke="rgba(243, 207, 163, 0.25)" stroke-width="1.5" stroke-dasharray="4 6"/>
+                <circle cx="200" cy="200" r="140" fill="none" stroke="rgba(243, 207, 163, 0.4)" stroke-width="1"/>
+                <circle cx="200" cy="200" r="90" fill="none" stroke="rgba(243, 207, 163, 0.6)" stroke-width="2"/>
+                <line x1="200" y1="10" x2="200" y2="390" stroke="rgba(243, 207, 163, 0.3)" stroke-width="1"/>
+                <line x1="10" y1="200" x2="390" y2="200" stroke="rgba(243, 207, 163, 0.3)" stroke-width="1"/>
+                <!-- Dial ticks -->
+                <circle cx="200" cy="60" r="4" fill="var(--gold)"/>
+                <circle cx="340" cy="200" r="4" fill="var(--gold)"/>
+                <circle cx="200" cy="340" r="4" fill="var(--gold)"/>
+                <circle cx="60" cy="200" r="4" fill="var(--gold)"/>
+                <text x="200" y="45" font-family="Space Mono" font-size="10" fill="var(--gold)" text-anchor="middle">12:00 NOON</text>
+                <text x="355" y="204" font-family="Space Mono" font-size="10" fill="var(--gold)" text-anchor="start">18:00 DUSK</text>
+                <text x="200" y="365" font-family="Space Mono" font-size="10" fill="var(--gold)" text-anchor="middle">24:00 NIGHT</text>
+                <text x="45" y="204" font-family="Space Mono" font-size="10" fill="var(--gold)" text-anchor="end">06:00 DAWN</text>
+              </svg>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SCENE 04: HORIZON DUSK / CAPE (9.40s - 12.80s) -->
+        <!-- ============================================ -->
+        <section class="scene" id="scene-4">
+          <div class="bg-video-wrap">
+            <video id="vid-4" src="assets/videos/desert_sunset.webm" muted playsinline preload="auto" loop></video>
+          </div>
+          <div class="hero-model-wrap">
+            <img src="assets/images/hero_editorial_silhouette.jpg" id="s4-silhouette" alt="Editorial cape silhouette" style="mix-blend-mode: lighten; filter: contrast(1.15);">
+          </div>
+          <div class="russian-quote">
+            <h2 class="rq-main" id="s4-ru-text">Свобода быть собой.</h2>
+            <p class="rq-sub" id="s4-en-text">Freedom to be yourself.</p>
+          </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- SCENE 05: RESOLUTION / LOCKUP (12.80s - 15.00s) -->
+        <!-- ============================================ -->
+        <section class="scene" id="scene-5">
+          <div class="final-lockup">
+            <h1 class="lockup-logo" id="s5-logo">DUNE</h1>
+            <p class="lockup-campaign" id="s5-campaign">Spring / Summer 2026 Collection</p>
+            <div class="lockup-specs">
+              <span>UNHURRIED SHAPES</span>
+              <span>✦</span>
+              <span>LOOSE LINES</span>
+              <span>✦</span>
+              <span>RAW FIBER</span>
+            </div>
+            <div class="replay-cta-wrap">
+              <button class="reel-btn primary" id="btn-replay">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+                REPLAY REEL (15s)
+              </button>
+              <a href="DUNE%20%E2%80%94%20Freedom%20to%20be%20yourself.html#shop" class="reel-btn">
+                EXPLORE COLLECTION ↗
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- BOTTOM CONTROL DECK -->
+    <div id="reel-controls">
+      <!-- SCRUBBER PROGRESS TRACK -->
+      <div class="timeline-bar-wrap" id="scrubber-bar">
+        <div class="timeline-track">
+          <div class="timeline-progress" id="timeline-progress"></div>
+          <div class="timeline-playhead" id="timeline-playhead"></div>
+          <!-- CHAPTER PINS -->
+          <div class="chapter-markers">
+            <div class="chapter-pin" style="left: 0%;"><span>01</span></div>
+            <div class="chapter-pin" style="left: 18.6%;"><span>02</span></div>
+            <div class="chapter-pin" style="left: 40.0%;"><span>03</span></div>
+            <div class="chapter-pin" style="left: 62.6%;"><span>04</span></div>
+            <div class="chapter-pin" style="left: 85.3%;"><span>05</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTROLS ROW -->
+      <div class="controls-row">
+        <!-- LEFT: PLAY/PAUSE, REWIND, TIME -->
+        <div class="ctrl-left">
+          <button class="icon-btn" id="btn-play-pause">
+            <svg id="icon-play" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            <svg id="icon-pause" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>
+            <span id="play-status-text">PAUSE</span>
+          </button>
+          <button class="icon-btn" id="btn-restart">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+            RESET
+          </button>
+          <div style="font-variant-numeric: tabular-nums; color: var(--gold);" id="clock-readout">00.00s / 15.00s</div>
+        </div>
+
+        <!-- CENTER: SCENE JUMP CHIPS -->
+        <div class="ctrl-center">
+          <button class="icon-btn" onclick="jumpTo(0.0)">01 DAWN</button>
+          <button class="icon-btn" onclick="jumpTo(2.8)">02 FORM</button>
+          <button class="icon-btn" onclick="jumpTo(6.0)">03 TEXTURE</button>
+          <button class="icon-btn" onclick="jumpTo(9.4)">04 DUSK</button>
+          <button class="icon-btn" onclick="jumpTo(12.8)">05 DUNE</button>
+        </div>
+
+        <!-- RIGHT: AUDIO, SPEED, RATIO, FULLSCREEN -->
+        <div class="ctrl-right">
+          <button class="icon-btn" id="btn-audio">
+            <span id="audio-btn-icon">🔇</span>
+            <span id="audio-label">SOUND: OFF</span>
+          </button>
+
+          <button class="icon-btn" id="btn-speed">1.0X</button>
+
+          <!-- ASPECT RATIO PICKER -->
+          <div class="ratio-switcher">
+            <button class="ratio-btn active" data-ratio="ratio-239-1">2.39:1</button>
+            <button class="ratio-btn" data-ratio="ratio-16-9">16:9</button>
+            <button class="ratio-btn" data-ratio="ratio-9-16">9:16</button>
+          </div>
+
+          <button class="icon-btn" id="btn-fullscreen">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"></polyline><polyline points="9 21 3 21 3 15"></polyline><line x1="21" y1="3" x2="14" y2="10"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- GSAP 3 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script>
+  (() => {
+    /* ==========================================================
+       DUNE 15-SECOND PROCEDURAL MOTION GRAPHICS ENGINE
+       ========================================================== */
+    const DURATION = 15.0; // Exact 15.000 seconds
+    let currentTime = 0;
+    let isPlaying = true;
+    let playbackSpeed = 1.0;
+    let audioEnabled = false;
+
+    // DOM Elements
+    const viewport = document.getElementById('viewport');
+    const motionStage = document.getElementById('motion-stage');
+    const timelineProgress = document.getElementById('timeline-progress');
+    const timelinePlayhead = document.getElementById('timeline-playhead');
+    const timecodeDisplay = document.getElementById('timecode-display');
+    const clockReadout = document.getElementById('clock-readout');
+    const sceneIndicator = document.getElementById('scene-indicator');
+    const fpsCounter = document.getElementById('fps-counter');
+    const scrubberBar = document.getElementById('scrubber-bar');
+    const btnPlayPause = document.getElementById('btn-play-pause');
+    const iconPlay = document.getElementById('icon-play');
+    const iconPause = document.getElementById('icon-pause');
+    const playStatusText = document.getElementById('play-status-text');
+    const btnRestart = document.getElementById('btn-restart');
+    const btnReplay = document.getElementById('btn-replay');
+    const btnAudio = document.getElementById('btn-audio');
+    const audioLabel = document.getElementById('audio-label');
+    const audioBtnIcon = document.getElementById('audio-btn-icon');
+    const audioPrompt = document.getElementById('audio-prompt');
+    const btnSpeed = document.getElementById('btn-speed');
+    const btnFullscreen = document.getElementById('btn-fullscreen');
+
+    const scenes = [
+      document.getElementById('scene-1'),
+      document.getElementById('scene-2'),
+      document.getElementById('scene-3'),
+      document.getElementById('scene-4'),
+      document.getElementById('scene-5')
+    ];
+
+    const videos = [
+      document.getElementById('vid-1'),
+      document.getElementById('vid-2'),
+      document.getElementById('vid-3'),
+      document.getElementById('vid-4')
+    ];
+
+    // Ensure all videos play silently & loop smoothly
+    videos.forEach(v => {
+      if (v) {
+        v.muted = true;
+        v.play().catch(() => {});
+      }
+    });
+
+    /* ==========================================================
+       CANVAS FX: FLOATING DESERT DUST & SAND DRIFT PARTICLES
+       ========================================================== */
+    const canvas = document.getElementById('fx-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const NUM_PARTICLES = 130;
+
+    function resizeCanvas() {
+      const rect = viewport.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    class DustParticle {
+      constructor() {
+        this.reset(true);
+      }
+      reset(initial = false) {
+        this.x = initial ? Math.random() * canvas.width : -20;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2.2 + 0.6;
+        this.speedX = Math.random() * 2.5 + 1.2;
+        this.speedY = (Math.random() - 0.45) * 0.8;
+        this.alpha = Math.random() * 0.55 + 0.15;
+        this.color = Math.random() > 0.4 ? 'rgba(243, 207, 163,' : 'rgba(212, 102, 47,';
+      }
+      update(windMultiplier = 1) {
+        this.x += this.speedX * windMultiplier;
+        this.y += this.speedY;
+        if (this.x > canvas.width + 20 || this.y < -10 || this.y > canvas.height + 10) {
+          this.reset();
+        }
+      }
+      draw() {
+        ctx.fillStyle = `${this.color} ${this.alpha})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < NUM_PARTICLES; i++) {
+      particles.push(new DustParticle());
+    }
+
+    /* ==========================================================
+       PROCEDURAL WEB AUDIO SYNTHESIS ENGINE (DUNE SOUNDSCAPE)
+       ========================================================== */
+    let audioCtx = null;
+    let masterGain = null;
+    let droneOsc1 = null;
+    let droneOsc2 = null;
+    let droneFilter = null;
+    let windNoiseNode = null;
+    let windGain = null;
+    let windFilter = null;
+
+    function initAudio() {
+      if (audioCtx) return;
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      audioCtx = new AudioContext();
+
+      masterGain = audioCtx.createGain();
+      masterGain.gain.setValueAtTime(0, audioCtx.currentTime);
+      masterGain.connect(audioCtx.destination);
+
+      // 1. Cinematic Deep Drone (Sub 55Hz & 110Hz harmonics)
+      droneOsc1 = audioCtx.createOscillator();
+      droneOsc2 = audioCtx.createOscillator();
+      droneOsc1.type = 'sawtooth';
+      droneOsc2.type = 'triangle';
+      droneOsc1.frequency.setValueAtTime(55, audioCtx.currentTime); // A1
+      droneOsc2.frequency.setValueAtTime(55.4, audioCtx.currentTime); // Detuned
+
+      droneFilter = audioCtx.createBiquadFilter();
+      droneFilter.type = 'lowpass';
+      droneFilter.frequency.setValueAtTime(140, audioCtx.currentTime);
+      droneFilter.Q.setValueAtTime(4.5, audioCtx.currentTime);
+
+      const droneGain = audioCtx.createGain();
+      droneGain.gain.setValueAtTime(0.35, audioCtx.currentTime);
+
+      droneOsc1.connect(droneFilter);
+      droneOsc2.connect(droneFilter);
+      droneFilter.connect(droneGain);
+      droneGain.connect(masterGain);
+
+      droneOsc1.start();
+      droneOsc2.start();
+
+      // 2. Procedural Sand Wind Generator (White Noise -> Bandpass filtered)
+      const bufferSize = audioCtx.sampleRate * 2;
+      const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      let lastOut = 0.0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        output[i] = (lastOut + (0.02 * white)) / 1.02; // Pink/Brownish smoothing
+        lastOut = output[i];
+      }
+
+      windNoiseNode = audioCtx.createBufferSource();
+      windNoiseNode.buffer = noiseBuffer;
+      windNoiseNode.loop = true;
+
+      windFilter = audioCtx.createBiquadFilter();
+      windFilter.type = 'bandpass';
+      windFilter.frequency.setValueAtTime(450, audioCtx.currentTime);
+      windFilter.Q.setValueAtTime(1.8, audioCtx.currentTime);
+
+      windGain = audioCtx.createGain();
+      windGain.gain.setValueAtTime(0.22, audioCtx.currentTime);
+
+      windNoiseNode.connect(windFilter);
+      windFilter.connect(windGain);
+      windGain.connect(masterGain);
+
+      windNoiseNode.start();
+    }
+
+    function toggleAudio() {
+      if (!audioCtx) {
+        initAudio();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      audioEnabled = !audioEnabled;
+      if (audioEnabled) {
+        masterGain.gain.setTargetAtTime(0.55, audioCtx.currentTime, 0.2);
+        audioLabel.textContent = 'SOUND: ON';
+        audioBtnIcon.textContent = '🔊';
+        btnAudio.classList.add('active');
+        if (audioPrompt) audioPrompt.style.display = 'none';
+      } else {
+        masterGain.gain.setTargetAtTime(0, audioCtx.currentTime, 0.1);
+        audioLabel.textContent = 'SOUND: OFF';
+        audioBtnIcon.textContent = '🔇';
+        btnAudio.classList.remove('active');
+      }
+    }
+
+    function triggerAudioHit(freq = 280, duration = 0.8) {
+      if (!audioCtx || !audioEnabled) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const g = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(40, audioCtx.currentTime + duration);
+
+        g.gain.setValueAtTime(0.4, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+
+        osc.connect(g);
+        g.connect(masterGain);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    btnAudio.addEventListener('click', toggleAudio);
+    audioPrompt.addEventListener('click', toggleAudio);
+
+    /* ==========================================================
+       GSAP MASTER 15-SECOND CHOREOGRAPHY TIMELINE
+       ========================================================== */
+    const masterTL = gsap.timeline({
+      paused: true,
+      defaults: { ease: 'power2.out' },
+      onUpdate: () => {
+        // Timeline onUpdate
+      }
+    });
+
+    // CHAPTER DEFINITIONS
+    // Scene 1: 0.00 -> 2.80
+    // Scene 2: 2.80 -> 6.00
+    // Scene 3: 6.00 -> 9.40
+    // Scene 4: 9.40 -> 12.80
+    // Scene 5: 12.80 -> 15.00
+
+    function buildTimeline() {
+      masterTL.clear();
+
+      // SCENE 1 (0.00s - 2.80s)
+      masterTL.addLabel('scene1', 0);
+      masterTL.set(scenes[0], { autoAlpha: 1 }, 0);
+      masterTL.set(scenes.slice(1), { autoAlpha: 0 }, 0);
+
+      // Horizon slit expansion
+      masterTL.fromTo('#s1-slit', { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 1.2, ease: 'expo.out' }, 0.1);
+      masterTL.to('#s1-slit', { scaleY: 80, opacity: 0, duration: 0.9, ease: 'power2.in' }, 1.1);
+
+      // DUNE Letters reveal with individual 3D depth
+      const duneSpans = document.querySelectorAll('#s1-dune-title span');
+      masterTL.fromTo(duneSpans, 
+        { y: 80, opacity: 0, rotateX: 60, scale: 0.8 }, 
+        { y: 0, opacity: 1, rotateX: 0, scale: 1, duration: 1.4, stagger: 0.08, ease: 'elastic.out(1, 0.8)' }, 
+        0.5
+      );
+      masterTL.fromTo('#s1-poetic', { opacity: 0, y: 25 }, { opacity: 1, y: 0, duration: 1.1 }, 0.9);
+      masterTL.fromTo('#s1-tag', { opacity: 0, letterSpacing: '0.1em' }, { opacity: 0.8, letterSpacing: '0.4em', duration: 1.2 }, 1.1);
+      masterTL.to('#s1-dune-title', { scale: 1.12, letterSpacing: '0.28em', duration: 1.0, ease: 'power1.in' }, 1.8);
+
+      // SCENE 1 -> SCENE 2 TRANSITION (2.80s)
+      masterTL.addLabel('scene2', 2.8);
+      masterTL.to(scenes[0], { autoAlpha: 0, scale: 1.1, duration: 0.4 }, 2.6);
+      masterTL.set(scenes[1], { autoAlpha: 1 }, 2.7);
+
+      // SCENE 2 (2.80s - 6.00s) : TRIPTYCH CUT
+      masterTL.fromTo(['#s2-pane-left', '#s2-pane-right'], 
+        { y: '60%', opacity: 0 }, 
+        { y: '0%', opacity: 1, duration: 0.9, stagger: 0.1, ease: 'expo.out' }, 
+        2.8
+      );
+      masterTL.fromTo('#s2-pane-center', 
+        { scale: 1.2, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 1.1, ease: 'power3.out' }, 
+        2.8
+      );
+      masterTL.fromTo('#s2-flow-img', { scale: 1.2 }, { scale: 1.03, duration: 3.2, ease: 'none' }, 2.8);
+
+      masterTL.fromTo('#s2-stroke-text', 
+        { scale: 2.2, opacity: 0, letterSpacing: '0.4em' }, 
+        { scale: 1, opacity: 1, letterSpacing: '0.06em', duration: 1.2, ease: 'expo.out' }, 
+        3.0
+      );
+      masterTL.fromTo('#s2-ticker', 
+        { x: '10%' }, 
+        { x: '-35%', duration: 3.2, ease: 'none' }, 
+        2.8
+      );
+
+      // SCENE 2 -> SCENE 3 TRANSITION (6.00s)
+      masterTL.addLabel('scene3', 6.0);
+      masterTL.to(scenes[1], { autoAlpha: 0, duration: 0.4 }, 5.8);
+      masterTL.set(scenes[2], { autoAlpha: 1 }, 5.9);
+
+      // SCENE 3 (6.00s - 9.40s) : SOLAR SPECTRUM & COMPASS
+      masterTL.fromTo('#s3-bg-dawn', 
+        { scale: 1.25, filter: 'brightness(0.3) saturate(0.8)' }, 
+        { scale: 1.05, filter: 'brightness(0.65) saturate(1.2)', duration: 3.4, ease: 'none' }, 
+        6.0
+      );
+      masterTL.fromTo('.texture-info > *', 
+        { x: -50, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 0.8, stagger: 0.08, ease: 'power2.out' }, 
+        6.1
+      );
+      masterTL.fromTo('.palette-strip', 
+        { scaleY: 0, transformOrigin: 'bottom' }, 
+        { scaleY: 1, duration: 0.6, stagger: 0.08, ease: 'back.out(1.7)' }, 
+        6.6
+      );
+      masterTL.fromTo('#s3-dial-svg', 
+        { rotate: 0, scale: 0.7, opacity: 0 }, 
+        { rotate: 180, scale: 1, opacity: 1, duration: 3.4, ease: 'power1.out' }, 
+        6.0
+      );
+
+      // SCENE 3 -> SCENE 4 TRANSITION (9.40s)
+      masterTL.addLabel('scene4', 9.4);
+      masterTL.to(scenes[2], { autoAlpha: 0, duration: 0.4 }, 9.2);
+      masterTL.set(scenes[3], { autoAlpha: 1 }, 9.3);
+
+      // SCENE 4 (9.40s - 12.80s) : DUSK SILHOUETTE & RUSSIAN TEXT
+      masterTL.fromTo('#vid-4', { scale: 1.15 }, { scale: 1.02, duration: 3.4, ease: 'none' }, 9.4);
+      masterTL.fromTo('#s4-silhouette', 
+        { scale: 1.2, opacity: 0 }, 
+        { scale: 1, opacity: 1, duration: 1.4, ease: 'power2.out' }, 
+        9.4
+      );
+      masterTL.fromTo('#s4-ru-text', 
+        { y: 60, opacity: 0, skewX: -8 }, 
+        { y: 0, opacity: 1, skewX: 0, duration: 1.2, ease: 'expo.out' }, 
+        9.8
+      );
+      masterTL.fromTo('#s4-en-text', 
+        { y: 30, opacity: 0, letterSpacing: '0.05em' }, 
+        { y: 0, opacity: 1, letterSpacing: '0.15em', duration: 1.0, ease: 'power2.out' }, 
+        10.2
+      );
+      masterTL.to('#s4-silhouette', { scale: 1.06, duration: 2.2, ease: 'power1.in' }, 10.6);
+
+      // SCENE 4 -> SCENE 5 TRANSITION (12.80s)
+      masterTL.addLabel('scene5', 12.8);
+      masterTL.to(scenes[3], { autoAlpha: 0, duration: 0.4 }, 12.6);
+      masterTL.set(scenes[4], { autoAlpha: 1 }, 12.7);
+
+      // SCENE 5 (12.80s - 15.00s) : FINAL BRAND LOCKUP
+      masterTL.fromTo('#s5-logo', 
+        { scale: 1.8, opacity: 0, filter: 'blur(15px)' }, 
+        { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out' }, 
+        12.8
+      );
+      masterTL.fromTo('#s5-campaign', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out' }, 
+        13.1
+      );
+      masterTL.fromTo('.lockup-specs span', 
+        { opacity: 0, y: 15 }, 
+        { opacity: 0.8, y: 0, duration: 0.6, stagger: 0.06, ease: 'power2.out' }, 
+        13.4
+      );
+      masterTL.fromTo('.replay-cta-wrap', 
+        { opacity: 0, y: 20 }, 
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, 
+        13.7
+      );
+
+      // Pad timeline to exact DURATION
+      masterTL.to({}, { duration: 0.01 }, DURATION);
+    }
+
+    buildTimeline();
+
+    /* ==========================================================
+       REALTIME CLOCK & FRAME LOOP (60 FPS SYNCHRONIZATION)
+       ========================================================== */
+    let lastFrameTime = performance.now();
+    let frameCount = 0;
+    let fpsTime = lastFrameTime;
+
+    function formatTimecode(sec) {
+      const clamped = Math.min(Math.max(sec, 0), DURATION);
+      const totalMs = Math.floor(clamped * 1000);
+      const m = Math.floor(totalMs / 60000);
+      const s = Math.floor((totalMs % 60000) / 1000);
+      const ms = Math.floor((totalMs % 1000) / 10);
+      const f = Math.floor((clamped % 1) * 60); // 60fps frame count
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}:${String(f).padStart(2, '0')}`;
+    }
+
+    function updateActiveSceneIndicators(t) {
+      if (t < 2.8) {
+        sceneIndicator.textContent = 'SCENE 01 / ORIGIN (DAWN)';
+      } else if (t < 6.0) {
+        sceneIndicator.textContent = 'SCENE 02 / MOVEMENT (FORM)';
+      } else if (t < 9.4) {
+        sceneIndicator.textContent = 'SCENE 03 / TEXTURE (SPECTRUM)';
+      } else if (t < 12.8) {
+        sceneIndicator.textContent = 'SCENE 04 / HORIZON (DUSK)';
+      } else {
+        sceneIndicator.textContent = 'SCENE 05 / RESOLUTION (2026)';
+      }
+    }
+
+    function animate(now) {
+      const dt = (now - lastFrameTime) / 1000;
+      lastFrameTime = now;
+
+      // FPS tracking
+      frameCount++;
+      if (now - fpsTime >= 1000) {
+        fpsCounter.textContent = `${frameCount} FPS`;
+        frameCount = 0;
+        fpsTime = now;
+      }
+
+      // If playing, advance timeline
+      if (isPlaying) {
+        currentTime += dt * playbackSpeed;
+        if (currentTime >= DURATION) {
+          currentTime = DURATION;
+          isPlaying = false;
+          iconPlay.style.display = 'block';
+          iconPause.style.display = 'none';
+          playStatusText.textContent = 'REPLAY';
+        }
+        masterTL.time(currentTime);
+      }
+
+      // Update UI elements
+      const progressPercent = (currentTime / DURATION) * 100;
+      timelineProgress.style.width = `${progressPercent}%`;
+      timelinePlayhead.style.left = `${progressPercent}%`;
+      timecodeDisplay.textContent = formatTimecode(currentTime);
+      clockReadout.textContent = `${currentTime.toFixed(2)}s / 15.00s`;
+      updateActiveSceneIndicators(currentTime);
+
+      // Audio frequency bar visualizer simulation
+      if (audioEnabled) {
+        const bars = document.querySelectorAll('.audio-bar');
+        bars.forEach((b, i) => {
+          const h = 4 + Math.sin(now * 0.008 + i * 1.2) * 6 + Math.random() * 8;
+          b.style.height = `${Math.max(3, h)}px`;
+        });
+      }
+
+      // Render Canvas Dust & Particles
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const windSpeed = (currentTime > 2.8 && currentTime < 6.0) ? 2.5 : 1.2;
+      particles.forEach(p => {
+        p.update(windSpeed);
+        p.draw();
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    requestAnimationFrame(animate);
+
+    /* ==========================================================
+       INTERACTIVE CONTROLS & EVENT LISTENERS
+       ========================================================== */
+    function togglePlayPause() {
+      if (currentTime >= DURATION) {
+        currentTime = 0;
+      }
+      isPlaying = !isPlaying;
+      if (isPlaying) {
+        iconPlay.style.display = 'none';
+        iconPause.style.display = 'block';
+        playStatusText.textContent = 'PAUSE';
+        videos.forEach(v => v && v.play().catch(() => {}));
+      } else {
+        iconPlay.style.display = 'block';
+        iconPause.style.display = 'none';
+        playStatusText.textContent = 'PLAY';
+      }
+    }
+
+    btnPlayPause.addEventListener('click', togglePlayPause);
+
+    btnRestart.addEventListener('click', () => {
+      jumpTo(0.0);
+      if (!isPlaying) togglePlayPause();
+    });
+
+    btnReplay.addEventListener('click', () => {
+      jumpTo(0.0);
+      if (!isPlaying) togglePlayPause();
+    });
+
+    // Jump to specific timecode
+    window.jumpTo = function(sec) {
+      currentTime = Math.min(Math.max(sec, 0), DURATION);
+      masterTL.time(currentTime);
+      if (audioEnabled) triggerAudioHit(180, 0.4);
+    };
+
+    // Scrubber click & drag
+    let isScrubbing = false;
+
+    function handleScrub(e) {
+      const rect = scrubberBar.getBoundingClientRect();
+      const clickX = Math.min(Math.max(e.clientX - rect.left, 0), rect.width);
+      const ratio = clickX / rect.width;
+      jumpTo(ratio * DURATION);
+    }
+
+    scrubberBar.addEventListener('mousedown', e => {
+      isScrubbing = true;
+      handleScrub(e);
+    });
+
+    window.addEventListener('mousemove', e => {
+      if (isScrubbing) handleScrub(e);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isScrubbing = false;
+    });
+
+    // Speed toggle (1.0x -> 0.5x -> 1.5x)
+    btnSpeed.addEventListener('click', () => {
+      if (playbackSpeed === 1.0) {
+        playbackSpeed = 0.5;
+        btnSpeed.textContent = '0.5X';
+      } else if (playbackSpeed === 0.5) {
+        playbackSpeed = 1.5;
+        btnSpeed.textContent = '1.5X';
+      } else {
+        playbackSpeed = 1.0;
+        btnSpeed.textContent = '1.0X';
+      }
+    });
+
+    // Aspect Ratio Toggle (Cinemascope 2.39:1 vs 16:9 vs 9:16)
+    const ratioBtns = document.querySelectorAll('.ratio-btn');
+    ratioBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        ratioBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        viewport.className = btn.dataset.ratio;
+        setTimeout(resizeCanvas, 400);
+      });
+    });
+
+    // Fullscreen toggle
+    btnFullscreen.addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // Keyboard shortcuts: Space = Play/Pause, M = Mute, F = Fullscreen, Left/Right = Seek
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Space') {
+        e.preventDefault();
+        togglePlayPause();
+      } else if (e.code === 'KeyM') {
+        toggleAudio();
+      } else if (e.code === 'KeyF') {
+        btnFullscreen.click();
+      } else if (e.code === 'ArrowLeft') {
+        jumpTo(currentTime - 1.0);
+      } else if (e.code === 'ArrowRight') {
+        jumpTo(currentTime + 1.0);
+      }
+    });
+
+    // Subtle 3D Perspective Tilt with Mouse
+    window.addEventListener('mousemove', e => {
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      const dx = (e.clientX - cx) / cx;
+      const dy = (e.clientY - cy) / cy;
+      gsap.to(motionStage, {
+        rotateY: dx * 3.5,
+        rotateX: -dy * 3.5,
+        duration: 0.8,
+        ease: 'power2.out',
+        transformPerspective: 1200
+      });
+    });
+
+  })();
+  </script>
+</body>
+</html>

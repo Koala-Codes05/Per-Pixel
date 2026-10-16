@@ -1,0 +1,38 @@
+<template>
+<style>
+  @font-face { font-family: "zentry"; src: url("assets/fonts/zentry-regular.woff2") format("woff2"); }
+  @font-face { font-family: "general"; src: url("assets/fonts/general.woff2") format("woff2"); }
+  @font-face { font-family: "robert"; src: url("assets/fonts/robert-medium.woff2") format("woff2"); }
+
+  #f4 {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    background: #05010B; color: #F0F2FA; overflow: hidden;
+  }
+  .f4-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+  .f4-round-portal { position: absolute; width: 620px; height: 620px; border-radius: 50%; border: 5px solid #5724ff; box-shadow: 0 0 70px rgba(87,36,255,0.7); overflow: hidden; will-change: transform; }
+  .f4-round-portal video { width: 100%; height: 100%; object-fit: cover; }
+  .f4-title { position: absolute; left: 120px; top: 300px; font-family: "zentry", sans-serif; font-size: 120px; font-weight: 900; line-height: 0.85; text-transform: uppercase; color: #F0F2FA; }
+  .f4-title b { color: #FFE600; }
+  .f4-chip { position: absolute; display: flex; align-items: center; gap: 14px; background: rgba(14,4,29,.7); border: 2px solid rgba(240,242,250,.45); border-radius: 999px; padding: 10px 24px 10px 12px; font-family: "general", sans-serif; font-size: 19px; letter-spacing: .14em; text-transform: uppercase; color: #F0F2FA; left: 120px; bottom: 100px; }
+  .f4-chip .glyph { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: #5724ff; color: #fff; font-family: "zentry", sans-serif; font-weight: 900; font-size: 16px; }
+</style>
+<div data-hf-id="hf-lj2t" id="f4" data-composition-id="f4" data-start="0" data-duration="1.85">
+  <div data-hf-id="hf-4ggn" class="f4-stage">
+    <div data-hf-id="hf-qfz7" class="f4-round-portal" id="coinPortal">
+      <video data-hf-id="hf-ceml" id="v4Hud" muted playsinline data-start="0" data-duration="1.85" src="assets/videos/raw_22-hud.mp4"></video>
+    </div>
+  </div>
+  <div data-hf-id="hf-dtwy" class="f4-title" id="f4Title">TACTICAL<br data-hf-id="hf-x5px"><b data-hf-id="hf-959y">FUI HUD</b></div>
+  <div data-hf-id="hf-92l3" class="f4-chip" id="chip4"><span data-hf-id="hf-3hp5" class="glyph">◎</span>MILITARY TELEMETRY</div>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  tl.fromTo("#f4", { x: 1920, filter: "blur(16px)" }, { x: 0, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, 0.0)
+    .fromTo("#f4Title", { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: "power4.out" }, 0.20)
+    .fromTo("#coinPortal", { scale: 0 }, { scale: 1, duration: 0.5, ease: "back.out(1.8)" }, 0.30)
+    .fromTo("#chip4", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: "back.out(1.8)" }, 0.65)
+    .to("#coinPortal", { rotateY: 180, scale: 4, duration: 0.46, ease: "power2.inOut" }, 1.39);
+  window.__timelines = window.__timelines || {};
+  window.__timelines["f4"] = tl;
+</script>
+</template>

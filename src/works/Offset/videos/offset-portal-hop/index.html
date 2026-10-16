@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1920, height=1080">
+<title>ANAKIN // Portal Hop Master Composition</title>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<style>
+  @font-face { font-family: "zentry"; src: url("assets/fonts/zentry-regular.woff2") format("woff2"); }
+  @font-face { font-family: "general"; src: url("assets/fonts/general.woff2") format("woff2"); }
+  @font-face { font-family: "robert"; src: url("assets/fonts/robert-medium.woff2") format("woff2"); }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    width: 100%; height: 100%; margin: 0; padding: 0;
+    overflow: hidden; background: #000;
+  }
+  #root {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    overflow: hidden; background: #dfdff0;
+  }
+  .clip { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+
+<div data-hf-id="hf-kbh8" id="root" data-composition-id="main" data-start="0" data-duration="15" data-width="1920" data-height="1080">
+
+  <!-- 7 Scene Sub-Composition Hosts -->
+  <div data-hf-id="hf-81f3" id="host-f1" class="clip" data-start="0" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f1" data-composition-src="compositions/01-dive.html"></div>
+  <div data-hf-id="hf-lyed" id="host-f2" class="clip" data-start="1.85" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f2" data-composition-src="compositions/02-3d.html"></div>
+  <div data-hf-id="hf-9mwt" id="host-f3" class="clip" data-start="3.70" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f3" data-composition-src="compositions/03-prisms.html"></div>
+  <div data-hf-id="hf-jgnk" id="host-f4" class="clip" data-start="5.55" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f4" data-composition-src="compositions/04-hud.html"></div>
+  <div data-hf-id="hf-ikh2" id="host-f5" class="clip" data-start="7.40" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f5" data-composition-src="compositions/05-smash.html"></div>
+  <div data-hf-id="hf-c6pm" id="host-f6" class="clip" data-start="9.25" data-duration="1.85" data-track-index="1" data-track-kind="graphics" data-composition-id="f6" data-composition-src="compositions/06-typo.html"></div>
+  <div data-hf-id="hf-ix9w" id="host-f7" class="clip" data-start="11.10" data-duration="3.90" data-track-index="1" data-track-kind="graphics" data-composition-id="f7" data-composition-src="compositions/07-lockup.html"></div>
+
+  <!-- Master Soundtrack Bed (Track 2) -->
+  <audio data-hf-id="hf-6tzq" id="audio-bed" src="assets/audio/night_terrors_15s.mp3" data-start="0" data-duration="15" data-track-index="2" data-track-kind="audio"></audio>
+
+  <!-- Foley Sound Effects (Tracks 3 - 10) -->
+  <audio data-hf-id="hf-25z8" id="sfx-01" src="assets/sfx/whoosh_in_1490.wav" data-start="1.45" data-duration="0.79" data-track-index="3" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-lqsk" id="sfx-02" src="assets/sfx/whoosh_out_2017.wav" data-start="3.25" data-duration="0.85" data-track-index="4" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-dbwc" id="sfx-03" src="assets/sfx/whip_1464.wav" data-start="5.25" data-duration="0.32" data-track-index="5" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-bknz" id="sfx-04" src="assets/sfx/coin_flip_2038.wav" data-start="6.85" data-duration="0.68" data-track-index="6" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-6c7i" id="sfx-05" src="assets/sfx/glitch_hit_1031.wav" data-start="7.35" data-duration="0.69" data-track-index="7" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-gtwq" id="sfx-06" src="assets/sfx/roll_whoosh_168.wav" data-start="9.05" data-duration="0.72" data-track-index="8" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-f2s3" id="sfx-07" src="assets/sfx/ui_pop_2356.wav" data-start="11.25" data-duration="0.26" data-track-index="9" data-track-kind="audio"></audio>
+  <audio data-hf-id="hf-yt8h" id="sfx-08" src="assets/sfx/ui_pop_2358.wav" data-start="12.90" data-duration="0.46" data-track-index="10" data-track-kind="audio"></audio>
+
+</div>
+
+<script>
+  window.__timelines = window.__timelines || {};
+  window.__timelines["main"] = gsap.timeline({ paused: true });
+</script>
+</body>
+</html>

@@ -4,6 +4,7 @@ import { Archivo, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
+import PageTransition from "@/components/PageTransition";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { INTRO_BOOTSTRAP } from "@/lib/intro";
@@ -38,9 +39,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </Script>
         <SmoothScroll />
         <Preloader />
+        <PageTransition />
         <Navbar />
         {children}
         <Footer />
+        <div className="viewport-blur" aria-hidden="true">
+          <div className="backdrop-blur-[0.5px]" />
+          <div className="backdrop-blur-[1px]" />
+          <div className="backdrop-blur-[1.5px]" />
+          <div className="backdrop-blur-[2px]" />
+          <div className="backdrop-blur-[3px]" />
+          <div className="backdrop-blur-xs" />
+        </div>
       </body>
     </html>
   );

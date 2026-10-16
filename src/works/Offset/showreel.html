@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ANAKIN // 15-Second Motion Design Directorial Showreel</title>
+<meta name="description" content="An unbroken 15-second directorial camera flight. Sinking through giant typography into 3D Octane craft, chromatic prisms, tactical FUI, coin-flips, multi-video kinetic typography, and master resume lockup.">
+<meta name="theme-color" content="#0E041D">
+<style>
+  @font-face { font-family: "zentry"; src: url("assets/fonts/zentry-regular.woff2") format("woff2"); }
+  @font-face { font-family: "general"; src: url("assets/fonts/general.woff2") format("woff2"); }
+  @font-face { font-family: "robert"; src: url("assets/fonts/robert-medium.woff2") format("woff2"); }
+
+  :root {
+    --paper: #dfdff0;
+    --ink: #0E041D;
+    --cream: #F0F2FA;
+    --violet: #5724ff;
+    --cyan: #4FB7DD;
+    --acid: #edff66;
+    --magenta: #FF007A;
+    --yellow: #FFE600;
+
+    --ui-0: #08090E;
+    --ui-1: #10121A;
+    --ui-2: #181C28;
+    --ui-3: #22283A;
+    --ui-line: #2C334A;
+    --ui-text: #E6EAF5;
+    --ui-dim: #7C86A2;
+    --cti: #5724ff;
+
+    --f-display: 'zentry', system-ui, sans-serif;
+    --f-ui: 'general', system-ui, sans-serif;
+    --f-body: 'robert', system-ui, sans-serif;
+    --f-mono: ui-monospace, monospace;
+    --bar-h: 96px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0; background: var(--ui-0); color: var(--ui-text);
+    font-family: var(--f-ui); font-size: 13px;
+    -webkit-font-smoothing: antialiased; overflow: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  button { font: inherit; color: inherit; }
+  ::selection { background: var(--violet); color: #fff; }
+  :focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; border-radius: 4px; }
+
+  .app { position: fixed; inset: 0; display: grid; grid-template-rows: auto 1fr auto; }
+
+  /* ---------- Top Viewer Chrome ---------- */
+  .tabs {
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    height: 42px; padding: 0 18px; background: var(--ui-1); border-bottom: 1px solid var(--ui-0);
+  }
+  .tabs-group { display: flex; align-items: center; gap: 8px; }
+  .tab {
+    display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 15px;
+    border-radius: 4px 4px 0 0; background: var(--ui-2); color: #fff; font-family: var(--f-ui);
+    font-size: 12px; letter-spacing: .06em; text-transform: uppercase; text-decoration: none;
+    transition: background .15s ease;
+  }
+  .tab:hover { background: #23293D; }
+  .tab--active { background: #1C2234; border-top: 2px solid var(--violet); color: #fff; font-weight: 700; }
+  .tab i { width: 8px; height: 8px; border-radius: 50%; background: var(--violet); box-shadow: 0 0 10px var(--violet); }
+  .tabs__meta { color: var(--ui-dim); font-family: var(--f-mono); font-size: 11.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---------- Viewer Canvas ---------- */
+  .viewer { position: relative; display: grid; place-items: center; overflow: hidden; background: #05060A; }
+  .viewer__foot {
+    position: absolute; left: 18px; bottom: 12px; display: flex; gap: 18px;
+    font-family: var(--f-mono); font-size: 11px; color: var(--ui-dim); font-variant-numeric: tabular-nums; z-index: 30;
+  }
+  .viewer__foot b { color: var(--violet); }
+
+  .comp-wrap {
+    position: relative;
+    box-shadow: 0 0 0 1px var(--ui-line), 0 36px 120px -20px rgba(0, 0, 0, 0.95);
+  }
+
+  /* =================================================================
+     Composition Stage (Authored at 1920 × 1080)
+     ================================================================= */
+  .comp {
+    position: absolute; left: 0; top: 0; width: 1920px; height: 1080px;
+    transform-origin: 0 0; overflow: hidden; background: var(--paper); color: var(--ink);
+  }
+  .comp-camera {
+    position: absolute; inset: 0; transform-origin: 50% 50%;
+    transform-style: preserve-3d; will-change: transform;
+  }
+
+  /* Blueprint Grid Lines & Subtle Film Grain */
+  .grid-lines {
+    position: absolute; inset: 0; opacity: 0.45; pointer-events: none; z-index: 1;
+    background-image: linear-gradient(rgba(87,36,255,.12) 1px, transparent 1px), linear-gradient(90deg, rgba(87,36,255,.12) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.16; mix-blend-mode: multiply; z-index: 25;
+    background-image: radial-gradient(rgba(14,4,29,.55) .5px, transparent .6px); background-size: 4px 4px;
+  }
+
+  /* Pips indicator in bottom right */
+  .pips { position: absolute; right: 80px; bottom: 80px; display: flex; gap: 14px; z-index: 26; pointer-events: none; }
+  .pips i { width: 16px; height: 16px; border-radius: 50%; border: 2.5px solid var(--violet); display: block; transition: all .2s ease; }
+  .pips i.on { background: var(--violet); box-shadow: 0 0 18px rgba(87,36,255,.9); }
+
+  /* -----------------------------------------------------------------
+     FRAME 01: THE HOOK // THE DIVE (0.00 - 1.85s)
+     ----------------------------------------------------------------- */
+  .frame1 {
+    position: absolute; inset: 0; z-index: 10; display: flex; flex-direction: column; justify-content: center;
+    padding: 0 140px; will-change: transform, opacity;
+  }
+  .f1-kicker {
+    font-family: var(--f-ui); font-size: 20px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink); margin-bottom: 24px; font-weight: 700;
+  }
+  .f1-hero-text {
+    font-family: var(--f-display); font-weight: 900; font-size: 200px; line-height: 0.84;
+    text-transform: uppercase; letter-spacing: 0.01em; color: var(--ink);
+  }
+  .f1-hero-text b { font-weight: inherit; font-feature-settings: "ss01" on; color: var(--violet); }
+  .portal-letter-o {
+    position: relative; display: inline-block; color: var(--violet);
+    transform-origin: 50% 50%; will-change: transform; vertical-align: baseline;
+  }
+  .portal-letter-o .letter-vid {
+    position: absolute; left: 18%; top: 18%; width: 64%; height: 64%;
+    border-radius: 50%; object-fit: cover; opacity: 0.95; z-index: 0;
+  }
+  .portal-glow {
+    position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+    width: 280px; height: 280px; border-radius: 50%; background: radial-gradient(circle, rgba(87,36,255,0.8), transparent 70%);
+    opacity: 0; pointer-events: none; z-index: -1;
+  }
+
+  /* -----------------------------------------------------------------
+     FRAME 02: 3D WORLD LANDING // OCTANE CRAFT (1.85 - 3.70s)
+     ----------------------------------------------------------------- */
+  .frame2 {
+    position: absolute; inset: 0; z-index: 11; opacity: 0; pointer-events: none;
+    background: #080312; color: var(--cream); overflow: hidden;
+  }
+  .f2-bg {
+    position: absolute; inset: -4%; background-image: url('assets/images/unsplash_chrome.jpg');
+    background-size: cover; background-position: center; filter: blur(6px) saturate(1.1) brightness(0.6);
+  }
+  .f2-shade {
+    position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(14,4,29,.85) 100%);
+  }
+  .f2-stage {
+    position: absolute; inset: 0; display: grid; place-items: center; perspective: 1400px;
+  }
+  .f2-card {
+    position: absolute; width: 920px; height: 520px; left: 840px; top: 280px;
+    border-radius: 16px; overflow: hidden; border: 3px solid rgba(240,242,250,.45);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.85); transform-style: preserve-3d;
+    transform: rotateY(-14deg) rotateX(4deg);
+  }
+  .f2-card video { width: 100%; height: 100%; object-fit: cover; }
+  .f2-title {
+    position: absolute; left: 120px; top: 320px; font-family: var(--f-display);
+    font-size: 120px; font-weight: 900; line-height: 0.85; text-transform: uppercase;
+    color: var(--cream); text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .f2-title b { color: var(--violet); }
+  .chip {
+    position: absolute; display: flex; align-items: center; gap: 14px; background: rgba(14,4,29,.7);
+    border: 2px solid rgba(240,242,250,.45); border-radius: 999px; padding: 10px 24px 10px 12px;
+    font-family: var(--f-ui); font-size: 19px; letter-spacing: .14em; text-transform: uppercase; color: var(--cream);
+  }
+  .chip .glyph {
+    width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+    background: var(--violet); color: #fff; font-family: var(--f-display); font-weight: 900; font-size: 16px;
+  }
+  .f2-diamond-portal {
+    position: absolute; left: 50%; top: 50%; width: 300px; height: 300px;
+    transform: translate(-50%, -50%) rotate(45deg); border: 4px solid var(--violet);
+    box-shadow: 0 0 60px var(--violet); opacity: 0; overflow: hidden; z-index: 15;
+  }
+  .f2-diamond-portal video { width: 145%; height: 145%; object-fit: cover; transform: rotate(-45deg) scale(1.4); }
+
+  /* -----------------------------------------------------------------
+     FRAME 03: PERSPECTIVE FLIGHT // CHROMATIC PRISM (3.70 - 5.55s)
+     ----------------------------------------------------------------- */
+  .frame3 {
+    position: absolute; inset: 0; z-index: 12; opacity: 0; pointer-events: none;
+    background: #090214; color: var(--cream); overflow: hidden;
+  }
+  .f3-bg {
+    position: absolute; inset: -4%; background-image: url('assets/images/unsplash_prism.jpg');
+    background-size: cover; background-position: center; filter: blur(6px) saturate(1.1) brightness(0.6);
+  }
+  .f3-stage { position: absolute; inset: 0; display: grid; place-items: center; perspective: 1400px; }
+  .f3-card-far {
+    position: absolute; width: 680px; height: 390px; left: 120px; top: 220px;
+    border-radius: 12px; overflow: hidden; border: 2px solid rgba(240,242,250,.25);
+    transform: translateZ(-250px) rotateY(20deg); filter: blur(3px);
+  }
+  .f3-card-far video { width: 100%; height: 100%; object-fit: cover; }
+  .f3-card {
+    position: absolute; width: 880px; height: 500px; left: 160px; top: 300px;
+    border-radius: 16px; overflow: hidden; border: 3px solid rgba(240,242,250,.45);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.85); transform-style: preserve-3d;
+    transform: rotateY(12deg) rotateX(-2deg);
+  }
+  .f3-card video { width: 100%; height: 100%; object-fit: cover; }
+  .f3-title {
+    position: absolute; right: 120px; top: 320px; font-family: var(--f-display);
+    font-size: 110px; font-weight: 900; line-height: 0.85; text-transform: uppercase;
+    text-align: right; color: var(--cream); text-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  }
+  .f3-title b { color: var(--cyan); }
+
+  /* -----------------------------------------------------------------
+     FRAME 04: WHIP-PAN LANDING // TACTICAL FUI HUD (5.55 - 7.40s)
+     ----------------------------------------------------------------- */
+  .frame4 {
+    position: absolute; inset: 0; z-index: 13; opacity: 0; pointer-events: none;
+    background: #05010B; color: var(--cream); overflow: hidden;
+  }
+  .f4-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+  .f4-round-portal {
+    position: absolute; width: 620px; height: 620px; border-radius: 50%;
+    border: 5px solid var(--violet); box-shadow: 0 0 70px rgba(87,36,255,0.7);
+    overflow: hidden; will-change: transform;
+  }
+  .f4-round-portal video { width: 100%; height: 100%; object-fit: cover; }
+  .f4-title {
+    position: absolute; left: 120px; top: 300px; font-family: var(--f-display);
+    font-size: 120px; font-weight: 900; line-height: 0.85; text-transform: uppercase;
+    color: var(--cream);
+  }
+  .f4-title b { color: var(--yellow); }
+
+  /* -----------------------------------------------------------------
+     FRAME 05: CHROMATIC SMASH // POINT COLLAPSE (7.40 - 9.25s)
+     ----------------------------------------------------------------- */
+  .frame5 {
+    position: absolute; inset: 0; z-index: 14; opacity: 0; pointer-events: none;
+    background: #070310; color: var(--cream); overflow: hidden;
+  }
+  .f5-stage { position: absolute; inset: 0; display: grid; place-items: center; }
+  .f5-card {
+    position: absolute; width: 1020px; height: 580px; border-radius: 12px; overflow: hidden;
+    border: 3px solid var(--cyan); box-shadow: 0 0 70px rgba(79,183,221,0.5);
+  }
+  .f5-card video { width: 100%; height: 100%; object-fit: cover; }
+  .f5-title {
+    position: absolute; left: 120px; top: 180px; font-family: var(--f-display);
+    font-size: 130px; font-weight: 900; line-height: 0.85; text-transform: uppercase;
+    color: var(--cream);
+  }
+  .f5-title b { color: var(--magenta); }
+  .point-collapse {
+    position: absolute; left: 50%; top: 50%; width: 22px; height: 22px;
+    margin-left: -11px; margin-top: -11px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 50px var(--violet), 0 0 100px var(--cyan); opacity: 0; z-index: 30;
+  }
+
+  /* -----------------------------------------------------------------
+     FRAME 06: THE RE-HIT PULL-BACK // MULTI-VIDEO TYPOGRAPHY (9.25 - 11.10s)
+     ----------------------------------------------------------------- */
+  .frame6 {
+    position: absolute; inset: 0; z-index: 15; opacity: 0; pointer-events: none;
+    background: var(--paper); color: var(--ink); display: flex; flex-direction: column;
+    justify-content: center; padding: 0 100px;
+  }
+  .f6-hero-word {
+    font-family: var(--f-display); font-weight: 900; font-size: 340px; line-height: 0.82;
+    text-transform: uppercase; letter-spacing: -0.02em; display: flex; justify-content: center;
+  }
+  .f6-char {
+    display: inline-block; background-size: cover; background-position: center;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    transition: color 0.4s ease;
+  }
+  .f6-char.inked { color: var(--ink) !important; background-image: none !important; }
+  .f6-label {
+    font-family: var(--f-ui); font-size: 24px; letter-spacing: .16em; text-transform: uppercase;
+    margin-top: 30px; text-align: center; font-weight: 700;
+  }
+
+  /* -----------------------------------------------------------------
+     FRAME 07: EXECUTIVE RESUME LOCKUP & HELD FRAME (11.10 - 15.00s)
+     ----------------------------------------------------------------- */
+  .frame7 {
+    position: absolute; inset: 0; z-index: 16; opacity: 0; pointer-events: none;
+    background: var(--paper); color: var(--ink); display: grid; place-items: center;
+  }
+  .lockup-wrap {
+    text-align: center; display: flex; flex-direction: column; align-items: center;
+    transform: scale(0.9);
+  }
+  .lockup-title {
+    font-family: var(--f-display); font-weight: 900; font-size: 160px; line-height: 0.85;
+    text-transform: uppercase; color: var(--ink);
+  }
+  .lockup-title b { font-weight: inherit; font-feature-settings: "ss01" on; color: var(--violet); }
+  .lockup-sub {
+    font-family: var(--f-body); font-size: 30px; line-height: 1.4; color: rgba(14,4,29,.8);
+    margin: 20px 0 36px;
+  }
+  .lockup-pill {
+    display: inline-flex; align-items: center; gap: 12px;
+    background: var(--acid); color: var(--ink); border-radius: 999px;
+    padding: 18px 46px; font-family: var(--f-ui); font-size: 24px; font-weight: 700;
+    letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
+    box-shadow: 0 8px 0 rgba(14,4,29,.9); cursor: pointer; transform-origin: 50% 50%;
+  }
+  .pill-pulse-ring {
+    position: absolute; width: 100%; height: 100%; border-radius: 999px;
+    border: 3px solid var(--violet); pointer-events: none; opacity: 0;
+  }
+
+  /* Safe Guides */
+  .guides { position: absolute; inset: 0; pointer-events: none; opacity: 0; z-index: 40; transition: opacity .15s ease; }
+  .guides.is-on { opacity: 1; }
+  .guides i { position: absolute; border: 1.5px dashed rgba(87,36,255,0.6); }
+  .guides .g-action { inset: 5%; }
+  .guides .g-title { inset: 10%; }
+  .guides .g-c1, .guides .g-c2 { border: 0; background: rgba(87,36,255,0.8); left: 50%; top: 50%; }
+  .guides .g-c1 { width: 60px; height: 1.5px; margin-left: -30px; }
+  .guides .g-c2 { width: 1.5px; height: 60px; margin-top: -30px; }
+
+  /* =================================================================
+     Transport Bar Dock
+     ================================================================= */
+  .transport {
+    display: grid; grid-template-columns: auto auto auto minmax(0, 1fr) auto auto;
+    align-items: center; gap: 16px;
+    min-height: var(--bar-h); padding: 12px 22px calc(12px + env(safe-area-inset-bottom));
+    background: var(--ui-1); border-top: 1px solid #000;
+  }
+  .t-btn {
+    position: relative; display: inline-grid; place-items: center;
+    height: 38px; min-width: 44px; padding: 0 14px; border: 0; border-radius: 6px;
+    background: var(--ui-3); color: #EDEDED; cursor: pointer;
+    font-family: var(--f-ui); font-size: 12px; font-weight: 700; letter-spacing: .06em;
+    transition: background-color .15s ease, transform .16s cubic-bezier(.23, 1, .32, 1);
+  }
+  .t-btn:active { transform: scale(.96); }
+  .t-btn[aria-pressed="true"] { background: #2f2268; color: #fff; border: 1px solid var(--violet); }
+  .t-play {
+    width: 48px; height: 48px; padding: 0; border-radius: 50%; background: var(--violet); color: #fff;
+    box-shadow: 0 0 24px rgba(87,36,255,0.55); cursor: pointer; border: 0;
+  }
+  .t-play svg {
+    grid-area: 1 / 1; width: 20px; height: 20px;
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .t-play .i-play { transform: translateX(1.5px); }
+  .t-play[data-state="playing"] .i-play, .t-play[data-state="paused"] .i-pause { opacity: 0; transform: scale(.25); }
+  @media (hover: hover) and (pointer: fine) {
+    .t-btn:hover { background: #333c56; }
+    .t-play:hover { background: #6f42ff; box-shadow: 0 0 32px rgba(87,36,255,0.8); }
+  }
+
+  .t-time { display: grid; gap: 2px; font-family: var(--f-mono); font-variant-numeric: tabular-nums; }
+  .t-tc { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: .02em; line-height: 1; }
+  .t-sub { font-size: 11px; color: var(--ui-dim); white-space: nowrap; }
+  .t-sub b { color: var(--violet); font-family: var(--f-ui); }
+
+  /* Audio Spectrum VU Canvas */
+  .vu-meter {
+    width: 64px; height: 32px; background: rgba(0,0,0,0.4);
+    border-radius: 4px; border: 1px solid var(--ui-line);
+  }
+
+  /* Scrubber & Markers */
+  .scrub {
+    position: relative; height: 62px; cursor: ew-resize; touch-action: none;
+    user-select: none; -webkit-user-select: none;
+  }
+  .scrub__markers { position: absolute; left: 0; right: 0; top: 0; height: 20px; }
+  .marker {
+    position: absolute; top: 0; transform: translateX(-50%);
+    display: flex; align-items: center; gap: 5px; height: 18px; padding: 0 8px;
+    font-family: var(--f-ui); font-size: 10px; font-weight: 700; letter-spacing: .06em;
+    color: #fff; white-space: nowrap; border-radius: 3px;
+    background: var(--c); cursor: pointer; border: 0; transition: transform .12s ease;
+  }
+  .marker:hover { transform: translateX(-50%) translateY(-2px); box-shadow: 0 0 12px var(--c); }
+  .marker::before { content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 42px; background: var(--c); opacity: .45; }
+
+  .scrub__ruler { position: absolute; left: 0; right: 0; top: 24px; height: 16px; border-bottom: 1px solid var(--ui-line); }
+  .tick { position: absolute; bottom: 0; width: 1px; height: 5px; background: #474f63; }
+  .tick--major { height: 9px; background: #7c88a8; }
+  .tick span { position: absolute; bottom: 10px; left: 3px; font-family: var(--f-mono); font-size: 10px; color: var(--ui-dim); font-variant-numeric: tabular-nums; }
+
+  .scrub__bar { position: absolute; left: 0; right: 0; top: 44px; height: 14px; border-radius: 3px; background: var(--ui-2); border: 1px solid var(--ui-line); overflow: hidden; }
+  .scrub__played { position: absolute; inset: 0; transform-origin: 0 50%; background: linear-gradient(90deg, #3718a3, var(--violet)); box-shadow: 0 0 10px var(--violet); }
+  .cti { position: absolute; top: 20px; bottom: 0; left: 0; width: 0; will-change: transform; pointer-events: none; }
+  .cti::after { content: ""; position: absolute; top: 4px; bottom: 0; left: -0.5px; width: 1px; background: var(--cti); box-shadow: 0 0 8px var(--violet); }
+  .cti__head {
+    position: absolute; top: 0; left: -7px; width: 14px; height: 18px; background: var(--cti);
+    clip-path: polygon(0 0, 100% 0, 100% 62%, 50% 100%, 0 62%);
+    box-shadow: 0 0 8px var(--violet);
+  }
+
+  .t-seg { display: inline-flex; padding: 3px; border-radius: 8px; background: var(--ui-0); gap: 2px; border: 1px solid var(--ui-line); }
+  .t-seg button {
+    height: 32px; min-width: 48px; padding: 0 10px; border: 0; border-radius: 6px; background: transparent; color: var(--ui-dim);
+    font-family: var(--f-mono); font-size: 12px; cursor: pointer; font-variant-numeric: tabular-nums;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .t-seg button[aria-pressed="true"] { background: var(--ui-3); color: #fff; font-weight: 700; }
+
+  /* Audio element */
+  #masterAudio { display: none; }
+</style>
+</head>
+<body>
+
+<div class="app">
+  <!-- Top Navigation & Session Header -->
+  <header class="tabs">
+    <div class="tabs-group">
+      <span class="tab tab--active"><i aria-hidden="true"></i>PORTAL_HOP_15S · UNBROKEN FLIGHT</span>
+      <a class="tab" href="storyboard.html" title="Open Storyboard grid and Motion Laws">Storyboard_V1</a>
+      <a class="tab" href="title.html" title="Jump to Title Composition experiment">Offset_Title_12s</a>
+    </div>
+    <div class="tabs__meta">1920 × 1080 · 30 FPS · 129.7 BPM · Δ 0:00:15:00 · 7 BEAT-LOCKED FRAMES</div>
+  </header>
+
+  <!-- 1920×1080 Viewport Stage -->
+  <main class="viewer">
+    <div class="comp-wrap" id="compWrap">
+      <div class="comp" id="comp" role="region" aria-label="15-Second Motion Design Portal Hop Master Composition">
+
+        <!-- Blueprint Lines & Grain -->
+        <div class="grid-lines"></div>
+        <div class="grain"></div>
+
+        <!-- 4 Pips Progress in Bottom Right -->
+        <div class="pips" id="pipsBar">
+          <i id="pip1"></i><i id="pip2"></i><i id="pip3"></i><i id="pip4"></i>
+        </div>
+
+        <!-- Master Camera Rig (Perspective & 3D Flight) -->
+        <div class="comp-camera" id="cameraRig">
+
+          <!-- =======================================================
+               FRAME 01: THE HOOK // THE DIVE (0.00 - 1.85s)
+               ======================================================= -->
+          <div class="frame1" id="f1">
+            <div class="f1-kicker">ANAKIN // INSTANT DIRECTORIAL REEL</div>
+            <h1 class="f1-hero-text">
+              THE REEL<br>
+              F<span class="portal-letter-o" id="portalO">
+                <video class="letter-vid" muted playsinline loop autoplay src="assets/videos/clip_3d.mp4"></video>
+                O
+                <div class="portal-glow" id="portalGlow"></div>
+              </span>R EVERY<br>
+              VISI<b>O</b>N
+            </h1>
+          </div>
+
+          <!-- =======================================================
+               FRAME 02: 3D WORLD LANDING // OCTANE CRAFT (1.85 - 3.70s)
+               ======================================================= -->
+          <div class="frame2" id="f2">
+            <div class="f2-bg"></div>
+            <div class="f2-shade"></div>
+            <div class="f2-stage">
+              <div class="f2-card" id="card2">
+                <video id="v2" muted playsinline loop preload="auto" src="assets/videos/clip_3d.mp4"></video>
+              </div>
+            </div>
+            <div class="f2-title" id="f2Title">3D CRAFT &<br><b>CAUSTICS</b></div>
+            <div class="chip" id="chip2" style="left:120px;bottom:100px;"><span class="glyph">✦</span>OCTANE / PROCEDURAL CGI</div>
+            <!-- Diamond Portal for exit -->
+            <div class="f2-diamond-portal" id="diamondPortal">
+              <video id="v2Portal" muted playsinline loop preload="auto" src="assets/videos/raw_12-aurora-glass.mp4"></video>
+            </div>
+          </div>
+
+          <!-- =======================================================
+               FRAME 03: PERSPECTIVE FLIGHT // CHROMATIC PRISM (3.70 - 5.55s)
+               ======================================================= -->
+          <div class="frame3" id="f3">
+            <div class="f3-bg"></div>
+            <div class="f3-stage">
+              <div class="f3-card-far" id="card3Far">
+                <video muted playsinline loop preload="auto" src="assets/videos/raw_07-liquid.mp4"></video>
+              </div>
+              <div class="f3-card" id="card3">
+                <video id="v3" muted playsinline loop preload="auto" src="assets/videos/raw_12-aurora-glass.mp4"></video>
+              </div>
+            </div>
+            <div class="f3-title" id="f3Title">CHROMATIC<br><b>DISPERSION</b></div>
+            <div class="chip" id="chip3" style="right:120px;bottom:100px;"><span class="glyph">❖</span>PRISMATIC REFRACTION</div>
+          </div>
+
+          <!-- =======================================================
+               FRAME 04: WHIP-PAN LANDING // TACTICAL FUI HUD (5.55 - 7.40s)
+               ======================================================= -->
+          <div class="frame4" id="f4">
+            <div class="f4-stage">
+              <div class="f4-round-portal" id="coinPortal">
+                <video id="v4" muted playsinline loop preload="auto" src="assets/videos/raw_22-hud.mp4"></video>
+              </div>
+            </div>
+            <div class="f4-title" id="f4Title">TACTICAL<br><b>FUI HUD</b></div>
+            <div class="chip" id="chip4" style="left:120px;bottom:100px;"><span class="glyph">◎</span>MILITARY TELEMETRY</div>
+          </div>
+
+          <!-- =======================================================
+               FRAME 05: CHROMATIC SMASH // POINT COLLAPSE (7.40 - 9.25s)
+               ======================================================= -->
+          <div class="frame5" id="f5">
+            <div class="f5-stage">
+              <div class="f5-card" id="card5">
+                <video id="v5" muted playsinline loop preload="auto" src="assets/videos/raw_synth.mp4"></video>
+              </div>
+            </div>
+            <div class="f5-title" id="f5Title">SYNTHETIC<br><b>VELOCITY</b></div>
+            <div class="chip" id="chip5" style="left:120px;bottom:100px;"><span class="glyph">⚡</span>140 BPM STROBE</div>
+            <div class="point-collapse" id="pointCollapse"></div>
+          </div>
+
+          <!-- =======================================================
+               FRAME 06: THE RE-HIT PULL-BACK // MULTI-VIDEO TYPO (9.25 - 11.10s)
+               ======================================================= -->
+          <div class="frame6" id="f6">
+            <div class="f6-hero-word" id="heroWord">
+              <span class="f6-char" id="chA1" style="background-image:url('assets/images/thumb_3d.jpg')">A</span>
+              <span class="f6-char" id="chN" style="background-image:url('assets/images/thumb_glass.jpg')">N</span>
+              <span class="f6-char" id="chA2" style="background-image:url('assets/images/thumb_hud.jpg')">A</span>
+              <span class="f6-char" id="chK" style="background-image:url('assets/images/thumb_synth.jpg')">K</span>
+              <span class="f6-char" id="chI" style="background-image:url('assets/images/thumb_liquid.jpg')">I</span>
+              <span class="f6-char" id="chN2" style="background-image:url('assets/images/thumb_bauhaus.jpg')">N</span>
+            </div>
+            <div class="f6-label" id="f6Label">ONE DIRECTOR. EVERY DISCIPLINE.</div>
+          </div>
+
+          <!-- =======================================================
+               FRAME 07: EXECUTIVE RESUME LOCKUP & HELD FRAME (11.10 - 15.00s)
+               ======================================================= -->
+          <div class="frame7" id="f7">
+            <div class="lockup-wrap" id="lockupWrap">
+              <h1 class="lockup-title">ANAK<b>I</b>N</h1>
+              <p class="lockup-sub">
+                Lead Motion Designer & Creative Director<br>
+                3D Motion · Tactical FUI · Kinetic Typography
+              </p>
+              <div class="lockup-pill" id="lockupPill">
+                OPEN FOR COMMISSIONS
+                <div class="pill-pulse-ring" id="pillPulse"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Safe Guides -->
+        <div class="guides" id="guides"><i class="g-action"></i><i class="g-title"></i><i class="g-c1"></i><i class="g-c2"></i></div>
+
+      </div>
+    </div>
+
+    <!-- Viewer Foot Meta -->
+    <div class="viewer__foot" aria-hidden="true">
+      <span id="zoom">Fit (100%)</span>
+      <span>1920×1080</span>
+      <span>Scene: <b id="scene">01 Dive</b></span>
+      <span>Audio: <b>Foley SFX + 129.7 BPM Master</b></span>
+    </div>
+  </main>
+
+  <!-- Transport Controls Dock -->
+  <div class="transport" role="group" aria-label="Master Transport Controls">
+    <!-- Play/Pause Button -->
+    <button class="t-play" id="play" type="button" aria-label="Pause" data-state="playing">
+      <svg class="i-pause" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+      <svg class="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.8v14.4a1 1 0 0 0 1.5.86l11.6-7.2a1 1 0 0 0 0-1.72L8.5 3.94A1 1 0 0 0 7 4.8z"/></svg>
+    </button>
+
+    <!-- Timecode Readout -->
+    <div class="t-time">
+      <span class="t-tc" id="tc">0:00:00:00</span>
+      <span class="t-sub"><span id="frames">00000</span> FRAMES · <b id="sceneTag">01 Dive</b></span>
+    </div>
+
+    <!-- Live Audio Spectrum VU Canvas -->
+    <canvas class="vu-meter" id="vuMeter" width="64" height="32"></canvas>
+
+    <!-- Scrubber with 7 Beat-Grid Chapter Markers -->
+    <div class="scrub" id="scrub" role="slider" tabindex="0" aria-label="Playhead" aria-valuemin="0" aria-valuemax="15" aria-valuenow="0" aria-valuetext="0.0 seconds">
+      <div class="scrub__markers" id="markers"></div>
+      <div class="scrub__ruler" id="ruler"></div>
+      <div class="scrub__bar"><div class="scrub__played" id="played"></div></div>
+      <div class="cti" id="cti"><div class="cti__head"></div></div>
+    </div>
+
+    <!-- Speed Controls -->
+    <div class="t-seg" role="group" aria-label="Playback speed">
+      <button type="button" data-speed="0.25" aria-pressed="false">0.25×</button>
+      <button type="button" data-speed="0.5" aria-pressed="false">0.5×</button>
+      <button type="button" data-speed="1" aria-pressed="true">1×</button>
+      <button type="button" data-speed="2" aria-pressed="false">2×</button>
+    </div>
+
+    <!-- Auxiliary Actions -->
+    <div style="display:flex;gap:8px;">
+      <button class="t-btn" id="guidesBtn" type="button" aria-pressed="false">Safe Zones</button>
+      <a class="t-btn" href="showreel_15s.mp4" download="Anakin_Motion_Showreel_15s.mp4" style="text-decoration:none;background:var(--violet);color:#fff;">Export MP4</a>
+    </div>
+  </div>
+</div>
+
+<!-- Master Audio Soundtrack with Baked Professional Foley SFX -->
+<audio id="masterAudio" src="assets/audio/master_soundtrack_pro.mp3" preload="auto"></audio>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script>
+(() => {
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  gsap.registerPlugin(CustomEase);
+
+  /* ------------------------------------------------------------------
+     MOTION LAW EASING CURVES (Strict HyperFrames / Portal Hop Laws)
+     ------------------------------------------------------------------ */
+  gsap.registerEase('diveIn', gsap.parseEase('power3.in'));
+  gsap.registerEase('landOut', gsap.parseEase('power4.out'));
+  gsap.registerEase('springPop', gsap.parseEase('back.out(1.8)'));
+  gsap.registerEase('whipPan', gsap.parseEase('power2.inOut'));
+
+  const FPS = 30, DUR = 15.0; // 15.000s Master
+
+  /* ---------- 1920×1080 Viewport Auto-fit ---------- */
+  const comp = $('#comp'), wrap = $('#compWrap'), viewer = $('.viewer'), zoomEl = $('#zoom');
+  const fit = () => {
+    const r = viewer.getBoundingClientRect();
+    const s = Math.min((r.width - 32) / 1920, (r.height - 48) / 1080);
+    comp.style.transform = `scale(${s})`;
+    wrap.style.width = 1920 * s + 'px';
+    wrap.style.height = 1080 * s + 'px';
+    zoomEl.textContent = `Fit (${Math.round(s * 100)}%)`;
+  };
+  new ResizeObserver(fit).observe(viewer);
+  fit();
+
+  /* ---------- Elements ---------- */
+  const cam = $('#cameraRig');
+  const pips = [$('#pip1'), $('#pip2'), $('#pip3'), $('#pip4')];
+
+  // Frame 1
+  const f1 = $('#f1'), portalO = $('#portalO'), portalGlow = $('#portalGlow');
+
+  // Frame 2
+  const f2 = $('#f2'), card2 = $('#card2'), f2Title = $('#f2Title'), chip2 = $('#chip2');
+  const diamondPortal = $('#diamondPortal'), v2 = $('#v2'), v2Portal = $('#v2Portal');
+
+  // Frame 3
+  const f3 = $('#f3'), card3 = $('#card3'), f3Title = $('#f3Title'), chip3 = $('#chip3'), v3 = $('#v3');
+
+  // Frame 4
+  const f4 = $('#f4'), coinPortal = $('#coinPortal'), f4Title = $('#f4Title'), chip4 = $('#chip4'), v4 = $('#v4');
+
+  // Frame 5
+  const f5 = $('#f5'), card5 = $('#card5'), f5Title = $('#f5Title'), chip5 = $('#chip5'), v5 = $('#v5'), pointCollapse = $('#pointCollapse');
+
+  // Frame 6
+  const f6 = $('#f6'), heroWord = $('#heroWord'), chars = $$('.f6-char'), f6Label = $('#f6Label');
+
+  // Frame 7
+  const f7 = $('#f7'), lockupWrap = $('#lockupWrap'), lockupPill = $('#lockupPill'), pillPulse = $('#pillPulse');
+
+  // Master Audio
+  const masterAudio = $('#masterAudio');
+
+  // Play background videos silently in sync
+  const allVids = [v2, v2Portal, v3, v4, v5, $('.letter-vid')];
+  allVids.forEach(v => { if (v) { v.muted = true; v.play().catch(() => {}); } });
+
+  /* =================================================================
+     MASTER TIMELINE (7 Frames on exact 1.85s Beat Grid)
+     ================================================================= */
+  const tl = gsap.timeline({ repeat: -1, paused: true });
+
+  // Frame 0 Reset
+  tl.set(cam, { scale: 1, x: 0, y: 0, rotation: 0, rotateY: 0, filter: 'blur(0px)' }, 0)
+    .set([f1, f2, f3, f4, f5, f6, f7], { opacity: 0 }, 0)
+    .set(f1, { opacity: 1, scale: 1 }, 0)
+    .set(pips, { className: '-=on' }, 0)
+    .set(chars, { className: '-=inked' }, 0);
+
+  /* --- FRAME 01 (0.00 — 1.85s): THE HOOK // THE DIVE ------------- */
+  tl.addLabel('01 Dive', 0.0)
+    .set(f1, { opacity: 1 }, 0.0)
+    .to(pips[0], { className: '+=on', duration: 0.1 }, 0.1)
+    // Words whip in from below
+    .fromTo('.f1-hero-text', { y: 60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'landOut' }, 0.05)
+    // At 1.25s, dive accelerates straight into letter O
+    .to(portalO, { scale: 1.2, duration: 0.4, ease: 'diveIn' }, 1.25)
+    .to(portalGlow, { opacity: 0.9, duration: 0.4 }, 1.35)
+    .to(cam, { scale: 16, x: -380, y: -90, duration: 0.6, ease: 'diveIn' }, 1.25)
+    .to(f1, { opacity: 0, duration: 0.15 }, 1.70);
+
+  /* --- FRAME 02 (1.85 — 3.70s): 3D WORLD LANDING // OCTANE CRAFT -- */
+  tl.addLabel('02 3D Craft', 1.85)
+    .set(f2, { opacity: 1 }, 1.85)
+    .set(cam, { scale: 1.35, x: 0, y: 0, filter: 'blur(10px)' }, 1.85)
+    .to(cam, { scale: 1, filter: 'blur(0px)', duration: 0.45, ease: 'landOut' }, 1.85)
+    .to(pips[1], { className: '+=on', duration: 0.1 }, 1.85)
+    // Title slam on beat 2.31s
+    .fromTo(f2Title, { scale: 1.45, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.22, ease: 'power4.out' }, 2.31)
+    .fromTo(chip2, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'springPop' }, 2.50)
+    // At 3.15s, diamond portal pops and camera dives into it rolling 0°->90°
+    .to(diamondPortal, { opacity: 1, scale: 1.2, duration: 0.35, ease: 'springPop' }, 3.15)
+    .to(cam, { scale: 8, rotation: 90, duration: 0.55, ease: 'diveIn' }, 3.15)
+    .to(f2, { opacity: 0, duration: 0.15 }, 3.60);
+
+  /* --- FRAME 03 (3.70 — 5.55s): PERSPECTIVE FLIGHT // PRISMS ------ */
+  tl.addLabel('03 Prisms', 3.70)
+    .set(f3, { opacity: 1 }, 3.70)
+    .set(cam, { scale: 1.3, rotation: 90, filter: 'blur(8px)' }, 3.70)
+    .to(cam, { scale: 1, rotation: 0, filter: 'blur(0px)', duration: 0.5, ease: 'landOut' }, 3.70)
+    .to(pips[2], { className: '+=on', duration: 0.1 }, 3.70)
+    .fromTo(f3Title, { x: 80, opacity: 0 }, { x: 0, opacity: 1, duration: 0.3, ease: 'landOut' }, 3.90)
+    .fromTo(chip3, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: 'springPop' }, 4.63)
+    // At 5.20s, accelerate left into whip pan
+    .to(cam, { x: -1920, filter: 'blur(16px)', duration: 0.35, ease: 'diveIn' }, 5.20)
+    .to(f3, { opacity: 0, duration: 0.15 }, 5.45);
+
+  /* --- FRAME 04 (5.55 — 7.40s): WHIP-PAN LANDING // FUI HUD ------- */
+  tl.addLabel('04 FUI HUD', 5.55)
+    .set(f4, { opacity: 1 }, 5.55)
+    .set(cam, { x: 1920, filter: 'blur(16px)' }, 5.55)
+    .to(cam, { x: 0, filter: 'blur(0px)', duration: 0.45, ease: 'landOut' }, 5.55)
+    .to(pips[3], { className: '+=on', duration: 0.1 }, 5.55)
+    .fromTo(f4Title, { y: -60, opacity: 0 }, { y: 0, opacity: 1, duration: 0.35, ease: 'landOut' }, 5.75)
+    .fromTo(coinPortal, { scale: 0 }, { scale: 1, duration: 0.5, ease: 'springPop' }, 5.85)
+    .fromTo(chip4, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'springPop' }, 6.20)
+    // 3D Coin flip at 6.94s
+    .to(coinPortal, { rotateY: 180, scale: 4, duration: 0.46, ease: 'whipPan' }, 6.94)
+    .to(f4, { opacity: 0, duration: 0.12 }, 7.30);
+
+  /* --- FRAME 05 (7.40 — 9.25s): CHROMATIC SMASH & COLLAPSE -------- */
+  tl.addLabel('05 Smash', 7.40)
+    .set(f5, { opacity: 1 }, 7.40)
+    .set(cam, { scale: 1.25, rotateY: 0 }, 7.40)
+    .to(cam, { scale: 1, duration: 0.35, ease: 'landOut' }, 7.40)
+    .fromTo(f5Title, { scale: 1.5, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.2, ease: 'power4.out' }, 7.40)
+    .fromTo(chip5, { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.35, ease: 'springPop' }, 7.60)
+    // Stutter cuts on eighths inside card5
+    .to(card5, { x: 10, duration: 0.05, yoyo: true, repeat: 3 }, 7.63)
+    // Scale-to-point collapse at 8.75s in musical dropout
+    .set(pointCollapse, { opacity: 1 }, 8.75)
+    .to([card5, f5Title, chip5], { scale: 0.01, opacity: 0, duration: 0.45, ease: 'diveIn' }, 8.75)
+    .to(cam, { scale: 0.02, duration: 0.48, ease: 'diveIn' }, 8.75)
+    .to(f5, { opacity: 0, duration: 0.1 }, 9.20);
+
+  /* --- FRAME 06 (9.25 — 11.10s): RE-HIT PULL-BACK // TYPOGRAPHY -- */
+  tl.addLabel('06 Typography', 9.25)
+    .set(f6, { opacity: 1 }, 9.25)
+    .set(cam, { scale: 0.03, x: 0, y: 0 }, 9.25)
+    // Continuous decelerating pull-back launching at full speed
+    .to(cam, { scale: 1, duration: 0.95, ease: 'landOut' }, 9.25)
+    .fromTo(f6Label, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: 'landOut' }, 9.80)
+    // Letters hold footage for 1 beat, then crossfade to solid ink in left-to-right ripple
+    .to(chars, { className: '+=inked', stagger: 0.08, duration: 0.35 }, 10.64)
+    .to(f6, { opacity: 0, duration: 0.15 }, 11.00);
+
+  /* --- FRAME 07 (11.10 — 15.00s): EXECUTIVE RESUME LOCKUP & CTA -- */
+  tl.addLabel('07 Lockup', 11.10)
+    .set(f7, { opacity: 1 }, 11.10)
+    .set(cam, { scale: 1 }, 11.10)
+    .fromTo(lockupWrap, { scale: 0.6, y: 60, opacity: 0 }, { scale: 1, y: 0, opacity: 1, duration: 0.65, ease: 'landOut' }, 11.10)
+    .fromTo(lockupPill, { scale: 0 }, { scale: 1, duration: 0.5, ease: 'springPop' }, 11.75)
+    // On 12.95s bar, CTA presses (0.92 -> 1) with violet ring pulse
+    .to(lockupPill, { scale: 0.92, duration: 0.08, ease: 'power2.in' }, 12.95)
+    .to(lockupPill, { scale: 1.0, duration: 0.25, ease: 'springPop' }, 13.03)
+    .fromTo(pillPulse, { scale: 1, opacity: 1 }, { scale: 1.8, opacity: 0, duration: 0.6, ease: 'power2.out' }, 12.95)
+    // Held frame to 15.00s
+    .set({}, {}, DUR);
+
+  /* =================================================================
+     Transport Integration & Ticker Sync
+     ================================================================= */
+  const playBtn = $('#play'), tcEl = $('#tc'), framesEl = $('#frames'), sceneEl = $('#scene'), sceneTag = $('#sceneTag');
+  const scrub = $('#scrub'), cti = $('#cti'), played = $('#played'), vuCanvas = $('#vuMeter'), vuCtx = vuCanvas.getContext('2d');
+
+  const SCENES = [
+    { name: '01 Dive', label: 'Frame 01: The Hook & Dive', c: '#5724ff' },
+    { name: '02 3D Craft', label: 'Frame 02: 3D Landing', c: '#4FB7DD' },
+    { name: '03 Prisms', label: 'Frame 03: Perspective Flight', c: '#00F0FF' },
+    { name: '04 FUI HUD', label: 'Frame 04: Tactical FUI & Flip', c: '#FFE600' },
+    { name: '05 Smash', label: 'Frame 05: Chromatic Smash', c: '#FF007A' },
+    { name: '06 Typography', label: 'Frame 06: Pull-Back Typo', c: '#5724ff' },
+    { name: '07 Lockup', label: 'Frame 07: Executive Lockup', c: '#edff66' }
+  ].map(s => ({ ...s, t: tl.labels[s.name] }));
+
+  // Ruler ticks (every 0.5s)
+  const ruler = $('#ruler');
+  for (let i = 0; i <= DUR * 2; i++) {
+    const t = i / 2, tick = document.createElement('div');
+    tick.className = 'tick' + (i % 2 === 0 ? ' tick--major' : ' tick--half');
+    tick.style.left = (t / DUR * 100) + '%';
+    if (i % 2 === 0 && t < DUR) tick.innerHTML = `<span>${String(t).padStart(2, '0')}s</span>`;
+    ruler.appendChild(tick);
+  }
+
+  // Chapter Markers
+  const markersEl = $('#markers');
+  SCENES.forEach(s => {
+    const b = document.createElement('button');
+    b.type = 'button'; b.className = 'marker'; b.style.left = (s.t / DUR * 100) + '%'; b.style.setProperty('--c', s.c);
+    b.textContent = s.name; b.setAttribute('aria-label', `Jump to ${s.name}`);
+    b.addEventListener('pointerdown', e => e.stopPropagation());
+    b.addEventListener('click', () => seek(s.t));
+    markersEl.appendChild(b);
+  });
+
+  const pad = n => String(n).padStart(2, '0');
+  const sceneAt = t => SCENES.reduce((a, s) => (t >= s.t ? s : a), SCENES[0]);
+  let lastFrame = -1, scrubW = scrub.clientWidth;
+  new ResizeObserver(() => { scrubW = scrub.clientWidth; lastFrame = -1; }).observe(scrub);
+
+  // Audio Spectrum / VU Meter Simulation
+  const drawVU = (t, isPlaying) => {
+    vuCtx.clearRect(0, 0, 64, 32);
+    const bars = 8, w = 6, gap = 2;
+    for (let i = 0; i < bars; i++) {
+      let h = 4;
+      if (isPlaying) {
+        const beatFreq = Math.sin(t * 13.5 + i * 0.8);
+        h = Math.max(4, Math.floor(Math.abs(beatFreq) * 26 + (Math.sin(t * 27 + i) * 4)));
+      }
+      vuCtx.fillStyle = (h > 22) ? '#FF007A' : (h > 14) ? '#5724ff' : '#4FB7DD';
+      vuCtx.fillRect(i * (w + gap) + 1, 32 - h, w, h);
+    }
+  };
+
+  // RAF Render Loop
+  const render = () => {
+    const t = tl.time();
+    const f = Math.min(Math.floor(t * FPS + 1e-4), DUR * FPS - 1);
+    cti.style.transform = `translateX(${(t / DUR) * scrubW}px)`;
+    played.style.transform = `scaleX(${t / DUR})`;
+
+    drawVU(t, !tl.paused());
+
+    if (f === lastFrame) return;
+    lastFrame = f;
+
+    tcEl.textContent = `0:00:${pad(Math.floor(f / FPS))}:${pad(f % FPS)}`;
+    framesEl.textContent = String(f).padStart(5, '0');
+    const sc = sceneAt(t);
+    sceneEl.textContent = sc.label;
+    sceneTag.textContent = sc.name;
+    scrub.setAttribute('aria-valuenow', t.toFixed(2));
+  };
+  gsap.ticker.add(render);
+
+  /* Playback & Audio Sync */
+  const setPlaying = (on) => {
+    if (on) {
+      tl.play();
+      masterAudio.currentTime = tl.time();
+      masterAudio.play().catch(() => {});
+    } else {
+      tl.pause();
+      masterAudio.pause();
+    }
+    playBtn.dataset.state = on ? 'playing' : 'paused';
+    playBtn.setAttribute('aria-label', on ? 'Pause' : 'Play');
+  };
+
+  const seek = (t) => {
+    tl.time(gsap.utils.clamp(0, DUR - 1 / FPS, t), false);
+    masterAudio.currentTime = tl.time();
+    render();
+  };
+  playBtn.addEventListener('click', () => setPlaying(tl.paused()));
+
+  // Scrubber Dragging
+  let dragging = false, resumeAfter = false;
+  const timeFromX = (clientX) => {
+    const r = scrub.getBoundingClientRect();
+    return gsap.utils.clamp(0, 1, (clientX - r.left) / r.width) * DUR;
+  };
+  scrub.addEventListener('pointerdown', (e) => {
+    if (dragging || e.button > 0) return;
+    dragging = true;
+    resumeAfter = !tl.paused();
+    setPlaying(false);
+    scrub.setPointerCapture(e.pointerId);
+    seek(timeFromX(e.clientX));
+  });
+  scrub.addEventListener('pointermove', (e) => { if (dragging) seek(timeFromX(e.clientX)); });
+  const endDrag = () => { if (!dragging) return; dragging = false; if (resumeAfter) setPlaying(true); };
+  scrub.addEventListener('pointerup', endDrag);
+  scrub.addEventListener('pointercancel', endDrag);
+
+  // Keyboard navigation
+  const step = (dt) => { if (!tl.paused()) setPlaying(false); seek(tl.time() + dt); };
+  document.addEventListener('keydown', (e) => {
+    if (e.target.closest('button') && (e.code === 'Space' || e.code === 'Enter')) return;
+    if (e.code === 'Space' || e.code === 'KeyK') { e.preventDefault(); setPlaying(tl.paused()); }
+    else if (e.code === 'KeyL' || e.key === 'ArrowRight') { e.preventDefault(); step(e.shiftKey ? 1 : 1 / FPS); }
+    else if (e.code === 'KeyJ' || e.key === 'ArrowLeft') { e.preventDefault(); step(e.shiftKey ? -1 : -1 / FPS); }
+    else if (e.key === 'Home') { e.preventDefault(); step(-DUR); }
+    else if (e.key === 'End') { e.preventDefault(); step(DUR); }
+    else if (e.key >= '1' && e.key <= '7') {
+      const idx = parseInt(e.key) - 1;
+      seek(SCENES[idx].t);
+    }
+  });
+
+  // Speed selector
+  const speedBtns = $$('.t-seg button');
+  speedBtns.forEach(b => b.addEventListener('click', () => {
+    const speed = +b.dataset.speed;
+    tl.timeScale(speed);
+    masterAudio.playbackRate = speed;
+    speedBtns.forEach(o => o.setAttribute('aria-pressed', String(o === b)));
+  }));
+
+  // Safe zones
+  const guidesBtn = $('#guidesBtn'), guides = $('#guides');
+  guidesBtn.addEventListener('click', () => {
+    const on = guidesBtn.getAttribute('aria-pressed') !== 'true';
+    guidesBtn.setAttribute('aria-pressed', String(on));
+    guides.classList.toggle('is-on', on);
+  });
+
+  // Start sequence
+  const start = () => {
+    seek(0);
+    setPlaying(true);
+  };
+  Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 1200))]).then(start);
+})();
+</script>
+
+</body>
+</html>

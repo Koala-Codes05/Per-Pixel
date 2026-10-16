@@ -45,6 +45,7 @@ export type Project = {
   image: string;
   alt: string;
   tone: "pink" | "blue" | "neutral";
+  href?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -57,6 +58,7 @@ export const PROJECTS: Project[] = [
       "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80",
     alt: "Pale pink chair against a rose studio backdrop",
     tone: "pink",
+    href: "/projects/moove",
   },
   {
     slug: "velora",

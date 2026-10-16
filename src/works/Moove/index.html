@@ -1,0 +1,1522 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>MOOVE® | Sculptural Furniture &amp; 2026 Brand Monograph</title>
+  <meta name="description" content="Moove (2026): Sculptural furniture and soft rose tones, explored through a quieter visual identity by PerPixel." />
+  <meta name="theme-color" content="#f5e3dc" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&amp;family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&amp;display=swap" rel="stylesheet" />
+  <!-- impeccable-disable italic-serif-display -- brand voice: Archivo roman display carries the headline; the Bodoni italic <em> is a counterpoint phrase, matching the Next.js route's documented monograph register -->
+  <style>
+    :root {
+      --paper: #f3c4b8;
+      --surface: #fdf4f1;
+      --ink: #181312;
+      --blush: #eab1a3;
+      --blush-soft: #f8e3dc;
+      --coral: #e88770;
+      --coral-deep: #d9785f;
+      --butter: #f2dfc0;
+      --sage: #dfe8d7;
+      --sky: #d8e6ef;
+      --line: rgba(24, 19, 18, 0.14);
+      --line-strong: rgba(24, 19, 18, 0.32);
+      --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
+      --font-serif: "Bodoni Moda", Georgia, serif;
+      --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scrollbar-gutter: stable;
+      scrollbar-color: var(--coral-deep) var(--paper);
+      scrollbar-width: thin;
+      background: var(--paper);
+      color: var(--ink);
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--paper);
+      color: var(--ink);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: clip;
+    }
+
+    ::selection {
+      background: var(--coral);
+      color: var(--ink);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--ink);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+      color: inherit;
+    }
+
+    .tabular-nums {
+      font-variant-numeric: tabular-nums;
+    }
+
+    .shell-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(245, 227, 220, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem 1.5rem;
+      min-height: 68px;
+      padding: 14px 32px;
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 6px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 6px 12px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-meta {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.4rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a {
+      padding: 6px 0;
+      color: rgba(24, 19, 18, 0.75);
+      transition: color 200ms var(--ease-out-expo);
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    /* Hero */
+    .hero-section {
+      padding-top: 40px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(0, 1.18fr);
+      align-items: start;
+      gap: 44px;
+    }
+
+    .hero-title {
+      font-size: clamp(2.6rem, 5.2vw, 4.75rem);
+      font-weight: 900;
+      line-height: 0.96;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .hero-title em {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: -0.015em;
+    }
+
+    .hero-lead {
+      max-width: 62ch;
+      margin-top: 1.5rem;
+      font-size: 1.05rem;
+      line-height: 1.55;
+      color: rgba(24, 19, 18, 0.82);
+      text-wrap: pretty;
+    }
+
+    .finish-picker {
+      margin-top: 2rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.25rem;
+    }
+
+    .finish-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .meta-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .meta-value {
+      font-size: 0.8125rem;
+      color: rgba(24, 19, 18, 0.75);
+    }
+
+    .finish-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.9rem;
+    }
+
+    .finish-pill {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      gap: 0.5rem;
+      border: 1px solid var(--line-strong);
+      border-radius: 999px;
+      padding: 8px 16px;
+      background: var(--surface);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 200ms var(--ease-out-expo), color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo), transform 160ms var(--ease-out-expo);
+    }
+
+    .finish-pill[aria-checked="true"] {
+      border-color: var(--ink);
+      background: var(--ink);
+      color: var(--surface);
+    }
+
+    .finish-pill:active {
+      transform: scale(0.96);
+    }
+
+    .finish-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(24, 19, 18, 0.25);
+      flex-shrink: 0;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 2rem;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 0.65rem;
+      border: 0;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 10px 20px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 200ms var(--ease-out-expo), transform 160ms var(--ease-out-expo);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.96);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 0.65rem;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink);
+      padding: 10px 20px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 200ms var(--ease-out-expo), transform 160ms var(--ease-out-expo);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.96);
+    }
+
+    .diagram-toggle {
+      display: inline-flex;
+      min-height: 40px;
+      align-items: center;
+      border: 0;
+      border-bottom: 1px solid var(--line-strong);
+      padding: 6px 4px;
+      background: transparent;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(24, 19, 18, 0.78);
+      cursor: pointer;
+      transition: color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo);
+    }
+
+    .hero-stage-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .hero-stage {
+      position: relative;
+      aspect-ratio: 5 / 4;
+      overflow: hidden;
+      border-radius: 20px;
+      background: var(--blush);
+      transition: background-color 380ms var(--ease-out-expo);
+    }
+
+    .hero-stage img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms var(--ease-out-expo);
+    }
+
+    .hero-veil {
+      position: absolute;
+      inset: 0;
+      background: rgba(232, 146, 124, 0.14);
+      pointer-events: none;
+      transition: background-color 380ms var(--ease-out-expo);
+    }
+
+    .hero-diagram {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      color: var(--ink);
+      pointer-events: none;
+      opacity: 0.88;
+      transition: opacity 320ms var(--ease-out-expo);
+    }
+
+    .hero-diagram[data-visible="false"] {
+      opacity: 0;
+    }
+
+    .stage-badge {
+      position: absolute;
+      inset: auto 16px 16px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-radius: 12px;
+      background: rgba(251, 243, 239, 0.92);
+      padding: 10px 16px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .spec-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 16px 20px;
+      background: var(--surface);
+    }
+
+    .spec-strip dt {
+      font-size: 0.75rem;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    .spec-strip dd {
+      margin-top: 4px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Thesis band */
+    .thesis-band {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+      align-items: end;
+      gap: 36px;
+      margin-top: 72px;
+      border-radius: 20px;
+      background: var(--blush);
+      padding: 36px 40px;
+    }
+
+    .thesis-quote {
+      font-family: var(--font-serif);
+      font-size: clamp(1.85rem, 3.4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+    }
+
+    .thesis-facts {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      border-top: 1px solid var(--line-strong);
+      padding-top: 20px;
+    }
+
+    .thesis-facts strong {
+      display: block;
+      font-size: 1.125rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .thesis-facts span {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    /* Section Header */
+    .section-block {
+      margin-top: 88px;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+      align-items: end;
+      gap: 32px;
+      margin-bottom: 36px;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.8vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.02;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .section-sub {
+      max-width: 54ch;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: rgba(24, 19, 18, 0.75);
+      text-wrap: pretty;
+    }
+
+    /* Collection Ledger */
+    .ledger {
+      display: grid;
+      grid-template-columns: minmax(260px, 0.88fr) minmax(0, 1.42fr);
+      gap: 20px;
+      border: 1px solid var(--line-strong);
+      border-radius: 20px;
+      padding: 24px;
+      background: var(--surface);
+    }
+
+    .ledger-tabs {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ledger-tab {
+      display: grid;
+      grid-template-columns: 28px minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+      border-bottom-color: var(--line);
+      border-radius: 12px;
+      padding: 16px;
+      background: transparent;
+      text-align: left;
+      cursor: pointer;
+      transition: background-color 200ms var(--ease-out-expo), border-color 200ms var(--ease-out-expo);
+    }
+
+    .ledger-tab[aria-selected="true"] {
+      border-color: var(--ink);
+      background: var(--blush-soft);
+    }
+
+    .ledger-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    .ledger-name {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      line-height: 1.05;
+    }
+
+    .ledger-sub {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      color: rgba(24, 19, 18, 0.68);
+    }
+
+    .ledger-dim {
+      font-size: 0.6875rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    .ledger-panels {
+      display: grid;
+      min-width: 0;
+    }
+
+    .ledger-panel {
+      grid-area: 1 / 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 280ms var(--ease-out-expo), transform 320ms var(--ease-out-expo);
+    }
+
+    .ledger-panel[data-active="true"] {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .panel-media {
+      position: relative;
+      min-height: 300px;
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 14px;
+      background: var(--blush);
+    }
+
+    .panel-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 500ms var(--ease-out-expo);
+    }
+
+    .panel-pill {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      border-radius: 999px;
+      background: rgba(251, 243, 239, 0.92);
+      padding: 6px 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .panel-body {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 12px;
+    }
+
+    .panel-heading {
+      font-family: var(--font-serif);
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      font-weight: 400;
+      line-height: 1.05;
+    }
+
+    .panel-summary {
+      max-width: 56ch;
+      margin-top: 8px;
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: rgba(24, 19, 18, 0.78);
+      text-wrap: pretty;
+    }
+
+    .elevation-box {
+      margin-top: 16px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 16px;
+      background: var(--paper);
+    }
+
+    .elevation-box svg {
+      width: 100%;
+      height: 92px;
+    }
+
+    .panel-specs {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+
+    .panel-specs dt {
+      font-size: 0.75rem;
+      color: rgba(24, 19, 18, 0.72);
+    }
+
+    .panel-specs dd {
+      margin-top: 3px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Shell Study Dark Band */
+    .shell-study {
+      margin-top: 88px;
+      background: var(--ink);
+      color: var(--surface);
+      padding: 64px 32px;
+    }
+
+    .shell-study-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .shell-study-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
+      align-items: center;
+      gap: 32px;
+    }
+
+    .shell-live-box {
+      border: 1px solid rgba(251, 243, 239, 0.24);
+      border-radius: 16px;
+      padding: 16px 20px;
+      background: rgba(251, 243, 239, 0.05);
+    }
+
+    .shell-live-box svg {
+      width: 100%;
+      height: 90px;
+      color: var(--coral);
+    }
+
+    .shell-phases {
+      margin-top: 40px;
+    }
+
+    .shell-phase-row {
+      display: grid;
+      grid-template-columns: clamp(80px, 12vw, 150px) minmax(0, 1fr) clamp(200px, 25vw, 340px);
+      align-items: center;
+      gap: 28px;
+      border-top: 1px solid rgba(251, 243, 239, 0.24);
+      padding: 36px 0;
+    }
+
+    .shell-num {
+      display: block;
+      font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+      font-weight: 900;
+      line-height: 0.85;
+      letter-spacing: -0.035em;
+      font-variant-numeric: tabular-nums;
+      color: var(--coral);
+    }
+
+    .shell-tag {
+      display: block;
+      margin-top: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(251, 243, 239, 0.68);
+    }
+
+    .shell-phase-title {
+      font-family: var(--font-serif);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 400;
+      line-height: 1.06;
+    }
+
+    .shell-phase-copy {
+      max-width: 52ch;
+      margin-top: 10px;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: rgba(251, 243, 239, 0.8);
+      text-wrap: pretty;
+    }
+
+    .shell-phase-metric {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--coral);
+    }
+
+    .shell-img-box {
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(251, 243, 239, 0.1);
+    }
+
+    .shell-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* Identity & Swatches */
+    .type-specimen {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .type-col {
+      border: 1px solid var(--line-strong);
+      border-radius: 16px;
+      padding: 28px 32px;
+      background: var(--surface);
+    }
+
+    .type-sample-sans {
+      font-size: clamp(2.4rem, 4.8vw, 4.2rem);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.035em;
+    }
+
+    .type-sample-serif {
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 4.4vw, 3.8rem);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1;
+      letter-spacing: -0.015em;
+    }
+
+    .type-desc {
+      max-width: 50ch;
+      margin-top: 16px;
+      font-size: 0.875rem;
+      line-height: 1.5;
+      color: rgba(24, 19, 18, 0.75);
+    }
+
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .swatch-card {
+      display: flex;
+      min-height: 156px;
+      flex-direction: column;
+      justify-content: space-between;
+      border: 1px solid var(--line-strong);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: left;
+      cursor: pointer;
+      transition: transform 200ms var(--ease-out-expo);
+    }
+
+    .swatch-card:active {
+      transform: scale(0.96);
+    }
+
+    .swatch-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      width: 100%;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .swatch-name {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .swatch-note {
+      display: block;
+      margin-top: 4px;
+      font-size: 0.75rem;
+      opacity: 0.82;
+    }
+
+    /* Dossier Builder */
+    .dossier-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr);
+      align-items: start;
+      gap: 40px;
+      border: 1px solid var(--line-strong);
+      border-radius: 24px;
+      padding: 36px 40px;
+      background: var(--butter);
+      margin-bottom: 80px;
+    }
+
+    .dossier-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-radius: 16px;
+      padding: 28px;
+      background: var(--surface);
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .field-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(24, 19, 18, 0.78);
+    }
+
+    .input-field {
+      width: 100%;
+      border: 1px solid var(--line-strong);
+      border-radius: 10px;
+      padding: 11px 14px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 0.875rem;
+    }
+
+    .dossier-output {
+      margin-top: 20px;
+      border: 1px solid var(--line-strong);
+      border-radius: 16px;
+      padding: 20px;
+      background: var(--surface);
+    }
+
+    .dossier-output[hidden] {
+      display: none;
+    }
+
+    .dossier-pre {
+      overflow-x: auto;
+      margin-top: 14px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 16px;
+      background: #fff;
+      font-size: 0.75rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .site-footer {
+      border-top: 1px solid var(--line-strong);
+      padding: 40px 32px 56px;
+      background: var(--coral);
+    }
+
+    .footer-row {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+    }
+
+    @media (max-width: 1023px) {
+      .hero-grid,
+      .thesis-band,
+      .section-head,
+      .ledger,
+      .ledger-panel,
+      .shell-study-head,
+      .dossier-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .swatch-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .spec-strip,
+      .thesis-facts,
+      .type-specimen,
+      .field-row,
+      .swatch-grid,
+      .shell-phase-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ledger-dim {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="site-nav" aria-label="Moove brand navigation">
+      <div class="brand-lockup">
+        <span class="brand-badge">MOOVE®</span>
+        <span class="brand-meta tabular-nums">Branding · 2026 · Collection 01</span>
+      </div>
+      <div class="nav-links">
+        <a href="#collection">Collection</a>
+        <a href="#shell-study">Shell Study</a>
+        <a href="#identity">Identity</a>
+        <a href="#dossier">Dossier</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="shell-wrap hero-section" aria-label="Moove hero and finish inspector">
+      <div class="hero-grid">
+        <div>
+          <h1 class="hero-title">Sculptural furniture held by <em>a single curve.</em></h1>
+          <p class="hero-lead">
+            Moove is a Milan and Lisbon furniture house casting pigment into mineral composite
+            and carving honed travertine into monolithic seating. Every form in Collection 01
+            derives its structural rigidity from one continuous curved crease.
+          </p>
+
+          <div class="finish-picker">
+            <div class="finish-header">
+              <span class="meta-label" id="finish-code-label">Material finish: RC-04</span>
+              <span class="meta-value" id="finish-material-label">Pigmented mineral resin &amp; Venetian rose earth</span>
+            </div>
+            <div class="finish-pills" role="radiogroup" aria-label="Select Moove surface finish">
+              <button type="button" role="radio" aria-checked="true" class="finish-pill" data-code="RC-04" data-name="Rose Chalk 04" data-material="Pigmented mineral resin &amp; Venetian rose earth" data-surface="#f0cfc3" data-veil="rgba(232, 146, 124, 0.14)" data-density="1.85 g/cm³" data-gloss="Honed satin · 12 GU" data-lead="6 weeks">
+                <span class="finish-dot" style="background:#e8927c"></span>
+                <span>Rose Chalk 04</span>
+              </button>
+              <button type="button" role="radio" aria-checked="false" class="finish-pill" data-code="RT-02" data-name="Raw Travertine 02" data-material="Open-pore Roman limestone, unfilled" data-surface="#e6ddd0" data-veil="rgba(216, 206, 190, 0.22)" data-density="2.41 g/cm³" data-gloss="Raw open-pore · 6 GU" data-lead="8 weeks">
+                <span class="finish-dot" style="background:#d8cebe"></span>
+                <span>Raw Travertine 02</span>
+              </button>
+              <button type="button" role="radio" aria-checked="false" class="finish-pill" data-code="SC-07" data-name="Sienna Clay 07" data-material="Kiln-pressed terracotta aggregate" data-surface="#eec7b9" data-veil="rgba(217, 120, 95, 0.20)" data-density="2.12 g/cm³" data-gloss="Brushed mineral · 9 GU" data-lead="6 weeks">
+                <span class="finish-dot" style="background:#d9785f"></span>
+                <span>Sienna Clay 07</span>
+              </button>
+              <button type="button" role="radio" aria-checked="false" class="finish-pill" data-code="BP-09" data-name="Brushed Pewter 09" data-material="Cold-formed 6mm anodized aluminum" data-surface="#d8e6ef" data-veil="rgba(174, 187, 196, 0.24)" data-density="2.70 g/cm³" data-gloss="Directional grain · 24 GU" data-lead="7 weeks">
+                <span class="finish-dot" style="background:#aebbc4"></span>
+                <span>Brushed Pewter 09</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <a href="#collection" class="btn-primary">Explore Collection 01</a>
+            <a href="#dossier" class="btn-secondary">Request commission dossier</a>
+            <button type="button" id="toggle-diagram" aria-pressed="true" class="diagram-toggle">Hide orthographic arcs</button>
+          </div>
+        </div>
+
+        <div class="hero-stage-wrap">
+          <div class="hero-stage" id="hero-stage">
+            <img
+              src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&amp;fit=crop&amp;w=1400&amp;q=82"
+              alt="Moove Arca 01 sculptural lounge chair in soft rose studio light"
+              width="1400"
+              height="1120"
+            />
+            <div class="hero-veil" id="hero-veil" aria-hidden="true"></div>
+            <svg viewBox="0 0 600 480" class="hero-diagram" id="hero-diagram" data-visible="true" aria-hidden="true">
+              <circle cx="300" cy="250" r="182" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="4 6" opacity="0.55" />
+              <path d="M 118 292 C 194 128, 406 128, 482 292" fill="none" stroke="currentColor" stroke-width="1.6" />
+              <path d="M 148 334 Q 300 218 452 334" fill="none" stroke="currentColor" stroke-width="1.2" stroke-dasharray="3 4" />
+              <line x1="300" y1="68" x2="300" y2="418" stroke="currentColor" stroke-width="1" opacity="0.45" />
+              <line x1="118" y1="396" x2="482" y2="396" stroke="currentColor" stroke-width="1" opacity="0.65" />
+              <circle cx="300" cy="168" r="4" fill="currentColor" />
+              <text x="312" y="164" font-size="11" font-weight="600" letter-spacing="1.4" fill="currentColor">R 640 MM CREASE</text>
+              <text x="242" y="414" font-size="10" letter-spacing="1.4" fill="currentColor">780 × 840 × 690 MM</text>
+            </svg>
+            <div class="stage-badge">
+              <span>Plate 01: Arca Lounge</span>
+              <span id="stage-finish-name">Rose Chalk 04</span>
+            </div>
+          </div>
+
+          <dl class="spec-strip" aria-label="Selected finish specifications">
+            <div>
+              <dt>Finish code</dt>
+              <dd id="spec-code">RC-04</dd>
+            </div>
+            <div>
+              <dt>Density</dt>
+              <dd id="spec-density">1.85 g/cm³</dd>
+            </div>
+            <div>
+              <dt>Surface gloss</dt>
+              <dd id="spec-gloss">Honed satin · 12 GU</dd>
+            </div>
+            <div>
+              <dt>Atelier lead time</dt>
+              <dd id="spec-lead">6 weeks</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="thesis-band">
+        <h2 class="thesis-quote">
+          We do not upholster frames. We cast pigment into mineral mass and fold one curve
+          until the material stands on its own.
+        </h2>
+        <div class="thesis-facts">
+          <div>
+            <strong>Milano &amp; Lisboa</strong>
+            <span>Foundry &amp; stone yard</span>
+          </div>
+          <div>
+            <strong class="tabular-nums">18 mm</strong>
+            <span>Uniform shell section</span>
+          </div>
+          <div>
+            <strong class="tabular-nums">04 Pieces</strong>
+            <span>Inaugural 2026 edition</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Collection -->
+    <section id="collection" class="shell-wrap section-block" aria-labelledby="collection-heading">
+      <div class="section-head">
+        <h2 id="collection-heading" class="section-title">Collection 01: Monolithic Seating &amp; Objects.</h2>
+        <p class="section-sub">
+          Four architectural forms cast in rose mineral resin, Roman travertine, and anodized
+          aluminum. Select an edition to inspect its orthographic section and dimensions.
+        </p>
+      </div>
+
+      <div class="ledger">
+        <div class="ledger-tabs" role="tablist" aria-label="Moove 2026 numbered collection">
+          <button type="button" role="tab" aria-selected="true" class="ledger-tab" data-index="0">
+            <span class="ledger-num">01</span>
+            <span>
+              <span class="ledger-name">Arca Lounge Chair</span>
+              <span class="ledger-sub">Single-crease cantilevered shell</span>
+            </span>
+            <span class="ledger-dim">780 × 840 × 690 mm</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="ledger-tab" data-index="1">
+            <span class="ledger-num">02</span>
+            <span>
+              <span class="ledger-name">Plinth Low Table</span>
+              <span class="ledger-sub">Split-cylinder travertine monolith</span>
+            </span>
+            <span class="ledger-dim">1180 × 720 × 310 mm</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="ledger-tab" data-index="2">
+            <span class="ledger-num">03</span>
+            <span>
+              <span class="ledger-name">Velo Daybed</span>
+              <span class="ledger-sub">Swept monocoque gallery bench</span>
+            </span>
+            <span class="ledger-dim">1920 × 680 × 410 mm</span>
+          </button>
+          <button type="button" role="tab" aria-selected="false" class="ledger-tab" data-index="3">
+            <span class="ledger-num">04</span>
+            <span>
+              <span class="ledger-name">Halo Luminaire</span>
+              <span class="ledger-sub">Translucent cast-resin floor vessel</span>
+            </span>
+            <span class="ledger-dim">340 × 340 × 480 mm</span>
+          </button>
+        </div>
+
+        <div class="ledger-panels">
+          <div class="ledger-panel" data-active="true" data-panel="0">
+            <div class="panel-media">
+              <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Arca 01 pale rose sculptural lounge chair" width="1200" height="900" />
+              <span class="panel-pill">Edition of 24 · 2026</span>
+            </div>
+            <div class="panel-body">
+              <div>
+                <h3 class="panel-heading">Arca Lounge Chair</h3>
+                <p class="panel-summary">Cast as a continuous 18mm shell and folded along one parabolic lumbar crease. The geometry locks under its own curvature, eliminating internal steel frames or visible joinery.</p>
+                <div class="elevation-box">
+                  <svg viewBox="0 0 280 180" aria-hidden="true">
+                    <line x1="20" y1="156" x2="260" y2="156" stroke="currentColor" stroke-width="1" opacity="0.35" />
+                    <path d="M 52 146 C 84 44, 198 44, 228 146 C 186 122, 94 122, 52 146 Z" fill="rgba(232, 146, 124, 0.24)" stroke="currentColor" stroke-width="1.6" />
+                    <text x="24" y="28" font-size="10" font-weight="600" letter-spacing="1.2" fill="currentColor">SECTION · R 640 MM</text>
+                  </svg>
+                </div>
+              </div>
+              <dl class="panel-specs">
+                <div><dt>Dimensions</dt><dd>780 × 840 × 690 mm</dd></div>
+                <div><dt>Datum height</dt><dd>360 mm</dd></div>
+                <div><dt>Mass</dt><dd>42 kg</dd></div>
+                <div><dt>Primary arc</dt><dd>R 640 mm</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="ledger-panel" data-active="false" data-panel="1">
+            <div class="panel-media">
+              <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Plinth 02 minimal sculptural low table study" width="1200" height="900" />
+              <span class="panel-pill">Edition of 18 · 2026</span>
+            </div>
+            <div class="panel-body">
+              <div>
+                <h3 class="panel-heading">Plinth Low Table</h3>
+                <p class="panel-summary">Two interlocking half-shells support a honed stone plane with a 14mm shadow reveal. Engineered so light passes beneath the slab while the base anchors the room.</p>
+                <div class="elevation-box">
+                  <svg viewBox="0 0 280 180" aria-hidden="true">
+                    <line x1="20" y1="156" x2="260" y2="156" stroke="currentColor" stroke-width="1" opacity="0.35" />
+                    <path d="M 36 74 L 244 74 L 244 92 L 36 92 Z" fill="rgba(232, 146, 124, 0.24)" stroke="currentColor" stroke-width="1.6" />
+                    <text x="24" y="28" font-size="10" font-weight="600" letter-spacing="1.2" fill="currentColor">SECTION · R 590 MM</text>
+                  </svg>
+                </div>
+              </div>
+              <dl class="panel-specs">
+                <div><dt>Dimensions</dt><dd>1180 × 720 × 310 mm</dd></div>
+                <div><dt>Datum height</dt><dd>310 mm</dd></div>
+                <div><dt>Mass</dt><dd>86 kg</dd></div>
+                <div><dt>Primary arc</dt><dd>R 590 mm</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="ledger-panel" data-active="false" data-panel="2">
+            <div class="panel-media">
+              <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Velo 03 swept gallery bench in architectural interior" width="1200" height="900" />
+              <span class="panel-pill">Edition of 12 · 2026</span>
+            </div>
+            <div class="panel-body">
+              <div>
+                <h3 class="panel-heading">Velo Daybed</h3>
+                <p class="panel-summary">An elongated catenary span that touches the floor at two tangential arcs. Topped with a removable cylinder bolster in unbleached wool bouclé.</p>
+                <div class="elevation-box">
+                  <svg viewBox="0 0 280 180" aria-hidden="true">
+                    <line x1="20" y1="156" x2="260" y2="156" stroke="currentColor" stroke-width="1" opacity="0.35" />
+                    <path d="M 28 118 Q 140 92 252 118 L 234 150 Q 140 124 46 150 Z" fill="rgba(232, 146, 124, 0.24)" stroke="currentColor" stroke-width="1.6" />
+                    <text x="24" y="28" font-size="10" font-weight="600" letter-spacing="1.2" fill="currentColor">SECTION · R 1120 MM</text>
+                  </svg>
+                </div>
+              </div>
+              <dl class="panel-specs">
+                <div><dt>Dimensions</dt><dd>1920 × 680 × 410 mm</dd></div>
+                <div><dt>Datum height</dt><dd>390 mm</dd></div>
+                <div><dt>Mass</dt><dd>64 kg</dd></div>
+                <div><dt>Primary arc</dt><dd>R 1120 mm</dd></div>
+              </dl>
+            </div>
+          </div>
+
+          <div class="ledger-panel" data-active="false" data-panel="3">
+            <div class="panel-media">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&amp;fit=crop&amp;w=1200&amp;q=80" alt="Halo 04 sculptural vessel luminaire" width="1200" height="900" />
+              <span class="panel-pill">Edition of 36 · 2026</span>
+            </div>
+            <div class="panel-body">
+              <div>
+                <h3 class="panel-heading">Halo Luminaire</h3>
+                <p class="panel-summary">Poured in semi-translucent rose mineral composite that diffuses a warm 2400K LED core through graduated wall thickness from 22mm at the base to 6mm at the rim.</p>
+                <div class="elevation-box">
+                  <svg viewBox="0 0 280 180" aria-hidden="true">
+                    <line x1="20" y1="156" x2="260" y2="156" stroke="currentColor" stroke-width="1" opacity="0.35" />
+                    <path d="M 92 40 C 78 96, 78 132, 96 156 L 184 156 C 202 132, 202 96, 188 40 Z" fill="rgba(232, 146, 124, 0.24)" stroke="currentColor" stroke-width="1.6" />
+                    <text x="24" y="28" font-size="10" font-weight="600" letter-spacing="1.2" fill="currentColor">SECTION · R 170 MM</text>
+                  </svg>
+                </div>
+              </div>
+              <dl class="panel-specs">
+                <div><dt>Dimensions</dt><dd>340 × 340 × 480 mm</dd></div>
+                <div><dt>Datum height</dt><dd>480 mm</dd></div>
+                <div><dt>Mass</dt><dd>11 kg</dd></div>
+                <div><dt>Primary arc</dt><dd>R 170 mm</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shell Study -->
+    <section id="shell-study" class="shell-study" aria-label="Curved shell structural study">
+      <div class="shell-study-inner">
+        <div class="shell-study-head">
+          <h2 class="section-title">One curved crease turns flat mineral sheet into a load-bearing saddle.</h2>
+          <div class="shell-live-box">
+            <svg viewBox="0 0 360 190" aria-hidden="true">
+              <line x1="32" y1="142" x2="328" y2="142" stroke="currentColor" stroke-width="1" stroke-dasharray="3 4" opacity="0.4" />
+              <path d="M 48 156 Q 180 68 312 156" fill="none" stroke="currentColor" stroke-width="2.2" />
+              <circle cx="180" cy="100" r="3.5" fill="currentColor" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="shell-phases">
+          <article class="shell-phase-row">
+            <div>
+              <span class="shell-num">01</span>
+              <span class="shell-tag">Phase I</span>
+            </div>
+            <div>
+              <h3 class="shell-phase-title">Planar mineral sheet</h3>
+              <p class="shell-phase-copy">Each shell begins as a flat 18mm mineral-resin slab pigmented in the mass. A single parabolic crease is milled on the underside with a compass radius of 640mm.</p>
+              <p class="shell-phase-metric tabular-nums">κ = 0.00 m⁻¹ · Flat cast</p>
+            </div>
+            <div class="shell-img-box">
+              <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Soft rose pigment and botanical light study" loading="lazy" width="1000" height="750" />
+            </div>
+          </article>
+
+          <article class="shell-phase-row">
+            <div>
+              <span class="shell-num">02</span>
+              <span class="shell-tag">Phase II</span>
+            </div>
+            <div>
+              <h3 class="shell-phase-title">Curved-crease thermoforming</h3>
+              <p class="shell-phase-copy">While the composite cures in its elastic window, folding along the curved score forces the outer wings to rise into a self-bracing saddle without straight facets.</p>
+              <p class="shell-phase-metric tabular-nums">κ = 0.88 m⁻¹ · 42° bend</p>
+            </div>
+            <div class="shell-img-box">
+              <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Sculptural curved surface in directional studio light" loading="lazy" width="1000" height="750" />
+            </div>
+          </article>
+
+          <article class="shell-phase-row">
+            <div>
+              <span class="shell-num">03</span>
+              <span class="shell-tag">Phase III</span>
+            </div>
+            <div>
+              <h3 class="shell-phase-title">Locked monocoque shell</h3>
+              <p class="shell-phase-copy">Once cooled and hand-honed to 12 gloss units, the opposing curves lock in tension, supporting 320 kg of static load with zero internal steel framing.</p>
+              <p class="shell-phase-metric tabular-nums">κ = 1.56 m⁻¹ · 104° rake</p>
+            </div>
+            <div class="shell-img-box">
+              <img src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Completed Arca 01 sculptural rose chair in studio" loading="lazy" width="1000" height="750" />
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Identity -->
+    <section id="identity" class="shell-wrap section-block" aria-labelledby="identity-heading">
+      <div class="section-head">
+        <h2 id="identity-heading" class="section-title">Quiet visual identity rooted in mineral pigment and architectural type.</h2>
+        <p class="section-sub">
+          Designed by PerPixel in 2026, the Moove identity pairs structural geometric grotesque
+          lettering with warm editorial italics and tactile edition stamping.
+        </p>
+      </div>
+
+      <div class="type-specimen">
+        <div class="type-col">
+          <h3 class="type-sample-sans">MOOVE 01</h3>
+          <p class="type-desc"><strong>Archivo Black · Display Architecture.</strong> Used for edition marks, crate stencils, and brass foundry stamps.</p>
+        </div>
+        <div class="type-col">
+          <h3 class="type-sample-serif">Form held in quiet tension.</h3>
+          <p class="type-desc"><strong>Bodoni Moda Italic · Curatorial Voice.</strong> Used for monograph titles, material notes, and collector certificates.</p>
+        </div>
+      </div>
+
+      <div class="swatch-grid" role="list" aria-label="Moove brand color tokens">
+        <button type="button" role="listitem" class="swatch-card" data-hex="#F0CFC3" style="background:#F0CFC3;color:#181312">
+          <span class="swatch-top"><span>MOOVE-01</span><span class="swatch-hex tabular-nums">#F0CFC3</span></span>
+          <span><strong class="swatch-name">Rose Chalk</strong><span class="swatch-note">Primary mineral shell ground</span></span>
+        </button>
+        <button type="button" role="listitem" class="swatch-card" data-hex="#E8927C" style="background:#E8927C;color:#181312">
+          <span class="swatch-top"><span>MOOVE-02</span><span class="swatch-hex tabular-nums">#E8927C</span></span>
+          <span><strong class="swatch-name">Terra Coral</strong><span class="swatch-note">Venetian earth pigment accent</span></span>
+        </button>
+        <button type="button" role="listitem" class="swatch-card" data-hex="#FBF3EF" style="background:#FBF3EF;color:#181312">
+          <span class="swatch-top"><span>MOOVE-03</span><span class="swatch-hex tabular-nums">#FBF3EF</span></span>
+          <span><strong class="swatch-name">Travertine Bone</strong><span class="swatch-note">Architectural gallery paper</span></span>
+        </button>
+        <button type="button" role="listitem" class="swatch-card" data-hex="#DFE8D7" style="background:#DFE8D7;color:#181312">
+          <span class="swatch-top"><span>MOOVE-04</span><span class="swatch-hex tabular-nums">#DFE8D7</span></span>
+          <span><strong class="swatch-name">Quarry Sage</strong><span class="swatch-note">Oxidized stone secondary</span></span>
+        </button>
+        <button type="button" role="listitem" class="swatch-card" data-hex="#181312" style="background:#181312;color:#FBF3EF">
+          <span class="swatch-top"><span>MOOVE-05</span><span class="swatch-hex tabular-nums">#181312</span></span>
+          <span><strong class="swatch-name">Foundry Umber</strong><span class="swatch-note">Deep carbon ink &amp; brass stamp</span></span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Dossier -->
+    <section id="dossier" class="shell-wrap section-block" aria-label="Commission and trade dossier">
+      <div class="dossier-grid">
+        <div>
+          <h2 class="section-title">Assemble a 2026 specification dossier.</h2>
+          <p class="section-sub" style="margin-top:16px">
+            Each Moove piece is cast and honed to order in numbered annual runs. Select your
+            edition and mineral finish to prepare a copyable specification sheet.
+          </p>
+        </div>
+
+        <div>
+          <form id="dossier-form" class="dossier-form" novalidate>
+            <div class="field-group">
+              <label for="f-piece">Edition piece</label>
+              <select id="f-piece" class="input-field">
+                <option value="01 / Arca Lounge Chair (780 × 840 × 690 mm)">01: Arca Lounge Chair (780 × 840 × 690 mm)</option>
+                <option value="02 / Plinth Low Table (1180 × 720 × 310 mm)">02: Plinth Low Table (1180 × 720 × 310 mm)</option>
+                <option value="03 / Velo Daybed (1920 × 680 × 410 mm)">03: Velo Daybed (1920 × 680 × 410 mm)</option>
+                <option value="04 / Halo Luminaire (340 × 340 × 480 mm)">04: Halo Luminaire (340 × 340 × 480 mm)</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <div class="field-group">
+                <label for="f-finish">Mineral finish</label>
+                <select id="f-finish" class="input-field">
+                  <option value="Rose Chalk 04 (RC-04)">Rose Chalk 04 (RC-04)</option>
+                  <option value="Raw Travertine 02 (RT-02)">Raw Travertine 02 (RT-02)</option>
+                  <option value="Sienna Clay 07 (SC-07)">Sienna Clay 07 (SC-07)</option>
+                  <option value="Brushed Pewter 09 (BP-09)">Brushed Pewter 09 (BP-09)</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="f-space">Spatial setting</label>
+                <select id="f-space" class="input-field">
+                  <option value="Private Residence">Private Residence</option>
+                  <option value="Gallery / Exhibition">Gallery / Exhibition</option>
+                  <option value="Architectural Specification">Architectural Specification</option>
+                </select>
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field-group">
+                <label for="f-name">Your name or studio</label>
+                <input id="f-name" type="text" required class="input-field" placeholder="Studio Rossini" />
+              </div>
+              <div class="field-group">
+                <label for="f-email">Email address</label>
+                <input id="f-email" type="email" required class="input-field" placeholder="elena@studiorossini.eu" />
+              </div>
+            </div>
+            <div class="field-group">
+              <label for="f-notes">Room dimensions &amp; placement notes</label>
+              <textarea id="f-notes" rows="3" required class="input-field" placeholder="South-facing limestone salon, pair of Arca 01 chairs."></textarea>
+            </div>
+            <div>
+              <button type="submit" class="btn-primary">Prepare specification sheet</button>
+            </div>
+          </form>
+
+          <div id="dossier-output" class="dossier-output" hidden aria-live="polite">
+            <strong>Your Moove specification sheet is ready.</strong>
+            <pre id="dossier-pre" class="dossier-pre"></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <span>© 2026 Moove Atelier · Milano &amp; Lisboa</span>
+      <span>Brand Identity &amp; Digital Showcase by PerPixel</span>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const finishPills = document.querySelectorAll(".finish-pill");
+      const heroStage = document.getElementById("hero-stage");
+      const heroVeil = document.getElementById("hero-veil");
+      const stageFinishName = document.getElementById("stage-finish-name");
+      const codeLabel = document.getElementById("finish-code-label");
+      const matLabel = document.getElementById("finish-material-label");
+      const specCode = document.getElementById("spec-code");
+      const specDensity = document.getElementById("spec-density");
+      const specGloss = document.getElementById("spec-gloss");
+      const specLead = document.getElementById("spec-lead");
+
+      finishPills.forEach((pill) => {
+        pill.addEventListener("click", () => {
+          finishPills.forEach((p) => p.setAttribute("aria-checked", "false"));
+          pill.setAttribute("aria-checked", "true");
+          const d = pill.dataset;
+          if (heroStage && d.surface) heroStage.style.backgroundColor = d.surface;
+          if (heroVeil && d.veil) heroVeil.style.backgroundColor = d.veil;
+          if (stageFinishName && d.name) stageFinishName.textContent = d.name;
+          if (codeLabel && d.code) codeLabel.textContent = "Material finish: " + d.code;
+          if (matLabel && d.material) matLabel.textContent = d.material;
+          if (specCode && d.code) specCode.textContent = d.code;
+          if (specDensity && d.density) specDensity.textContent = d.density;
+          if (specGloss && d.gloss) specGloss.textContent = d.gloss;
+          if (specLead && d.lead) specLead.textContent = d.lead;
+        });
+      });
+
+      const toggleDiagram = document.getElementById("toggle-diagram");
+      const heroDiagram = document.getElementById("hero-diagram");
+      if (toggleDiagram && heroDiagram) {
+        toggleDiagram.addEventListener("click", () => {
+          const visible = heroDiagram.getAttribute("data-visible") !== "false";
+          const next = !visible;
+          heroDiagram.setAttribute("data-visible", String(next));
+          toggleDiagram.setAttribute("aria-pressed", String(next));
+          toggleDiagram.textContent = next ? "Hide orthographic arcs" : "Show orthographic arcs";
+        });
+      }
+
+      const tabs = document.querySelectorAll(".ledger-tab");
+      const panels = document.querySelectorAll(".ledger-panel");
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const idx = tab.getAttribute("data-index");
+          tabs.forEach((t) => t.setAttribute("aria-selected", String(t === tab)));
+          panels.forEach((p) => p.setAttribute("data-active", String(p.getAttribute("data-panel") === idx)));
+        });
+      });
+
+      document.querySelectorAll(".swatch-card").forEach((card) => {
+        card.addEventListener("click", () => {
+          const hex = card.getAttribute("data-hex");
+          const label = card.querySelector(".swatch-hex");
+          if (hex && navigator.clipboard) {
+            navigator.clipboard.writeText(hex).catch(() => {});
+          }
+          if (label && hex) label.textContent = "Copied " + hex;
+        });
+      });
+
+      const form = document.getElementById("dossier-form");
+      const output = document.getElementById("dossier-output");
+      const pre = document.getElementById("dossier-pre");
+      if (form && output && pre) {
+        form.addEventListener("submit", (e) => {
+          e.preventDefault();
+          const piece = document.getElementById("f-piece").value;
+          const finish = document.getElementById("f-finish").value;
+          const space = document.getElementById("f-space").value;
+          const name = document.getElementById("f-name").value.trim() || "Studio Client";
+          const email = document.getElementById("f-email").value.trim() || "atelier@client.eu";
+          const notes = document.getElementById("f-notes").value.trim() || "Standard gallery specification.";
+          pre.textContent = [
+            "MOOVE ATELIER: 2026 COMMISSION SPECIFICATION DOSSIER",
+            "----------------------------------------------------",
+            "Edition Piece : " + piece,
+            "Surface Finish: " + finish,
+            "Project Space : " + space,
+            "Client / Arch : " + name + " <" + email + ">",
+            "Spatial Notes : " + notes
+          ].join("\n");
+          output.hidden = false;
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

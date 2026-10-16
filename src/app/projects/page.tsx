@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ProjectsGallery from "@/components/projects/ProjectsGallery";
 import Services from "@/components/projects/Services";
@@ -36,7 +37,10 @@ export default function ProjectsPage() {
             <h1 className="absolute inset-x-6 bottom-6 max-w-[16ch] font-sans text-[clamp(2rem,5.4vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-paper md:inset-x-8 md:bottom-8">
               We build design on clarity, speed, and care.
             </h1>
-            <div className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur md:block">
+            <Link
+              href={PROJECTS[0].href ?? "#moove"}
+              className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 md:block"
+            >
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
                 <Image
                   src={PROJECTS[0].image}
@@ -49,7 +53,7 @@ export default function ProjectsPage() {
               <p className="px-1 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em]">
                 Latest — {PROJECTS[0].title}
               </p>
-            </div>
+            </Link>
           </div>
         </Reveal>
       </section>
@@ -85,21 +89,26 @@ export default function ProjectsPage() {
         <div className="mt-16">
           {PROJECTS.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 60}>
-              <a
+              <Link
                 id={`details-${p.slug}`}
-                href={`#${p.slug}`}
+                href={p.href ?? `#${p.slug}`}
                 className="group grid scroll-mt-24 grid-cols-12 items-center gap-4 border-t border-line py-6 last:border-b"
               >
-                <span className="col-span-1 text-[11px] font-semibold text-ink/50">
+                <span className="col-span-1 text-[11px] font-semibold tabular-nums text-ink/50">
                   0{i + 1}
                 </span>
-                <span className="col-span-6 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 md:col-span-5">
-                  {p.title}
+                <span className="col-span-6 flex items-baseline gap-3 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 md:col-span-5">
+                  <span>{p.title}</span>
+                  {p.href && (
+                    <span className="rounded-full bg-blush px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
+                      Brand site
+                    </span>
+                  )}
                 </span>
                 <span className="col-span-3 hidden text-[11px] uppercase tracking-[0.16em] text-ink/60 md:block">
                   {p.category}
                 </span>
-                <span className="col-span-3 text-right text-[11px] uppercase tracking-[0.16em] text-ink/60 md:col-span-2">
+                <span className="col-span-3 text-right text-[11px] uppercase tracking-[0.16em] tabular-nums text-ink/60 md:col-span-2">
                   {p.year}
                 </span>
                 <span className="col-span-2 flex justify-end md:col-span-1">
@@ -107,7 +116,7 @@ export default function ProjectsPage() {
                     <Image src={p.image} alt="" fill sizes="80px" className="object-cover" />
                   </span>
                 </span>
-              </a>
+              </Link>
             </Reveal>
           ))}
         </div>

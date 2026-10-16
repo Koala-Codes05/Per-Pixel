@@ -15,8 +15,8 @@ export default function Footer() {
   const markY = useTransform(smoothProgress, [0, 1], ["30%", "8%"]);
 
   return (
-    <footer ref={ref} className="relative mt-24 overflow-hidden rounded-t-[2rem] bg-coral text-ink" suppressHydrationWarning>
-      <div className="mx-auto max-w-[1400px] px-5 pt-16 md:px-10 md:pt-24">
+    <footer ref={ref} className="relative mt-24 overflow-hidden rounded-t-4xl bg-coral text-ink" suppressHydrationWarning>
+      <div className="mx-auto max-w-350 px-5 pt-16 md:px-10 md:pt-24">
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="font-serif text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.01em]">
@@ -72,7 +72,7 @@ export default function Footer() {
               title="Latest work"
               items={PROJECTS.slice(0, 4).map((p) => ({
                 label: p.title,
-                href: `/projects#${p.slug}`,
+                href: p.href ?? `/projects#${p.slug}`,
               }))}
             />
             <FooterCol

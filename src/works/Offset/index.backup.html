@@ -1,0 +1,1158 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sorso | Bitter aperitivo soda, zero proof</title>
+<meta name="description" content="Sorso is a bitter aperitivo soda made with blood orange and gentian root. 0.0% alcohol, built for the hour between work and dinner.">
+<meta name="theme-color" content="#FFD0C4">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://images.unsplash.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&display=swap">
+<script>
+  (function () {
+    var d = document.documentElement;
+    d.classList.add('js');
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      d.classList.add('motion');
+      setTimeout(function () { if (!window.__sorso) d.classList.remove('motion'); }, 4000);
+    }
+  })();
+</script>
+<style>
+  :root {
+    --rosso: #F03A17;
+    --rosso-deep: #D42C0C;
+    --rosso-ink: #B8260A;
+    --blush: #FFD0C4;
+    --rosa: #FFB3A3;
+    --corallo: #FF6F5E;
+    --lilla: #E6E3FF;
+    --vino: #2B0B10;
+    --latte: #FFF3EA;
+    --limone: #FFD23F;
+
+    --f-display: 'Bodoni Moda', 'Bodoni 72', Didot, serif;
+    --f-sans: 'Archivo', system-ui, sans-serif;
+
+    --ease-out: cubic-bezier(.23, 1, .32, 1);
+    --ease-in-out: cubic-bezier(.77, 0, .175, 1);
+    --pad: clamp(16px, 3.2vw, 48px);
+    --bottle-h: clamp(300px, 64svh, 620px);
+    --radius: 22px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html {
+    -webkit-text-size-adjust: 100%;
+    background: var(--blush);
+    overflow-x: clip;
+    scrollbar-color: var(--rosso-deep) transparent;
+    scrollbar-width: thin;
+  }
+  body {
+    margin: 0;
+    font-family: var(--f-sans);
+    font-size: clamp(1rem, .95rem + .2vw, 1.125rem);
+    line-height: 1.5;
+    color: var(--vino);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+  img, svg { display: block; }
+  img { max-width: 100%; }
+  h1, h2, h3, p, ul, ol, figure { margin: 0; }
+  ul, ol { padding: 0; list-style: none; }
+  a { color: inherit; }
+  button { font: inherit; color: inherit; }
+  h1, h2, h3 { text-wrap: balance; }
+  p { text-wrap: pretty; }
+  ::selection { background: var(--vino); color: var(--blush); }
+  :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; border-radius: 8px; }
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-thumb { background: var(--rosso-deep); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--vino); color: var(--latte); padding: 10px 16px; border-radius: 999px; text-decoration: none; font-weight: 600; }
+  .skip:focus { top: 12px; }
+
+  /* ---------- Controls ---------- */
+  .pill {
+    display: inline-flex; align-items: center; gap: .5em;
+    height: 40px; padding: 0 16px;
+    border-radius: 999px;
+    background: var(--latte); color: var(--vino);
+    font-size: .875rem; font-weight: 600; text-decoration: none; white-space: nowrap;
+    box-shadow: 0 1px 1px rgb(43 11 16 / .06), 0 8px 20px -10px rgb(43 11 16 / .35);
+    transition: transform .16s var(--ease-out), background-color .2s ease, color .2s ease;
+  }
+  .pill:active { transform: scale(.96); }
+  .btn {
+    position: relative;
+    display: inline-flex; align-items: center; gap: 14px;
+    height: 54px; padding: 0 8px 0 24px;
+    border: 0; border-radius: 999px;
+    background: var(--vino); color: var(--latte);
+    font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer;
+    transition: transform .16s var(--ease-out), background-color .2s ease;
+  }
+  .btn:active { transform: scale(.96); }
+  .btn__icon {
+    display: grid; place-items: center;
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--rosso-deep); color: var(--latte);
+    transition: transform .3s var(--ease-out);
+  }
+  .btn__icon svg { width: 18px; height: 18px; }
+  .link {
+    font-weight: 600; text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 5px;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+    transition: text-decoration-color .2s ease;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .pill:hover { background: var(--vino); color: var(--latte); }
+    .btn:hover .btn__icon { transform: translateX(3px); }
+    .link:hover { text-decoration-color: currentColor; }
+  }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed; z-index: 50;
+    top: max(12px, env(safe-area-inset-top)); left: var(--pad); right: var(--pad);
+    display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px;
+    pointer-events: none;
+  }
+  .nav > * { pointer-events: auto; }
+  .brand {
+    justify-self: start;
+    height: 44px; padding: 0 20px;
+    font-family: var(--f-display); font-style: italic; font-weight: 700;
+    font-size: 1.55rem; letter-spacing: -.01em;
+    transform-origin: 50% 50%;
+  }
+  .clock {
+    font-variant-numeric: tabular-nums; font-feature-settings: "tnum";
+    font-stretch: 112%; font-weight: 700; letter-spacing: .02em;
+    gap: 10px;
+  }
+  .clock__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rosso-deep); }
+  .clock__label { font-weight: 500; font-stretch: 100%; opacity: .7; }
+  .nav__links { justify-self: end; display: flex; gap: 8px; }
+  .nav__case b { font-variant-numeric: tabular-nums; }
+  @media (max-width: 899px) {
+    .nav__links .pill:not(.nav__case) { display: none; }
+    .clock__label { display: none; }
+    .brand { font-size: 1.35rem; padding: 0 16px; }
+    .pill { height: 44px; }
+  }
+  .motion .nav { visibility: hidden; }
+  .motion.is-intro .nav { visibility: visible; }
+
+  /* ---------- Curtain (intro only) ---------- */
+  .curtain { display: none; }
+  .motion .curtain {
+    display: block;
+    position: fixed; inset: 0; z-index: 40;
+    background: var(--rosso-deep);
+    pointer-events: none;
+  }
+  .curtain__wave { position: absolute; left: 0; bottom: 100%; width: 200%; height: 56px; }
+  .curtain__wave path { fill: var(--rosso-deep); }
+
+  /* ---------- Bottle stage ---------- */
+  .stage {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100svh;
+    z-index: 5; pointer-events: none;
+    display: grid; place-items: center;
+    visibility: hidden;
+  }
+  .motion .stage { position: fixed; visibility: visible; }
+  .stage .bottle { height: var(--bottle-h); }
+  .bottle { width: auto; aspect-ratio: 200 / 540; overflow: visible; }
+
+  .b-liquid { fill: var(--liquid); }
+  .b-glass-tint { fill: var(--liquid); opacity: .16; }
+  .b-label { fill: var(--label); }
+  .b-collar { fill: var(--label); }
+  .b-cap { fill: var(--cap); }
+  .b-brand { fill: var(--ink); font-family: var(--f-display); font-style: italic; font-weight: 700; font-size: 34px; }
+  .b-roll { transform: translateY(var(--roll, 0px)); }
+  .b-roll text, .b-meta { fill: var(--ink); font-family: var(--f-sans); font-stretch: 125%; font-weight: 800; }
+  .b-roll text { font-size: 13px; letter-spacing: .14em; }
+  .b-meta { font-size: 7.5px; letter-spacing: .12em; font-weight: 600; opacity: .85; }
+  .b-bubble { fill: #fff; opacity: .45; }
+
+  .flavour-rosso { --liquid: #B3121A; --label: #FFF3EA; --ink: #D42C0C; --cap: #2B0B10; --roll: 0px; }
+  .flavour-rosa { --liquid: #FF5F6D; --label: #2B0B10; --ink: #FFB3A3; --cap: #D42C0C; --roll: -24px; }
+  .flavour-chinotto { --liquid: #3A140C; --label: #D42C0C; --ink: #E6E3FF; --cap: #2B0B10; --roll: -48px; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    background: var(--blush);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(150px, 19vw, 260px) minmax(0, 1fr);
+    grid-template-rows: 1fr 1fr;
+    column-gap: clamp(16px, 2.6vw, 44px);
+    row-gap: 0;
+    padding: 96px var(--pad) 40px;
+  }
+  .hero__title {
+    grid-column: 1 / -1; grid-row: 1 / -1;
+    display: grid; grid-template-columns: subgrid; grid-template-rows: subgrid;
+    font-weight: inherit;
+  }
+  .hl { position: relative; z-index: 6; display: flex; flex-direction: column; line-height: .86; }
+  .hl--a { grid-column: 1; grid-row: 1; align-items: flex-end; text-align: right; align-self: end; padding-bottom: 2svh; }
+  .hl--b { grid-column: 3; grid-row: 2; align-items: flex-start; align-self: start; padding-top: 2svh; }
+  .hl__it {
+    font-family: var(--f-display); font-style: italic; font-weight: 500;
+    font-size: clamp(2.2rem, 4.4vw, 5.2rem); letter-spacing: -.02em; line-height: 1;
+    padding-bottom: .06em;
+  }
+  .hl__bk {
+    font-family: var(--f-sans); font-stretch: 125%; font-weight: 900;
+    font-size: clamp(3rem, 6.6vw, 8rem); letter-spacing: -.03em; line-height: .9;
+    text-transform: uppercase;
+  }
+  .hl--b .hl__bk { color: var(--rosso-deep); }
+  .hero__slot { grid-column: 2; grid-row: 1 / -1; align-self: center; justify-self: center; height: var(--bottle-h); }
+  .hero__slot .bottle { height: 100%; }
+  .motion .hero__slot .bottle { visibility: hidden; }
+  .hero__lede {
+    grid-column: 1; grid-row: 2; align-self: end; justify-self: start;
+    position: relative; z-index: 6;
+    display: grid; gap: 22px; max-width: 36ch;
+  }
+  .hero__lede p { font-size: clamp(1rem, .95rem + .25vw, 1.15rem); }
+  .hero__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+  .hero__meta {
+    grid-column: 3; grid-row: 1; align-self: start; justify-self: end;
+    position: relative; z-index: 6;
+    display: grid; gap: 12px; justify-items: end; text-align: right;
+    font-size: .875rem; padding-top: 12px;
+  }
+  .chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; }
+  .chips li {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 32px; padding: 0 12px 0 8px; border-radius: 999px;
+    background: rgb(255 243 234 / .7); font-weight: 600;
+  }
+  .chips i { width: 16px; height: 16px; border-radius: 50%; background: var(--c); box-shadow: inset 0 0 0 1px rgb(0 0 0 / .1); }
+  .hero__fine { font-stretch: 112%; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; font-size: .75rem; opacity: .75; }
+
+  @media (max-width: 899px) {
+    :root { --bottle-h: min(40svh, 340px); }
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto auto auto auto auto;
+      row-gap: 18px; padding-top: 92px; padding-bottom: 32px;
+      text-align: center; justify-items: center;
+    }
+    .hero__title { grid-column: 1; grid-row: 1 / 4; }
+    .hl { align-items: center !important; text-align: center !important; padding: 0 !important; }
+    .hl--a { grid-column: 1; grid-row: 1; }
+    .hl--b { grid-column: 1; grid-row: 3; }
+    .hl__it { font-size: clamp(2rem, 10vw, 3.2rem); }
+    .hl__bk { font-size: clamp(3rem, 15vw, 5.4rem); }
+    .hero__slot { grid-column: 1; grid-row: 2; }
+    .hero__lede { grid-column: 1; grid-row: 4; justify-self: center; justify-items: center; margin-top: 10px; }
+    .hero__actions { justify-content: center; }
+    .hero__meta { grid-column: 1; grid-row: 5; justify-self: center; justify-items: center; text-align: center; padding-top: 4px; }
+    .chips { justify-content: center; }
+  }
+
+  /* ---------- Tags marquee ---------- */
+  .tags { background: var(--blush); padding: 18px 0 42px; overflow: clip; display: grid; gap: 10px; }
+  .tags__row { overflow: hidden; }
+  .tags__track { display: flex; gap: 8px; width: max-content; will-change: transform; }
+  .tag {
+    display: inline-flex; align-items: center; height: 38px; padding: 0 18px;
+    border-radius: 999px; font-weight: 600; font-size: .9rem; white-space: nowrap;
+    background: var(--bg); color: var(--fg);
+  }
+  .no-motion-wrap .tags__track { flex-wrap: wrap; width: auto; justify-content: center; padding: 0 var(--pad); }
+
+  /* ---------- Flavours ---------- */
+  .flavours { position: relative; --fg: var(--latte); --tab-on: var(--rosso-deep); color: var(--fg); background: var(--rosso-deep); }
+  .flv {
+    position: relative;
+    min-height: 100svh;
+    padding: 120px var(--pad) 96px;
+    display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    align-items: center; gap: 4vw;
+    background: var(--bg); color: var(--fg);
+  }
+  .flv__copy { position: relative; z-index: 6; display: grid; gap: 22px; }
+  .flv__name {
+    font-family: var(--f-display); font-weight: 900;
+    font-size: clamp(4rem, 10.6vw, 12rem); line-height: .92; letter-spacing: -.03em;
+    padding-bottom: .04em;
+  }
+  .flv__notes { font-stretch: 125%; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; font-size: clamp(.8rem, .75rem + .2vw, .95rem); }
+  .flv__desc { font-size: clamp(1.15rem, 1rem + .45vw, 1.45rem); font-weight: 500; line-height: 1.4; max-width: 30ch; }
+  .flv__hour { font-variant-numeric: tabular-nums; font-weight: 700; font-stretch: 112%; }
+  .flv__hour .dash { display: inline-block; width: 28px; height: 2px; margin-right: 10px; vertical-align: middle; background: currentColor; }
+  .flv__art { display: grid; place-items: center; }
+  .flv__art .bottle { height: min(60svh, 520px); }
+  .flv-tabs { display: none; }
+
+  .motion .flavours { height: 100svh; overflow: hidden; }
+  .motion .flv { position: absolute; inset: 0; min-height: 0; background: none; color: inherit; }
+  .motion .flv__art { visibility: hidden; }
+  .motion .flv-tabs {
+    display: flex; gap: 6px; position: absolute; z-index: 7;
+    left: var(--pad); bottom: max(28px, env(safe-area-inset-bottom));
+  }
+  .flv-tab {
+    height: 40px; padding: 0 16px; border-radius: 999px; cursor: pointer;
+    border: 1.5px solid color-mix(in srgb, var(--fg) 45%, transparent);
+    background: transparent; color: var(--fg); font-weight: 600; font-size: .875rem;
+    transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .16s var(--ease-out);
+  }
+  .flv-tab:active { transform: scale(.96); }
+  .flv-tab[aria-current="true"] { background: var(--fg); color: var(--tab-on, var(--rosso-deep)); border-color: var(--fg); }
+
+  @media (max-width: 899px) {
+    .flv { grid-template-columns: minmax(0, 1fr); align-content: start; padding-top: 96px; gap: 24px; }
+    .flv__name { font-size: clamp(3.4rem, 16vw, 6rem); }
+    .flv__copy { gap: 14px; }
+    .motion .flv__desc { max-width: 58vw; }
+    .motion .flv__hour { max-width: 58vw; }
+    .flv__art .bottle { height: 42svh; }
+  }
+
+  /* ---------- Bitter (bento) ---------- */
+  .bitter { background: var(--latte); padding: clamp(96px, 12vw, 168px) var(--pad); overflow: clip; }
+  .bitter__head { text-align: center; display: grid; gap: 20px; justify-items: center; margin-bottom: clamp(40px, 6vw, 72px); }
+  .bitter__title { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.8rem, 6.2vw, 6.4rem); line-height: .95; letter-spacing: -.025em; }
+  .bitter__title em { display: block; font-weight: 500; }
+  .bitter__head p { max-width: 46ch; }
+  .bento {
+    max-width: 1240px; margin: 0 auto;
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-auto-rows: clamp(210px, 19vw, 270px);
+    grid-template-areas:
+      "t1 t1 pf"
+      "pa t2 pf"
+      "pa pg t3"
+      "pd pd pd";
+  }
+  .tile { position: relative; border-radius: var(--radius); overflow: hidden; will-change: transform; }
+  .tile--text {
+    display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;
+    padding: clamp(24px, 3vw, 40px); gap: 10px;
+    background: var(--bg); color: var(--fg);
+  }
+  .tile h3 { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.6rem, 2.3vw, 2.35rem); line-height: 1.04; letter-spacing: -.01em; }
+  .tile p { max-width: 32ch; font-size: .98rem; }
+  .tile--photo img { width: 100%; height: 118%; margin-top: -9%; object-fit: cover; }
+  .tile--photo::after, .m-card__media::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit; pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgb(0 0 0 / .1);
+  }
+  .t1 { grid-area: t1; } .t2 { grid-area: t2; } .t3 { grid-area: t3; }
+  .pf { grid-area: pf; } .pa { grid-area: pa; } .pg { grid-area: pg; } .pd { grid-area: pd; }
+  @media (max-width: 899px) {
+    .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: auto; grid-template-areas: "t1 t1" "pf pa" "t2 t2" "pg pg" "t3 t3" "pd pd"; }
+    .tile--photo { aspect-ratio: 4 / 5; }
+    .pg, .pd { aspect-ratio: 4 / 3; }
+    .tile--text { min-height: 220px; }
+  }
+
+  /* ---------- Serve ---------- */
+  .serve {
+    position: relative; background: var(--corallo); color: var(--vino); overflow: clip;
+    min-height: 100svh; padding: 110px var(--pad) 56px;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 4vw;
+  }
+  .serve__copy { display: grid; gap: clamp(24px, 3vw, 40px); max-width: 560px; justify-self: end; }
+  .serve__title { font-family: var(--f-display); font-weight: 800; font-size: clamp(2.6rem, 5.4vw, 5.8rem); line-height: .94; letter-spacing: -.025em; }
+  .serve__title em { font-weight: 500; }
+  .steps { display: grid; gap: clamp(12px, 1.6vw, 20px); counter-reset: step; }
+  .step {
+    display: grid; grid-template-columns: 3rem 1fr; gap: 6px 14px; align-items: baseline;
+    padding-top: clamp(12px, 1.6vw, 18px); border-top: 1.5px solid rgb(43 11 16 / .22);
+    transition: opacity .35s ease;
+  }
+  .step__n { font-family: var(--f-display); font-style: italic; font-weight: 700; font-size: 1.9rem; line-height: 1; font-variant-numeric: lining-nums; }
+  .step__t { font-weight: 700; font-size: clamp(1.05rem, 1rem + .3vw, 1.3rem); line-height: 1.3; }
+  .motion .step { opacity: .35; }
+  .motion .step[data-state="done"] { opacity: .62; }
+  .motion .step[data-state="active"] { opacity: 1; }
+  .serve__art { display: grid; place-items: center; justify-self: start; }
+  .glass { height: min(74svh, 660px); width: auto; aspect-ratio: 300 / 470; overflow: visible; }
+  .g-liquid { fill: #B3121A; }
+  .g-line { fill: none; stroke: var(--latte); stroke-width: 3; stroke-linejoin: round; }
+  .g-bowl { fill: rgb(255 243 234 / .14); }
+  .g-solid { fill: var(--latte); }
+  .g-cube rect:first-child { fill: rgb(255 255 255 / .42); stroke: rgb(255 255 255 / .85); stroke-width: 2; }
+  .g-cube rect + rect { fill: rgb(255 255 255 / .6); }
+  @media (max-width: 899px) {
+    .serve { grid-template-columns: minmax(0, 1fr); align-content: start; padding-top: 92px; gap: 20px; }
+    .serve__art { grid-row: 1; justify-self: center; }
+    .glass { height: min(34svh, 300px); }
+    .serve__copy { justify-self: stretch; gap: 18px; }
+    .serve__title { font-size: clamp(2.2rem, 9vw, 3rem); }
+    .step__n { font-size: 1.5rem; }
+    .step { grid-template-columns: 2.2rem 1fr; }
+  }
+
+  /* ---------- Moments ---------- */
+  .moments { background: var(--lilla); color: var(--rosso-ink); padding: clamp(96px, 11vw, 150px) var(--pad) clamp(96px, 11vw, 150px); overflow: clip; }
+  .moments__head { display: grid; gap: 28px; margin-bottom: clamp(48px, 6vw, 80px); }
+  .moments__title {
+    font-family: var(--f-display); font-weight: 900; color: var(--rosso-ink);
+    font-size: clamp(4.4rem, 15vw, 15rem); line-height: .86; letter-spacing: -.035em;
+    white-space: nowrap;
+  }
+  .moments__sub { max-width: 44ch; font-size: 1.1rem; font-weight: 500; }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 8px; }
+  .filter {
+    height: 44px; padding: 0 22px; border-radius: 999px; cursor: pointer;
+    border: 1.5px solid var(--rosso-ink); background: transparent; color: var(--rosso-ink);
+    font-weight: 600; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase;
+    transition: background-color .2s ease, color .2s ease, transform .16s var(--ease-out);
+  }
+  .filter:active { transform: scale(.96); }
+  .filter[aria-pressed="true"] { background: var(--rosso-ink); color: var(--lilla); }
+  @media (hover: hover) and (pointer: fine) {
+    .filter[aria-pressed="false"]:hover { background: rgb(184 38 10 / .08); }
+  }
+  .m-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(40px, 5vw, 72px) clamp(16px, 2.4vw, 32px); max-width: 1400px; margin: 0 auto; }
+  .m-card.is-hidden { display: none; }
+  .m-card figure { display: grid; gap: 18px; }
+  .m-card__media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; border-radius: 14px; background: color-mix(in srgb, var(--rosso) 14%, var(--lilla)); }
+  .m-card__media img { width: 100%; height: 100%; object-fit: cover; }
+  .m-card figcaption { display: grid; gap: 6px; text-align: center; }
+  .m-card__tag { font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+  .m-card__title { font-family: var(--f-display); font-weight: 700; color: var(--rosso-deep); font-size: clamp(1.7rem, 2.8vw, 2.9rem); line-height: 1.04; letter-spacing: -.01em; }
+  @media (max-width: 699px) { .m-grid { grid-template-columns: minmax(0, 1fr); } }
+
+  /* ---------- Night / footer ---------- */
+  .night { background: var(--vino); color: var(--latte); padding: clamp(96px, 11vw, 150px) var(--pad) 28px; overflow: clip; }
+  .night__top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) auto; gap: clamp(32px, 5vw, 80px); align-items: end; }
+  .night__title { font-family: var(--f-display); font-style: italic; font-weight: 500; font-size: clamp(4rem, 11vw, 11rem); line-height: .9; letter-spacing: -.03em; }
+  .order { display: grid; gap: 14px; max-width: 42ch; }
+  .order h3 { font-stretch: 125%; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; font-size: .95rem; }
+  .order p { color: rgb(255 243 234 / .82); }
+  .order__row { display: flex; align-items: center; gap: 20px; margin-top: 8px; flex-wrap: wrap; }
+  .order__price { font-family: var(--f-display); font-weight: 700; font-size: 2.6rem; font-variant-numeric: lining-nums tabular-nums; }
+  .btn--light { background: var(--latte); color: var(--vino); }
+  .order__btn .btn__label { position: relative; display: grid; }
+  .order__btn .btn__label > span { grid-area: 1 / 1; transition: opacity .25s ease, filter .25s ease, transform .3s var(--ease-out); }
+  .order__btn .btn__b { opacity: 0; filter: blur(4px); transform: translateY(6px); }
+  .order__btn.is-added .btn__a { opacity: 0; filter: blur(4px); transform: translateY(-6px); }
+  .order__btn.is-added .btn__b { opacity: 1; filter: blur(0); transform: none; }
+  .order__btn .btn__icon { position: relative; }
+  .order__btn .btn__icon svg { position: absolute; transition: opacity .2s cubic-bezier(.2, 0, 0, 1), transform .2s cubic-bezier(.2, 0, 0, 1), filter .2s cubic-bezier(.2, 0, 0, 1); }
+  .order__btn .i-check { opacity: 0; transform: scale(.25); filter: blur(4px); }
+  .order__btn.is-added .i-plus { opacity: 0; transform: scale(.25); filter: blur(4px); }
+  .order__btn.is-added .i-check { opacity: 1; transform: scale(1); filter: blur(0); }
+  .night__links { display: grid; gap: 10px; justify-items: start; }
+  .night__links a { text-decoration: none; font-weight: 600; }
+  @media (hover: hover) and (pointer: fine) { .night__links a:hover { text-decoration: underline; text-underline-offset: 5px; } }
+  .wordmark {
+    margin-top: clamp(56px, 8vw, 110px);
+    font-family: var(--f-display); font-style: italic; font-weight: 900; color: var(--rosso);
+    font-size: 30vw; line-height: .78; letter-spacing: -.045em; text-align: center;
+    overflow: hidden; padding-bottom: .06em; white-space: nowrap;
+  }
+  .night__fine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; margin-top: 24px; font-size: .8rem; color: rgb(255 243 234 / .7); }
+  @media (max-width: 899px) {
+    .night__top { grid-template-columns: 1fr; align-items: start; }
+    .night__links { grid-auto-flow: column; justify-content: start; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Bottle artwork, defined once; every bottle on the page is a <use> of this. -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+  <defs>
+    <clipPath id="b-clip">
+      <path d="M46,508 Q31,508 32,494 L72,186 Q74,170 85,160 L85,92 Q85,86 91,86 L109,86 Q115,86 115,92 L115,160 Q126,170 128,186 L168,494 Q169,508 154,508 Z"/>
+    </clipPath>
+    <clipPath id="b-label-clip"><rect x="40" y="365" width="120" height="21"/></clipPath>
+    <linearGradient id="b-sheen" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity=".22"/>
+      <stop offset=".22" stop-color="#fff" stop-opacity=".02"/>
+      <stop offset=".72" stop-color="#000" stop-opacity=".0"/>
+      <stop offset=".9" stop-color="#000" stop-opacity=".18"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".12"/>
+    </linearGradient>
+    <radialGradient id="b-shadow">
+      <stop offset="0" stop-color="#2B0B10" stop-opacity=".38"/>
+      <stop offset="1" stop-color="#2B0B10" stop-opacity="0"/>
+    </radialGradient>
+    <g id="bottle-art">
+      <ellipse cx="100" cy="514" rx="96" ry="13" fill="url(#b-shadow)"/>
+      <g clip-path="url(#b-clip)">
+        <rect class="b-glass-tint" width="200" height="540"/>
+        <path id="b-liquid" class="b-liquid" d="M0,178 L200,178 L200,540 L0,540 Z"/>
+        <g id="b-bubbles">
+          <circle class="b-bubble" cx="70" cy="470" r="2.4"/>
+          <circle class="b-bubble" cx="96" cy="430" r="1.6"/>
+          <circle class="b-bubble" cx="122" cy="455" r="2"/>
+          <circle class="b-bubble" cx="84" cy="300" r="1.4"/>
+          <circle class="b-bubble" cx="132" cy="260" r="1.8"/>
+          <circle class="b-bubble" cx="108" cy="220" r="1.3"/>
+          <circle class="b-bubble" cx="62" cy="420" r="1.5"/>
+          <circle class="b-bubble" cx="140" cy="480" r="2.2"/>
+        </g>
+        <rect width="200" height="540" fill="url(#b-sheen)"/>
+      </g>
+      <path d="M46,508 Q31,508 32,494 L72,186 Q74,170 85,160 L85,92 Q85,86 91,86 L109,86 Q115,86 115,92 L115,160 Q126,170 128,186 L168,494 Q169,508 154,508 Z" fill="none" stroke="#2B0B10" stroke-opacity=".28" stroke-width="1.5"/>
+      <path d="M50,476 L82,196 L89,192 L60,476 Z" fill="#fff" opacity=".34"/>
+      <path d="M150,470 L124,214 L127,212 L155,470 Z" fill="#fff" opacity=".16"/>
+      <rect class="b-collar" x="85" y="112" width="30" height="20"/>
+      <path class="b-label" d="M57,300 L143,300 L157,414 L43,414 Z"/>
+      <text class="b-brand" x="100" y="352" text-anchor="middle">Sorso</text>
+      <g clip-path="url(#b-label-clip)">
+        <g class="b-roll">
+          <text x="100" y="381" text-anchor="middle">ROSSO</text>
+          <text x="100" y="405" text-anchor="middle">ROSA</text>
+          <text x="100" y="429" text-anchor="middle">CHINOTTO</text>
+        </g>
+      </g>
+      <text class="b-meta" x="100" y="401" text-anchor="middle">0.0% VOL · 250 ML</text>
+      <g class="b-cap">
+        <rect x="81" y="62" width="38" height="24" rx="3"/>
+        <path d="M81,84 l3.8,6 l3.8,-6 l3.8,6 l3.8,-6 l3.8,6 l3.8,-6 l3.8,6 l3.8,-6 l3.8,6 l3.8,-6 Z"/>
+      </g>
+      <rect x="84" y="66" width="32" height="2.5" rx="1.2" fill="#fff" opacity=".25"/>
+    </g>
+  </defs>
+</svg>
+
+<header class="nav" aria-label="Main">
+  <a class="pill brand" href="#top" aria-label="Sorso, back to top"><span class="brand__word">Sorso</span></a>
+  <div class="pill clock" title="The page runs from 17:00 to 20:30. Scroll to move the hour along.">
+    <span class="clock__dot" aria-hidden="true"></span>
+    <span class="clock__time" aria-hidden="true">17:00</span>
+    <span class="clock__label" aria-hidden="true">aperitivo time</span>
+  </div>
+  <nav class="nav__links" aria-label="Sections">
+    <a class="pill" href="#flavours">Flavours</a>
+    <a class="pill" href="#serve">Serve</a>
+    <a class="pill" href="#moments">Moments</a>
+    <a class="pill nav__case" href="#order">Case <b class="case-count">0</b></a>
+  </nav>
+</header>
+
+<div class="curtain" aria-hidden="true">
+  <svg class="curtain__wave" viewBox="0 0 2400 56" preserveAspectRatio="none">
+    <path d="M0,28 C100,6 200,6 300,28 S500,50 600,28 S800,6 900,28 S1100,50 1200,28 S1400,6 1500,28 S1700,50 1800,28 S2000,6 2100,28 S2300,50 2400,28 L2400,56 L0,56 Z"/>
+  </svg>
+</div>
+
+<div class="stage" aria-hidden="true">
+  <div class="b-travel"><div class="b-exit"><div class="b-wiggle"><div class="b-load">
+    <svg class="bottle flavour-rosso" id="stage-bottle" viewBox="0 0 200 540"><use href="#bottle-art"/></svg>
+  </div></div></div></div>
+</div>
+
+<main id="main">
+  <section class="hero" id="top">
+    <h1 class="hero__title">
+      <span class="hl hl--a"><span class="hl__it">All the</span><span class="hl__bk">Bitter.</span></span>
+      <span class="hl hl--b"><span class="hl__it">None of the</span><span class="hl__bk">Proof.</span></span>
+    </h1>
+    <div class="hero__slot" aria-hidden="true">
+      <svg class="bottle flavour-rosso" viewBox="0 0 200 540"><use href="#bottle-art"/></svg>
+    </div>
+    <div class="hero__lede">
+      <p>Sorso is a bitter aperitivo soda: blood orange, gentian root and a hard fizz. Zero alcohol, made for the hour between the last email and dinner.</p>
+      <div class="hero__actions">
+        <a class="btn" href="#order">Order a mixed case
+          <span class="btn__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="link" href="#flavours">Meet the flavours</a>
+      </div>
+    </div>
+    <div class="hero__meta">
+      <p>Three flavours, one hour.</p>
+      <ul class="chips">
+        <li><i style="--c:#D42C0C"></i>Rosso</li>
+        <li><i style="--c:#FF8F80"></i>Rosa</li>
+        <li><i style="--c:#3A140C"></i>Chinotto</li>
+      </ul>
+      <p class="hero__fine">250 ml · 0.0% vol · Torino</p>
+    </div>
+  </section>
+
+  <section class="tags" aria-label="What is in it">
+    <div class="tags__row"><ul class="tags__track">
+      <li class="tag" style="--bg:#D42C0C;--fg:#FFF3EA">0.0% alcohol</li>
+      <li class="tag" style="--bg:#2B0B10;--fg:#FFF3EA">Sicilian blood orange</li>
+      <li class="tag" style="--bg:#FFF3EA;--fg:#2B0B10">Gentian root</li>
+      <li class="tag" style="--bg:#FFD23F;--fg:#2B0B10">Lightly sparkling</li>
+      <li class="tag" style="--bg:#FF6F5E;--fg:#2B0B10">Rhubarb</li>
+      <li class="tag" style="--bg:#E6E3FF;--fg:#B8260A">Pink grapefruit</li>
+      <li class="tag" style="--bg:#FFF3EA;--fg:#2B0B10">Rosemary</li>
+      <li class="tag" style="--bg:#2B0B10;--fg:#FFF3EA">Ligurian chinotto</li>
+    </ul></div>
+    <div class="tags__row"><ul class="tags__track">
+      <li class="tag" style="--bg:#FFF3EA;--fg:#2B0B10">5 g sugar per bottle</li>
+      <li class="tag" style="--bg:#E6E3FF;--fg:#B8260A">No artificial colour</li>
+      <li class="tag" style="--bg:#D42C0C;--fg:#FFF3EA">Bay leaf</li>
+      <li class="tag" style="--bg:#FFD23F;--fg:#2B0B10">Cocoa husk</li>
+      <li class="tag" style="--bg:#2B0B10;--fg:#FFF3EA">Vegan</li>
+      <li class="tag" style="--bg:#FF6F5E;--fg:#2B0B10">Pink pepper</li>
+      <li class="tag" style="--bg:#FFF3EA;--fg:#2B0B10">Bitter orange peel</li>
+      <li class="tag" style="--bg:#D42C0C;--fg:#FFF3EA">Best over ice</li>
+    </ul></div>
+  </section>
+
+  <section class="flavours" id="flavours" aria-label="Flavours">
+    <article class="flv" style="--bg:#D42C0C;--fg:#FFF3EA" data-flavour="rosso">
+      <div class="flv__copy">
+        <h2 class="flv__name">Rosso.</h2>
+        <p class="flv__notes">Blood orange · Rhubarb · Gentian</p>
+        <p class="flv__desc">The classic. Bright red, properly bitter, finished with orange peel. Pour it over ice and leave it alone.</p>
+        <p class="flv__hour"><i class="dash" aria-hidden="true"></i>Best at 17:30</p>
+      </div>
+      <div class="flv__art" aria-hidden="true"><svg class="bottle flavour-rosso" viewBox="0 0 200 540"><use href="#bottle-art"/></svg></div>
+    </article>
+    <article class="flv" style="--bg:#FFB3A3;--fg:#2B0B10" data-flavour="rosa">
+      <div class="flv__copy">
+        <h2 class="flv__name">Rosa.</h2>
+        <p class="flv__notes">Pink grapefruit · Rosemary · Pink pepper</p>
+        <p class="flv__desc">The softer one. Sour first, bitter second, with a resin edge from the rosemary that keeps it honest.</p>
+        <p class="flv__hour"><i class="dash" aria-hidden="true"></i>Best at 18:15</p>
+      </div>
+      <div class="flv__art" aria-hidden="true"><svg class="bottle flavour-rosa" viewBox="0 0 200 540"><use href="#bottle-art"/></svg></div>
+    </article>
+    <article class="flv" style="--bg:#E6E3FF;--fg:#B8260A" data-flavour="chinotto">
+      <div class="flv__copy">
+        <h2 class="flv__name">Chinotto.</h2>
+        <p class="flv__notes">Chinotto · Bay leaf · Cocoa husk</p>
+        <p class="flv__desc">The dark one. Bittersweet Ligurian citrus that tastes a little like cola and nothing like it at all.</p>
+        <p class="flv__hour"><i class="dash" aria-hidden="true"></i>Best at 19:00</p>
+      </div>
+      <div class="flv__art" aria-hidden="true"><svg class="bottle flavour-chinotto" viewBox="0 0 200 540"><use href="#bottle-art"/></svg></div>
+    </article>
+    <div class="flv-tabs" role="group" aria-label="Jump to a flavour">
+      <button class="flv-tab" type="button" data-to="rosso" aria-current="true">Rosso</button>
+      <button class="flv-tab" type="button" data-to="rosa" aria-current="false">Rosa</button>
+      <button class="flv-tab" type="button" data-to="chinotto" aria-current="false">Chinotto</button>
+    </div>
+  </section>
+
+  <section class="bitter" aria-labelledby="bitter-title">
+    <div class="bitter__head">
+      <h2 class="bitter__title" id="bitter-title">Bitter, <em>on purpose.</em></h2>
+      <p>Most soft drinks chase sweet. Sorso is built the way an aperitivo is: bitter up front, so your appetite turns up in time for dinner.</p>
+    </div>
+    <div class="bento">
+      <div class="tile tile--text t1" style="--bg:#2B0B10;--fg:#FFF3EA">
+        <h3>Real roots, not “bitter flavouring”</h3>
+        <p>Gentian root and bitter orange peel, steeped cold for 48 hours and filtered twice.</p>
+      </div>
+      <div class="tile tile--photo pf"><img src="https://images.unsplash.com/photo-1583855061290-b72764abbf97?auto=format&fit=crop&w=800&h=1100&q=72" alt="Two halves of a blood orange on a red surface" loading="lazy" decoding="async" width="800" height="1100"></div>
+      <div class="tile tile--photo pa"><img src="https://images.unsplash.com/photo-1564090654281-eb1db56d15fc?auto=format&fit=crop&w=800&h=1100&q=72" alt="Two orange drinks over ice on a sunlit wooden table" loading="lazy" decoding="async" width="800" height="1100"></div>
+      <div class="tile tile--text t2" style="--bg:#FFD23F;--fg:#2B0B10">
+        <h3>Zero proof, all ritual</h3>
+        <p>The glass, the ice, the slice. Everything about the hour except the morning after.</p>
+      </div>
+      <div class="tile tile--photo pg"><img src="https://images.unsplash.com/photo-1718627742424-0d0ba2c1c230?auto=format&fit=crop&w=900&h=700&q=72" alt="Half a pink grapefruit on red and yellow paper in hard sunlight" loading="lazy" decoding="async" width="900" height="700"></div>
+      <div class="tile tile--text t3" style="--bg:#D42C0C;--fg:#FFF3EA">
+        <h3>5 g of sugar a bottle</h3>
+        <p>Enough to round off the bitter, not enough to bury it.</p>
+      </div>
+      <div class="tile tile--photo pd"><img src="https://images.unsplash.com/photo-1660831831558-dc18a22ad932?auto=format&fit=crop&w=1600&h=640&q=72" alt="A tray of orange drinks with ice, citrus and black straws" loading="lazy" decoding="async" width="1600" height="640"></div>
+    </div>
+  </section>
+
+  <section class="serve" id="serve" aria-labelledby="serve-title">
+    <div class="serve__copy">
+      <h2 class="serve__title" id="serve-title">Serve it like an <em>aperitivo.</em></h2>
+      <ol class="steps">
+        <li class="step"><span class="step__n" aria-hidden="true">1</span><span class="step__t">Fill a wine glass with ice. All the way up.</span></li>
+        <li class="step"><span class="step__n" aria-hidden="true">2</span><span class="step__t">Pour one bottle over the ice, slowly, down the side.</span></li>
+        <li class="step"><span class="step__n" aria-hidden="true">3</span><span class="step__t">Add a wheel of orange. Grapefruit, if it’s Rosa.</span></li>
+        <li class="step"><span class="step__n" aria-hidden="true">4</span><span class="step__t">Put something salty next to it. Olives, crisps, a friend.</span></li>
+      </ol>
+    </div>
+    <div class="serve__art" aria-hidden="true">
+      <svg class="glass" viewBox="0 0 300 470">
+        <defs>
+          <clipPath id="g-clip"><path d="M60,42 L240,42 Q247,190 150,250 Q53,190 60,42 Z"/></clipPath>
+        </defs>
+        <ellipse cx="150" cy="446" rx="96" ry="11" fill="#2B0B10" opacity=".14"/>
+        <rect class="g-stream" x="147" y="-120" width="6" height="250" rx="3" fill="#B3121A" opacity="0"/>
+        <g clip-path="url(#g-clip)">
+          <rect class="g-liquid" x="0" y="100" width="300" height="200"/>
+          <rect class="g-meniscus" x="0" y="100" width="300" height="5" fill="#fff" opacity=".35"/>
+          <g class="g-bubbles" fill="#fff" opacity=".5">
+            <circle cx="120" cy="220" r="2.2"/><circle cx="168" cy="200" r="1.6"/><circle cx="140" cy="180" r="2"/><circle cx="186" cy="150" r="1.4"/><circle cx="104" cy="160" r="1.6"/>
+          </g>
+        </g>
+        <g class="g-cube" data-x="96" data-y="96" data-r="-14"><rect x="96" y="96" width="46" height="46" rx="9"/><rect x="104" y="103" width="14" height="5" rx="2.5"/></g>
+        <g class="g-cube" data-x="150" data-y="82" data-r="12"><rect x="150" y="82" width="48" height="48" rx="9"/><rect x="158" y="89" width="14" height="5" rx="2.5"/></g>
+        <g class="g-cube" data-x="122" data-y="140" data-r="4"><rect x="122" y="140" width="44" height="44" rx="9"/><rect x="130" y="147" width="12" height="5" rx="2.5"/></g>
+        <path class="g-line g-bowl" d="M60,42 L240,42 Q247,190 150,250 Q53,190 60,42 Z"/>
+        <rect class="g-solid" x="146" y="248" width="8" height="180" rx="3"/>
+        <ellipse class="g-solid" cx="150" cy="430" rx="66" ry="9"/>
+        <g class="g-orange">
+          <circle cx="236" cy="54" r="40" fill="#FF8A1F"/>
+          <circle cx="236" cy="54" r="33" fill="#FFB347"/>
+          <g stroke="#FFF3EA" stroke-width="2.5" stroke-linecap="round" opacity=".9">
+            <path d="M236,24 L236,84"/><path d="M206,54 L266,54"/><path d="M215,33 L257,75"/><path d="M257,33 L215,75"/>
+          </g>
+          <circle cx="236" cy="54" r="5" fill="#FFF3EA"/>
+        </g>
+        <g class="g-pick">
+          <path d="M112,-6 L176,196" stroke="#2B0B10" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="126" cy="38" r="14" fill="#6E7B1E"/><circle cx="122" cy="34" r="4" fill="#fff" opacity=".35"/>
+          <circle cx="136" cy="70" r="14" fill="#7C8A25"/><circle cx="132" cy="66" r="4" fill="#fff" opacity=".35"/>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section class="moments" id="moments" aria-labelledby="moments-title">
+    <div class="moments__head">
+      <h2 class="moments__title" id="moments-title">Seven-ish.</h2>
+      <p class="moments__sub">Where the hour actually happens. Tag yours with #orasorso and we’ll put the good ones here.</p>
+      <div class="filters" role="group" aria-label="Filter moments by place">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter" type="button" data-filter="seaside" aria-pressed="false">Seaside</button>
+        <button class="filter" type="button" data-filter="piazza" aria-pressed="false">Piazza</button>
+        <button class="filter" type="button" data-filter="counter" aria-pressed="false">At the counter</button>
+      </div>
+    </div>
+    <ul class="m-grid">
+      <li class="m-card" data-cat="seaside"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1534250617995-d16425086b91?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1534250617995-d16425086b91?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1534250617995-d16425086b91?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="Rows of blue and white beach umbrellas below a cliffside town" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">Seaside · 18:55</span><span class="m-card__title">Atrani, the long way down</span></figcaption>
+      </figure></li>
+      <li class="m-card" data-cat="piazza"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1560433956-b2847671bb86?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1560433956-b2847671bb86?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1560433956-b2847671bb86?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="Two people clinking orange drinks at an outdoor table" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">Piazza · 19:10</span><span class="m-card__title">Cin cin, on the corner</span></figcaption>
+      </figure></li>
+      <li class="m-card" data-cat="counter"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1607687332053-ef831d0775ad?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1607687332053-ef831d0775ad?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1607687332053-ef831d0775ad?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="A single orange drink with ice and an orange slice on a wooden bar" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">At the counter · 19:05</span><span class="m-card__title">One, before the others arrive</span></figcaption>
+      </figure></li>
+      <li class="m-card" data-cat="seaside"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1543257461-f3d2a74687a5?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1543257461-f3d2a74687a5?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1543257461-f3d2a74687a5?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="Orange and green striped beach umbrellas seen from above" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">Seaside · 17:50</span><span class="m-card__title">Orange, green, repeat</span></figcaption>
+      </figure></li>
+      <li class="m-card" data-cat="piazza"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1781972959826-98cdd45c8488?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1781972959826-98cdd45c8488?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1781972959826-98cdd45c8488?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="Overhead view of people at small round tables outside a café" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">Piazza · 19:20</span><span class="m-card__title">Watching the street go by</span></figcaption>
+      </figure></li>
+      <li class="m-card" data-cat="counter"><figure>
+        <div class="m-card__media"><img src="https://images.unsplash.com/photo-1615830783066-26a99bc9d959?auto=format&fit=crop&w=1200&h=750&q=72" srcset="https://images.unsplash.com/photo-1615830783066-26a99bc9d959?auto=format&fit=crop&w=700&h=438&q=70 700w, https://images.unsplash.com/photo-1615830783066-26a99bc9d959?auto=format&fit=crop&w=1200&h=750&q=72 1200w" sizes="(min-width: 700px) 46vw, 92vw" alt="An orange drink beside green olives and a paper cone of fried snacks" loading="lazy" decoding="async"></div>
+        <figcaption><span class="m-card__tag">At the counter · 18:20</span><span class="m-card__title">Olives, crisps, Chinotto</span></figcaption>
+      </figure></li>
+    </ul>
+  </section>
+</main>
+
+<footer class="night" id="order">
+  <div class="night__top">
+    <h2 class="night__title">Salute.</h2>
+    <div class="order">
+      <h3>The mixed case</h3>
+      <p>Four Rosso, four Rosa, four Chinotto. Twelve bottles, delivered in two to four days anywhere in the EU.</p>
+      <div class="order__row">
+        <span class="order__price">€36</span>
+        <button class="btn btn--light order__btn" type="button">
+          <span class="btn__label"><span class="btn__a">Add a mixed case</span><span class="btn__b" aria-hidden="true">Added to your case</span></span>
+          <span class="btn__icon" aria-hidden="true">
+            <svg class="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+            <svg class="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+          </span>
+        </button>
+      </div>
+      <p class="sr-only" aria-live="polite" id="case-live"></p>
+    </div>
+    <nav class="night__links" aria-label="Footer">
+      <a href="#moments">Stockists</a>
+      <a href="#order">Wholesale</a>
+      <a href="#top">Instagram</a>
+      <a href="#top">Contact</a>
+    </nav>
+  </div>
+  <div class="wordmark" aria-hidden="true">Sorso</div>
+  <div class="night__fine">
+    <span>© 2026 Sorso Bevande. A fictional brand, built as a motion study.</span>
+    <span>Photography from Unsplash, standing in until the real shoot.</span>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/CustomEase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.15.0/dist/Flip.min.js"></script>
+<script src="https://unpkg.com/lenis@1.3.26/dist/lenis.min.js"></script>
+<script>
+(() => {
+  const root = document.documentElement;
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasGsap = !!(window.gsap && window.ScrollTrigger && window.SplitText && window.CustomEase && window.Flip);
+  const motion = !reduce && hasGsap && window.Lenis;
+  if (motion) window.__sorso = true; else root.classList.remove('motion');
+
+  /* ---------- The hour: page progress maps 17:00 → 20:30 ---------- */
+  const clockEl = $('.clock__time');
+  const START = 17 * 60, SPAN = 210;
+  let lastMin = -1;
+  const setClock = (p) => {
+    const m = Math.round(START + Math.min(1, Math.max(0, p)) * SPAN);
+    if (m === lastMin) return;
+    lastMin = m;
+    clockEl.textContent = `${Math.floor(m / 60)}:${String(m % 60).padStart(2, '0')}`;
+  };
+
+  /* ---------- Mixed case button ---------- */
+  let caseCount = 0;
+  const orderBtn = $('.order__btn'), caseLive = $('#case-live'), caseCountEl = $('.case-count');
+  orderBtn.addEventListener('click', () => {
+    caseCount++;
+    caseCountEl.textContent = caseCount;
+    caseLive.textContent = `Mixed case added. ${caseCount} in your case.`;
+    orderBtn.classList.add('is-added');
+    clearTimeout(orderBtn._t);
+    orderBtn._t = setTimeout(() => orderBtn.classList.remove('is-added'), 2400);
+  });
+
+  /* ---------- Moments filter ---------- */
+  const cards = $$('.m-card'), filters = $$('.filter');
+  const applyFilter = (key, animate) => {
+    const state = animate ? Flip.getState(cards) : null;
+    filters.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.filter === key)));
+    cards.forEach(c => c.classList.toggle('is-hidden', key !== 'all' && c.dataset.cat !== key));
+    if (!animate) return;
+    Flip.from(state, {
+      duration: .7, ease: 'power3.inOut', absolute: true, scale: true, nested: true,
+      onEnter: els => gsap.fromTo(els, { opacity: 0, scale: .92 }, { opacity: 1, scale: 1, duration: .5, ease: 'power3.out' }),
+      onLeave: els => gsap.to(els, { opacity: 0, scale: .92, duration: .35, ease: 'power2.in' }),
+      onComplete: () => ScrollTrigger.refresh()
+    });
+  };
+  filters.forEach(b => b.addEventListener('click', () => applyFilter(b.dataset.filter, motion)));
+
+  if (!motion) {
+    $('.tags').classList.add('no-motion-wrap');
+    const onScroll = () => {
+      const max = root.scrollHeight - innerHeight;
+      setClock(max > 0 ? scrollY / max : 0);
+    };
+    addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return;
+  }
+
+  /* =========================================================
+     Motion
+     ========================================================= */
+  gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, Flip);
+  // "drain": the curtain of soda emptying off the screen. Sharp in, long out.
+  CustomEase.create('drain', 'M0,0 C0.76,0 0.24,1 1,1');
+  // "settle": a bottle set down on a table, a hair of overshoot then still.
+  CustomEase.create('settle', 'M0,0 C0.14,0.86 0.28,1.06 0.56,1.018 0.78,0.996 0.9,1 1,1');
+  ScrollTrigger.config({ ignoreMobileResize: true });
+
+  history.scrollRestoration = 'manual';
+  scrollTo(0, 0);
+
+  const lenis = new Lenis({ lerp: 0.09, smoothWheel: true, wheelMultiplier: 1 });
+  lenis.on('scroll', ScrollTrigger.update);
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+  lenis.stop();
+
+  $$('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    const target = id.length > 1 && $(id);
+    if (!target) return;
+    e.preventDefault();
+    lenis.scrollTo(id === '#top' ? 0 : target, { duration: 1.6 });
+  }));
+
+  const stage = $('.stage'), stageBottle = $('#stage-bottle');
+  const bTravel = $('.b-travel'), bExit = $('.b-exit'), bWiggle = $('.b-wiggle'), bLoad = $('.b-load');
+  const liquid = $('#b-liquid');
+
+  /* ---------- Liquid surface: stays level in world space, sloshes with scroll velocity ---------- */
+  const slosh = { amp: 0, phase: 0, tilt: 0, kick: 0, level: 178, on: true };
+  const DEG = Math.PI / 180;
+  gsap.ticker.add((t, dt) => {
+    if (!slosh.on) return;
+    const v = lenis.velocity || 0;
+    const target = Math.min(12, Math.abs(v) * 0.45) + 1 + slosh.kick;
+    slosh.amp += (target - slosh.amp) * 0.07;
+    slosh.kick *= 0.94;
+    slosh.phase += dt * 0.0045;
+    const rot = (gsap.getProperty(bWiggle, 'rotation') + gsap.getProperty(bTravel, 'rotation') + gsap.getProperty(bExit, 'rotation') + gsap.getProperty(bLoad, 'rotation')) * DEG;
+    slosh.tilt += ((-Math.tan(rot)) - slosh.tilt) * 0.12;
+    let d = '';
+    for (let x = 0; x <= 200; x += 20) {
+      const y = slosh.level + Math.sin(x * 0.045 + slosh.phase) * slosh.amp * 0.55 + Math.sin(x * 0.11 - slosh.phase * 1.4) * slosh.amp * 0.25 + (x - 100) * slosh.tilt;
+      d += (x ? ' L' : 'M') + x + ',' + y.toFixed(2);
+    }
+    liquid.setAttribute('d', d + ' L200,540 L0,540 Z');
+  });
+
+  // bubbles rising through the bottle
+  $$('#b-bubbles circle').forEach((c, i) => {
+    gsap.fromTo(c, { attr: { cy: 500 } }, { attr: { cy: 196 }, duration: gsap.utils.random(2.4, 4.6), ease: 'none', repeat: -1, delay: -i * 0.55 });
+  });
+
+  const fontsReady = Promise.race([document.fonts.ready, new Promise(r => setTimeout(r, 2200))]);
+  fontsReady.then(() => { intro(); });
+
+  /* ---------- One orchestrated load ---------- */
+  function intro() {
+    const brand = $('.brand'), brandWord = $('.brand__word');
+    const brandSplit = SplitText.create(brandWord, { type: 'lines,chars', mask: 'lines' });
+    const itSplits = $$('.hl__it').map(el => SplitText.create(el, { type: 'lines,chars', mask: 'lines' }));
+    const ledeSplit = SplitText.create($('.hero__lede p'), { type: 'lines', mask: 'lines' });
+    const heavyA = $('.hl--a .hl__bk'), heavyB = $('.hl--b .hl__bk');
+    const navRest = [$('.clock'), ...$$('.nav__links .pill')].filter(el => getComputedStyle(el).display !== 'none');
+
+    const r = brand.getBoundingClientRect();
+    const dx = innerWidth / 2 - (r.left + r.width / 2);
+    const dy = innerHeight / 2 - (r.top + r.height / 2);
+    const s = Math.min(6.5, (innerWidth * 0.56) / r.width);
+
+    gsap.set(brand, { x: dx, y: dy, scale: s, color: '#FFF3EA', backgroundColor: 'rgba(255,243,234,0)', boxShadow: '0 0 0 rgba(0,0,0,0)' });
+    gsap.set(navRest, { yPercent: -160 });
+    gsap.set(bLoad, { y: innerHeight * 0.95, rotation: -16 });
+    gsap.set(heavyA, { clipPath: 'inset(0% 0% 0% 100%)', x: () => innerWidth * 0.05 });
+    gsap.set(heavyB, { clipPath: 'inset(0% 100% 0% 0%)', x: () => -innerWidth * 0.05 });
+    gsap.set(itSplits.flatMap(sp => sp.chars), { yPercent: 115 });
+    gsap.set(ledeSplit.lines, { yPercent: 105 });
+    gsap.set(['.hero__actions', '.hero__meta'], { clipPath: 'inset(0% 0% 100% 0%)', y: 18 });
+    gsap.set('.tags__row', { xPercent: (i) => (i ? 18 : -18), clipPath: (i) => (i ? 'inset(0% 0% 0% 100%)' : 'inset(0% 100% 0% 0%)') });
+    root.classList.add('is-intro');
+
+    const clockObj = { m: START - 5 };
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out' }, onComplete: afterIntro });
+    tl.from(brandSplit.chars, { yPercent: 110, duration: .9, stagger: .045 }, 0.1)
+      .to(clockObj, { m: START, duration: 1.6, ease: 'power2.inOut', onUpdate: () => { lastMin = -1; setClock((clockObj.m - START) / SPAN); } }, 0.6)
+      .to('.curtain', { yPercent: 100, duration: 1.25, ease: 'drain' }, 0.8)
+      .to('.curtain__wave', { xPercent: -50, duration: 1.25, ease: 'none' }, 0.8)
+      .to(brand, { x: 0, y: 0, scale: 1, color: '#2B0B10', duration: 1.25, ease: 'drain' }, 0.8)
+      .to(brand, { backgroundColor: 'rgba(255,243,234,1)', boxShadow: '0 1px 1px rgba(43,11,16,.06), 0 8px 20px -10px rgba(43,11,16,.35)', duration: .4, ease: 'power1.out', clearProps: 'backgroundColor,boxShadow,color' }, 1.8)
+      .to(bLoad, { y: 0, rotation: 0, duration: 1.5, ease: 'settle', onComplete: () => { slosh.kick = 14; } }, 1.0)
+      .to(heavyA, { clipPath: 'inset(0% 0% 0% 0%)', x: 0, duration: 1.2 }, 1.45)
+      .to(heavyB, { clipPath: 'inset(0% 0% 0% 0%)', x: 0, duration: 1.2 }, 1.6)
+      .to(itSplits[0].chars, { yPercent: 0, duration: 1, stagger: .03 }, 1.55)
+      .to(itSplits[1].chars, { yPercent: 0, duration: 1, stagger: .03 }, 1.7)
+      .to(navRest, { yPercent: 0, duration: .9, stagger: .06 }, 1.85)
+      .to(ledeSplit.lines, { yPercent: 0, duration: 1, stagger: .08 }, 1.95)
+      .to(['.hero__actions', '.hero__meta'], { clipPath: 'inset(0% 0% 0% 0%)', y: 0, duration: 1, stagger: .1 }, 2.1)
+      .to('.tags__row', { xPercent: 0, clipPath: 'inset(0% 0% 0% 0%)', duration: 1.3, ease: 'expo.out', stagger: .08 }, 2.0);
+
+    function afterIntro() {
+      $('.curtain').remove();
+      gsap.set([heavyA, heavyB, '.hero__actions', '.hero__meta', '.tags__row'], { clearProps: 'clipPath' });
+      itSplits.forEach(sp => sp.revert());
+      ledeSplit.revert();
+      brandSplit.revert();
+      lenis.start();
+      scenes();
+    }
+  }
+
+  /* ---------- Scroll-linked scenes ---------- */
+  function scenes() {
+    const hero = $('.hero'), flavours = $('.flavours'), slot = $('.hero__slot');
+    const FLAVOURS = [
+      { key: 'rosso', bg: '#D42C0C', fg: '#FFF3EA', tab: '#D42C0C', liquid: '#B3121A', label: '#FFF3EA', ink: '#D42C0C', cap: '#2B0B10' },
+      { key: 'rosa', bg: '#FFB3A3', fg: '#2B0B10', tab: '#FFB3A3', liquid: '#FF5F6D', label: '#2B0B10', ink: '#FFB3A3', cap: '#D42C0C' },
+      { key: 'chinotto', bg: '#E6E3FF', fg: '#B8260A', tab: '#E6E3FF', liquid: '#3A140C', label: '#D42C0C', ink: '#E6E3FF', cap: '#2B0B10' }
+    ];
+
+    // Splits used by the flavour roller
+    const panels = $$('.flv', flavours).map(p => ({
+      el: p,
+      name: SplitText.create($('.flv__name', p), { type: 'lines,chars', mask: 'lines' }),
+      lines: SplitText.create([$('.flv__notes', p), $('.flv__desc', p), $('.flv__hour', p)], { type: 'lines', mask: 'lines' })
+    }));
+    const wordmarkSplit = SplitText.create('.wordmark', { type: 'chars' });
+
+    const mm = gsap.matchMedia();
+    mm.add({ desk: '(min-width: 900px)', mob: '(max-width: 899px)' }, (ctx) => {
+      const { desk } = ctx.conditions;
+
+      /* Hero: the two halves of the headline part around the bottle as you leave */
+      gsap.to('.hl--a', { xPercent: -14, yPercent: -30, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+      gsap.to('.hl--b', { xPercent: 14, yPercent: -10, ease: 'none', scrollTrigger: { trigger: hero, start: 'top top', end: 'bottom top', scrub: true } });
+
+      /* The bottle travels from the hero slot to its place in the flavour scene */
+      const slotOffset = () => {
+        const r = slot.getBoundingClientRect();
+        return r.top + scrollY + r.height / 2 - innerHeight / 2;
+      };
+      gsap.fromTo(bTravel,
+        { x: 0, y: () => slotOffset(), scale: 1, rotation: 0 },
+        {
+          x: () => (desk ? innerWidth * 0.23 : innerWidth * 0.25),
+          y: () => (desk ? innerHeight * 0.02 : innerHeight * 0.24),
+          scale: desk ? 1 : 0.8, rotation: 5, ease: 'none',
+          scrollTrigger: { trigger: hero, start: 'top top', endTrigger: flavours, end: 'top top', scrub: 0.6, invalidateOnRefresh: true }
+        });
+
+      /* Flavours: one pinned scene, three flavours, one bottle */
+      panels.forEach((p, i) => {
+        if (i) { gsap.set(p.name.chars, { yPercent: 110 }); gsap.set(p.lines.lines, { yPercent: 110 }); }
+        else { gsap.set([p.name.chars, p.lines.lines], { yPercent: 0 }); }
+      });
+      gsap.set(flavours, { backgroundColor: FLAVOURS[0].bg, '--fg': FLAVOURS[0].fg, '--tab-on': FLAVOURS[0].tab });
+      gsap.set(stageBottle, { '--liquid': FLAVOURS[0].liquid, '--label': FLAVOURS[0].label, '--ink': FLAVOURS[0].ink, '--cap': FLAVOURS[0].cap, '--roll': '0px' });
+      gsap.set([bExit, bWiggle], { x: 0, y: 0, rotation: 0 });
+      gsap.set(stage, { autoAlpha: 1 });
+
+      const tabs = $$('.flv-tab');
+      const ftl = gsap.timeline({
+        scrollTrigger: {
+          trigger: flavours, start: 'top top', end: () => '+=' + innerHeight * 3.4,
+          pin: true, scrub: 0.7, invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const t = self.progress * ftl.duration();
+            const idx = t < ftl.labels.toRosa ? 0 : t < ftl.labels.toChinotto ? 1 : 2;
+            tabs.forEach((b, i) => b.setAttribute('aria-current', String(i === idx)));
+          }
+        }
+      });
+      ftl.addLabel('rosso', 0.3).to({}, { duration: 0.7 });
+      [1, 2].forEach((i) => {
+        const prev = panels[i - 1], next = panels[i], c = FLAVOURS[i];
+        const at = ftl.duration();
+        ftl.addLabel(i === 1 ? 'toRosa' : 'toChinotto', at + 0.5)
+          .to(prev.name.chars, { yPercent: -110, duration: 0.5, stagger: 0.025, ease: 'power3.in' }, at)
+          .to(prev.lines.lines, { yPercent: -110, duration: 0.4, stagger: 0.03, ease: 'power3.in' }, at)
+          .to(flavours, { backgroundColor: c.bg, '--fg': c.fg, '--tab-on': c.tab, duration: 0.8, ease: 'power2.inOut' }, at + 0.15)
+          .to(stageBottle, { '--liquid': c.liquid, '--label': c.label, '--ink': c.ink, '--cap': c.cap, duration: 0.8, ease: 'power2.inOut' }, at + 0.15)
+          .to(stageBottle, { '--roll': `${-24 * i}px`, duration: 0.6, ease: 'expo.inOut' }, at + 0.3)
+          .to(bWiggle, { keyframes: { rotation: [0, -10, 7, -2, 0], easeEach: 'sine.inOut' }, duration: 1.1 }, at)
+          .to(next.name.chars, { yPercent: 0, duration: 0.7, stagger: 0.03, ease: 'expo.out' }, at + 0.42)
+          .to(next.lines.lines, { yPercent: 0, duration: 0.6, stagger: 0.05, ease: 'expo.out' }, at + 0.55)
+          .addLabel(c.key, at + 1.2)
+          .to({}, { duration: 0.6 });
+      });
+      ftl.to(bExit, { y: () => -innerHeight * 1.25, rotation: 22, duration: 1, ease: 'power2.in' })
+        .set(stage, { autoAlpha: 0 });
+
+      tabs.forEach(b => {
+        b.onclick = () => {
+          const st = ftl.scrollTrigger;
+          const p = ftl.labels[b.dataset.to] / ftl.duration();
+          lenis.scrollTo(st.start + (st.end - st.start) * p, { duration: 1.4 });
+        };
+      });
+
+      /* Slosh pauses once the bottle is gone */
+      ScrollTrigger.create({ trigger: '.bitter', start: 'top bottom', onEnter: () => (slosh.on = false), onLeaveBack: () => (slosh.on = true) });
+
+      /* Bento: tiles are dealt onto the table as it scrolls in */
+      const tiles = $$('.tile');
+      const deal = tiles.map((t, i) => ({
+        x: (i % 2 ? 1 : -1) * gsap.utils.random(18, 38) * (desk ? 1 : 0.5),
+        y: gsap.utils.random(20, 60),
+        r: gsap.utils.random(-14, 14)
+      }));
+      gsap.fromTo(tiles,
+        { xPercent: (i) => deal[i].x, yPercent: (i) => deal[i].y, rotation: (i) => deal[i].r, scale: 0.86 },
+        { xPercent: 0, yPercent: 0, rotation: 0, scale: 1, ease: 'power2.out', stagger: { each: 0.06, from: 'random' },
+          scrollTrigger: { trigger: '.bento', start: 'top 92%', end: desk ? 'center 60%' : 'top 10%', scrub: 0.9 } });
+      $$('.tile--photo img').forEach(img => {
+        gsap.fromTo(img, { yPercent: -7 }, { yPercent: 7, ease: 'none', scrollTrigger: { trigger: img.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+
+      /* Serve: the glass builds itself, step by step */
+      const steps = $$('.step');
+      const cubes = $$('.g-cube');
+      const stl = gsap.timeline({
+        defaults: { ease: 'none' },
+        scrollTrigger: {
+          trigger: '.serve', start: 'top top', end: () => '+=' + innerHeight * 2.6, pin: true, scrub: 0.6, invalidateOnRefresh: true,
+          onUpdate: (self) => {
+            const p = self.progress * 4.4;
+            steps.forEach((s, i) => s.dataset.state = p >= i + 1 ? 'done' : p >= i ? 'active' : '');
+            if (p >= 4) steps[3].dataset.state = 'active';
+          }
+        }
+      });
+      gsap.set('.g-liquid', { attr: { y: 252 } });
+      gsap.set('.g-meniscus', { attr: { y: 252 } });
+      gsap.set(cubes, { transformOrigin: '50% 50%' });
+      gsap.set('.g-orange', { transformOrigin: '50% 50%' });
+      gsap.set('.g-pick', { transformOrigin: '100% 100%' });
+      stl.fromTo(cubes, { y: -360, rotation: (i) => [-60, 40, 80][i] },
+        { y: 0, rotation: 0, duration: 0.8, stagger: 0.12, ease: 'bounce.out' }, 0)
+        .fromTo('.g-stream', { opacity: 1, scaleY: 0, transformOrigin: '50% 0%' }, { scaleY: 1, duration: 0.15, ease: 'power2.out' }, 1)
+        .fromTo('.g-liquid', { attr: { y: 252 } }, { attr: { y: 100 }, duration: 0.85, ease: 'power1.inOut' }, 1.05)
+        .fromTo('.g-meniscus', { attr: { y: 252 } }, { attr: { y: 100 }, duration: 0.85, ease: 'power1.inOut' }, 1.05)
+        .fromTo('.g-bubbles circle', { y: 60 }, { y: 0, duration: 0.85, stagger: 0.05 }, 1.05)
+        .to(cubes, { y: -10, duration: 0.6, stagger: 0.05, ease: 'sine.out' }, 1.3)
+        .to('.g-stream', { scaleY: 0, transformOrigin: '50% 100%', duration: 0.15, ease: 'power2.in' }, 1.82)
+        .set('.g-stream', { opacity: 0 }, 1.98)
+        .fromTo('.g-orange', { x: 340, y: -60, rotation: 220 }, { x: 0, y: 0, rotation: 0, duration: 0.8, ease: 'expo.out' }, 2.05)
+        .fromTo('.g-pick', { y: -420, rotation: -24 }, { y: 0, rotation: 0, duration: 0.8, ease: 'back.out(1.6)' }, 3.05)
+        .to({}, { duration: 0.6 });
+
+      /* Moments: each frame opens like a gate, the picture settles inside it */
+      $$('.m-card').forEach((card) => {
+        const media = $('.m-card__media', card), img = $('img', card);
+        gsap.fromTo(media, { clipPath: 'inset(16% 9% 16% 9% round 14px)' }, { clipPath: 'inset(0% 0% 0% 0% round 14px)', ease: 'none', scrollTrigger: { trigger: card, start: 'top 98%', end: 'top 45%', scrub: true } });
+        gsap.fromTo(img, { scale: 1.28, yPercent: -5 }, { scale: 1.02, yPercent: 5, ease: 'none', scrollTrigger: { trigger: card, start: 'top bottom', end: 'bottom top', scrub: true } });
+      });
+      gsap.fromTo('.moments__title', { xPercent: desk ? 5 : 3 }, { xPercent: desk ? -2 : -4, ease: 'none', scrollTrigger: { trigger: '.moments', start: 'top bottom', end: 'top 20%', scrub: true } });
+
+      /* Night: the wordmark rises out of the bottom edge */
+      gsap.fromTo(wordmarkSplit.chars, { yPercent: 105, rotation: 6 }, {
+        yPercent: 0, rotation: 0, ease: 'power3.out', stagger: 0.08,
+        scrollTrigger: { trigger: '.wordmark', start: 'top bottom', end: 'bottom bottom', scrub: 0.8 }
+      });
+
+      return () => { gsap.set([bTravel, bExit, bWiggle], { clearProps: 'all' }); };
+    });
+
+    /* The hour, tied to the whole page */
+    ScrollTrigger.create({ start: 0, end: 'max', onUpdate: (self) => setClock(self.progress) });
+
+    /* Tags: drift forever, speed and direction follow the scroll */
+    const tracks = $$('.tags__track');
+    tracks.forEach((t) => { t.innerHTML += t.innerHTML; t.querySelectorAll('li').forEach((li, i) => { if (i >= t.children.length / 2) li.setAttribute('aria-hidden', 'true'); }); });
+    const measure = () => tracks.forEach(t => (t._w = t.scrollWidth / 2));
+    measure();
+    ScrollTrigger.addEventListener('refresh', measure);
+    const tagState = tracks.map((t, i) => ({ x: i ? -t._w / 2 : 0, dir: i ? 1 : -1 }));
+    let sign = 1, skew = 0;
+    const setters = tracks.map(t => gsap.quickSetter(t, 'css'));
+    gsap.ticker.add((time, dt) => {
+      const v = lenis.velocity || 0;
+      if (v > 0.4) sign = 1; else if (v < -0.4) sign = -1;
+      const speed = (0.55 + Math.min(Math.abs(v) * 0.22, 9)) * (dt / 16.67);
+      skew += (gsap.utils.clamp(-7, 7, v * 0.35) - skew) * 0.1;
+      tracks.forEach((t, i) => {
+        const s = tagState[i];
+        s.x = gsap.utils.wrap(-t._w, 0, s.x + speed * sign * s.dir);
+        setters[i]({ x: s.x, skewX: -skew });
+      });
+    });
+
+    ScrollTrigger.refresh();
+  }
+})();
+</script>
+</body>
+</html>

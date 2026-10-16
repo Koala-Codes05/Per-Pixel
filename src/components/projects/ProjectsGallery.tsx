@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
+import LiquidDistortion from "@/components/LiquidDistortion";
 import Reveal from "@/components/Reveal";
 import { PROJECTS, type Project } from "@/lib/site";
 
@@ -40,7 +42,7 @@ export default function ProjectsGallery() {
 function Card({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal variant="media" delay={(index % 2) * 60}>
-      <a id={project.slug} href={`#details-${project.slug}`} className="project-card group block scroll-mt-24">
+      <Link id={project.slug} href={project.href ?? `#details-${project.slug}`} className="project-card group block scroll-mt-24">
         <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-blush">
           <Image
             src={project.image}
@@ -49,6 +51,7 @@ function Card({ project, index }: { project: Project; index: number }) {
             sizes="(min-width: 640px) 50vw, 100vw"
             className="project-image object-cover"
           />
+          <LiquidDistortion />
           <span className="absolute left-4 top-4 rounded-full bg-paper/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] backdrop-blur">
             {project.title}
           </span>
@@ -57,7 +60,7 @@ function Card({ project, index }: { project: Project; index: number }) {
           <span className="project-title font-serif text-xl italic">{project.title}</span>
           <span className="text-[11px] uppercase tracking-[0.16em] text-ink/60">{project.category} · {project.year}</span>
         </div>
-      </a>
+      </Link>
     </Reveal>
   );
 }

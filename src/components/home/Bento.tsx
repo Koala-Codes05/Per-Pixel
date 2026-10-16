@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import LiquidDistortion from "@/components/LiquidDistortion";
 import Reveal from "@/components/Reveal";
 import { PROJECTS } from "@/lib/site";
 
@@ -41,13 +42,14 @@ export default function Bento() {
               sizes="(min-width: 1400px) 440px, (min-width: 768px) 33vw, 50vw"
               className="bento-image object-cover"
             />
+            <LiquidDistortion />
           </Link>
         </Reveal>
 
         {/* Moove card */}
         <Reveal delay={100} className="bento-projects-slot">
           <div className="bento-projects-card">
-            <Link href={`/projects#${moove.slug}`} className="bento-feature group">
+            <Link href={moove.href ?? `/projects#${moove.slug}`} className="bento-feature group">
               <span className="bento-project-heading">{moove.title}<ArrowUpRight /></span>
               <span className="bento-project-image">
                 <Image
@@ -57,6 +59,7 @@ export default function Bento() {
                   sizes="(min-width: 1400px) 400px, (min-width: 768px) 30vw, 90vw"
                   className="bento-image object-cover"
                 />
+                <LiquidDistortion />
               </span>
             </Link>
             {/* Project rows */}
