@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ANAKIN // Directorial Showreel · Portal Hop Storyboard & Motion Laws</title>
+<style>
+  @font-face { font-family: "zentry"; src: url("assets/fonts/zentry-regular.woff2") format("woff2"); }
+  @font-face { font-family: "general"; src: url("assets/fonts/general.woff2") format("woff2"); }
+  @font-face { font-family: "robert"; src: url("assets/fonts/robert-medium.woff2") format("woff2"); }
+
+  :root {
+    --paper: #dfdff0;
+    --ink: #0E041D;
+    --cream: #F0F2FA;
+    --violet: #5724ff;
+    --cyan: #4FB7DD;
+    --acid: #edff66;
+    --magenta: #FF007A;
+    --yellow: #FFE600;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--ink); color: var(--cream);
+    font-family: "general", system-ui, sans-serif;
+    padding: 48px 56px 90px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header {
+    display: flex; align-items: flex-end; justify-content: space-between; gap: 32px;
+    margin-bottom: 36px; border-bottom: 2px solid rgba(240,242,250,.14); padding-bottom: 24px;
+  }
+  header h1 {
+    font-family: "zentry"; font-weight: 900; text-transform: uppercase;
+    font-size: 72px; line-height: .85; letter-spacing: .01em;
+  }
+  header h1 b { font-weight: inherit; font-feature-settings: "ss01" on; color: var(--violet); }
+  header p { font-family: "robert"; font-size: 16px; opacity: .78; margin-top: 10px; max-width: 840px; line-height: 1.48; }
+  .header-actions { display: flex; align-items: center; gap: 12px; }
+  .tag {
+    font-size: 12px; letter-spacing: .14em; text-transform: uppercase;
+    border: 1.5px solid rgba(240,242,250,.35); border-radius: 999px;
+    padding: 8px 16px; white-space: nowrap; font-family: "general";
+  }
+  .tag--cta {
+    background: var(--violet); color: #fff; border-color: var(--violet);
+    text-decoration: none; font-weight: 700; transition: transform .15s ease, background .2s ease;
+  }
+  .tag--cta:hover { transform: translateY(-2px); background: #6b3eff; }
+
+  .act {
+    font-size: 11px; letter-spacing: .2em; text-transform: uppercase; opacity: .55;
+    margin: 36px 0 18px; display: flex; align-items: center; gap: 14px;
+  }
+  .act::after { content: ""; flex: 1; height: 1px; background: rgba(240,242,250,.18); }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 26px; }
+  .grid.v { grid-template-columns: repeat(4, 1fr); }
+
+  .cell {
+    aspect-ratio: 16 / 9; container-type: inline-size; position: relative; overflow: hidden;
+    border-radius: 10px; background: var(--paper); color: var(--ink);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5); cursor: pointer; transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .cell:hover { transform: translateY(-3px); box-shadow: 0 20px 50px rgba(87,36,255,.3); }
+  .cell.vert { aspect-ratio: 9 / 16; }
+
+  .meta { display: flex; justify-content: space-between; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; margin-top: 12px; opacity: .88; }
+  .meta span:last-child { opacity: .55; font-family: "robert"; font-weight: 600; }
+  .note { font-family: "robert"; font-size: 13.5px; line-height: 1.48; opacity: .78; margin-top: 6px; }
+  .note b { color: var(--cream); opacity: 1; font-weight: 400; font-family: "general"; letter-spacing: .02em; }
+  .chipseam {
+    display: inline-block; margin-top: 9px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase;
+    border-radius: 999px; padding: 5px 12px; background: rgba(87,36,255,.22); color: #cbbcff; border: 1px solid rgba(87,36,255,.55);
+  }
+  .chipseam.shader { background: rgba(237,255,102,.12); color: var(--acid); border-color: rgba(237,255,102,.5); }
+
+  /* In-frame visual elements */
+  .z { font-family: "zentry"; font-weight: 900; text-transform: uppercase; line-height: .84; }
+  .z b { font-weight: inherit; font-feature-settings: "ss01" on; }
+  .label { position: absolute; font-family: "general"; font-size: 1.15cqw; letter-spacing: .14em; text-transform: uppercase; }
+  .grain {
+    position: absolute; inset: 0; pointer-events: none; opacity: .18; mix-blend-mode: multiply;
+    background-image: radial-gradient(rgba(14,4,29,.55) .5px, transparent .6px); background-size: .42cqw .42cqw;
+  }
+  .grid-lines {
+    position: absolute; inset: 0; opacity: .45; pointer-events: none;
+    background-image: linear-gradient(rgba(87,36,255,.13) 1px, transparent 1px), linear-gradient(90deg, rgba(87,36,255,.13) 1px, transparent 1px);
+    background-size: 6.25cqw 6.25cqw;
+  }
+  .pips { position: absolute; right: 5cqw; bottom: 4.6cqw; display: flex; gap: .9cqw; }
+  .pips i { width: 1.05cqw; height: 1.05cqw; border-radius: 50%; border: .16cqw solid var(--violet); display: block; }
+  .pips i.on { background: var(--violet); box-shadow: 0 0 1.2cqw rgba(87,36,255,.85); }
+  .imgtext { background-size: cover; background-position: center; -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  /* World card */
+  .world { background: #07020f; color: var(--cream); }
+  .world .bg { position: absolute; inset: -4%; background-size: cover; background-position: center; filter: blur(.35cqw) saturate(1.1) brightness(.62); }
+  .world .shade { position: absolute; inset: 0; background: radial-gradient(120% 90% at 50% 40%, transparent 30%, rgba(14,4,29,.82) 100%); }
+  .world .title { position: absolute; font-size: 7.2cqw; color: var(--cream); text-shadow: 0 .4cqw 2cqw rgba(0,0,0,.5); }
+  .chip {
+    position: absolute; display: flex; align-items: center; gap: .9cqw; background: rgba(14,4,29,.65);
+    border: .16cqw solid rgba(240,242,250,.45); border-radius: 999px; padding: .55cqw 1.4cqw .55cqw .6cqw;
+    font-family: "general"; font-size: 1.2cqw; letter-spacing: .14em; text-transform: uppercase; color: var(--cream);
+  }
+  .chip .glyph { width: 2.2cqw; height: 2.2cqw; border-radius: 50%; display: grid; place-items: center; background: var(--violet); color: #fff; font-family: "zentry"; font-weight: 900; font-size: 1.1cqw; }
+  .placeholder-tag { position: absolute; font-family: "general"; font-size: .88cqw; letter-spacing: .14em; text-transform: uppercase; background: rgba(14,4,29,.78); color: var(--cream); padding: .3cqw .65cqw; border-radius: .3cqw; }
+
+  /* 3D stage */
+  .stage { position: absolute; inset: 0; display: grid; place-items: center; perspective: 140cqw; }
+  .card3d {
+    position: absolute; border: .2cqw solid rgba(240,242,250,.4); border-radius: 1.2cqw;
+    overflow: hidden; box-shadow: 0 2cqw 6cqw rgba(0,0,0,.7); background-size: cover; background-position: center;
+  }
+  .ghost-shape { position: absolute; pointer-events: none; }
+
+  /* Seams & Tokens wide panels */
+  .wide { grid-column: span 3; aspect-ratio: auto; background: #160B29; color: var(--cream); padding: 32px 38px; border-radius: 12px; border: 1px solid rgba(240,242,250,.12); }
+  .seams { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0; margin-top: 22px; position: relative; }
+  .seams .s { border-left: 2px solid rgba(240,242,250,.18); padding: 0 16px 0 16px; }
+  .seams .s:first-child { border-left: 0; padding-left: 0; }
+  .seams .n { font-family: "zentry"; font-weight: 900; font-size: 32px; line-height: 1; }
+  .seams .t { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .6; margin-top: 6px; }
+  .seams .h { font-family: "robert"; font-size: 13.5px; margin-top: 10px; line-height: 1.4; opacity: .88; }
+  .seams .bar { position: absolute; left: 0; right: 0; top: -14px; height: 5px; display: grid; grid-template-columns: 1.85fr 1.85fr 1.85fr 1.85fr 1.85fr 1.85fr 3.9fr; gap: 3px; }
+  .seams .bar i { background: var(--violet); border-radius: 2px; display: block; }
+  .seams .bar i:last-child { background: var(--acid); }
+
+  .tokens { display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 40px; margin-top: 20px; }
+  .sw { display: flex; align-items: center; gap: 12px; margin: 9px 0; font-size: 13.5px; letter-spacing: .06em; }
+  .sw i { width: 34px; height: 34px; border-radius: 8px; display: block; border: 1px solid rgba(240,242,250,.25); }
+  .tokens h4 { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .55; font-weight: 400; margin-bottom: 12px; }
+  .tokens li { font-family: "robert"; font-size: 13.5px; line-height: 1.55; list-style: none; opacity: .85; margin-bottom: 6px; }
+  .tokens li::before { content: "— "; opacity: .5; }
+
+  /* Interactive Foley soundboard */
+  .sfx-dock {
+    margin-top: 40px; padding: 28px 36px; border-radius: 12px;
+    background: #111422; border: 1px solid rgba(87,36,255,.35);
+  }
+  .sfx-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 18px; }
+  .sfx-btn {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+    background: #191E32; border: 1px solid rgba(240,242,250,.15); border-radius: 8px;
+    padding: 14px 18px; color: #fff; cursor: pointer; text-align: left;
+    transition: background .15s ease, border-color .15s ease, transform .1s ease;
+  }
+  .sfx-btn:hover { background: #242A46; border-color: var(--violet); transform: translateY(-2px); }
+  .sfx-btn:active { transform: scale(0.98); }
+  .sfx-title { font-family: "general"; font-size: 13px; font-weight: 700; letter-spacing: .04em; color: var(--cream); }
+  .sfx-sub { font-family: "robert"; font-size: 11.5px; opacity: .65; }
+  .sfx-tag { font-family: ui-monospace, monospace; font-size: 10.5px; color: var(--acid); margin-top: 4px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>P<b>O</b>RTAL H<b>O</b>P · ST<b>O</b>RYB<b>O</b>ARD</h1>
+    <p>An unbroken 15-second directorial camera flight. Sinking through the counter of a giant Zentry <b>O</b> into 3D Octane craft, whipping past chromatic prisms, craning onto tactical FUI telemetry, coin-flipping into high-velocity neon grids, collapsing to a point in the musical dropout, and snapping back out to reveal giant multi-video typography on the exact 1.85s beat grid.</p>
+  </div>
+  <div class="header-actions">
+    <span class="tag">129.7 BPM · 1.85s BAR</span>
+    <span class="tag">15.000s MASTER</span>
+    <a href="showreel.html" class="tag tag--cta">▶ Open Live Composition</a>
+  </div>
+</header>
+
+<!-- =================================================================
+     ACT 1: THE PORTAL (0.00 — 5.55s)
+     ================================================================= -->
+<div class="act">Act 1 · The Portal & The Dive</div>
+<div class="grid">
+
+  <!-- Frame 01 -->
+  <div>
+    <div class="cell" id="frame-01" onclick="auditionSfx('whoosh_in')">
+      <div class="grid-lines"></div>
+      <div class="label" style="left:6cqw;top:5cqw;">ANAKIN // INSTANT DIRECTORIAL REEL</div>
+      <div class="z" style="position:absolute;left:6cqw;top:16cqw;font-size:14.2cqw;">
+        The reel<br>f<b class="imgtext" style="background-image:url('assets/images/thumb_3d.jpg');-webkit-text-stroke:.36cqw var(--violet);">o</b>r every<br>visi<b class="imgtext" style="background-image:url('assets/images/thumb_glass.jpg');-webkit-text-stroke:.36cqw var(--violet);">o</b>n
+      </div>
+      <div class="pips"><i></i><i></i><i></i><i></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>01 · The Reel & The Dive</span><span>01-dive · 0.00 — 1.85s</span></div>
+    <p class="note"><b>Words whip up from below in the opening breath.</b> At 1.25s the camera accelerates straight into the violet-ringed O, which already has Octane 3D playing inside. The O fills the frame on the 1.85s drop.</p>
+    <span class="chipseam">seam → zoom-through the O (whoosh_in_1490)</span>
+  </div>
+
+  <!-- Frame 02 -->
+  <div>
+    <div class="cell world" id="frame-02" onclick="auditionSfx('whoosh_out')">
+      <div class="bg" style="background-image:url('assets/images/unsplash_chrome.jpg')"></div>
+      <div class="shade"></div>
+      <div class="stage">
+        <div class="card3d" style="left:47cqw;top:12cqw;width:44cqw;height:24.75cqw;background-image:url('assets/images/thumb_3d.jpg');transform:rotateY(-14deg) rotateX(4deg);"></div>
+      </div>
+      <div class="placeholder-tag" style="left:49cqw;top:38.5cqw;">clip · clip_3d.mp4 (octane)</div>
+      <div class="z title" style="left:5.6cqw;top:16cqw;">3D Craft &<br>Caustics</div>
+      <div class="chip" style="left:5.6cqw;top:35cqw;"><span class="glyph">✦</span>Octane CGI</div>
+      <svg class="ghost-shape" viewBox="0 0 100 100" style="left:63cqw;top:40cqw;width:9cqw;height:9cqw;opacity:.85"><path d="M20 30 L35 14 H65 L80 30 L50 88 Z M20 30 H80 M35 14 L42 30 L50 88 M65 14 L58 30 L50 88" fill="none" stroke="#5724ff" stroke-width="3.2" stroke-linejoin="round"/></svg>
+      <div class="pips"><i class="on"></i><i></i><i></i><i></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>02 · 3D World Landing</span><span>02-3d · 1.85 — 3.70s</span></div>
+    <p class="note"><b>Camera lands from the dive (power4.out).</b> Title slams on beat 2 (2.31s). At 3.15s, a crisp vector Diamond doorway springs to centre with Aurora Glass inside. Camera dives rolling 0°→90°, crossing on 3.70s.</p>
+    <span class="chipseam">seam → rolling dive (Diamond / whoosh_out_2017)</span>
+  </div>
+
+  <!-- Frame 03 -->
+  <div>
+    <div class="cell world" id="frame-03" onclick="auditionSfx('whip')">
+      <div class="bg" style="background-image:url('assets/images/unsplash_prism.jpg');filter:blur(.3cqw) brightness(.72);"></div>
+      <div class="shade"></div>
+      <div class="stage">
+        <div class="card3d" style="left:30cqw;top:9cqw;width:30cqw;height:16.9cqw;background-image:url('assets/images/thumb_liquid.jpg');transform:rotateY(22deg) translateZ(-8cqw);filter:blur(.15cqw);"></div>
+        <div class="card3d" style="left:26cqw;top:22cqw;width:36cqw;height:20.25cqw;background-image:url('assets/images/thumb_glass.jpg');transform:rotateY(18deg);"></div>
+      </div>
+      <div class="placeholder-tag" style="left:28cqw;top:43.5cqw;">clip · raw_12-aurora-glass.mp4</div>
+      <div class="z title" style="right:5.6cqw;top:12cqw;text-align:right;">Chromatic<br>Dispersion</div>
+      <div class="chip" style="right:5.6cqw;top:31cqw;"><span class="glyph">❖</span>Prism Optics</div>
+      <div class="pips"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>03 · Perspective Flight</span><span>03-prisms · 3.70 — 5.55s</span></div>
+    <p class="note"><b>The roll levels out as camera flies right to left past cards standing in depth.</b> Decelerates into focus on the clip card, chip pops on 4.63s. From 5.20s the whole world whips off left with motion blur.</p>
+    <span class="chipseam shader">seam → whip-pan shader (whip_1464)</span>
+  </div>
+
+</div>
+
+<!-- =================================================================
+     ACT 2: THE HOP & DISCIPLINES (5.55 — 11.10s)
+     ================================================================= -->
+<div class="act">Act 2 · The Hop & Disciplines</div>
+<div class="grid">
+
+  <!-- Frame 04 -->
+  <div>
+    <div class="cell world" id="frame-04" onclick="auditionSfx('coin_flip')">
+      <div class="bg" style="background-image:url('assets/images/thumb_hud.jpg');filter:blur(.3cqw) brightness(.6) sepia(.25) saturate(1.2);"></div>
+      <div class="shade"></div>
+      <div style="position:absolute;left:55cqw;top:9cqw;width:34cqw;height:34cqw;border-radius:50%;background:url('assets/images/thumb_hud.jpg') center/cover;border:.5cqw solid var(--violet);box-shadow:0 0 6cqw rgba(87,36,255,.6), inset 0 0 3cqw rgba(0,0,0,.4);"></div>
+      <div class="placeholder-tag" style="left:63cqw;top:44.5cqw;">clip · raw_22-hud.mp4 (round window)</div>
+      <div class="z title" style="left:5.6cqw;top:16cqw;">Tactical<br>FUI HUD</div>
+      <div class="chip" style="left:5.6cqw;top:35cqw;"><span class="glyph">◎</span>Telemetry</div>
+      <div class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>04 · Tactical FUI HUD</span><span>04-hud · 5.55 — 7.40s</span></div>
+    <p class="note"><b>Whip lands, camera cranes down with amber telemetry.</b> The HUD circular window springs open on 6.01s. On 6.94s it coin-flips toward the lens, reverse face is Synthetic Velocity, filling frame by 7.40s.</p>
+    <span class="chipseam shader">seam → 3D coin flip (coin_flip_2038)</span>
+  </div>
+
+  <!-- Frame 05 -->
+  <div>
+    <div class="cell world" id="frame-05" onclick="auditionSfx('glitch_hit')">
+      <div class="bg" style="background-image:url('assets/images/thumb_synth.jpg');filter:blur(.3cqw) grayscale(.4) brightness(.55) contrast(1.1);"></div>
+      <div class="shade"></div>
+      <div class="stage">
+        <div class="card3d" style="left:48cqw;top:10cqw;width:44cqw;height:26cqw;background-image:url('assets/images/thumb_synth.jpg');border-color:var(--cyan);box-shadow:0 0 6cqw rgba(79,183,221,.5);"></div>
+      </div>
+      <div class="placeholder-tag" style="left:50cqw;top:38.5cqw;">clip · raw_synth.mp4 (140 bpm)</div>
+      <div class="z title" style="left:5.6cqw;top:15cqw;font-size:8cqw;">Synthetic<br>Velocity</div>
+      <div class="chip" style="left:5.6cqw;top:33cqw;"><span class="glyph">⚡</span>Strobe</div>
+      <div class="pips" style="right:46cqw;"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>05 · Synthetic Velocity</span><span>05-smash · 7.40 — 9.25s</span></div>
+    <p class="note"><b>Chromatic smash in, title glitch-slams and snaps clean.</b> The clip stutter-cuts on eighth notes. In the 8.75s dropout the whole universe collapses down into one bright violet singularity point.</p>
+    <span class="chipseam">seam → collapse to a point (glitch_hit_1031)</span>
+  </div>
+
+  <!-- Frame 06 -->
+  <div>
+    <div class="cell" id="frame-06" onclick="auditionSfx('roll_whoosh')">
+      <div class="grid-lines"></div>
+      <div class="z" style="position:absolute;left:5cqw;right:4cqw;top:12cqw;font-size:27cqw;white-space:nowrap;letter-spacing:-.01em;">
+        <span class="imgtext" style="background-image:url('assets/images/thumb_3d.jpg')">A</span><b class="imgtext" style="background-image:url('assets/images/thumb_glass.jpg')">N</b><span class="imgtext" style="background-image:url('assets/images/thumb_hud.jpg')">A</span><b class="imgtext" style="background-image:url('assets/images/thumb_synth.jpg')">K</b><span class="imgtext" style="background-image:url('assets/images/thumb_liquid.jpg')">I</span><b class="imgtext" style="background-image:url('assets/images/thumb_bauhaus.jpg')">N</b>
+      </div>
+      <div class="label" style="left:5.6cqw;bottom:5cqw;">ONE DIRECTOR. EVERY DISCIPLINE.</div>
+      <div class="pips"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>06 · Multi-Video Typography</span><span>06-typo · 9.25 — 11.10s</span></div>
+    <p class="note"><b>The re-hit at 9.25s launches pull-back at full speed: that point was the counter of the A.</b> Decelerates to rest by ~10.2s. Each letter holds a discipline for 1 beat, then ripples to solid ink starting at 10.64s.</p>
+    <span class="chipseam">seam → in-place ink ripple (roll_whoosh_168)</span>
+  </div>
+
+</div>
+
+<!-- =================================================================
+     ACT 3: THE ASK & EXECUTIVE LOCKUP (11.10 — 15.00s)
+     ================================================================= -->
+<div class="act">Act 3 · The Executive Call & Motion System</div>
+<div class="grid">
+
+  <!-- Frame 07 -->
+  <div>
+    <div class="cell" id="frame-07" onclick="auditionSfx('ui_pop')">
+      <div class="grid-lines" style="opacity:.3"></div>
+      <div style="position:absolute;left:50%;top:44%;width:70cqw;height:40cqw;transform:translate(-50%,-50%);background:radial-gradient(closest-side, rgba(87,36,255,.32), transparent);"></div>
+      <div style="position:absolute;left:0;right:0;top:13cqw;display:flex;justify-content:center;align-items:center;gap:2.4cqw;">
+        <div class="z" style="font-size:7.5cqw;">ANAK<b>I</b>N</div>
+      </div>
+      <div style="position:absolute;left:0;right:0;top:26.5cqw;text-align:center;font-family:'robert';font-size:2.1cqw;color:rgba(14,4,29,.8);">Lead Motion Designer & Creative Director<br>3D Motion · Tactical FUI · Kinetic Typography</div>
+      <div style="position:absolute;left:50%;top:34.5cqw;transform:translateX(-50%);background:var(--acid);color:var(--ink);border-radius:999px;padding:1.4cqw 3.6cqw;font-family:'general';font-size:1.7cqw;letter-spacing:.16em;text-transform:uppercase;box-shadow:0 .6cqw 0 rgba(14,4,29,.9);">OPEN FOR COMMISSIONS</div>
+      <div class="grain"></div>
+    </div>
+    <div class="meta"><span>07 · Executive Lockup</span><span>07-cta · 11.10 — 15.00s</span></div>
+    <p class="note"><b>Ink wordmark shrinks and rises, subline waterfalls in, CTA pill springs in.</b> Pill presses on 12.95s bar with violet shockwave pulse. Held frame from 13.9s to 15.0s with breathing caustics.</p>
+    <span class="chipseam">end · held frame (ui_pop_2356 & 2358)</span>
+  </div>
+
+  <!-- Wide Seam Map -->
+  <div class="wide" style="grid-column: span 2;">
+    <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;">Seam map · one camera, no cuts · bars at 1.85s</div>
+    <div class="seams" style="margin-top:34px;">
+      <div class="bar"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="s"><div class="n">01</div><div class="t">0.00s</div><div class="h">Dive through the O on the drop</div></div>
+      <div class="s"><div class="n">02</div><div class="t">1.85s</div><div class="h">Rolling dive through Diamond (0°→90°)</div></div>
+      <div class="s"><div class="n">03</div><div class="t">3.70s</div><div class="h">Whip-pan shader, right to left</div></div>
+      <div class="s"><div class="n">04</div><div class="t">5.55s</div><div class="h">Coin flip (0°→180°) & crane down</div></div>
+      <div class="s"><div class="n">05</div><div class="t">7.40s</div><div class="h">Collapse to a point in the dropout</div></div>
+      <div class="s"><div class="n">06</div><div class="t">9.25s</div><div class="h">Pull-back on re-hit, then ink ripple</div></div>
+      <div class="s"><div class="n">07</div><div class="t">11.10s</div><div class="h">Lockup, press on 12.95s, held frame</div></div>
+    </div>
+  </div>
+
+  <!-- Wide Tokens Panel -->
+  <div class="wide">
+    <div style="font-size:11px;letter-spacing:.18em;text-transform:uppercase;opacity:.55;">Tokens & Motion Law Matrix · Strict HyperFrames Standards</div>
+    <div class="tokens">
+      <div>
+        <h4>Palette by Role</h4>
+        <div class="sw"><i style="background:#dfdff0"></i>Paper #dfdff0 · brand frames</div>
+        <div class="sw"><i style="background:#0E041D"></i>Ink #0E041D · type on paper</div>
+        <div class="sw"><i style="background:#F0F2FA"></i>Cream #F0F2FA · type in worlds</div>
+        <div class="sw"><i style="background:#5724ff"></i>Violet #5724ff · the one accent, portals, pips</div>
+        <div class="sw"><i style="background:#4FB7DD"></i>Cyan #4FB7DD · RGB-split only</div>
+        <div class="sw"><i style="background:#edff66"></i>Acid #edff66 · CTA only</div>
+      </div>
+      <div>
+        <h4>Type Roles</h4>
+        <ul>
+          <li><span class="z" style="font-size:22px">Zentry 900</span> display, uppercase, ss01 on &lt;b&gt;</li>
+          <li><span style="font-family:general;letter-spacing:.14em;text-transform:uppercase;font-size:13px">General Sans</span> labels, chips, CTA</li>
+          <li><span style="font-family:robert">Robert Medium</span> subline</li>
+        </ul>
+        <h4 style="margin-top:20px">Motion Law</h4>
+        <ul>
+          <li>Dives and landings: <code>power4.out</code></li>
+          <li>Accelerating exits: <code>power3.in</code>, blur peaks at seam</li>
+          <li>Pops: <code>back.out(1.8)</code> spring overshoot</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Bans</h4>
+        <ul>
+          <li>No card-by-card slideshow cuts</li>
+          <li>No motion that lands on nothing</li>
+          <li>No gradient text, no fake store UI</li>
+          <li>No raster icon scaled past native size</li>
+          <li>No static end card</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- =================================================================
+     VERTICAL CUT (1080×1920) · RE-LAID-OUT
+     ================================================================= -->
+<div class="act">Vertical Cut · 1080×1920 · Same Timeline, Re-Laid-Out</div>
+<div class="grid v">
+
+  <div>
+    <div class="cell vert" id="vframe-01">
+      <div class="grid-lines" style="background-size:11cqw 11cqw"></div>
+      <div class="label" style="left:8cqw;top:9cqw;font-size:2.6cqw;">ANAKIN // MMXXVII SHOWREEL</div>
+      <div class="z" style="position:absolute;left:8cqw;top:44cqw;font-size:18cqw;">The<br>reel<br>f<b class="imgtext" style="background-image:url('assets/images/thumb_3d.jpg');-webkit-text-stroke:.5cqw var(--violet);">o</b>r every<br>visi<b class="imgtext" style="background-image:url('assets/images/thumb_glass.jpg');-webkit-text-stroke:.5cqw var(--violet);">o</b>n</div>
+      <div class="pips" style="right:8cqw;bottom:9cqw;gap:2cqw"><i style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i></div>
+      <div class="grain" style="background-size:.8cqw .8cqw"></div>
+    </div>
+    <div class="meta"><span>V01 · The Reel & Dive</span><span>0.00 — 1.85s</span></div>
+    <p class="note"><b>The line stacks into four rows</b> so the O sits near the optical centre for the dive.</p>
+  </div>
+
+  <div>
+    <div class="cell vert world" id="vframe-02">
+      <div class="bg" style="background-image:url('assets/images/unsplash_chrome.jpg')"></div>
+      <div class="shade"></div>
+      <div class="stage" style="perspective:160cqw">
+        <div class="card3d" style="left:10cqw;top:62cqw;width:80cqw;height:45cqw;background-image:url('assets/images/thumb_3d.jpg');transform:rotateY(-12deg) rotateX(5deg);border-width:.4cqw;border-radius:1.4cqw;"></div>
+      </div>
+      <div class="z title" style="left:8cqw;top:22cqw;font-size:15cqw;">3D Craft &<br>Caustics</div>
+      <div class="chip" style="left:8cqw;top:122cqw;font-size:2.8cqw;gap:2cqw;padding:1.2cqw 3cqw 1.2cqw 1.3cqw;border-width:.35cqw;"><span class="glyph" style="width:5cqw;height:5cqw;font-size:2.4cqw;">✦</span>Octane CGI</div>
+      <div class="pips" style="right:8cqw;bottom:9cqw;gap:2cqw"><i class="on" style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i><i style="width:2.2cqw;height:2.2cqw"></i></div>
+      <div class="grain" style="background-size:.8cqw .8cqw"></div>
+    </div>
+    <div class="meta"><span>V02–05 · Discipline Plate</span><span>1.85 — 9.25s</span></div>
+    <p class="note"><b>Title on top, clip card in the middle, chip below.</b> Frames 3–5 use the same vertical hierarchy.</p>
+  </div>
+
+  <div>
+    <div class="cell vert" id="vframe-06">
+      <div class="grid-lines" style="background-size:11cqw 11cqw"></div>
+      <div class="z" style="position:absolute;left:7cqw;top:44cqw;font-size:46cqw;line-height:.82;">
+        <span class="imgtext" style="background-image:url('assets/images/thumb_3d.jpg')">A</span><b class="imgtext" style="background-image:url('assets/images/thumb_glass.jpg')">N</b><span class="imgtext" style="background-image:url('assets/images/thumb_hud.jpg')">A</span><br><b class="imgtext" style="background-image:url('assets/images/thumb_synth.jpg')">K</b><span class="imgtext" style="background-image:url('assets/images/thumb_liquid.jpg')">I</span><b class="imgtext" style="background-image:url('assets/images/thumb_bauhaus.jpg')">N</b>
+      </div>
+      <div class="label" style="left:8cqw;bottom:12cqw;font-size:2.6cqw;">One Director. Every Discipline.</div>
+      <div class="grain" style="background-size:.8cqw .8cqw"></div>
+    </div>
+    <div class="meta"><span>V06 · Every Discipline</span><span>9.25 — 11.10s</span></div>
+    <p class="note"><b>ANA stacks over KIN.</b> The pull-back still starts inside the counter of the A.</p>
+  </div>
+
+  <div>
+    <div class="cell vert" id="vframe-07">
+      <div class="grid-lines" style="opacity:.3;background-size:11cqw 11cqw"></div>
+      <div style="position:absolute;left:50%;top:44%;width:120cqw;height:90cqw;transform:translate(-50%,-50%);background:radial-gradient(closest-side, rgba(87,36,255,.3), transparent);"></div>
+      <div class="z" style="position:absolute;left:0;right:0;top:74cqw;text-align:center;font-size:16cqw;">ANAK<b>I</b>N</div>
+      <div style="position:absolute;left:10cqw;right:10cqw;top:94cqw;text-align:center;font-family:'robert';font-size:4.2cqw;line-height:1.35;color:rgba(14,4,29,.8);">Lead Motion Designer<br>3D · FUI · Kinetic Typography</div>
+      <div style="position:absolute;left:50%;top:118cqw;transform:translateX(-50%);background:var(--acid);color:var(--ink);border-radius:999px;padding:3cqw 7cqw;font-family:'general';font-size:3.6cqw;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap;box-shadow:0 1.2cqw 0 rgba(14,4,29,.9);">OPEN FOR COMMISSIONS</div>
+      <div class="grain" style="background-size:.8cqw .8cqw"></div>
+    </div>
+    <div class="meta"><span>V07 · Executive Lockup</span><span>11.10 — 15.00s</span></div>
+    <p class="note"><b>The lockup stacks vertically</b> inside safe title bounds so mobile UI does not cover it.</p>
+  </div>
+
+</div>
+
+<!-- =================================================================
+     INTERACTIVE FOLEY SOUND DESIGN SOUNDBOARD
+     ================================================================= -->
+<div class="sfx-dock">
+  <div style="display:flex;justify-content:space-between;align-items:center;">
+    <div>
+      <h3 style="font-family:'zentry';font-size:26px;text-transform:uppercase;letter-spacing:.02em;">Interactive Foley Soundboard</h3>
+      <p style="font-family:'robert';font-size:14px;opacity:.7;margin-top:4px;">Click any cue below to audition the authentic uncompressed WAV sound effects mixed under Arulo's 129.7 BPM grid.</p>
+    </div>
+    <span class="tag" style="background:rgba(87,36,255,.2);color:#cbbcff;border-color:var(--violet);">8 PUNCHY FOLEY HITS</span>
+  </div>
+
+  <div class="sfx-grid">
+    <button class="sfx-btn" onclick="auditionSfx('whoosh_in')">
+      <span class="sfx-title">01 · Whoosh In (1.45s)</span>
+      <span class="sfx-sub">Pitch-shifted vacuum surge into O</span>
+      <span class="sfx-tag">whoosh_in_1490.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('whoosh_out')">
+      <span class="sfx-title">02 · Whoosh Out (3.25s)</span>
+      <span class="sfx-sub">Rolling dive through Diamond</span>
+      <span class="sfx-tag">whoosh_out_2017.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('whip')">
+      <span class="sfx-title">03 · Whip Pan (5.25s)</span>
+      <span class="sfx-sub">Directional supersonic air snap</span>
+      <span class="sfx-tag">whip_1464.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('coin_flip')">
+      <span class="sfx-title">04 · 3D Coin Flip (6.85s)</span>
+      <span class="sfx-sub">Metallic coin spin & reverse lock</span>
+      <span class="sfx-tag">coin_flip_2038.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('glitch_hit')">
+      <span class="sfx-title">05 · Glitch Smash (7.35s)</span>
+      <span class="sfx-sub">Sub-bass impact & RGB channel burst</span>
+      <span class="sfx-tag">glitch_hit_1031.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('roll_whoosh')">
+      <span class="sfx-title">06 · Roll Whoosh (9.05s)</span>
+      <span class="sfx-sub">Supersonic re-hit pull-back</span>
+      <span class="sfx-tag">roll_whoosh_168.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('ui_pop')">
+      <span class="sfx-title">07 · UI Pop (11.25s)</span>
+      <span class="sfx-sub">Bubble bloom on logo & subline</span>
+      <span class="sfx-tag">ui_pop_2356.wav</span>
+    </button>
+    <button class="sfx-btn" onclick="auditionSfx('ui_pop_heavy')">
+      <span class="sfx-title">08 · CTA Press (12.90s)</span>
+      <span class="sfx-sub">Tactile pill bounce & violet pulse</span>
+      <span class="sfx-tag">ui_pop_2358.wav</span>
+    </button>
+  </div>
+</div>
+
+<script>
+const audioMap = {
+  whoosh_in: new Audio('assets/sfx/whoosh_in_1490.wav'),
+  whoosh_out: new Audio('assets/sfx/whoosh_out_2017.wav'),
+  whip: new Audio('assets/sfx/whip_1464.wav'),
+  coin_flip: new Audio('assets/sfx/coin_flip_2038.wav'),
+  glitch_hit: new Audio('assets/sfx/glitch_hit_1031.wav'),
+  roll_whoosh: new Audio('assets/sfx/roll_whoosh_168.wav'),
+  ui_pop: new Audio('assets/sfx/ui_pop_2356.wav'),
+  ui_pop_heavy: new Audio('assets/sfx/ui_pop_2358.wav')
+};
+
+function auditionSfx(name) {
+  const sound = audioMap[name];
+  if (sound) {
+    sound.currentTime = 0;
+    sound.volume = 1.0;
+    sound.play().catch(e => console.log('Audio autoplay policy:', e));
+  }
+}
+</script>
+
+</body>
+</html>

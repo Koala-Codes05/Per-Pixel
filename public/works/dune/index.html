@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DUNE — Freedom to be yourself</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://images.unsplash.com">
+<link rel="preload" as="image" href="https://images.unsplash.com/photo-1677486612550-c3bc528f0e5a?w=2000&q=82&auto=format&fit=crop">
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--sand:#efe3d0;--ink:#2a130b;--clay:#b5703f;--bg:#efe3d0;--fg:#2a130b;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#1d0f09;--fg:#efe3d0}}
+:root[data-theme=dark]{--bg:#1d0f09;--fg:#efe3d0}
+*{box-sizing:border-box;margin:0}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html.lenis{height:auto}.lenis.lenis-stopped{overflow:hidden}
+body{background:var(--bg);color:var(--fg);font:300 16px/1.5 Unbounded,system-ui,sans-serif;overflow-x:hidden}
+em{font:italic 400 1.15em 'Instrument Serif',Georgia,serif}a{color:inherit;text-decoration:none}
+#ld{position:fixed;inset:0;z-index:99;background:var(--ink);color:var(--sand);display:flex;flex-direction:column;justify-content:flex-end;padding:6vw;clip-path:inset(0)}
+#ld b{font-size:clamp(5rem,28vw,20rem);font-weight:600;line-height:.8}#ld span{font:italic 1.4rem 'Instrument Serif',serif}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;color:var(--sand);mix-blend-mode:difference;font-size:.75rem}
+nav div{display:flex;gap:2rem}nav a:first-child{font-weight:600;letter-spacing:.2em}
+#hero{position:relative;height:100svh;overflow:hidden;background:linear-gradient(#86aed0,#f3cfa3 70%,#e9a86d)}
+.sun{position:absolute;left:50%;top:34%;width:min(34vw,300px);aspect-ratio:1;margin-left:calc(min(34vw,300px)/-2);border-radius:50%;background:radial-gradient(#fff6e2,#ffd9a0 60%,#f2a96b)}
+.dn{position:absolute;left:0;width:100%;bottom:0;height:46%}.d2{height:36%}.d3{height:26%}
+h1{position:absolute;left:0;right:0;top:20%;display:flex;justify-content:center;font:600 clamp(4.2rem,24vw,22rem)/1 Unbounded,sans-serif;color:var(--ink);transform-origin:50% 100%}
+h1 i{display:block;overflow:hidden;padding:0 .01em}h1 b{display:block;font-weight:600}
+.sub{position:absolute;left:5vw;bottom:9%;z-index:3;color:var(--sand);font-size:.85rem;max-width:20rem}.sub em{font-size:1.9rem;display:block;line-height:1.1;margin-top:.4rem}
+.scr{position:absolute;right:5vw;bottom:9%;z-index:3;color:var(--sand);font-size:.7rem;letter-spacing:.2em}
+.mq{background:var(--ink);color:var(--sand);overflow:hidden;padding:2.5vw 0 4vw;font-size:clamp(2.2rem,8vw,6rem);font-weight:600;white-space:nowrap}
+.mq div{display:flex;width:max-content}.mq p{padding-right:3rem}.mq .r2{color:transparent;-webkit-text-stroke:1px var(--sand);margin-top:1vw}
+#col{background:var(--ink);color:var(--sand);height:100svh;display:flex;flex-direction:column;justify-content:center;overflow:hidden;gap:3vh}
+#col h2{font-size:clamp(2.4rem,9vw,7rem);font-weight:600;line-height:.95;padding:0 5vw}
+.chips{display:flex;gap:.5rem;padding:0 5vw;flex-wrap:wrap}.chips button{font:inherit;font-size:.7rem;color:inherit;background:none;border:1px solid #efe3d055;border-radius:99px;padding:.6rem 1.1rem;cursor:pointer;transition:.3s}
+.chips .on{background:var(--sand);color:var(--ink)}.chips button:focus-visible,.btn:focus-visible{outline:2px solid var(--clay);outline-offset:3px}
+.trk{display:flex;gap:2vw;padding:0 5vw;width:max-content}
+.card{position:relative;flex:none;width:min(62vw,380px);height:min(52svh,480px);overflow:hidden;border-radius:200px 200px 0 0;background:linear-gradient(var(--a),var(--b))}
+.card svg{position:absolute;left:-15%;top:0;width:130%;height:100%}
+.card p{position:absolute;left:0;right:0;bottom:6%;text-align:center;color:var(--sand);font-size:.8rem}.card p em{display:block;font-size:2rem;line-height:1}
+.st{padding:28vh 5vw;max-width:70rem;margin:auto}#stm{font:400 clamp(1.8rem,5.4vw,4rem)/1.12 'Instrument Serif',Georgia,serif}#stm span{opacity:.15}.rm #stm span{opacity:1}
+#fmt{position:relative;height:100svh;overflow:hidden;background:var(--sand);color:var(--ink);display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 5vw;gap:2rem;perspective:1400px}
+#fmt h2{font-size:clamp(2rem,6vw,5rem);font-weight:600;line-height:1}#fmt ul{list-style:none;padding:0;margin:1.5rem 0;font-size:.8rem;display:grid;gap:.4rem}
+.sw{display:flex;gap:.6rem}.sw span{width:2.4rem;height:2.4rem;border-radius:50%}
+.ph{justify-self:center;width:min(300px,42vw);aspect-ratio:9/18.5;border:7px solid var(--ink);border-radius:2.4rem;overflow:hidden;background:#fff;box-shadow:0 40px 80px #2a130b44}
+.in{height:240%;background:linear-gradient(#86aed0 0,#f3cfa3 14%,#c4864f 26%,var(--ink) 38%,var(--sand) 38%,var(--sand) 70%,var(--clay) 70%);padding:14% 8%;color:var(--sand);font-size:.62rem}.in strong{display:block;font-size:2.4em;line-height:1;margin-top:46%}
+#join{position:absolute;inset:0;background:var(--ink);color:var(--sand);display:flex;flex-direction:column;justify-content:center;padding:0 5vw;clip-path:circle(0% at 50% 55%)}
+#join h2{font-size:clamp(2.4rem,9vw,7rem)}#join form{margin-top:2rem;display:flex;gap:.6rem;flex-wrap:wrap}
+#join input{font:inherit;font-size:.8rem;padding:1rem 1.4rem;border-radius:99px;border:1px solid #efe3d088;background:none;color:inherit;min-width:min(100%,20rem)}
+.btn{font:inherit;font-size:.8rem;border:0;border-radius:99px;padding:1rem 1.8rem;background:var(--sand);color:var(--ink);cursor:pointer}
+.rm #fmt{height:auto;grid-template-columns:1fr;padding:12vh 5vw}.rm #join{position:relative;clip-path:none;padding:12vh 5vw;margin:8vh -5vw -12vh}
+footer{background:#000;color:var(--sand);padding:12vh 5vw 5vh;overflow:hidden;text-align:center}
+footer h2{font-size:clamp(5rem,31vw,28rem);font-weight:600;line-height:.8}.pl{display:flex;justify-content:center;gap:.6rem;flex-wrap:wrap;margin-top:-5vw;position:relative}
+.pl a{background:#2a130bcc;backdrop-filter:blur(8px);border:1px solid #efe3d033;border-radius:99px;padding:.9rem 1.8rem;font-size:.8rem}footer p{margin-top:8vh;font-size:.7rem;opacity:.6}
+.pg{display:none}.pg.on{display:block}
+#cv{position:fixed;inset:0;z-index:90;background:var(--clay);display:none;place-items:center;font:600 clamp(3rem,16vw,12rem) Unbounded,sans-serif;color:var(--ink)}
+.ar{position:absolute;inset:0;background:linear-gradient(var(--a),var(--b));overflow:hidden}.ar svg{width:100%;height:100%;display:block}
+.tri{background:var(--ink);color:var(--sand);display:grid;grid-template-columns:repeat(3,1fr);gap:2vw;padding:14vh 5vw 10vh}
+.tri a{position:relative;display:block;aspect-ratio:3/5;overflow:hidden;border-radius:50vw 50vw 0 0}
+.tri span{position:absolute;left:0;right:0;bottom:6%;text-align:center;font-size:clamp(.55rem,1.6vw,.85rem);z-index:2}.tri em{display:block;font-size:2.2em;line-height:1}
+.ll{background:var(--sand);color:var(--ink);padding:20vh 0;text-align:center;overflow:hidden}
+.ll h2{font-size:clamp(3.4rem,17vw,15rem);font-weight:600;line-height:.9;white-space:nowrap}.ll h2+h2{font:italic 400 clamp(3.4rem,17vw,15rem)/.9 'Instrument Serif',Georgia,serif}
+.ll p{max-width:26rem;margin:4vh auto;font-size:.75rem;padding:0 5vw}.pill{display:inline-block;border:1px solid currentColor;border-radius:99px;padding:1rem 2rem;font-size:.8rem}
+.so{background:var(--sand);color:var(--ink);padding:14vh 5vw;display:grid;grid-template-columns:1fr 1.3fr;gap:3vw;align-items:center;overflow:hidden}
+.so h2{font-size:clamp(2rem,6vw,5rem);font-weight:600;line-height:1}.so p{font-size:.8rem;margin-top:1rem;max-width:22rem}
+.stg{position:relative;height:min(80svh,640px)}.ig{position:absolute;left:0;top:6%;width:52%;background:#fff;border-radius:14px;box-shadow:0 30px 60px #2a130b33;overflow:hidden;font-size:.6rem}
+.ig i{display:block;padding:.7rem;font-style:normal;font-weight:600}.sq{position:relative;aspect-ratio:1}.ig p{padding:.7rem;margin:0;max-width:none}
+.stv{position:absolute;width:34%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;box-shadow:0 30px 60px #2a130b33}.stv.a{right:0;top:0}.stv.b{right:16%;bottom:0}
+.stv span{position:absolute;left:10%;bottom:10%;z-index:2;color:var(--sand);font:italic 1.6rem/1 'Instrument Serif',serif}
+.pgt{padding:20vh 5vw 4vh;font-size:clamp(3rem,13vw,11rem);font-weight:600;line-height:.9}.sh .chips button{border-color:currentColor}.sh .chips .on{background:var(--fg);color:var(--bg)}
+.gr{display:grid;grid-template-columns:repeat(4,1fr);gap:2vw;padding:5vh 5vw 14vh}.pr{display:block;font-size:.7rem}.pr[hidden]{display:none}
+.pa{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:50% 50% 0 0/30% 30% 0 0;margin-bottom:.6rem}
+.lb{position:relative;height:100svh;overflow:hidden}.lb .t{position:absolute;left:5vw;bottom:5vh;z-index:2;color:var(--sand);font-size:clamp(3rem,15vw,12rem);font-weight:600;line-height:.9}.lb .t em{display:block;font-size:.3em}
+.lead{max-width:34rem;padding:0 5vw 10vh;font-size:.9rem}.hrs{display:flex;height:100svh}.hrs>div{flex:1;overflow:hidden;position:relative;padding:5vh 1rem;white-space:nowrap}
+.hrs b{writing-mode:vertical-rl;font-size:1.3rem}.hrs p{position:absolute;left:3.4rem;bottom:5vh;font:italic 1.8rem 'Instrument Serif',serif}
+@media(max-width:700px){.gr{grid-template-columns:repeat(2,1fr)}.so{grid-template-columns:1fr}.hrs p{font-size:1.2rem}#fmt{grid-template-columns:1fr;align-content:center;gap:1rem}.ph{width:46vw}#fmt ul{display:none}.card{border-radius:140px 140px 0 0}}
+::selection{background:#b5703f;color:#fff}html{scrollbar-color:#a56d4c #efe3d0}a:focus-visible,button:focus-visible{outline:2px solid #e9a86d;outline-offset:4px}
+nav{padding:22px 5vw;font-size:.8rem}nav a{transition:opacity .2s}nav a:hover{opacity:.6}nav>a:first-child{font-size:1rem;letter-spacing:.14em}nav div a{font-weight:300!important;letter-spacing:.02em!important;font-size:inherit!important}
+#hero{background:var(--sand);color:var(--ink)}
+.wm{position:absolute;left:0;right:0;top:calc(50% - .5em);margin:0;display:flex;justify-content:center;font:600 min(25vw,42svh)/1 Unbounded,sans-serif;letter-spacing:-.045em;color:var(--ink);pointer-events:none;will-change:transform}.wm i{display:block;overflow:hidden;padding:0 .01em}.wm b{display:block;font-weight:600}
+.hz{--bt:44%;--bb:40%;position:absolute;inset:0;z-index:1;background:var(--ink);clip-path:inset(var(--bt) 0% var(--bb) 0%)}.hz img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 34%}.hz:after{content:"";position:absolute;inset:0;background:#1d0f0933}.hz .wm{z-index:1;color:var(--sand)}
+.ht{position:absolute;z-index:2;left:5vw;right:5vw;top:17svh;display:flex;justify-content:space-between;gap:2rem;font:italic clamp(1.5rem,2.6vw,2.5rem)/1.05 'Instrument Serif',Georgia,serif}.ht span:last-child{text-align:right}
+.hm{position:absolute;z-index:2;left:5vw;right:5vw;bottom:5svh;display:grid;grid-template-columns:1fr auto 1fr;align-items:end;gap:2rem;font-size:.75rem;letter-spacing:.05em}.hm em{display:block;font-size:1.6rem;line-height:1;letter-spacing:0;margin-top:.35rem}.hm .scr{position:static;color:inherit;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}.hm .clk{justify-self:end;text-align:right}.clk b{font-weight:600;font-variant-numeric:tabular-nums}
+.mq{padding:1.6rem 0 2rem;font-size:clamp(1.8rem,5.8vw,5rem)}.tri{gap:1.1vw;padding:8vh 5vw 12vh}.tri a{aspect-ratio:3/4;border-radius:0}.tri a:after,.card:after,.lb:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#160d0ba6,transparent 53%);pointer-events:none}.tri span{bottom:8%;font-size:.68rem}.tri em{font-size:clamp(2.2rem,4vw,4rem)}.tri .ar img,.pa img,.card img,.lb img,.sq img,.stv img,.feature-image img,.ph img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.19,1,.22,1)}.tri a:hover img,.pr:hover img,.card:hover img{transform:scale(1.06)}
+.ar{background:#aa7b59}.card{border-radius:0;width:min(58vw,400px);height:min(55svh,520px)}.card:after{z-index:1}.pr{font-size:.72rem}.pa{border-radius:0;aspect-ratio:3/4}.collection-note{font-size:.72rem;opacity:.75;padding:1.4rem 5vw 0;line-height:1.7;max-width:38rem}
+.st{padding:20vh 5vw}.st:before{content:"Свобода быть собой // Высокая мода пустыни";display:block;font:italic 1.5rem 'Instrument Serif',Georgia,serif;color:#a96a3c;margin-bottom:3rem}.ll{position:relative;background:#c4864f;color:var(--sand);padding:22vh 0}.ll .feature-image{position:absolute;inset:0}.ll .feature-image img{object-position:center 55%}.ll:after{content:"";position:absolute;inset:0;background:#1d0f0982}.ll>*:not(.feature-image){position:relative;z-index:2}.ll p{font-size:.83rem;max-width:29rem;line-height:1.8}.pill:hover{background:var(--sand);color:var(--ink)}
+.so{gap:7vw}.so p{line-height:1.9}.stg{height:min(78svh,680px)}.ig{width:55%;border-radius:0;box-shadow:10px 25px 60px #2a130b33}.ig i{letter-spacing:.12em}.ig p{font:italic 1.45rem/1.2 'Instrument Serif',Georgia,serif;padding:1rem 1.2rem}.stv{border-radius:0}.stv span{font-size:2rem;text-shadow:0 3px 15px #1d0f09a0}.ph{width:min(370px,40vw);border:0;border-radius:0;aspect-ratio:3/4;box-shadow:12px 25px 65px #2a130b44;position:relative}.ph img{object-position:center 40%}.ph:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1d0f09b9,transparent 60%)}.ph .ph-caption{position:absolute;z-index:1;left:8%;bottom:8%;color:#fff;font:italic clamp(2rem,4vw,4rem)/.95 'Instrument Serif',Georgia,serif}
+#join .join-copy{max-width:32rem;font-size:.85rem;line-height:1.8;margin:1.2rem 0 2rem}#join .btn{display:inline-block;align-self:flex-start}.lb .ar img{object-position:center 45%}.lb:after{z-index:1}.lb .t{z-index:2}.hrs>div{background-size:cover;background-position:center}.hrs>div:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#1d0f09a8,transparent 60%)}.hrs b,.hrs p{position:relative;z-index:1;color:#fff}.hrs p{position:absolute}.pl a:hover{background:#b5703f}footer .photo-credit{font-size:.65rem;opacity:.6;margin-top:1.5rem}
+@media(max-width:700px){nav{padding:16px 5vw;font-size:.7rem}nav div{display:flex;gap:1rem}nav a:first-child{font-size:.8rem}.wm{font-size:26vw}.hz{--bt:49.5%;--bb:34%}.hz img{object-position:50% 30%}.ht{top:16svh;flex-direction:column;gap:.4rem}.ht span:last-child{text-align:left}.hm{grid-template-columns:1fr 1fr;gap:1rem}.hm .scr{display:none}.hm em{font-size:1.3rem}.tri{grid-template-columns:repeat(2,1fr);gap:2vw}.tri a:last-child{grid-column:span 2;aspect-ratio:1.7}.tri span{font-size:.6rem}.card{width:68vw;height:49svh}.ll h2{font-size:15vw}.stg{height:64svh}.so{padding-top:8vh}.ph{width:min(55vw,260px);aspect-ratio:3/4}#fmt{padding:8vh 5vw}.hrs>div{padding:4vh .5rem}.hrs b{font-size:.9rem}.hrs p{left:1rem;white-space:normal;max-width:10rem}.lb .t{font-size:17vw}.film-clean{width:calc(100% - 6vw);margin:4vh 3vw;height:75svh;min-height:440px;border-radius:22px}}
+@media(max-width:430px){nav div{gap:.75rem}.so h2{font-size:2.5rem}.gr{gap:4vw}.pr .product-meta{display:block}.pr .product-meta span{display:block}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.tri img,.pa img,.card img{transition:none}}
+/* MOTION GRAPHICS BRAND REEL & PHOTOSHOOT STYLES */
+.nav-film-link{display:inline-flex!important;align-items:center;gap:6px;background:rgba(239,227,208,.15);border:1px solid rgba(239,227,208,.4);border-radius:99px;padding:5px 14px!important;font-weight:600!important;letter-spacing:.06em!important;color:var(--sand)!important;backdrop-filter:blur(8px);transition:all .3s ease}
+.nav-film-link span{color:#f2a96b;font-size:.7em}
+.nav-film-link:hover{background:var(--sand)!important;color:var(--ink)!important}
+.nav-film-link:hover span{color:var(--ink)}
+.hm-left{display:flex;flex-direction:column;gap:12px}
+.hero-film-trigger{display:flex;align-items:center;gap:12px;background:rgba(29,15,9,.75);border:1px solid rgba(239,227,208,.3);border-radius:99px;padding:6px 16px 6px 6px;backdrop-filter:blur(12px);cursor:pointer;width:fit-content;transition:all .3s cubic-bezier(.16,1,.3,1);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.hero-film-trigger:hover{background:rgba(29,15,9,.95);border-color:#ffd9a0;transform:translateY(-2px) scale(1.03);box-shadow:0 15px 40px rgba(0,0,0,.5)}
+.hft-thumb{position:relative;width:40px;height:40px;border-radius:50%;overflow:hidden;border:1.5px solid rgba(239,227,208,.6);flex-shrink:0}
+.hft-thumb video{width:100%;height:100%;object-fit:cover}
+.hft-icon{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.35);color:#ffd9a0;font-size:10px}
+.hft-text{display:flex;flex-direction:column;text-align:left}
+.hft-text span{font-size:.55rem;letter-spacing:.2em;opacity:.7;font-weight:600;text-transform:uppercase}
+.hft-text em{font-family:'Instrument Serif',serif;font-size:1.2rem!important;line-height:1;color:#ffd9a0;margin-top:2px!important}
+
+/* CLEAN CINEMATIC VIDEO SHOWCASE */
+.film-clean{position:relative;width:calc(100% - 8vw);margin:6vh 4vw;height:85svh;min-height:520px;border-radius:clamp(20px,3.2vw,38px);overflow:hidden;background:#000;box-shadow:0 30px 90px rgba(10,5,2,.6),0 0 0 1px rgba(239,227,208,.16);isolation:isolate}
+.film-clean video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .9s cubic-bezier(.22,1,.36,1);will-change:opacity;border-radius:inherit}
+.film-clean-overlay{position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:radial-gradient(ellipse at center,transparent 52%,rgba(10,5,2,.45) 100%),linear-gradient(180deg,rgba(10,5,2,.3) 0%,transparent 25%,transparent 75%,rgba(10,5,2,.4) 100%)}
+.film-sound-toggle{position:absolute;right:4vw;bottom:4vh;z-index:10;display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;background:rgba(20,10,6,.6);border:1px solid rgba(239,227,208,.35);color:#efe3d0;cursor:pointer;backdrop-filter:blur(10px);transition:all .3s ease;outline:none}
+.film-sound-toggle:hover{background:rgba(20,10,6,.9);border-color:#ffd9a0;transform:scale(1.08)}
+.film-sound-toggle svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.film-sound-toggle .icon-unmuted{display:none}
+.film-sound-toggle.unmuted .icon-muted{display:none}
+.film-sound-toggle.unmuted .icon-unmuted{display:block}
+
+/* KINETIC MOTION GRAPHICS TEXT INSIDE VIDEO */
+.film-stage-text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:6}
+.film-text-scene{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 5vw;opacity:0;visibility:hidden;transform:scale(.95) translateY(16px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1),visibility .8s;will-change:opacity,transform}
+.film-text-scene.active{opacity:1;visibility:visible;transform:scale(1) translateY(0)}
+
+.fts-brand{font-family:'Unbounded',sans-serif;font-size:clamp(3.5rem,13vw,12rem);font-weight:900;letter-spacing:.2em;color:var(--sand);margin-left:.2em;line-height:.9;text-shadow:0 15px 50px rgba(0,0,0,.9),0 0 70px rgba(196,134,79,.5)}
+.fts-brand span{display:inline-block;transition:transform .4s ease}
+.fts-poetic{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(1.4rem,4vw,3.6rem);color:#ffd9a0;margin-top:clamp(10px,2vh,22px);text-shadow:0 8px 30px rgba(0,0,0,.95);letter-spacing:.02em}
+.fts-meta{font-size:clamp(.62rem,1vw,.92rem);letter-spacing:.35em;text-transform:uppercase;color:rgba(239,227,208,.85);margin-top:14px;background:rgba(20,10,6,.65);padding:6px 18px;border-radius:99px;border:1px solid rgba(239,227,208,.25);backdrop-filter:blur(8px)}
+
+.fts-stroke{font-family:'Unbounded',sans-serif;font-size:clamp(2.5rem,10vw,8.5rem);font-weight:900;color:transparent;-webkit-text-stroke:1.8px #ffd9a0;letter-spacing:.08em;text-transform:uppercase;text-shadow:0 0 50px rgba(243,207,163,.45)}
+.fts-ticker{width:100%;max-width:960px;overflow:hidden;margin-top:20px;border-top:1px solid rgba(239,227,208,.25);border-bottom:1px solid rgba(239,227,208,.25);padding:10px 0;background:rgba(15,7,4,.65);backdrop-filter:blur(10px)}
+.fts-ticker-track{display:inline-flex;white-space:nowrap;font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(1.2rem,2.4vw,2.2rem);color:#efe3d0;animation:ftsScroll 14s linear infinite}
+@keyframes ftsScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.fts-palette-title{font-family:'Unbounded',sans-serif;font-size:clamp(2.2rem,6vw,5.2rem);font-weight:800;color:var(--sand);line-height:1.05;text-shadow:0 12px 45px rgba(0,0,0,.9)}
+.fts-palette-title em{font-family:'Instrument Serif',serif;font-style:italic;color:#ffd9a0;font-weight:400}
+.fts-palette-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:26px}
+.fts-palette-chips span{font-family:'Space Mono',monospace;font-size:clamp(.65rem,.9vw,.85rem);font-weight:600;letter-spacing:.15em;padding:8px 18px;border-radius:6px;border:1px solid rgba(239,227,208,.3);box-shadow:0 8px 24px rgba(0,0,0,.6)}
+
+.fts-quote{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:clamp(2.6rem,7.5vw,6.8rem);color:#ffd9a0;text-shadow:0 15px 45px rgba(0,0,0,.95);line-height:1}
+.fts-quote-sub{font-family:'Unbounded',sans-serif;font-size:clamp(.8rem,1.8vw,1.6rem);font-weight:300;letter-spacing:.25em;color:var(--sand);text-transform:uppercase;margin-top:14px;text-shadow:0 6px 20px rgba(0,0,0,.85)}
+.fts-signature{font-size:clamp(.65rem,.9vw,.85rem);letter-spacing:.35em;color:#c4864f;margin-top:22px;text-transform:uppercase;font-weight:600}
+
+/* ENHANCED CLOTHING COLLECTION & PHOTOSHOOT METADATA */
+.card-caption{position:absolute;left:0;right:0;bottom:6%;padding:0 8%;z-index:2;text-align:left}
+.card-look{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;background:rgba(20,10,6,.75);color:#ffd9a0;padding:3px 8px;border-radius:4px;margin-bottom:6px;backdrop-filter:blur(4px);border:1px solid rgba(239,227,208,.2)}
+.card-caption p{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}
+.card-caption p em{font-size:1.8rem;text-transform:none;letter-spacing:0;display:block;line-height:1.1;margin-bottom:.35rem}
+.product-meta{display:flex;flex-direction:column;gap:4px;padding:.7rem 0}
+.pm-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.pm-title{font-weight:600;font-size:.82rem;letter-spacing:.02em}
+.pm-price{font-weight:600;color:#c4864f;font-variant-numeric:tabular-nums;white-space:nowrap}
+.pm-desc{font-size:.68rem;opacity:.72;line-height:1.4}
+.col-head{padding:0 5vw}
+.col-sub{font-size:.82rem;opacity:.8;max-width:34rem;line-height:1.7;margin-top:.8rem}
+
+/* LOOKBOOK EDITORIAL CHAPTERS */
+.lb-time-tag{display:block;font-family:'Space Mono',monospace;font-size:clamp(.7rem,1.2vw,1.1rem);letter-spacing:.3em;color:#ffd9a0;margin-bottom:8px;font-weight:400}
+.lb-note{font-family:'Unbounded',sans-serif;font-size:clamp(.65rem,1vw,.9rem);font-weight:300;opacity:.8;letter-spacing:.05em;margin-top:14px;max-width:34rem;line-height:1.6}
+
+</style></head><body>
+<div id="ld"><b id="ct">0</b><span>Свобода быть собой</span></div>
+<div id="cv">DUNE</div><nav><a data-go="home" href="#home">DUNE ATELIER</a><div><a href="#campaign-film" class="nav-film-link" id="nav-film-trigger"><span>▶</span> Campaign Film</a><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Photoshoot Notes</a></div></nav>
+<main class="pg on" id="home"><header id="hero">
+<h1 class="wm" aria-label="DUNE"><i><b>D</b></i><i><b>U</b></i><i><b>N</b></i><i><b>E</b></i></h1>
+<div class="hz"><img src="assets/images/hero_editorial_flow.jpg" alt="Model in flowing ochre and sand silk robes billowing over colossal desert dunes at golden hour" fetchpriority="high"><div class="wm" aria-hidden="true"><i><b>D</b></i><i><b>U</b></i><i><b>N</b></i><i><b>E</b></i></div></div>
+<p class="ht"><span>Spring / Summer 2026 Collection.</span><span lang="ru">Свобода быть собой.</span></p>
+<div class="hm">
+<div class="hm-left">
+<p>Editorial Photoshoot<em>Empty Quarter 2026</em></p>
+<div class="hero-film-trigger" id="hero-film-trigger" role="button" tabindex="0" title="Experience the campaign film">
+<div class="hft-thumb"><video src="assets/videos/desert_sunset.webm" autoplay muted loop playsinline></video><span class="hft-icon">▶</span></div>
+<div class="hft-text"><span>CAMPAIGN FILM</span><em>Watch Video ↓</em></div>
+</div>
+</div>
+<p class="scr">Scroll ↓</p>
+<p class="clk"><b id="clk">--:--</b> <span id="hr">in the dunes</span><em id="hrn" lang="ru">Лёгкость</em></p>
+</div></header>
+<section class="mq" aria-hidden="true"><div class="r1"><p>Collection N° 04 ✦ Empty Quarter Runway ✦ Raw Ochre Silk Habotai ✦ Unlined Desert Linen ✦ Botanical Earth Pigments ✦ Haute Couture Movement ✦</p></div><div class="r2"><p>Dressed by the desert ✦ Cut for unhurried movement ✦ 100% natural fibers ✦ The Four Hours of Sand ✦ Draped Robes & Sculptural Capes ✦</p></div></section>
+<section class="tri" aria-label="Explore the collection"><a data-go="shop" href="#shop" data-k="0" data-filter="Robes"><span><em>Robes & Caftans</em>Look 01 · Draped Ochre Silk ↗</span></a><a data-go="shop" href="#shop" data-k="2" data-filter="Sets"><span><em>Tunic & Trouser Sets</em>Look 03 · Washed Desert Cupro ↗</span></a><a data-go="shop" href="#shop" data-k="3" data-filter="Outer"><span><em>Sculptural Capes</em>Look 04 · Obsidian Desert Wool ↗</span></a></section>
+<section id="col">
+<div class="col-head">
+<h2>The 2026<br><em>Clothing Collection</em></h2>
+<p class="col-sub">Photographed on location in the Rub' al Khali. Ten signature couture silhouettes tailored from unlined organic fibers, flowing silks, and mineral earth pigments.</p>
+</div>
+<div class="chips"><button class="on" data-filter="Robes">Robes & Caftans</button><button data-filter="Trousers">Desert Trousers</button><button data-filter="Sets">Draped Sets</button><button data-filter="Outer">Capes & Outer</button><button data-filter="Basics">Raw Linen Basics</button></div><div class="trk"></div></section>
+<section id="campaign-film" class="film-clean" aria-label="Campaign Film">
+<video id="clean-vid-a" src="assets/videos/desert_sunset.webm" autoplay muted loop playsinline></video>
+<video id="clean-vid-b" src="assets/videos/dunes_golden.webm" style="opacity:0;" autoplay muted loop playsinline></video>
+<div class="film-clean-overlay"></div>
+<div class="film-stage-text">
+<div class="film-text-scene active" id="fts-0">
+<h2 class="fts-brand"><span>D</span><span>U</span><span>N</span><span>E</span></h2>
+<p class="fts-poetic">People who move like weather.</p>
+<span class="fts-meta">05:00 AM · FIRST QUIET LIGHT</span>
+</div>
+<div class="film-text-scene" id="fts-1">
+<h2 class="fts-stroke">MOVEMENT</h2>
+<div class="fts-ticker">
+<div class="fts-ticker-track">
+<span>ROBES</span> ✦ <span>SETS</span> ✦ <span>CAPES</span> ✦ <span>TROUSERS</span> ✦ <span>СВОБОДА ДВИЖЕНИЯ</span> ✦ <span>RAW HABOTAI SILK</span> ✦ <span>ROBES</span> ✦ <span>SETS</span> ✦ <span>CAPES</span> ✦ <span>TROUSERS</span> ✦ <span>СВОБОДА ДВИЖЕНИЯ</span> ✦ <span>RAW HABOTAI SILK</span> ✦
+</div>
+</div>
+</div>
+<div class="film-text-scene" id="fts-2">
+<h2 class="fts-palette-title">ONE PALETTE.<br><em>Pure Earth.</em></h2>
+<div class="fts-palette-chips">
+<span style="background:#e3c5a4;color:#140a06;">DAWN · #E3C5A4</span>
+<span style="background:#c4864f;color:#140a06;">NOON · #C4864F</span>
+<span style="background:#7a3f22;color:#efe3d0;">DUSK · #7A3F22</span>
+<span style="background:#2a130b;color:#efe3d0;">NIGHT · #2A130B</span>
+</div>
+</div>
+<div class="film-text-scene" id="fts-3">
+<h2 class="fts-quote">Свобода быть собой.</h2>
+<p class="fts-quote-sub">Freedom to be yourself.</p>
+<p class="fts-signature">DUNE ATELIER // SPRING SUMMER 2026</p>
+</div>
+</div>
+<button id="film-sound-toggle" class="film-sound-toggle" aria-label="Toggle Sound" title="Sound">
+<svg class="icon-muted" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+<svg class="icon-unmuted" viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+</button>
+</section>
+<section class="st"><p id="stm">Dune is an haute couture study in desert movement. We craft unlined garments from raw sand-washed silk, hand-loomed flax linen, and botanical dyes extracted from desert clay and iron-rich volcanic earth. Clothing for people who move like weather.</p></section>
+<section class="ll"><div class="feature-image"><img src="assets/images/hero_editorial_flow.jpg" alt="Model in billowing ochre silk wrap robe catching golden hour desert light" loading="lazy"></div><h2 class="l1">Long light</h2><h2 class="l2">slow silhouettes</h2><p>Photographed on the shifting ridges of the Rub' al Khali at 17:45. As thermal winds rise to 35 knots, our unlined habotai silk robes inflate into kinetic sculptures with fluid aerodynamic grace.</p><a class="pill" data-go="lookbook" href="#lookbook">Explore the Photoshoot Lookbook ↗</a></section>
+<section class="so"><div><h2>Photoshoot<br><em>Field Notes</em></h2><p>Three days in the Empty Quarter with no styling mirrors, no artificial studio lighting, and no synthetic materials. Only natural sun flares, 65mm cameras, and garments shaped by the geometry of wind.</p><a class="pill" data-go="story" href="#story">Read Photoshoot Storyboard ↗</a></div>
+<div class="stg"><div class="ig"><i>DUNE / RUNWAY LOOK 01</i><div class="sq" data-k="4"></div><p>Raw unbleached linen & hand-forged bronze talisman.</p></div><div class="stv a" data-k="0"><span>Look 01<br>Draped Ochre</span></div><div class="stv b" data-k="3"><span>Look 04<br>Twilight Cape</span></div></div></section>
+<section id="fmt"><div><h2>Four Hours of Sand,<br><em>Four Mineral Dyes.</em></h2><ul><li><strong>05:14 Dawn</strong> — Ice quartz silica & unbleached natural flax (#E3C5A4)</li><li><strong>12:00 Noon</strong> — Sun-bleached sand & raw ochre habotai silk (#C4864F)</li><li><strong>17:45 Dusk</strong> — Burning copper dunes & terracotta wool blend (#7A3F22)</li><li><strong>21:00 Night</strong> — Volcanic obsidian & deep cocoa cupro (#2A130B)</li></ul>
+<div class="sw" aria-label="DUNE palette"><span style="background:#e3c5a4" title="Dawn #E3C5A4"></span><span style="background:#c4864f" title="Noon #C4864F"></span><span style="background:#7a3f22" title="Dusk #7A3F22"></span><span style="background:#2a130b" title="Night #2A130B"></span></div></div>
+<div class="ph"><img src="assets/images/hero_editorial_dawn.jpg" alt="Model portrait in raw fringe collar and bronze desert jewelry" loading="lazy"><span class="ph-caption">Коллекция 2026<br>Свобода быть собой.</span></div>
+<div id="join"><h2>Follow the<br><em>horizon.</em></h2><p class="join-copy">Explore all editorial looks from our Spring/Summer 2026 desert campaign.</p><a class="btn" data-go="lookbook" href="#lookbook">Explore the photoshoot ↗</a></div></section>
+</main>
+<main class="pg sh" id="shop"><h2 class="pgt">The Collection</h2><p class="collection-note">Spring / Summer 2026 Runway & Editorial Photoshoot Catalog. Each garment is hand-tailored from organic, natural fibers and finished with hand-rolled hems.</p><div class="chips"><button class="on" data-f="all">All Looks (10)</button><button data-f="Robes">Robes & Caftans</button><button data-f="Trousers">Desert Trousers</button><button data-f="Sets">Draped Sets</button><button data-f="Outer">Capes & Coats</button><button data-f="Basics">Raw Linen Basics</button></div><div class="gr"></div></main>
+<main class="pg" id="lookbook"></main>
+<main class="pg" id="story"><h2 class="pgt">Four Hours<br><em>of Sand</em></h2><p class="lead">The DUNE 2026 campaign was shot across four distinct light hours in the Rub' al Khali desert. Each colorway and silhouette directly mirrors the temperature and shadows of that hour.</p>
+<div class="hrs"><div style="background-image:url('assets/images/hero_editorial_dawn.jpg')"><b>05:14 Dawn</b><p>Pale blue light, unbleached linen fringe, and silence before the heat.</p></div><div style="background-image:url('https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=900&q=78&auto=format&fit=crop')"><b>12:00 Noon</b><p>Sun-bleached quartz sand, fluid silk gauze that breathes with the wind.</p></div><div style="background-image:url('assets/images/hero_editorial_flow.jpg')"><b>17:45 Dusk</b><p>Burning copper ridges, 35-knot wind billowing ochre silk wrap robes.</p></div><div style="background-image:url('assets/images/hero_editorial_silhouette.jpg')"><b>21:00 Night</b><p>Cold desert air, heavy sculptural obsidian wool cape with sheer wings.</p></div></div>
+<section class="ll"><a class="pill" data-go="shop" href="#shop">Shop the Collection Runway ↗</a></section></main>
+<footer><h2>DUNE</h2><div class="pl"><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Story</a><a href="#campaign-film">Film</a></div><p>© DUNE ATELIER 2026. Photographed on location in the Rub' al Khali. Free to be yourself.</p><p class="photo-credit">Editorial photography and cinematic campaign visuals produced by DUNE Atelier.</p></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
+<script>
+(()=>{
+const $=s=>document.querySelector(s),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const photo=(id,w=850)=>`https://images.unsplash.com/${id.startsWith('159631416')?'flagged/':''}photo-${id}?w=${w}&q=80&auto=format&fit=crop`;
+const D=[
+  ['Draped Ochre Wrap Robe','Robes','assets/images/hero_editorial_flow.jpg','$890','Look 01 · 100% Raw Ochre Silk Habotai'],
+  ['Twilight Sculptural Dune Cape','Outer','assets/images/hero_editorial_silhouette.jpg','$1,450','Look 04 · Obsidian Wool & Sheer Wings'],
+  ['Dawn Raw Fringe Collar Shirt','Basics','assets/images/hero_editorial_dawn.jpg','$420','Look 07 · Hand-Loomed Flax Linen'],
+  ['Nomad Wide-Leg Pleated Trousers','Trousers',photo('1773470578264-1725d57dbc7f'),'$560','Look 02 · Desert Stone Cotton Twill'],
+  ['Solstice Draped Tunic Ensemble','Sets',photo('1762810664585-9e25b74bcdcd'),'$980','Look 03 · Organic Desert Cupro & Sand Voile']
+];
+const E=D.concat([
+  ['Sirocco High-Waist Culottes','Trousers',photo('1713204641930-9be477a56a8d'),'$520','Look 06 · Washed Sand Heavy Cotton'],
+  ['Mirage Kimono Draped Robe','Robes',photo('1596314160828-20f2dfd3a93d'),'$740','Look 05 · Crinkled Raw Linen Weave'],
+  ['Dust Storm Hooded Anorak','Outer',photo('1595977992321-f8eff19b5f37'),'$890','Look 08 · Windproof Desert Canvas'],
+  ['Solar Flare Gauze Caftan Set','Sets',photo('1602058075555-1261c9b72fa9'),'$820','Look 09 · Golden Dune Triple Gauze'],
+  ['Ribbed Earth Layering Tank','Basics',photo('1593432889392-09097dc1a1ad'),'$240','Look 10 · Organic Sand Pima Cotton']
+]);
+const A=(d,w=850)=>`<div class="ar"><img src="${d[2].replace('w=850',`w=${w}`)}" alt="Editorial Photoshoot: ${d[0]}" loading="lazy"></div>`;
+$('.trk').innerHTML=D.map(d=>`<a class="card" data-go="lookbook" href="#lookbook">${A(d)}<div class="card-caption"><span class="card-look">${d[4]}</span><p><em>${d[0]}</em>${d[1]} · ${d[3]} ↗</p></div></a>`).join('');
+$('.gr').innerHTML=E.map(d=>`<a class="pr" data-go="lookbook" href="#lookbook" data-c="${d[1]}"><div class="pa">${A(d,680)}</div><div class="product-meta"><div class="pm-top"><span class="pm-title">${d[0]}</span><span class="pm-price">${d[3]}</span></div><span class="pm-desc">${d[1]} · ${d[4]}</span></div></a>`).join('');
+const lookbookShoots=[
+  {time:'05:14 DAWN',title:'The First Quiet Light',look:'Look 01 · Raw Fringe Linen & Bronze Choker',img:'assets/images/hero_editorial_dawn.jpg',note:'Eastern dune ridge at sunrise. Models Mara & Oumou in hand-loomed unbleached flax linen with hammered sand bronze talismans.'},
+  {time:'12:00 NOON',title:'Bleached Quartz & Solar Heat',look:'Look 02 · Sand-Washed Tunics & Billow Trousers',img:photo('1473580044384-7ba9967e16a0',1600),note:'Direct overhead sun. Ultralight triple-gauze layers reflecting extreme desert light while allowing complete aerodynamic airflow.'},
+  {time:'17:45 DUSK',title:'The Colossal Ridge in 35-Knot Wind',look:'Look 03 · Draped Ochre Silk Habotai Wrap Robe',img:'assets/images/hero_editorial_flow.jpg',note:'Sunset slipface. 4 meters of hand-dyed ochre silk inflating in the thermal breeze as shadows stretch 300 meters across the sand.'},
+  {time:'21:00 NIGHT',title:'Obsidian Wings & Celestial Shadow',look:'Look 04 · Sculptural Hooded Cape in Desert Wool',img:'assets/images/hero_editorial_silhouette.jpg',note:'Twilight corona. Heavy sculptural wool drape and sheer wing-like panels framing the cold nocturnal horizon.'}
+];
+$('#lookbook').innerHTML=lookbookShoots.map(s=>`<div class="lb"><div class="ar"><img src="${s.img}" alt="Editorial Photoshoot: ${s.title}" loading="lazy"></div><div class="t"><span class="lb-time-tag">${s.time} // EDITORIAL PHOTOSHOOT</span>${s.title}<em>${s.look}</em><p class="lb-note">${s.note}</p></div></div>`).join('');
+document.querySelectorAll('[data-k]').forEach(e=>e.insertAdjacentHTML('afterbegin',A(E[e.dataset.k],850)));
+const s=$('#stm');s.innerHTML=s.textContent.split(' ').map(w=>`<span>${w}</span> `).join('');
+document.querySelectorAll('.mq div').forEach(e=>e.innerHTML+=e.innerHTML);
+const filterShop=f=>{document.querySelectorAll('#shop .chips button').forEach(b=>b.classList.toggle('on',b.dataset.f===f));document.querySelectorAll('.pr').forEach(c=>c.hidden=f!=='all'&&c.dataset.c!==f);if(window.ScrollTrigger)ScrollTrigger.refresh()};
+document.querySelectorAll('#shop .chips button').forEach(b=>b.onclick=()=>filterShop(b.dataset.f));
+document.querySelectorAll('#col .chips button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#col .chips button').forEach(x=>x.classList.toggle('on',x===b));filterShop(b.dataset.filter);if(rm||!window.gsap||!window.Lenis)navigate('shop');else go('shop')});
+const tick=()=>{const d=new Date(),h=d.getHours(),[en,ru]=h>=5&&h<10?['dawn','Рассвет']:h>=10&&h<17?['noon','Полдень']:h>=17&&h<21?['dusk','Закат']:['night','Ночь'];$('#clk').textContent=d.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit',hour12:false});$('#hr').textContent=en+' in the dunes';$('#hrn').textContent=ru};tick();setInterval(tick,30000);
+const navigate=p=>{document.querySelectorAll('.pg').forEach(m=>m.classList.toggle('on',m.id===p));history.replaceState(0,'','#'+p);scrollTo(0,0)};
+if(rm||!window.gsap||!window.Lenis){document.documentElement.classList.add('rm');$('#ld').remove();$('#col').style.height='auto';$('#col').style.padding='12vh 0';$('.trk').style.overflowX='auto';$('.trk').style.maxWidth='100vw';document.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();if(a.dataset.filter)filterShop(a.dataset.filter);navigate(a.dataset.go)});navigate(['shop','lookbook','story'].includes(location.hash.slice(1))?location.hash.slice(1):'home');return}
+history.scrollRestoration='manual';scrollTo(0,0);
+gsap.registerPlugin(ScrollTrigger);
+const band=()=>{const s=getComputedStyle($('.hz'));return `inset(${s.getPropertyValue('--bt').trim()} 0% ${s.getPropertyValue('--bb').trim()} 0%)`};
+const L=new Lenis({lerp:.09});L.stop();L.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>L.raf(t*1000));gsap.ticker.lagSmoothing(0);
+let mt=[],ctx,cur='home',busy=0;const S={};
+gsap.ticker.add(()=>mt.forEach(t=>t.timeScale(gsap.utils.interpolate(t.timeScale(),1+Math.min(Math.abs(L.velocity),30)*.5,.08))));
+const mount=p=>{document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('on',e.id===p));ctx&&ctx.revert();mt=[];scrollTo(0,0);L.scrollTo(0,{immediate:true});ctx=gsap.context(S[p]);ScrollTrigger.refresh()};
+const go=p=>{if(p===cur||busy||!S[p])return;busy=1;L.stop();gsap.timeline().set('#cv',{clipPath:'inset(100% 0 0 0)',display:'grid'}).to('#cv',{clipPath:'inset(0)',duration:.7,ease:'expo.inOut'}).add(()=>{mount(p);cur=p;history.replaceState(0,'','#'+p)}).to('#cv',{clipPath:'inset(0 0 100% 0)',duration:.8,ease:'expo.inOut'},'+=.15').set('#cv',{display:'none'}).add(()=>{busy=0;L.start()})};
+document.querySelectorAll('[data-go]').forEach(a=>a.onclick=e=>{e.preventDefault();if(a.dataset.filter)filterShop(a.dataset.filter);go(a.dataset.go)});
+const o={v:0};
+gsap.timeline({defaults:{ease:'expo.out'}})
+.to(o,{v:100,duration:1.7,ease:'power2.inOut',onUpdate:()=>$('#ct').textContent=Math.round(o.v)})
+.to('#ld',{clipPath:'inset(0 0 100% 0)',duration:1.2,ease:'expo.inOut'})
+.from('.wm b',{yPercent:115,stagger:i=>(i%4)*.08,duration:1.5},'-=.7')
+.fromTo('.hz',{clipPath:'inset(50% 0% 50% 0%)'},{clipPath:band,duration:1.8,ease:'expo.inOut'},'-=1.2').from('.hz img',{scale:1.25,duration:2.4},'<')
+.from('.ht span,.hm>*',{y:24,opacity:0,stagger:.06,duration:1.1},'-=1.3').from('nav',{yPercent:-100,duration:1.1},'<')
+.add(()=>{L.start();$('#ld').remove()});
+S.home=()=>{
+gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=120%',scrub:1,pin:true,invalidateOnRefresh:true}})
+.fromTo('.hz',{clipPath:band},{clipPath:'inset(0% 0% 0% 0%)',ease:'power2.inOut',immediateRender:false},0)
+.to('.hz img',{objectPosition:'50% 40%'},0).to('.wm',{yPercent:-70,scale:.6,ease:'power2.in'},0)
+.to('.ht,.hm',{opacity:0,duration:.4},0);
+mt=[gsap.to('.r1',{xPercent:-50,duration:24,ease:'none',repeat:-1}),gsap.fromTo('.r2',{xPercent:-50},{xPercent:0,duration:30,ease:'none',repeat:-1})];
+const k=$('.trk'),h=gsap.to(k,{x:()=>-(k.scrollWidth-innerWidth),ease:'none',scrollTrigger:{trigger:'#col',pin:true,scrub:1,end:()=>'+='+k.scrollWidth,invalidateOnRefresh:true}});
+gsap.utils.toArray('.card img').forEach(a=>gsap.fromTo(a,{xPercent:5},{xPercent:-5,ease:'none',scrollTrigger:{trigger:a.closest('.card'),containerAnimation:h,start:'left right',end:'right left',scrub:true}}));
+gsap.to('#stm span',{opacity:1,stagger:.1,ease:'none',scrollTrigger:{trigger:'.st',start:'top 75%',end:'bottom 60%',scrub:true}});
+gsap.timeline({scrollTrigger:{trigger:'#fmt',start:'top top',end:'+=260%',scrub:1,pin:true}})
+.from('#fmt h2,#fmt li',{xPercent:-12,opacity:0,stagger:.1},0).from('.sw span',{scale:0,stagger:.12},.1)
+.fromTo('.ph',{rotateY:-25,rotateX:8,y:180,scale:.85},{rotateY:0,rotateX:0,y:0,scale:1,ease:'power2.out'},0)
+.to('.ph img',{scale:1.18,ease:'none'},.35)
+.to('#join',{clipPath:'circle(150% at 50% 55%)',ease:'power2.in',duration:.8},'>-.1');
+gsap.from('footer h2',{yPercent:45,ease:'none',scrollTrigger:{trigger:'footer',start:'top bottom',end:'top 20%',scrub:true}});
+gsap.from('.pl a',{y:60,opacity:0,stagger:.08,scrollTrigger:{trigger:'.pl',start:'top 95%',end:'top 70%',scrub:true}});
+gsap.utils.toArray('.tri a').forEach((a,i)=>gsap.fromTo(a,{y:i*80},{y:-i*50,ease:'none',scrollTrigger:{trigger:'.tri',scrub:true}}));
+gsap.fromTo('.l1',{x:'-14vw'},{x:'10vw',ease:'none',scrollTrigger:{trigger:'.ll',scrub:true}});gsap.fromTo('.l2',{x:'14vw'},{x:'-10vw',ease:'none',scrollTrigger:{trigger:'.ll',scrub:true}});
+gsap.from('.stg>*',{y:i=>220+i*90,rotation:i=>[-14,12,-9][i],scale:.8,ease:'none',scrollTrigger:{trigger:'.so',start:'top 85%',end:'center 55%',scrub:1}});
+gsap.from('#campaign-film video',{scale:1.06,duration:1.6,ease:'power2.out',scrollTrigger:{trigger:'#campaign-film',start:'top 85%'}});
+};
+S.shop=()=>{gsap.from('#shop .pgt',{letterSpacing:'.25em',duration:1.6,ease:'expo.out'});gsap.utils.toArray('.pr').forEach(c=>gsap.from(c,{clipPath:'inset(100% 0 0 0)',ease:'none',scrollTrigger:{trigger:c,start:'top 98%',end:'top 65%',scrub:true}}))};
+S.lookbook=()=>{const p=gsap.utils.toArray('.lb');p.forEach((e,i)=>{if(i<3){ScrollTrigger.create({trigger:e,start:'top top',end:'+=100%',pin:true,pinSpacing:false});gsap.to(e,{scale:.9,ease:'none',scrollTrigger:{trigger:p[i+1],start:'top bottom',end:'top top',scrub:true}})}gsap.from(e.querySelector('.t'),{xPercent:-30,ease:'none',scrollTrigger:{trigger:e,start:'top bottom',end:'top top',scrub:true}})})};
+S.story=()=>{const t=gsap.timeline({scrollTrigger:{trigger:'.hrs',pin:true,scrub:1,end:'+=300%'}});gsap.utils.toArray('.hrs>div').forEach((e,i)=>{t.to(e,{flexGrow:7,duration:1});if(i<3)t.to(e,{flexGrow:1,duration:1})});gsap.from('#story .pgt',{letterSpacing:'.2em',duration:1.6,ease:'expo.out'})};
+ctx=gsap.context(S.home);
+const scrollToFilm=e=>{if(e)e.preventDefault();const el=$('#campaign-film');if(!el)return;if(typeof L!=='undefined'&&L&&L.scrollTo){L.scrollTo(el,{offset:0,duration:1.2})}else{el.scrollIntoView({behavior:'smooth'})}};
+const b1=$('#hero-film-trigger'),b2=$('#nav-film-trigger');
+if(b1)b1.onclick=scrollToFilm;if(b2)b2.onclick=scrollToFilm;
+const vids=['assets/videos/desert_sunset.webm','assets/videos/dunes_golden.webm','assets/videos/sand_dunes_aerial.webm','assets/videos/desert_wind_trees.webm'];
+let vidIdx=0,activeVa=true;
+const va=$('#clean-vid-a'),vb=$('#clean-vid-b');
+const textScenes=document.querySelectorAll('.film-text-scene');
+if(va&&vb){
+  va.muted=true;vb.muted=true;va.play().catch(()=>{});
+  setInterval(()=>{
+    vidIdx=(vidIdx+1)%vids.length;
+    textScenes.forEach((ts,idx)=>ts.classList.toggle('active',idx===vidIdx));
+    const incoming=activeVa?vb:va,outgoing=activeVa?va:vb;
+    incoming.src=vids[vidIdx];
+    incoming.load();
+    incoming.play().then(()=>{
+      incoming.style.opacity='1';outgoing.style.opacity='0';
+      activeVa=!activeVa;
+    }).catch(()=>{
+      incoming.style.opacity='1';outgoing.style.opacity='0';
+      activeVa=!activeVa;
+    });
+  },4200);
+  const st=$('#film-sound-toggle');
+  if(st){
+    st.onclick=()=>{
+      const active=activeVa?va:vb;
+      const isMuted=active.muted;
+      va.muted=!isMuted;vb.muted=!isMuted;
+      st.classList.toggle('unmuted',isMuted);
+    };
+  }
+}
+if(matchMedia('(pointer:fine)').matches)document.querySelectorAll('.btn,.pl a').forEach(b=>{const x=gsap.quickTo(b,'x',{duration:.5,ease:'power3'}),y=gsap.quickTo(b,'y',{duration:.5,ease:'power3'});b.onmousemove=e=>{const r=b.getBoundingClientRect();x((e.clientX-r.left-r.width/2)*.3);y((e.clientY-r.top-r.height/2)*.4)};b.onmouseleave=()=>{x(0);y(0)}});
+})();
+</script></body></html>

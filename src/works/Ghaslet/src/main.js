@@ -54,7 +54,7 @@ function render() {
   $('[data-reel]').innerHTML = REEL.map(([src, cap, date], i) => `
     <figure class="frame" style="--r:${[-4, 3, -2, 5, -3, 2][i]}deg">
       <span class="tape-bit"></span>
-      <div class="frame-img"><img src="/assets/${src}" alt="Ghaslet flash photo: ${cap}" loading="lazy" decoding="async" /><span class="frame-flash"></span></div>
+      <div class="frame-img"><img src="${import.meta.env.BASE_URL}assets/${src}" alt="Ghaslet flash photo: ${cap}" loading="lazy" decoding="async" /><span class="frame-flash"></span></div>
       <span class="stamp">'${date}</span>
       <figcaption>${cap}</figcaption>
     </figure>`).join('');
