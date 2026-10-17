@@ -61,14 +61,14 @@ export const PROJECTS: Project[] = [
     href: "/projects/moove",
   },
   {
-    slug: "offset",
+    slug: "sorso",
     title: "Sorso",
     category: "Branding",
     year: "2026",
     image: "/works/offset/images/hero-trio.jpg",
     alt: "Three Sorso aperitivo soda bottles in rose and rosso tones",
     tone: "pink",
-    href: "/works/offset/index.html",
+    href: "/projects/sorso",
   },
   {
     slug: "dune",

@@ -2849,3 +2849,477 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
   html[data-page-transition]::view-transition-old(root),
   html[data-page-transition]::view-transition-new(root) { animation: none; }
 }
+
+/* ── Sorso showcase (/projects/sorso) ─────────────────────────── */
+.sorso-page {
+  --sorso-rosso: #F03A17;
+  --sorso-rosso-deep: #D42C0C;
+  --sorso-rosso-ink: #B8260A;
+  --sorso-blush: #FFD0C4;
+  --sorso-rosa: #FFB3A3;
+  --sorso-corallo: #FF6F5E;
+  --sorso-lilla: #E6E3FF;
+  --sorso-vino: #2B0B10;
+  --sorso-latte: #FFF3EA;
+  --sorso-limone: #FFD23F;
+  --sorso-display: var(--font-bodoni), "Bodoni 72", Didot, serif;
+  --sorso-sans: var(--font-archivo), system-ui, sans-serif;
+  background: var(--sorso-blush);
+  color: var(--sorso-vino);
+  font-family: var(--sorso-sans);
+}
+
+.sorso-main { font-family: var(--sorso-sans); }
+
+/* Nav */
+.sorso-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: color-mix(in srgb, var(--sorso-blush) 88%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(43, 11, 16, 0.14);
+}
+.sorso-nav-links { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+.sorso-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 11, 16, 0.2);
+  background: var(--sorso-latte);
+  color: var(--sorso-vino);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform 0.3s var(--ease-out-expo), background-color 0.3s, color 0.3s;
+}
+.sorso-pill:hover { transform: translateY(-2px); }
+.sorso-brand {
+  font-family: var(--sorso-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  padding-inline: 1.1rem;
+}
+.sorso-brand sup { font-size: 0.5em; }
+.sorso-pill-showreel { background: var(--sorso-vino); color: var(--sorso-latte); border-color: var(--sorso-corallo); }
+.sorso-pill-back { border-style: dashed; background: transparent; }
+
+.sorso-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 11, 16, 0.2);
+  background: var(--sorso-latte);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+.sorso-clock-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--sorso-rosso);
+  animation: sorso-clock-pulse 2.4s ease-in-out infinite;
+}
+.sorso-clock-label { color: rgba(43, 11, 16, 0.55); }
+@keyframes sorso-clock-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(0.55); opacity: 0.5; }
+}
+
+/* Hero */
+.sorso-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vh, 3rem);
+  min-height: calc(100svh - 60px);
+  padding: clamp(2rem, 6vh, 4rem) 1.25rem 0;
+  overflow: hidden;
+}
+.sorso-hero-title {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  font-family: var(--sorso-display);
+  font-weight: 800;
+  font-size: clamp(2.6rem, 8.5vw, 7.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  color: var(--sorso-vino);
+}
+.sorso-hero-title .sorso-hl { display: block; }
+.sorso-hero-title em {
+  display: block;
+  font-weight: 400;
+  font-size: 0.42em;
+  letter-spacing: 0.02em;
+}
+.sorso-trio {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(0.5rem, 3vw, 2.5rem);
+  margin-top: auto;
+}
+.sorso-trio-bottle {
+  height: clamp(11rem, 30vh, 21rem);
+  width: auto;
+  transition: transform 0.6s var(--ease-out-expo);
+}
+.sorso-trio-bottle:hover { transform: translateY(-10px) rotate(-1.2deg); }
+.sorso-trio-rosa { transform: rotate(-4deg) translateY(8%); }
+.sorso-trio-rosa:hover { transform: rotate(-4deg) translateY(calc(8% - 10px)); }
+.sorso-trio-chinotto { transform: rotate(4deg) translateY(8%); }
+.sorso-trio-chinotto:hover { transform: rotate(4deg) translateY(calc(8% - 10px)); }
+
+/* Bottle label type (SVG <text>) */
+.sorso-b-brand { font-family: var(--sorso-display); font-size: 30px; font-weight: 700; }
+.sorso-b-flavour { font-family: var(--sorso-sans); font-size: 15px; font-weight: 800; letter-spacing: 0.08em; }
+.sorso-b-sub { font-family: var(--sorso-sans); font-size: 7.5px; font-weight: 700; letter-spacing: 0.22em; }
+.sorso-b-meta { font-family: var(--sorso-sans); font-size: 7px; font-weight: 600; letter-spacing: 0.14em; }
+
+/* Tags marquee */
+.sorso-tags { padding-block: 1.25rem; overflow: clip; display: grid; gap: 0.6rem; }
+.sorso-tags-row { overflow: clip; }
+.sorso-tags-track {
+  display: flex;
+  gap: 0.6rem;
+  width: max-content;
+  padding: 0;
+  list-style: none;
+  animation: sorso-marquee 38s linear infinite;
+}
+.sorso-tags-row[data-dir="right"] .sorso-tags-track { animation-direction: reverse; }
+.sorso-tags-row:hover .sorso-tags-track { animation-play-state: paused; }
+.sorso-tag {
+  flex-shrink: 0;
+  padding: 0.55rem 1.15rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 11, 16, 0.14);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+@keyframes sorso-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Flavours */
+.sorso-flavours { display: flex; flex-direction: column; }
+.sorso-flv {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: center;
+  gap: clamp(1.5rem, 5vw, 4rem);
+  min-height: 82svh;
+  padding: clamp(2.5rem, 7vh, 5rem) clamp(1.25rem, 6vw, 6rem);
+}
+.sorso-flv-name {
+  font-family: var(--sorso-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+.sorso-flv-notes {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.sorso-flv-desc {
+  margin-top: 1.25rem;
+  max-width: 34ch;
+  font-size: clamp(1rem, 1.4vw, 1.2rem);
+  line-height: 1.55;
+}
+.sorso-flv-hour {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+.sorso-dash { display: inline-block; width: 2.2rem; height: 1px; background: currentColor; opacity: 0.6; }
+.sorso-flv-art { display: flex; justify-content: center; }
+.sorso-flv-bottle { height: clamp(16rem, 52vh, 34rem); width: auto; filter: drop-shadow(0 2rem 2.5rem rgba(43, 11, 16, 0.25)); }
+
+/* Bitter bento */
+.sorso-bitter {
+  padding: clamp(3rem, 8vh, 6rem) clamp(1.25rem, 6vw, 6rem);
+  background: var(--sorso-latte);
+}
+.sorso-bitter-head { max-width: 60ch; margin-bottom: clamp(2rem, 5vh, 3.5rem); }
+.sorso-bitter-title,
+.sorso-serve-title,
+.sorso-moments-title {
+  font-family: var(--sorso-display);
+  font-weight: 800;
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+}
+.sorso-bitter-title em,
+.sorso-serve-title em { font-weight: 400; }
+.sorso-bitter-head p { margin-top: 1.25rem; font-size: 1.05rem; line-height: 1.6; color: rgba(43, 11, 16, 0.75); }
+.sorso-bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(13rem, auto);
+  gap: 0.75rem;
+}
+.sorso-tile { position: relative; border-radius: 1.25rem; overflow: hidden; }
+.sorso-tile-text { padding: 1.5rem; display: flex; flex-direction: column; justify-content: flex-end; }
+.sorso-tile-text h3 { font-family: var(--sorso-display); font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
+.sorso-tile-text p { margin-top: 0.6rem; font-size: 0.92rem; line-height: 1.5; opacity: 0.85; }
+.sorso-tile-photo img { transition: transform 0.8s var(--ease-out-expo); }
+.sorso-tile-photo:hover img { transform: scale(1.04); }
+.sorso-tile-wide { grid-column: span 2; min-height: 16rem; }
+
+/* Serve */
+.sorso-serve {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+  padding: clamp(3rem, 8vh, 6rem) clamp(1.25rem, 6vw, 6rem);
+}
+.sorso-steps { margin-top: 2rem; padding: 0; list-style: none; counter-reset: step; }
+.sorso-step {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid rgba(43, 11, 16, 0.16);
+  font-size: clamp(1rem, 1.5vw, 1.25rem);
+}
+.sorso-step:last-child { border-bottom: 1px solid rgba(43, 11, 16, 0.16); }
+.sorso-step-n {
+  font-family: var(--sorso-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--sorso-rosso-deep);
+  font-variant-numeric: tabular-nums;
+}
+.sorso-glass-card {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  transform: rotate(2deg);
+  box-shadow: 0 2rem 4rem rgba(43, 11, 16, 0.28);
+}
+.sorso-glass-badge {
+  position: absolute;
+  inset-inline: 1rem;
+  bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.8rem 1rem;
+  border-radius: 0.9rem;
+  background: rgba(43, 11, 16, 0.82);
+  color: var(--sorso-latte);
+  font-size: 0.75rem;
+  backdrop-filter: blur(6px);
+}
+.sorso-glass-badge span:first-child { font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sorso-glass-badge span:last-child { opacity: 0.75; font-variant-numeric: tabular-nums; }
+
+/* Moments */
+.sorso-moments { padding: clamp(3rem, 8vh, 6rem) clamp(1.25rem, 6vw, 6rem); background: var(--sorso-rosa); }
+.sorso-moments-head { max-width: 60ch; margin-bottom: 1.75rem; }
+.sorso-moments-head p { margin-top: 1rem; font-size: 1.05rem; line-height: 1.6; color: rgba(43, 11, 16, 0.75); }
+.sorso-filters { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.25rem; }
+.sorso-filter {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(43, 11, 16, 0.3);
+  background: transparent;
+  color: var(--sorso-vino);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.25s, color 0.25s, transform 0.3s var(--ease-out-expo);
+}
+.sorso-filter:hover { transform: translateY(-2px); }
+.sorso-filter[data-active="true"] { background: var(--sorso-vino); color: var(--sorso-latte); border-color: var(--sorso-vino); }
+.sorso-m-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-top: 2rem;
+  padding: 0;
+  list-style: none;
+}
+.sorso-m-card figure { margin: 0; }
+.sorso-m-media { position: relative; aspect-ratio: 16 / 10; border-radius: 1.1rem; overflow: hidden; }
+.sorso-m-media img { transition: transform 0.8s var(--ease-out-expo); }
+.sorso-m-card:hover .sorso-m-media img { transform: scale(1.05); }
+.sorso-m-card figcaption { display: flex; flex-direction: column; gap: 0.2rem; padding-top: 0.75rem; }
+.sorso-m-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sorso-rosso-ink); font-variant-numeric: tabular-nums; }
+.sorso-m-title { font-family: var(--sorso-display); font-size: 1.35rem; font-weight: 700; }
+.sorso-m-card[hidden] { display: none; }
+
+/* Night footer */
+.sorso-night {
+  background: var(--sorso-vino);
+  color: var(--sorso-latte);
+  border-radius: 2.5rem 2.5rem 0 0;
+  padding: clamp(3rem, 8vh, 6rem) clamp(1.25rem, 6vw, 6rem) 1.5rem;
+  overflow: clip;
+}
+.sorso-night-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+.sorso-night-title {
+  font-family: var(--sorso-display);
+  font-weight: 800;
+  font-size: clamp(3rem, 9vw, 8rem);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  grid-column: 1;
+}
+.sorso-order {
+  grid-column: 2;
+  width: min(320px, 100%);
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 243, 234, 0.2);
+  border-radius: 1.25rem;
+  background: rgba(255, 243, 234, 0.06);
+}
+.sorso-order-pack { position: relative; aspect-ratio: 4 / 3; border-radius: 0.85rem; overflow: hidden; margin-bottom: 1rem; }
+.sorso-order h3 { font-family: var(--sorso-display); font-size: 1.35rem; font-weight: 700; }
+.sorso-order p { margin-top: 0.5rem; font-size: 0.88rem; line-height: 1.55; opacity: 0.8; }
+.sorso-order-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.25rem; }
+.sorso-order-price { font-family: var(--sorso-display); font-size: 1.9rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.sorso-order-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1.15rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--sorso-latte);
+  color: var(--sorso-vino);
+  font: inherit;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out-expo), background-color 0.3s;
+}
+.sorso-order-btn:hover { transform: translateY(-2px); }
+.sorso-order-btn[data-added="true"] { background: var(--sorso-limone); }
+.sorso-order-btn-icon { display: inline-flex; width: 15px; height: 15px; }
+.sorso-night-links {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 243, 234, 0.16);
+}
+.sorso-night-links a {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sorso-latte);
+  text-decoration: none;
+  opacity: 0.75;
+  transition: opacity 0.25s;
+}
+.sorso-night-links a:hover { opacity: 1; }
+.sorso-wordmark {
+  margin-top: clamp(1.5rem, 4vh, 3rem);
+  font-family: var(--sorso-display);
+  font-weight: 800;
+  font-size: clamp(5rem, 22vw, 24rem);
+  line-height: 0.8;
+  letter-spacing: -0.03em;
+  text-align: center;
+  color: var(--sorso-corallo);
+  transform: translateY(12%);
+  user-select: none;
+}
+.sorso-night-fine {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 0.72rem;
+  opacity: 0.55;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .sorso-flv { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+  .sorso-flv-art { order: -1; }
+  .sorso-flv-bottle { height: clamp(14rem, 36vh, 22rem); }
+  .sorso-serve { grid-template-columns: 1fr; }
+  .sorso-bento { grid-template-columns: repeat(2, 1fr); }
+  .sorso-tile-wide { grid-column: span 2; }
+  .sorso-night-top { grid-template-columns: 1fr; }
+  .sorso-order { grid-column: 1; width: 100%; max-width: 400px; }
+}
+@media (max-width: 620px) {
+  .sorso-clock-label { display: none; }
+  .sorso-nav { padding-inline: 0.75rem; gap: 0.5rem; flex-wrap: wrap; }
+  .sorso-nav-links { width: 100%; justify-content: flex-start; }
+  .sorso-m-grid { grid-template-columns: 1fr; }
+  .sorso-bento { grid-template-columns: 1fr; }
+  .sorso-tile-wide { grid-column: span 1; min-height: 13rem; }
+  .sorso-hero { min-height: 78svh; }
+  .sorso-trio-bottle { height: clamp(9rem, 22vh, 14rem); }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sorso-tags-track { animation: none; }
+  .sorso-clock-dot { animation: none; }
+  .sorso-trio-bottle,
+  .sorso-trio-rosa,
+  .sorso-trio-chinotto,
+  .sorso-m-media img,
+  .sorso-tile-photo img,
+  .sorso-pill,
+  .sorso-filter { transition: none; transform: none !important; }
+}
