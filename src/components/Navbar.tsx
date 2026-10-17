@@ -69,7 +69,7 @@ export default function Navbar() {
       }}
     >
       <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 md:px-8" suppressHydrationWarning>
-        <nav className="relative mx-auto flex max-w-[1400px] items-center justify-between" aria-label="Primary navigation">
+        <nav className="relative mx-auto flex max-w-350 items-center justify-between" aria-label="Primary navigation">
           <Link href="/" onClick={close} className="text-[13px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em]" aria-label="PerPixel home">
             Per<br />Pixel<sup className="text-[8px] font-bold">®</sup>
           </Link>

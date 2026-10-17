@@ -16,10 +16,10 @@ export default function ProjectsPage() {
   return (
     <main className="pt-28" suppressHydrationWarning>
       {/* Hero */}
-      <section className="mx-auto max-w-[1400px] px-5 md:px-8">
+      <section className="mx-auto max-w-350 px-5 md:px-8">
         <Reveal variant="media">
           <div className="relative overflow-hidden rounded-card">
-            <div className="relative aspect-[16/10] md:aspect-[21/9]">
+            <div className="relative aspect-16/10 md:aspect-21/9">
               <Image
                 src={hero.image}
                 alt={hero.alt}
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
                 className="object-cover"
               />
             </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-ink/35 via-transparent to-transparent" />
             <div className="absolute inset-x-6 top-6 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-paper/90 md:inset-x-8 md:top-8">
               <span>Selected work, 2024–2026</span>
               <span>PerPixel</span>
@@ -41,7 +41,7 @@ export default function ProjectsPage() {
               href={PROJECTS[0].href ?? "#moove"}
               className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 md:block"
             >
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
+              <div className="relative aspect-4/3 overflow-hidden rounded-lg">
                 <Image
                   src={PROJECTS[0].image}
                   alt={PROJECTS[0].alt}
@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Selected work */}
-      <section className="mx-auto mt-20 max-w-[1400px] px-5 md:mt-28 md:px-8">
+      <section className="mx-auto mt-20 max-w-350 px-5 md:mt-28 md:px-8">
         <Reveal>
           <h2 className="text-center font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-[-0.01em]">
             Selected Work.
@@ -69,7 +69,7 @@ export default function ProjectsPage() {
       </section>
 
       {/* Studio statement */}
-      <section id="services" className="services-section mx-auto mt-24 max-w-[1400px] scroll-mt-20 px-5 md:mt-32 md:px-8" aria-labelledby="services-heading">
+      <section id="services" className="services-section mx-auto mt-24 max-w-350 scroll-mt-20 px-5 md:mt-32 md:px-8" aria-labelledby="services-heading">
         <Reveal>
           <div className="services-surface">
             <div className="services-heading">

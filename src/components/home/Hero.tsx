@@ -6,7 +6,7 @@ const CAPABILITIES = ["Brand identity", "Web design", "Editorial systems", "Moti
 
 export default function Hero() {
   return (
-    <section className="home-hero mx-auto max-w-[1400px] px-5 md:px-8" aria-labelledby="hero-heading">
+    <section className="home-hero mx-auto max-w-350 px-5 md:px-8" aria-labelledby="hero-heading">
       <div className="hero-meta">
         <span>PerPixel® — Independent design studio</span>
         <span>Brand &amp; digital experiences</span>

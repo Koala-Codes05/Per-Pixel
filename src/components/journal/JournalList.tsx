@@ -68,7 +68,7 @@ export default function JournalList() {
             <div className="accordion" data-open={isOpen} id={`journal-panel-${i}`}>
               <div>
                 <div className="grid gap-6 pb-9 md:grid-cols-12">
-                  <div className="relative aspect-[16/9] overflow-hidden rounded-card md:col-span-5">
+                  <div className="relative aspect-video overflow-hidden rounded-card md:col-span-5">
                     <Image
                       src={post.image}
                       alt={post.alt}

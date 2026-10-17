@@ -12,7 +12,7 @@ export default function Bento() {
   const rows = PROJECTS.slice(2, 5);
 
   return (
-    <section id="studio" className="bento-section mx-auto max-w-[1400px] px-5 md:px-8" aria-label="Studio highlights">
+    <section id="studio" className="bento-section mx-auto max-w-350 px-5 md:px-8" aria-label="Studio highlights">
       <div className="bento-grid">
         {/* Article card */}
         <Reveal className="bento-article-slot">

@@ -632,7 +632,7 @@ export function MooveShellSequence() {
       className="moove-shell-section scroll-mt-20"
     >
       <div className="moove-shell-viewport">
-        <div className="mx-auto flex h-full max-w-[1400px] flex-col justify-between px-5 py-10 md:px-8 md:py-16">
+        <div className="mx-auto flex h-full max-w-350 flex-col justify-between px-5 py-10 md:px-8 md:py-16">
           <div className="moove-shell-header">
             <div>
               <h2 className="moove-section-title">

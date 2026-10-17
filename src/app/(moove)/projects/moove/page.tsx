@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import LiquidDistortion from "@/components/LiquidDistortion";
 import Reveal from "@/components/Reveal";
-import { ArrowUpRight } from "@/components/home/Bento";
 import {
   MooveCollectionLedger,
   MooveDossierBuilder,
@@ -20,38 +18,11 @@ export const metadata: Metadata = {
 
 export default function MoovePage() {
   return (
-    <main className="moove-page pt-24 md:pt-28" suppressHydrationWarning>
-      {/* In-world Moove sub-navigation bar */}
-      <div className="mx-auto max-w-[1400px] px-5 md:px-8">
-        <nav
-          aria-label="Moove brand showcase navigation"
-          className="moove-subnav"
-        >
-          <div className="moove-subnav-brand">
-            <span className="moove-wordmark-badge">MOOVE®</span>
-            <span className="moove-subnav-meta tabular-nums">
-              Branding · 2026 · Collection 01
-            </span>
-          </div>
-
-          <div className="moove-subnav-links">
-            <a href="#collection">Collection</a>
-            <a href="#shell-study">Shell Study</a>
-            <a href="#identity">Identity</a>
-            <a href="#dossier">Dossier</a>
-          </div>
-
-          <Link href="/projects" className="moove-subnav-back group">
-            <span>All projects</span>
-            <ArrowUpRight />
-          </Link>
-        </nav>
-      </div>
-
+    <main className="moove-page" suppressHydrationWarning>
       {/* First Viewport: Hero Thesis & Interactive Finish / Orthographic Inspector */}
       <section
         aria-label="Moove hero and finish inspector"
-        className="mx-auto mt-6 max-w-[1400px] px-5 md:mt-8 md:px-8"
+        className="mx-auto mt-6 max-w-350 px-5 md:mt-8 md:px-8"
       >
         <MooveHeroInspector />
       </section>
@@ -59,7 +30,7 @@ export default function MoovePage() {
       {/* Architectural Thesis Banner */}
       <section
         aria-label="Atelier philosophy"
-        className="mx-auto mt-20 max-w-[1400px] px-5 md:mt-28 md:px-8"
+        className="mx-auto mt-20 max-w-350 px-5 md:mt-28 md:px-8"
       >
         <Reveal>
           <div className="moove-thesis-band">
@@ -89,7 +60,7 @@ export default function MoovePage() {
       <section
         id="collection"
         aria-labelledby="moove-collection-heading"
-        className="mx-auto mt-24 max-w-[1400px] scroll-mt-24 px-5 md:mt-32 md:px-8"
+        className="mx-auto mt-24 max-w-350 scroll-mt-24 px-5 md:mt-32 md:px-8"
       >
         <Reveal>
           <div className="moove-section-head">
@@ -116,7 +87,7 @@ export default function MoovePage() {
       <section
         id="identity"
         aria-labelledby="moove-identity-heading"
-        className="mx-auto mt-24 max-w-[1400px] scroll-mt-24 px-5 md:mt-32 md:px-8"
+        className="mx-auto mt-24 max-w-350 scroll-mt-24 px-5 md:mt-32 md:px-8"
       >
         <Reveal>
           <div className="moove-section-head">
@@ -163,7 +134,7 @@ export default function MoovePage() {
         <div className="moove-lookbook-grid mt-12">
           <Reveal variant="media" className="moove-lookbook-large">
             <figure className="moove-lookbook-figure">
-              <div className="moove-lookbook-img-wrap aspect-[16/10]">
+              <div className="moove-lookbook-img-wrap aspect-16/10">
                 <Image
                   src="https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=1400&q=80"
                   alt="Arca 01 chair bathed in soft rose studio daylight"
@@ -182,7 +153,7 @@ export default function MoovePage() {
 
           <Reveal variant="media" delay={60} className="moove-lookbook-tall">
             <figure className="moove-lookbook-figure">
-              <div className="moove-lookbook-img-wrap aspect-[4/5]">
+              <div className="moove-lookbook-img-wrap aspect-4/5">
                 <Image
                   src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80"
                   alt="Quiet interior composition with sculptural chair and natural plaster"
@@ -205,7 +176,7 @@ export default function MoovePage() {
       <section
         id="dossier"
         aria-label="Commission and trade dossier"
-        className="mx-auto mt-24 max-w-[1400px] scroll-mt-24 px-5 pb-12 md:mt-32 md:px-8"
+        className="mx-auto mt-24 max-w-350 scroll-mt-24 px-5 pb-12 md:mt-32 md:px-8"
       >
         <Reveal>
           <MooveDossierBuilder />

@@ -5,8 +5,6 @@ import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import Preloader from "@/components/Preloader";
 import PageTransition from "@/components/PageTransition";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { INTRO_BOOTSTRAP } from "@/lib/intro";
 
 const archivo = Archivo({
@@ -40,9 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <SmoothScroll />
         <Preloader />
         <PageTransition />
-        <Navbar />
         {children}
-        <Footer />
         <div className="viewport-blur" aria-hidden="true">
           <div className="backdrop-blur-[0.5px]" />
           <div className="backdrop-blur-[1px]" />

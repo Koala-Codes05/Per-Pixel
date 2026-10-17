@@ -43,7 +43,7 @@ function Card({ project, index }: { project: Project; index: number }) {
   return (
     <Reveal variant="media" delay={(index % 2) * 60}>
       <Link id={project.slug} href={project.href ?? `#details-${project.slug}`} className="project-card group block scroll-mt-24">
-        <div className="relative aspect-[4/3] overflow-hidden rounded-card bg-blush">
+        <div className="relative aspect-4/3 overflow-hidden rounded-card bg-blush">
           <Image
             src={project.image}
             alt={project.alt}

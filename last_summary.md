@@ -22,3 +22,30 @@
 
 ### Blockers / next step
 - None. Ready to preview `/projects/moove` or commit.
+
+## 2026-10-16 — Committed and pushed all work; Vercel CLI auth expired
+
+### Changed
+- `git commit d2d0a13` "Add Moove showcase, works archive, and page transitions" — 238 files, pushed `b3818d8..d2d0a13` to `origin/main` (github.com/Koala-Codes05/Per-Pixel).
+- `.gitignore`: unanchored `/node_modules` → `node_modules`, added `src/works/**/dist` — nested sub-project dependencies were not previously ignored.
+
+### Verification
+- `npm run lint` exit 0; `npm run build` exit 0 (all routes prerendered, incl. `/projects/moove`).
+- `git diff --cached` confirmed zero `node_modules`/`dist` files staged.
+
+### Notes
+- `vercel --prod` failed with "Not authorized" — CLI token expired. Repo is GitHub-connected so the push auto-deploys to production (https://perpixel-one.vercel.app) anyway. Fix: `vercel login` (device-code flow, needs a browser).
+
+## 2026-10-17 — Vercel CLI re-authed + Tailwind v4 canonical syntax normalization
+
+### Changed
+- `vercel login` completed via device-code OAuth (`vercel login --github`, code DVBC-KKJP) — CLI works as `koala-codes05`; `vercel ls` confirms `d2d0a13` deploy ● Ready/Production.
+- Normalized Tailwind v4 syntax (IDE tailwindcss warnings): `max-w-[1400px]` → `max-w-350` (13×) and `aspect-[N/M]` → `aspect-N/M` (6×: 16/10, 4/5, 21/9, 4/3, 16/9) across `src/app/(moove)/projects/moove/page.tsx`, `MooveFooter.tsx`, `MooveShowcase.tsx`, `src/app/(site)/projects/page.tsx`, `ProjectsGallery.tsx`, `Bento.tsx`, `Hero.tsx`, `Navbar.tsx`, `JournalList.tsx`.
+- Second pass (follow-on warnings): `JournalList.tsx` `aspect-16/9` → `aspect-video`; `(site)/projects/page.tsx` `bg-gradient-to-t` → `bg-linear-to-t` (v4 renamed gradient utilities). `src/works` left alone — standalone projects on their own Tailwind versions.
+
+### Verification
+- Grep: zero remaining `max-w-[1400px]`/`aspect-[N/M]` in `src`.
+- `npm run lint` — exit 0.
+
+### Blockers / next step
+- Route-group refactor (`(moove)`/`(site)`, MooveNavbar/MooveFooter) is WIP and uncommitted — do NOT `vercel --prod` (deploys local tree). Commit + push when done; GitHub integration auto-deploys.
