@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="mx-auto max-w-[1100px] px-5 pt-32 md:px-8 md:pt-40" suppressHydrationWarning>
+    <main className="mx-auto max-w-275 px-5 pt-32 md:px-8 md:pt-40" suppressHydrationWarning>
       <Reveal>
         <h1 className="text-center font-serif text-[clamp(3rem,8vw,6.5rem)] leading-[0.95] tracking-[-0.02em]">
           Let&apos;s talk.

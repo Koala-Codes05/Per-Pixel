@@ -11,7 +11,7 @@ const CAPABILITIES = ["Brand identity", "Editorial systems", "Web design", "Moti
 
 export default function AboutPage() {
   return (
-    <main className="mx-auto max-w-[1100px] px-5 pt-32 md:px-8 md:pt-40" suppressHydrationWarning>
+    <main className="mx-auto max-w-275 px-5 pt-32 md:px-8 md:pt-40" suppressHydrationWarning>
       <Reveal>
         <h1 className="max-w-[14ch] font-serif text-[clamp(2.8rem,7vw,6rem)] leading-[1] tracking-[-0.02em]">
           Design that behaves like it means it.

@@ -1,28 +1,32 @@
 ﻿# Last summary — PerPixel
 
-## 2026-10-17 — Sorso ported to native route `/projects/sorso`
+## 2026-10-20 — Built `/playbook` Studio Intelligence & Growth Playbook website
 
-### Changed
-- **New route group** `src/app/(sorso)/projects/sorso/` — `layout.tsx` renders `SorsoNavbar` chrome; `page.tsx` (259 lines) recreates the standalone Offset/Sorso site as server-rendered sections: pill nav + aperitivo clock, "All the Bitter. None of the Proof." hero with three inline SVG bottles (Rosso/Rosa/Chinotto), tag marquees, three stacked full-bleed flavour articles, "Bitter, on purpose." bento, four-step serve ritual, filterable "Seven-ish." moments grid, "Salute." footer with mixed-case order + giant coral wordmark.
-- **`src/components/projects/SorsoShowcase.tsx`** (client islands): `SorsoClock` (scroll-progress 17:00→20:30, passive listener, no React state), `SorsoMoments` (`hidden`-attr filter + `aria-pressed`), `SorsoCaseButton` (`data-added` + `aria-live` announcement).
-- **`src/components/projects/SorsoNavbar.tsx`** (server): sticky pill bar — brand, clock, section anchors, Showreel → `/works/offset/showreel.html`, "All projects" back link.
-- **`src/app/globals.css`**: `.sorso-*` block appended (~460 lines, own palette/Bodoni fallback stack — not `@theme` tokens). Mobile ≤620px wraps nav pills to left-aligned rows under brand+clock.
-- **`src/lib/site.ts`**: first work entry `offset` → `sorso`, href `/projects/sorso` (was `/works/offset/index.html`); standalone original still live at `/works/offset/`.
-- Deliberate simplification: original's flavour **tabs** became stacked editorial articles; no GSAP — all motion is CSS/scroll-driven per project conventions.
-- New tests: `tests/sorso_check.py` (16 asserts), `tests/sorso_shots.py` (screenshots with intro skipped).
+### What was asked
+Turn all the competitor, pricing, website critique, case-study anatomy, acquisition, and pipeline research into an image-and-video-rich interactive website with a dedicated `Next Plan` section, delegating heavy lifting to avoid burning main-session tokens.
+
+### What changed
+- `public/research/shots/*.png`: copied all 26 live competitor website screenshots into `public/research/shots/` so Next.js serves them.
+- `src/components/playbook/playbook-data.ts`: structured dataset for all 18 studios (9 global, 9 India), 13 website critiques with good/bad/lesson notes, 6 deliverable pricing tiers (Global USD + India INR across Seed/Growth/Enterprise stages), 6-step case-study anatomy (Koto/Uniqode benchmark vs PerPixel/Moove application), 9 client acquisition channels, 6-stage new-business pipeline, 4 concrete PerPixel case-study blueprints, and the 3-phase 30/60/90-day Next Plan roadmap.
+- `src/components/playbook/PlaybookShowcase.tsx`: interactive client showcase with:
+  - Sticky chapter bar (`01`–`07`)
+  - `01` Filterable & searchable 18-studio comp matrix with live homepage previews
+  - `02` Interactive Website Critique Inspector (`Side-by-Side`, `Shot 01`, `Shot 02` toggle across 26 captures + Steal This / Avoid This cards + 4 synthesis rules)
+  - `03` Dual-Market Pricing & Scope Estimator (`INR Domestic` vs `USD Global` toggle, deliverable & client-stage selector, 50/50 payment split, full comparison table)
+  - `04` Interactive Case-Study Anatomy Deconstructor (`01 Header` → `06 Outcome` with video stage + `1 Project → 4 Assets` multiplier)
+  - `05` Client Acquisition Channels + Pipeline Coverage Calculator + 12-month $660k outbound benchmark + interactive 6-stage funnel inspector
+  - `06` Cold-Start Playbook + 4 image-and-video Case Study Blueprints linking to `/projects/moove`, `/projects/sorso`, `/works/ghaslet/index.html`, and `/works/dune/index.html`
+  - `07` `#next-plan` Interactive 30/60/90-Day Execution Roadmap with checkable tasks and progress counter
+- `src/app/(site)/playbook/page.tsx`: Server Component assembling the editorial hero, 4 stat tiles, 3-video showreel strip (`raw_12-aurora-glass.mp4`, `dunes_golden.webm`, `raw_07-liquid.mp4`), and `<PlaybookShowcase />`.
+- `src/lib/site.ts`: added `{ href: "/playbook", label: "Playbook" }` to `NAV_LINKS`.
+- `src/app/(site)/journal/page.tsx`: added featured research callout banner linking to `/playbook`.
 
 ### Verification
-- `npm run lint` → exit 0. `npm run build` → exit 0, `/projects/sorso` prerendered (all 8 routes).
-- `python tests/sorso_check.py` → **16/16 pass**: zero page errors, no horizontal overflow, moments filter `aria-pressed` + card hiding (seaside 2/6, all restored), 3 flavour articles + bottles, order button `data-added` + label switch + live region, clock renders (17:00→20:30 by scroll depth), showreel href resolves, reduced-motion clean + marquee paused.
-- Screenshots reviewed (`tests/shots/sorso-*.png`): hero bottles + Bodoni type correct; Rosso band renders; mobile nav wraps to rows (post-fix); footer "Salute."/wordmark correct.
-- Rendered HTML earlier confirmed `sorso-nav`, `sorso-hero`, `Seven-ish`, `Salute`, `liq-rosso`, showreel link, and 200 on `hero-trio` imagery.
-
-### Gotchas hit
-- Screenshots against `next start` (:3200) serve the **built** CSS — edits to `globals.css` don't appear until rebuild. Dev server :3000 hot-reloads them; verify style tweaks there.
-- PowerShell mangles `python -c "...\"...\""` (parens/quotes) — write `tests/*.py` files instead of inline `-c`.
-- `innerText` reflects `text-transform` in Chromium → case-fold before asserting label text.
-- `git status` warns `could not open directory 'src/works/Offset/videos/offset-portal-hop/assets/'` — a broken dir left under the (untracked) works tree; harmless, not committed.
+- Delegated initial scaffold via `bridge_delegate` (`codex`), cleaned up `.bridge/`, fixed CP1252 encoding / `next/image` / hook lint warnings, and ran `npm run lint` + `npm run build` — both passed cleanly.
+- Fixed 3 root causes behind broken preloader/sticky-scroll/slowness in preview:
+  1. Added `allowedDevOrigins: ["127.0.0.1", "localhost", "192.168.1.7"]` to `next.config.ts` (Next 16 was blocking `/_next/*` dev resources when opened via `127.0.0.1` preview proxy, trapping `INTRO_BOOTSTRAP` for 6.5s and preventing client hydration of preloader, Lenis, and sticky scroll).
+  2. Relaxed viewport-height fit thresholds in `FeaturedScene.tsx` (`>=540px`, `tallest + 60`) and `Process.tsx` (`>=520px`, `tallest + 64`) so 1080p laptops with scaling/browser chrome don't fall back to `data-motion="off"`.
+  3. Switched background videos in `PlaybookShowcase.tsx` to `preload="none"` and started the precompiled production server (`npm run start`) on `http://localhost:3000` to eliminate `next dev`'s 1–5s on-demand compile lag on `D:\`.
 
 ### Blockers / next step
-- Sorso port complete and verified; commit + push pending (files: `(sorso)/` group, 2 components, globals.css, site.ts, 2 test files, 4 shots).
-- Remaining works to port if prioritized: Dune, Ghaslet, SNACKVERSE (all live standalone under `/works/`).
+- None. Next useful step: apply Phase 1 of `/playbook#next-plan` — add the Challenge → Strategy → Identity → Application → Outcome header narrative directly onto `/projects/moove` and `/projects/sorso`.

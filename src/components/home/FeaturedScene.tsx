@@ -28,7 +28,7 @@ export default function FeaturedScene({ count, children }: { count: number; chil
     const measure = () => {
       const mobile = window.innerWidth < 768;
       const tallest = Math.max(0, ...cards.map((card) => card.offsetHeight));
-      const fits = window.innerHeight >= (mobile ? 760 : 680) && tallest + (mobile ? 310 : 185) <= window.innerHeight;
+      const fits = window.innerHeight >= (mobile ? 640 : 540) && tallest + (mobile ? 180 : 60) <= window.innerHeight;
       section.dataset.motion = !reduceMotion && fits ? "on" : "off";
       if (section.dataset.motion === "on") {
         const distance = Math.max(1, section.offsetHeight - window.innerHeight);

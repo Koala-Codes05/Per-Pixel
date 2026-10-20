@@ -7,7 +7,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="mx-auto max-w-[760px]">
+    <div className="mx-auto max-w-190">
       {FAQ_ITEMS.map((item, i) => {
         const isOpen = open === i;
         return (
@@ -18,7 +18,7 @@ export default function Faq() {
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
               aria-controls={`faq-panel-${i}`}
-              className="faq-trigger group flex w-full items-center justify-between gap-6 py-5 text-left transition-colors duration-200 hover:bg-ink/[0.025]"
+              className="faq-trigger group flex w-full items-center justify-between gap-6 py-5 text-left transition-colors duration-200 hover:bg-ink/2.5"
             >
               <span className="text-[15px] font-medium transition-transform duration-300 ease-out-expo group-hover:translate-x-1">
                 {item.question}
@@ -36,7 +36,7 @@ export default function Faq() {
             <div className="accordion" data-open={isOpen} id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-question-${i}`} aria-hidden={!isOpen} inert={!isOpen}>
               <div>
                 <p
-                  className={`faq-answer max-w-[58ch] pb-6 text-[14px] leading-relaxed text-ink/70 transition-[transform,opacity] duration-[380ms] ease-out-expo ${
+                  className={`faq-answer max-w-[58ch] pb-6 text-[14px] leading-relaxed text-ink/70 transition-[transform,opacity] duration-380 ease-out-expo ${
                     isOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
                   }`}
                 >
