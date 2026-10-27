@@ -266,6 +266,8 @@ export default function PageTransition() {
         return;
       }
       if ((url.protocol !== "http:" && url.protocol !== "https:") || url.origin !== location.origin || url.pathname === pathnameRef.current) return;
+      // Static files (e.g. the standalone /works/*.html builds) are full document loads, not router transitions.
+      if (/\.[a-z0-9]+$/i.test(url.pathname)) return;
       if (root.classList.contains("pp-intro-pending") || media.matches || typeof transitionDocument.startViewTransition !== "function") return;
       event.preventDefault();
       event.stopPropagation();

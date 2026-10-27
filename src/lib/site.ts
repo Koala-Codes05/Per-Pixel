@@ -1,7 +1,6 @@
 export const NAV_LINKS = [
   { href: "/projects", label: "Projects" },
   { href: "/journal", label: "Journal" },
-  { href: "/playbook", label: "Playbook" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;
@@ -16,7 +15,7 @@ export const PROCESS_FRAMES = [
       "We begin every project with deep discovery. Understanding your audience and strategic goals forms the foundation we build upon. This phase shapes everything that follows.",
     image:
       "https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=900&q=80",
-    alt: "Minimal black object study on a gray gradient",
+    alt: "Pale wooden stool against a blue-grey backdrop",
   },
   {
     number: "2",
@@ -25,7 +24,7 @@ export const PROCESS_FRAMES = [
       "Strategy meets craft in the concept phase. We develop ideas, explore directions, and refine until the path forward is clear. Nothing moves to execution until the vision is sharp and the strategy is sound.",
     image:
       "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80",
-    alt: "Dark sculptural form floating on a gray backdrop",
+    alt: "Flowing purple, pink, and blue gradient waves",
   },
   {
     number: "3",
@@ -34,7 +33,7 @@ export const PROCESS_FRAMES = [
       "Execution with precision and care. Your brand comes to life through meticulous design and seamless delivery. We stay close through launch and beyond.",
     image:
       "https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=900&q=80",
-    alt: "Abstract monochrome texture study",
+    alt: "Red and blue ink clouds swirling in water",
   },
 ] as const;
 
@@ -46,7 +45,9 @@ export type Project = {
   image: string;
   alt: string;
   tone: "pink" | "blue" | "neutral";
-  href?: string;
+  href: string;
+  /** "site" = a built brand website; "case-study" = a written concept study page. */
+  kind: "site" | "case-study";
 };
 
 export const PROJECTS: Project[] = [
@@ -57,9 +58,10 @@ export const PROJECTS: Project[] = [
     year: "2026",
     image:
       "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=900&q=80",
-    alt: "Pale pink chair against a rose studio backdrop",
+    alt: "Cream tufted armchair against a pale studio wall",
     tone: "pink",
     href: "/projects/moove",
+    kind: "site",
   },
   {
     slug: "sorso",
@@ -70,6 +72,7 @@ export const PROJECTS: Project[] = [
     alt: "Three Sorso aperitivo soda bottles in rose and rosso tones",
     tone: "pink",
     href: "/projects/sorso",
+    kind: "site",
   },
   {
     slug: "dune",
@@ -80,6 +83,7 @@ export const PROJECTS: Project[] = [
     alt: "Dune fashion editorial at dawn across desert dunes",
     tone: "neutral",
     href: "/works/dune/index.html",
+    kind: "site",
   },
   {
     slug: "ghaslet",
@@ -90,17 +94,18 @@ export const PROJECTS: Project[] = [
     alt: "Ghaslet hot sauce bottle hero shot",
     tone: "neutral",
     href: "/works/ghaslet/index.html",
+    kind: "site",
   },
   {
     slug: "snackverse",
     title: "SNACKVERSE",
     category: "Design",
     year: "2026",
-    image:
-      "https://images.unsplash.com/photo-1604085572504-a392ddf0d86a?auto=format&fit=crop&w=900&q=80",
-    alt: "SNACKVERSE pop bento brand playground",
+    image: "/works/snackverse/cover.jpg",
+    alt: "SNACKVERSE homepage with pink and blue snack bento tiles",
     tone: "blue",
     href: "/works/snackverse/index.html",
+    kind: "site",
   },
   {
     slug: "velora",
@@ -109,8 +114,10 @@ export const PROJECTS: Project[] = [
     year: "2026",
     image:
       "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=80",
-    alt: "Editorial portrait lit in soft pink",
-    tone: "pink",
+    alt: "Portrait of a woman lit in cool blue and violet light",
+    tone: "blue",
+    href: "/projects/velora",
+    kind: "case-study",
   },
   {
     slug: "kilim",
@@ -119,8 +126,10 @@ export const PROJECTS: Project[] = [
     year: "2025",
     image:
       "https://images.unsplash.com/photo-1604085572504-a392ddf0d86a?auto=format&fit=crop&w=900&q=80",
-    alt: "Orange flower against a clear blue sky",
-    tone: "blue",
+    alt: "Orange flower against a deep green background",
+    tone: "neutral",
+    href: "/projects/kilim",
+    kind: "case-study",
   },
   {
     slug: "norra",
@@ -129,8 +138,10 @@ export const PROJECTS: Project[] = [
     year: "2025",
     image:
       "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=900&q=80",
-    alt: "Abstract gradient form in blue and violet",
+    alt: "Oil-and-water bubbles in pink, yellow, orange, and blue",
     tone: "blue",
+    href: "/projects/norra",
+    kind: "case-study",
   },
   {
     slug: "atlas",
@@ -139,8 +150,10 @@ export const PROJECTS: Project[] = [
     year: "2025",
     image:
       "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
-    alt: "Quiet interior with a single chair and plant",
+    alt: "Bright lounge interior with grey chairs and a black floor lamp",
     tone: "neutral",
+    href: "/projects/atlas",
+    kind: "case-study",
   },
   {
     slug: "field-notes",
@@ -149,8 +162,10 @@ export const PROJECTS: Project[] = [
     year: "2024",
     image:
       "https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=900&q=80",
-    alt: "Soft pink flowers in morning light",
-    tone: "pink",
+    alt: "Orange poppies against a clear blue sky",
+    tone: "blue",
+    href: "/projects/field-notes",
+    kind: "case-study",
   },
 ];
 

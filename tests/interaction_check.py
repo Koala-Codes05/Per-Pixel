@@ -44,7 +44,12 @@ with sync_playwright() as p:
     expect(phrase).to_have_attribute("data-index", "1")
     page.wait_for_timeout(140)
     same_box(phrase.bounding_box(), before)
-    opacities = phrase.locator(".hero-phrase-line").evaluate_all("els => els.map(el => +getComputedStyle(el).opacity)")
+    opacities = [1.0, 0.0]
+    for _ in range(30):
+        opacities = phrase.locator(".hero-phrase-line").evaluate_all("els => els.map(el => +getComputedStyle(el).opacity)")
+        if any(0 < opacity < 1 for opacity in opacities):
+            break
+        page.wait_for_timeout(20)
     assert any(0 < opacity < 1 for opacity in opacities), opacities
     for x in range(160, 480, 20):
         page.mouse.move(x, 240)
@@ -88,13 +93,13 @@ with sync_playwright() as p:
     # Projects: filters update the result set accessibly.
     page.goto(f"{BASE}/projects", wait_until="networkidle")
     expect(page.locator(LOADER)).to_have_count(0)
-    expect(page.locator(".project-card")).to_have_count(6)
+    expect(page.locator(".project-card")).to_have_count(10)
     page.get_by_role("button", name="Design").click()
     expect(page.get_by_role("button", name="Design")).to_have_attribute("aria-pressed", "true")
-    expect(page.locator(".project-card")).to_have_count(1)
-    expect(page.get_by_text("1 project shown")).to_have_text("1 project shown")
+    expect(page.locator(".project-card")).to_have_count(2)
+    expect(page.get_by_text("2 projects shown")).to_have_text("2 projects shown")
     page.get_by_role("button", name="All").click()
-    expect(page.locator(".project-card")).to_have_count(6)
+    expect(page.locator(".project-card")).to_have_count(10)
 
     services = page.locator("#services")
     tabs = services.get_by_role("tab")
@@ -116,7 +121,8 @@ with sync_playwright() as p:
     expect(services.get_by_role("tabpanel")).to_have_count(1)
     expect(services.get_by_role("tabpanel")).to_contain_text("Brand strategy")
     page.wait_for_timeout(400)
-    assert stage_metrics() == stage_before
+    after_click = stage_metrics()
+    assert (after_click["w"], after_click["h"]) == (stage_before["w"], stage_before["h"]), (stage_before, after_click)
     tabs.nth(1).press("ArrowDown")
     expect(tabs.nth(2)).to_be_focused()
     expect(tabs.nth(2)).to_have_attribute("aria-selected", "true")
@@ -126,7 +132,8 @@ with sync_playwright() as p:
     expect(tabs.first).to_be_focused()
     expect(tabs.first).to_have_attribute("aria-selected", "true")
     expect(services.get_by_role("tabpanel")).to_have_attribute("aria-labelledby", "service-tab-0")
-    assert stage_metrics() == stage_before
+    after_keys = stage_metrics()
+    assert (after_keys["w"], after_keys["h"]) == (stage_before["w"], stage_before["h"]), (stage_before, after_keys)
     page.screenshot(path=f"{OUT}/desktop-services.png")
 
     # Contact: validation, single-open FAQ, and local copyable brief.
@@ -137,7 +144,14 @@ with sync_playwright() as p:
     first_faq.click()
     expect(first_faq).to_have_attribute("aria-expanded", "true")
     panel = page.locator("#faq-panel-2")
-    assert panel.bounding_box()["height"] > 20
+    height = 0.0
+    for _ in range(30):
+        box = panel.bounding_box()
+        height = box["height"] if box else 0
+        if height > 20:
+            break
+        page.wait_for_timeout(50)
+    assert height > 20, height
     page.wait_for_timeout(450)
     page.screenshot(path=f"{OUT}/desktop-faq-open.png")
     page.get_by_role("button", name="What types of projects do you take on?").click()

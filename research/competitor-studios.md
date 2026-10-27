@@ -600,6 +600,73 @@ study" — never implied client work); write the strategic idea first,
 screens second; show the work in use, not mockup galleries; one case
 study = LinkedIn carousel + awards entry + press pitch.
 
+## Where to actually find buyers & partners (PerPixel, India base)
+
+Named sources, not abstractions — ordered by speed-to-first-lead:
+
+**Buyers (clients)**
+- **Funding-moment trackers** — Inc42, Entrackr, YourStory funding news.
+  Companies that just raised seed/Series A are the #1 identity-buying
+  trigger: new money + credibility pressure + existing template site.
+  Filter for consumer/D2C and B2B SaaS; reach them within ~2 weeks of the
+  announcement with a specific teardown, not a pitch.
+- **Wellfound/AngelList & startup job boards** — a company posting
+  "brand designer" or "marketing designer" has the pain AND the budget.
+  Pitch the 3-week launch sprint before they commit to a hire (a sprint
+  at ₹1.5L beats a ₹8L/yr hire for many seed-stage founders).
+- **Founder communities** — SaaSBoomi (SaaS), D2C Insider / D2C India
+  circles (consumer brands), Headstart Network, eChai, TiE & Startup
+  Grind local chapters. Show up as a contributor (teardowns, feedback),
+  not a vendor — buyers notice helpful members.
+- **VC/accelerator referrals** — after the first startup client, ask the
+  founder to introduce you to their investor and other portfolio
+  companies. Investors want portfolio brands to look credible (Surge,
+  Antler, Accel Atoms portfolio lists are also direct outreach targets).
+- **Design directories** — Clutch, DesignRush, Behance, The Dots with
+  vertical tags ("D2C branding", "SaaS web design"). ~5.8% of discovery
+  but zero cost and carries mid-market intent.
+
+**Partners (referral engines)**
+- **Dev shops without a design arm** — find on Clutch filtered by
+  "web development, 2-50 people, India" or in Webflow/Shopify partner
+  directories and agency Slack/Discord communities. Their clients already
+  ask for design; you take the design, they keep the build.
+- **Marketing consultants / fractional CMOs / PR firms** — they advise on
+  positioning but can't execute identity or web; LinkedIn search + local
+  marketing events find them. Formalize: monthly check-in + reciprocal
+  brief or ~10% referral fee.
+- **Investor-adjacent people** — EIRs, accelerator mentors, portfolio
+  ops: they see dozens of companies needing rebrands each quarter.
+
+## Recommended business model for PerPixel
+
+Three-layer productized ladder (the structure the comps use, adapted):
+
+| Layer | Offer | Price band | Job it does |
+|---|---|---|---|
+| Entry | **10-Day Launch Sprint** — one editorial brand page + brand essentials | ₹75k–1.5L domestic / $3.5–6k intl | Low-risk foot in door; fast case-study production; beats generic cold pitch |
+| Flagship | **Brand & Web System** — full identity + multi-page site + motion | ₹2.5–8L domestic / $10–30k intl | The core product; where Moove-pattern proof pays off |
+| Retention | **Motion & Editorial Partner** retainer — landing pages, campaigns, motion assets monthly | ₹40k–1.2L/mo / $2–5k/mo | Smooths cash flow; creates the long relationship that produces referrals |
+
+Rules: publish the floor ("Launches from ₹75k / $3.5k", "Systems from
+₹2.5L / $10k") — it pre-qualifies leads (Freight pattern). Negotiate on
+scope, never on rate (Snask rule). 50/50 payments are the Indian norm.
+Dual-rate is legitimate: Sorted explicitly sells global rates from India —
+the 8-10x delta is your margin, not a secret to apologize for.
+Skip for now (revisit later): Otherway-style equity deals (no leverage
+yet), a paid product/imprint (needs audience), subscriptions.
+
+Target client profile: funded seed–Series A consumer (D2C, F&B, wellness)
+and B2B SaaS/AI founders, India + international. Avoid both ends —
+enterprise RFPs need procurement teams you don't have, and ₹10k-template
+local businesses are a race-to-the-bottom owned by package shops.
+
+Honest probability check: the first 5 clients come from proximity and
+specific outreach, not systems — expect ~30 teardown messages → 4-6
+replies → 1-2 calls → 1 client. That IS the normal funnel, not failure.
+The model compounds only after Phase 1 proof ships (case studies convert
+the replies); partnerships pay in month 2-3; content/SEO pay in month 6+.
+
 ## Takeaways for PerPixel
 
 - The site architecture PerPixel already has (editorial typography, process

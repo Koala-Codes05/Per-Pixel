@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
 import ProjectsGallery from "@/components/projects/ProjectsGallery";
 import Services from "@/components/projects/Services";
@@ -19,7 +20,7 @@ export default function ProjectsPage() {
       <section className="mx-auto max-w-350 px-5 md:px-8">
         <Reveal variant="media">
           <div className="relative overflow-hidden rounded-card">
-            <div className="relative aspect-16/10 md:aspect-21/9">
+            <div className="relative aspect-4/5 sm:aspect-16/10 md:aspect-21/9">
               <Image
                 src={hero.image}
                 alt={hero.alt}
@@ -30,6 +31,7 @@ export default function ProjectsPage() {
               />
             </div>
             <div className="absolute inset-0 bg-linear-to-t from-ink/35 via-transparent to-transparent" />
+            <div className="absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/30 to-transparent" />
             <div className="absolute inset-x-6 top-6 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-paper/90 md:inset-x-8 md:top-8">
               <span>Selected work, 2024–2026</span>
               <span>PerPixel</span>
@@ -38,7 +40,7 @@ export default function ProjectsPage() {
               We build design on clarity, speed, and care.
             </h1>
             <Link
-              href={PROJECTS[0].href ?? "#moove"}
+              href={PROJECTS[0].href}
               className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 md:block"
             >
               <div className="relative aspect-4/3 overflow-hidden rounded-lg">
@@ -89,34 +91,32 @@ export default function ProjectsPage() {
         <div className="mt-16">
           {PROJECTS.map((p, i) => (
             <Reveal key={p.slug} delay={(i % 2) * 60}>
-              <Link
+              <ProjectLink
                 id={`details-${p.slug}`}
-                href={p.href ?? `#${p.slug}`}
+                href={p.href}
                 className="group grid scroll-mt-24 grid-cols-12 items-center gap-4 border-t border-line py-6 last:border-b"
               >
-                <span className="col-span-1 text-[11px] font-semibold tabular-nums text-ink/50">
-                  0{i + 1}
+                <span className="col-span-2 text-[11px] font-semibold tabular-nums text-ink/50 sm:col-span-1">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="col-span-6 flex items-baseline gap-3 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 md:col-span-5">
-                  <span>{p.title}</span>
-                  {p.href && (
-                    <span className="rounded-full bg-blush px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink">
-                      Brand site
-                    </span>
-                  )}
+                <span className="col-span-7 flex items-baseline gap-3 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 sm:col-span-6 md:col-span-5">
+                  <span className="whitespace-nowrap">{p.title}</span>
+                  <span className={`hidden whitespace-nowrap rounded-full px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink sm:inline-block ${p.kind === "site" ? "bg-blush" : "bg-sky"}`}>
+                    {p.kind === "site" ? "Brand site" : "Case study"}
+                  </span>
                 </span>
                 <span className="col-span-3 hidden text-[11px] uppercase tracking-[0.16em] text-ink/60 md:block">
                   {p.category}
                 </span>
-                <span className="col-span-3 text-right text-[11px] uppercase tracking-[0.16em] tabular-nums text-ink/60 md:col-span-2">
+                <span className="col-span-3 text-right text-[11px] uppercase tracking-[0.16em] tabular-nums text-ink/60 sm:col-span-5 md:col-span-3 lg:col-span-2">
                   {p.year}
                 </span>
-                <span className="col-span-2 flex justify-end md:col-span-1">
-                  <span className="relative hidden h-14 w-20 overflow-hidden rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100 lg:block">
+                <span className="col-span-1 hidden justify-end lg:flex">
+                  <span className="relative h-14 w-20 overflow-hidden rounded-lg opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <Image src={p.image} alt="" fill sizes="80px" className="object-cover" />
                   </span>
                 </span>
-              </Link>
+              </ProjectLink>
             </Reveal>
           ))}
         </div>

@@ -21,7 +21,7 @@ export default function Process() {
     const measure = () => {
       // Compact sticky rows fit when the viewport is tall enough for all three rows.
       const tallest = Math.max(...contents.map((content) => content.scrollHeight));
-      const fits = window.innerWidth >= 768 && window.innerHeight >= 520 && tallest + 64 <= window.innerHeight;
+      const fits = window.innerHeight >= 520 && tallest + 72 <= window.innerHeight;
       section.dataset.motion = !reduceMotion && fits ? "on" : "off";
     };
     const resize = new ResizeObserver(measure);

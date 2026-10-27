@@ -1,13 +1,17 @@
 export const INTRO_STORAGE_KEY = "pp-intro-done";
 export const INTRO_END_EVENT = "pp:intro-end";
+export const INTRO_HYDRATED_EVENT = "pp:intro-hydrated";
 export const INTRO_TIMEOUT_MS = 6500;
+
+export type IntroWindow = Window & { __ppIntroStart?: number };
 
 export const INTRO_BOOTSTRAP = `(() => {
   const root = document.documentElement;
   let seen = false;
   try { seen = sessionStorage.getItem('${INTRO_STORAGE_KEY}') === '1'; } catch {}
-  if (seen) return;
+  if (seen) { root.classList.add('pp-intro-seen'); return; }
   root.classList.add('pp-intro-pending');
+  window.__ppIntroStart = performance.now();
   const selector = 'header, main, footer';
   const markers = ['data-pp-intro-inert', 'data-pp-intro-was-inert', 'data-pp-intro-aria-hidden'];
   const applyInert = () => {
@@ -39,9 +43,12 @@ export const INTRO_BOOTSTRAP = `(() => {
     document.removeEventListener('click', onClick, true);
     document.removeEventListener('DOMContentLoaded', applyInert);
     window.removeEventListener('${INTRO_END_EVENT}', cleanup);
+    window.removeEventListener('${INTRO_HYDRATED_EVENT}', onHydrated);
   };
+  const onHydrated = () => clearTimeout(timeout);
   const finish = () => {
     root.classList.remove('pp-intro-pending');
+    root.classList.add('pp-intro-seen');
     releaseInert();
     try { sessionStorage.setItem('${INTRO_STORAGE_KEY}', '1'); } catch {}
     window.dispatchEvent(new Event('${INTRO_END_EVENT}'));
@@ -62,10 +69,12 @@ export const INTRO_BOOTSTRAP = `(() => {
   document.addEventListener('keydown', onKey, true);
   document.addEventListener('click', onClick, true);
   window.addEventListener('${INTRO_END_EVENT}', cleanup);
+  window.addEventListener('${INTRO_HYDRATED_EVENT}', onHydrated);
 })()`;
 
 export function endIntro() {
   document.documentElement.classList.remove("pp-intro-pending");
+  document.documentElement.classList.add("pp-intro-seen");
   try {
     sessionStorage.setItem(INTRO_STORAGE_KEY, "1");
   } catch {}

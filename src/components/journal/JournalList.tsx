@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { PROJECTS } from "@/lib/site";
 
@@ -37,12 +37,26 @@ const POSTS = [
 export default function JournalList() {
   const [open, setOpen] = useState<number | null>(null);
 
+  // Deep links (e.g. /journal#ai-driven-design from the homepage) open their entry.
+  useEffect(() => {
+    const sync = () => {
+      const index = POSTS.findIndex((post) => `#${post.slug}` === window.location.hash);
+      if (index >= 0) setOpen(index);
+    };
+    const frame = requestAnimationFrame(sync);
+    window.addEventListener("hashchange", sync);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("hashchange", sync);
+    };
+  }, []);
+
   return (
     <div>
       {POSTS.map((post, i) => {
         const isOpen = open === i;
         return (
-          <article key={post.slug} className="border-t border-line last:border-b">
+          <article key={post.slug} id={post.slug} className="scroll-mt-28 border-t border-line last:border-b">
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import LiquidDistortion from "@/components/LiquidDistortion";
+import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
 import { PROJECTS } from "@/lib/site";
 
@@ -16,7 +17,7 @@ export default function Bento() {
       <div className="bento-grid">
         {/* Article card */}
         <Reveal className="bento-article-slot">
-          <Link href="/journal" className="bento-tile bento-article group">
+          <Link href="/journal#ai-driven-design" className="bento-tile bento-article group">
             <span className="bento-journal-top">
               <span className="bento-kicker">From the journal</span>
               <Sunburst />
@@ -30,8 +31,8 @@ export default function Bento() {
 
         {/* Portrait */}
         <Reveal delay={60} className="bento-portrait-slot">
-          <Link
-            href={`/projects#${portrait.slug}`}
+          <ProjectLink
+            href={portrait.href}
             className="bento-tile bento-portrait group"
             aria-label={`${portrait.title} project`}
           >
@@ -43,13 +44,13 @@ export default function Bento() {
               className="bento-image object-cover"
             />
             <LiquidDistortion />
-          </Link>
+          </ProjectLink>
         </Reveal>
 
         {/* Moove card */}
         <Reveal delay={100} className="bento-projects-slot">
           <div className="bento-projects-card">
-            <Link href={moove.href ?? `/projects#${moove.slug}`} className="bento-feature group">
+            <Link href={moove.href} className="bento-feature group">
               <span className="bento-project-heading">{moove.title}<ArrowUpRight /></span>
               <span className="bento-project-image">
                 <Image
@@ -65,9 +66,9 @@ export default function Bento() {
             {/* Project rows */}
             <div className="bento-project-list">
               {rows.map((project) => (
-                <Link key={project.slug} href={`/projects#${project.slug}`} className="bento-project-link group">
+                <ProjectLink key={project.slug} href={project.href} className="bento-project-link group">
                   <span>{project.title}</span><ArrowUpRight />
-                </Link>
+                </ProjectLink>
               ))}
             </div>
           </div>

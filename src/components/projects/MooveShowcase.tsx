@@ -542,9 +542,30 @@ export function MooveShellSequence() {
   const metricTextRef = useRef<HTMLSpanElement>(null);
   const progressFillRef = useRef<HTMLSpanElement>(null);
   const reducedMotion = useReducedMotionPreference();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
-  const isTallEnough = useMediaQuery("(min-height: 620px)");
-  const activeMotion = !reducedMotion && isDesktop && isTallEnough;
+  const isTallEnough = useMediaQuery("(min-height: 520px)");
+  const [contentFits, setContentFits] = useState(false);
+  const activeMotion = !reducedMotion && isTallEnough && contentFits;
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+    const grids = [...section.querySelectorAll<HTMLElement>(".moove-shell-frame-grid")];
+    const header = section.querySelector<HTMLElement>(".moove-shell-header");
+    const measure = () => {
+      const tallest = Math.max(0, ...grids.map((grid) => grid.scrollHeight));
+      const chrome = (header?.offsetHeight ?? 0) + 150;
+      setContentFits(tallest > 0 && tallest + chrome <= window.innerHeight);
+    };
+    measure();
+    const observer = new ResizeObserver(measure);
+    grids.forEach((grid) => observer.observe(grid));
+    if (header) observer.observe(header);
+    window.addEventListener("resize", measure);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", measure);
+    };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;

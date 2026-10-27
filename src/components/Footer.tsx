@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
+import ProjectLink from "@/components/ProjectLink";
 import { NAV_LINKS, PROJECTS } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/use-media-query";
 
@@ -70,10 +71,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
             <FooterCol
               title="Latest work"
-              items={PROJECTS.slice(0, 4).map((p) => ({
-                label: p.title,
-                href: p.href ?? `/projects#${p.slug}`,
-              }))}
+              items={PROJECTS.slice(0, 4).map((p) => ({ label: p.title, href: p.href }))}
             />
             <FooterCol
               title="Information"
@@ -92,13 +90,7 @@ export default function Footer() {
 
         <div className="mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-ink/25 py-5 text-[11px] uppercase tracking-[0.16em] text-ink/70">
           <span>© 2026 PerPixel Studio</span>
-          <span>Design &amp; Motion</span>
-          <span className="flex gap-4" aria-label="Social links">
-            <a href="/contact" className="transition-colors hover:text-ink">Be</a>
-            <a href="/contact" className="transition-colors hover:text-ink">Ig</a>
-            <a href="/contact" className="transition-colors hover:text-ink">Dr</a>
-            <a href="/contact" className="transition-colors hover:text-ink">Li</a>
-          </span>
+          <span>Branding · Design · Editorial · Motion</span>
         </div>
       </div>
 
@@ -125,16 +117,16 @@ function FooterCol({
       <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink/60">
         {title}
       </h3>
-      <ul className="space-y-2.5">
+      <ul className="space-y-1">
         {items.map((item) => (
           <li key={item.label}>
-            <Link
+            <ProjectLink
               href={item.href}
-              className="group relative text-[15px] font-medium"
+              className="group relative inline-block py-1 text-[15px] font-medium"
             >
               {item.label}
-              <span className="absolute -bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 ease-out-expo group-hover:scale-x-100" />
-            </Link>
+              <span className="absolute bottom-0.5 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 ease-out-expo group-hover:scale-x-100" />
+            </ProjectLink>
           </li>
         ))}
       </ul>

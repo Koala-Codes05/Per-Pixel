@@ -2,7 +2,7 @@
 
 import { useLayoutEffect, useRef, useState } from "react";
 import { lockScroll, setRegionsInert, unlockScroll } from "@/lib/lenis";
-import { endIntro, INTRO_END_EVENT, INTRO_TIMEOUT_MS } from "@/lib/intro";
+import { endIntro, INTRO_END_EVENT, INTRO_HYDRATED_EVENT, INTRO_TIMEOUT_MS, type IntroWindow } from "@/lib/intro";
 import { WORDPLAY_WORDS } from "@/lib/site";
 
 const EASE_IN = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -81,6 +81,8 @@ export default function Preloader() {
       skip?.focus({ preventScroll: true });
       lockScroll("intro");
       setRegionsInert("intro", true);
+      window.dispatchEvent(new Event(INTRO_HYDRATED_EVENT));
+      const waited = performance.now() - ((window as IntroWindow).__ppIntroStart ?? performance.now());
       window.addEventListener(INTRO_END_EVENT, finish, { signal: controller.signal });
       window.addEventListener("pagehide", finish, { signal: controller.signal });
       media.addEventListener("change", finish, { signal: controller.signal });
@@ -91,11 +93,17 @@ export default function Preloader() {
       } else {
         const assets = Promise.race([
           criticalAssetsReady(controller.signal),
-          new Promise<void>((resolve) => later(resolve, 4600)),
+          new Promise<void>((resolve) => later(resolve, 3400)),
         ]);
         const run = async () => {
-          const words = Array.from(layer.querySelectorAll(".preloader-word"));
-          await Promise.all(words.map((word, index) => animate(word, [
+          const all = Array.from(layer.querySelectorAll(".preloader-word"));
+          const late = waited > 1500;
+          const words = late ? [all[0], all[all.length - 1]] : all;
+          await Promise.all(words.map((word, index) => animate(word, index === 0 ? [
+            { transform: "translateY(0)", opacity: 1, offset: 0 },
+            { transform: "translateY(0)", opacity: 1, offset: late ? 0.2 : 0.66 },
+            { transform: "translateY(-14%)", opacity: 0, offset: 1 },
+          ] : [
             { transform: "translateY(14%)", opacity: 0, offset: 0 },
             { transform: "translateY(0)", opacity: 1, offset: 0.34 },
             { transform: "translateY(0)", opacity: 1, offset: 0.66 },
@@ -146,7 +154,11 @@ export default function Preloader() {
   if (done) return null;
 
   return (
-    <div ref={ref} className="preloader" data-phase="words" role="dialog" aria-modal="true" aria-label="PerPixel is loading">
+    <>
+      <noscript>
+        <style>{`.preloader{display:none!important}html,html:has(.preloader){overflow:auto!important}`}</style>
+      </noscript>
+      <div ref={ref} className="preloader" data-phase="words" role="dialog" aria-modal="true" aria-label="PerPixel is loading">
       <span className="sr-only" role="status">Loading PerPixel</span>
       <div className="preloader-words" aria-hidden="true">
         {WORDPLAY_WORDS.map((word) => (
@@ -164,7 +176,8 @@ export default function Preloader() {
       >
         Skip intro
       </button>
-    </div>
+      </div>
+    </>
   );
 }
 

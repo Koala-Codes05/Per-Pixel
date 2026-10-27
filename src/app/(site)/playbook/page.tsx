@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   title: "Studio Intelligence & Growth Playbook",
   description:
     "Competitor intelligence, live website critiques, global vs India pricing benchmarks, case-study anatomy, client acquisition pipeline, and PerPixel's 30/60/90-day growth plan.",
+  // Internal research: reachable by direct URL only, never listed or indexed.
+  robots: { index: false, follow: false },
 };
 
 export default function PlaybookPage() {

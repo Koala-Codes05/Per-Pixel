@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "@/components/home/Bento";
 import FeaturedScene from "@/components/home/FeaturedScene";
 import LiquidDistortion from "@/components/LiquidDistortion";
+import ProjectLink from "@/components/ProjectLink";
 import { PROJECTS } from "@/lib/site";
 
 const FEATURED = [
@@ -12,11 +13,11 @@ const FEATURED = [
   },
   {
     project: PROJECTS[1],
-    description: "Portraiture and expressive color brought into a clear editorial frame.",
+    description: "A bitter Italian aperitivo soda, built as a sunlit brand site from bottle to serve.",
   },
   {
     project: PROJECTS[2],
-    description: "An exploration of contrast, color, and image-led storytelling.",
+    description: "A desert fashion editorial told through dawn light and long-form imagery.",
   },
 ] as const;
 
@@ -46,7 +47,7 @@ export default function FeaturedProjects() {
         <div className="featured-track">
           {FEATURED.map(({ project, description }, index) => (
             <article key={project.slug} className="featured-card" data-index={index}>
-              <Link href={project.href ?? `/projects#${project.slug}`} className="featured-card-link">
+              <ProjectLink href={project.href} className="featured-card-link">
                 <span className={`featured-art featured-art--${project.tone}`}>
                   <Image
                     src={project.image}
@@ -67,7 +68,7 @@ export default function FeaturedProjects() {
                   <span className="featured-description">{description}</span>
                   <span className="featured-category">{project.category}</span>
                 </span>
-              </Link>
+              </ProjectLink>
             </article>
           ))}
         </div>
