@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { SorsoCaseButton, SorsoMoments } from "@/components/projects/SorsoShowcase";
 
 export const metadata: Metadata = {
@@ -244,8 +245,8 @@ export default function SorsoPage() {
           <nav className="sorso-night-links" aria-label="Sorso footer">
             <a href="/works/offset/showreel.html">Showreel</a>
             <a href="/works/offset/storyboard.html">Storyboard</a>
-            <a href="/projects">PerPixel</a>
-            <a href="/contact">Contact</a>
+            <Link href="/projects">PerPixel</Link>
+            <Link href="/contact">Contact</Link>
           </nav>
         </div>
         <div className="sorso-wordmark" aria-hidden="true">Sorso</div>

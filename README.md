@@ -1202,3 +1202,13 @@ When unsure between a complicated animation and a simple one:
 
 **Choose the simpler animation if it communicates the same design
 intent.**
+
+## Contact delivery setup (2026-10-27)
+
+- Enquiries use FormSubmit AJAX and go to `perpixeldigital@gmail.com`; recipient and subject live in `src/lib/contact.ts`. No Gmail password or API key is required.
+- First-time setup: submit a test from the contact page, open FormSubmit's activation email in the recipient inbox (check spam), and activate the form. Then submit again and verify receipt and Reply-To. The first submission is a setup step, not proof of delivery. Activate any additional site/domain if the provider requests it after deployment.
+- Sending has a 20-second timeout and an explicit provider acknowledgement check. Failures preserve the entered details and show retry/direct-email options. The copyable brief remains available. Newsletter is intentionally unchanged.
+- Delivery and activation could not be verified from the agent environment because external FormSubmit requests failed. Do not describe inbox receipt as tested until the owner confirms it.
+- Focused checks: `node --experimental-strip-types --test tests/contact.test.mjs tests/intro-bootstrap.test.mjs`, `npm run lint`, `npm run build`.
+- LAN development: `next.config.ts` allows `192.168.1.5` as well as existing local origins. Restart `npm run dev` if a running server has not reloaded config; do not use a wildcard allow-all.
+- Intro normally runs once per tab session. Use `http://localhost:3000/?intro=1` or `http://192.168.1.5:3000/?intro=1` to replay explicitly. Returning to the normal URL restores once-per-session behaviour.

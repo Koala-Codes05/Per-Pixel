@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/contact/ContactForm";
 import Faq from "@/components/contact/Faq";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,6 +19,11 @@ export default function ContactPage() {
         <p className="mx-auto mt-5 max-w-[46ch] text-center text-[15px] leading-relaxed text-ink/70">
           Tell us where your project stands and where it needs to go. We&apos;ll
           reply with a thoughtful read on scope, timing, and approach.
+        </p>
+        <p className="mt-4 text-center text-sm">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
+            {CONTACT_EMAIL}
+          </a>
         </p>
       </Reveal>
 

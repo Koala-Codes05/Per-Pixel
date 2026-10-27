@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { CONTACT_EMAIL as inbox, ENQUIRY_SUBJECT as subject, sendEnquiry } from "@/lib/contact";
 
 const inputClass =
   "w-full rounded-lg border border-line bg-paper/60 px-4 py-3 text-sm outline-none transition-colors duration-200 placeholder:text-ink/40 focus:border-ink focus:bg-paper";
@@ -9,13 +10,17 @@ export default function ContactForm() {
   const [brief, setBrief] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const submitting = useRef(false);
   const copyTimer = useRef<number | undefined>(undefined);
 
   useEffect(() => () => window.clearTimeout(copyTimer.current), []);
 
-  function onSubmit(e: FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (submitting.current || status === "sent") return;
     const data = new FormData(e.currentTarget);
+    if (data.get("_honey")) return;
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
     const phone = String(data.get("phone") ?? "").trim();
@@ -27,6 +32,10 @@ export default function ContactForm() {
     }
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       setError("That email doesn't look right.");
+      return;
+    }
+    if (name.length > 200 || email.length > 254 || phone.length > 80 || message.length > 10000) {
+      setError("Please keep your name under 200 characters and your message under 10,000 characters.");
       return;
     }
     setError(null);
@@ -45,6 +54,20 @@ export default function ContactForm() {
         .filter((l): l is string => l !== null)
         .join("\n")
     );
+    submitting.current = true;
+    setStatus("sending");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+    try {
+      await sendEnquiry({ name, email, phone, message }, controller.signal);
+      setStatus("sent");
+    } catch {
+      setStatus("idle");
+      setError("We couldn't confirm your enquiry was sent. Your details are still here — try again, or email us directly below.");
+    } finally {
+      window.clearTimeout(timeout);
+      submitting.current = false;
+    }
   }
 
   async function copyBrief() {
@@ -63,12 +86,24 @@ export default function ContactForm() {
     <div id="form" className="scroll-mt-28">
       <form
         onSubmit={onSubmit}
+        onChange={() => {
+          if (status === "sent") setStatus("idle");
+          setError(null);
+        }}
+        action={`https://formsubmit.co/${inbox}`}
+        method="POST"
+        aria-busy={status === "sending"}
         className="rounded-card border border-butter bg-blush-soft p-6 md:p-8"
         noValidate
       >
-        <div className="grid gap-5">
+        <input type="hidden" name="_subject" value={subject} />
+        <input type="hidden" name="_template" value="table" />
+        <div className="hidden" aria-hidden="true">
+          <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-label="Leave this field empty" />
+        </div>
+        <fieldset disabled={status === "sending"} className="grid min-w-0 gap-5">
           <Field label="Name">
-            <input name="name" className={inputClass} placeholder="Enter your name" autoComplete="name" required />
+            <input name="name" className={inputClass} placeholder="Enter your name" autoComplete="name" maxLength={200} required />
           </Field>
           <Field label="Email">
             <input
@@ -77,6 +112,7 @@ export default function ContactForm() {
               className={inputClass}
               placeholder="you@studio.com"
               autoComplete="email"
+              maxLength={254}
               required
             />
           </Field>
@@ -87,6 +123,7 @@ export default function ContactForm() {
               className={inputClass}
               placeholder="Your phone or WhatsApp number"
               autoComplete="tel"
+              maxLength={80}
             />
           </Field>
           <Field label="Message">
@@ -96,26 +133,36 @@ export default function ContactForm() {
               className={`${inputClass} resize-none`}
               placeholder="Tell us about your project"
               required
+              maxLength={10000}
             />
           </Field>
-        </div>
+        </fieldset>
 
         {error && <p className="mt-4 text-sm text-[#a3442c]" role="alert">{error}</p>}
 
         <button
           type="submit"
-          className="mt-6 w-full rounded-lg bg-ink py-3.5 text-sm font-semibold text-paper transition-[background-color,transform] duration-200 ease-out-expo hover:bg-ink/90 active:scale-[0.99] motion-reduce:transform-none"
+          disabled={status === "sending" || status === "sent"}
+          className="mt-6 w-full rounded-lg bg-ink py-3.5 text-sm font-semibold text-paper transition-[background-color,transform] duration-200 ease-out-expo hover:bg-ink/90 active:scale-[0.99] disabled:cursor-default disabled:opacity-60 motion-reduce:transform-none"
         >
-          Submit
+          {status === "sending" ? "Sending…" : status === "sent" ? "Enquiry submitted" : "Send enquiry"}
         </button>
+        {status === "sent" && (
+          <p className="mt-4 text-sm text-ink/80" role="status">
+            Thank you — your enquiry has been submitted. We aim to reply within two working days.
+          </p>
+        )}
         <p className="mt-3 text-center text-xs text-ink/50">
-          No inbox is wired to this form yet — submit to get a ready-to-send brief.
+          Prefer email? <a href={`mailto:${inbox}`} className="underline underline-offset-2">{inbox}</a>
+        </p>
+        <p className="mt-2 text-center text-xs text-ink/50">
+          Your enquiry is processed by FormSubmit and emailed to PerPixel so we can respond.
         </p>
       </form>
 
       {brief && (
         <div className="mt-6 rounded-card border border-line bg-white p-6" role="status">
-          <p className="text-sm font-semibold">Your brief is ready.</p>
+          <p className="text-sm font-semibold">Your enquiry copy.</p>
           <pre className="mt-3 whitespace-pre-wrap rounded-lg bg-paper p-4 text-[13px] leading-relaxed text-ink/80 [overflow-wrap:anywhere]">
             {brief}
           </pre>
