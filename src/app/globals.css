@@ -3828,3 +3828,29 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
   .case-next-link { grid-template-columns: minmax(0, 1fr); }
   .case-next-thumb { display: none; }
 }
+.kit-newsletter .kit-newsletter-errors:empty {
+  display: none;
+}
+
+.kit-newsletter .kit-newsletter-errors,
+.kit-newsletter .formkit-alert-success {
+  margin-top: 0.5rem;
+  max-width: 24rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: inherit;
+}
+
+.kit-newsletter .kit-newsletter-errors {
+  list-style: none;
+  padding: 0;
+}
+
+.kit-newsletter .kit-newsletter-loading,
+.kit-newsletter [data-element="submit"][data-active] .kit-newsletter-label {
+  display: none;
+}
+
+.kit-newsletter [data-element="submit"][data-active] .kit-newsletter-loading {
+  display: inline;
+}

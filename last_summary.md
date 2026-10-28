@@ -1,26 +1,27 @@
 ﻿# Last summary — PerPixel
 
-## 2026-10-28 — Footer updates request
+## 2026-10-28 — Kit newsletter integration
 
-The footer's formerly inert newsletter form now sends an updates request through the existing FormSubmit inbox (`perpixeldigital@gmail.com`). It has validation, a 20-second timeout, a duplicate-send guard, explicit accepted/error states, and a direct email fallback. Copy states that requests are added manually; this does not create a managed subscriber list or automatic newsletter. The footer's visual layout and links remain.
+Replaced the footer's FormSubmit updates-request flow with the owner's Kit HTML embed for form `10109897` (`ab998e1941`). The visible newsletter retains its PerPixel layout, input placeholder, button label, typography, color, and responsive classes. Kit's official script handles pending, errors, and the configured confirmation message. Removed only the obsolete newsletter helper and its tests from the contact module; enquiry FormSubmit remains unchanged.
 
 ### Relevant files
 
-- `src/components/Footer.tsx`: submission and feedback UI.
-- `src/lib/contact.ts`: `sendUpdatesRequest` and distinct subject.
-- `tests/contact.test.mjs`: provider payload and rejection checks.
-- `README.md`: footer request setup and delivery caveat.
-- `memory.md`: durable handling and verification notes.
+- `src/components/Footer.tsx`: Kit form metadata and PerPixel markup.
+- `src/app/globals.css`: scoped loading, error, and success presentation.
+- `src/lib/contact.ts`, `tests/contact.test.mjs`: obsolete newsletter FormSubmit code removed; enquiry code preserved.
+- `README.md`, `memory.md`: integration and verification notes.
 
 ### Verification
 
-- `node --experimental-strip-types --test tests/contact.test.mjs`: 10 passed.
 - `npm run build`: passed, including TypeScript.
-- Full ESLint passed with a separate cache location (`npx eslint . --cache --cache-location .eslintcache-newsletter`). `npm run lint` failed with EPERM writing the existing `.eslintcache`; this is a cache permission issue, not a reported lint finding.
-- No real updates-request delivery or production browser interaction was verified here.
+- Focused ESLint with a separate cache location: passed.
+- `node --experimental-strip-types --test tests/contact.test.mjs`: 8 enquiry tests passed.
+- Local production HTML contains Kit's action, UID, `email_address`, and `ck.5.js` script URL. The contact form still points to FormSubmit.
+- Kit's public script was inspected: it binds the supplied form attributes and owns submitting, error, and success states.
+- Browser access was unavailable and no real subscription or confirmation email was sent. Live behavior and responsive appearance still require a browser check.
 
-### Next step
+### Next useful step
 
-After deployment, submit one test request from the live footer. Confirm the email with subject `New updates request — PerPixel` reaches the studio inbox and activate FormSubmit for the live origin if prompted. Add the address to a manually maintained updates list only with the visitor's request, or connect a managed newsletter provider when chosen.
+On the deployed site, submit a test address in the footer. Confirm Kit displays its success message, sends the confirmation email, and records the subscriber after confirmation. Check mobile width and ensure the contact form still sends enquiries.
 
 Pre-existing `package-lock.json` changes were left untouched.
