@@ -1207,7 +1207,8 @@ intent.**
 
 - Enquiries use FormSubmit AJAX and go to `perpixeldigital@gmail.com`; recipient and subject live in `src/lib/contact.ts`. No Gmail password or API key is required.
 - First-time setup: submit a test from the contact page, open FormSubmit's activation email in the recipient inbox (check spam), and activate the form. Then submit again and verify receipt and Reply-To. The first submission is a setup step, not proof of delivery. Activate any additional site/domain if the provider requests it after deployment.
-- Sending has a 20-second timeout and an explicit provider acknowledgement check. Failures preserve the entered details and show retry/direct-email options. The copyable brief remains available. Newsletter is intentionally unchanged.
+- Sending has a 20-second timeout and an explicit provider acknowledgement check. Failures preserve the entered details and show retry/direct-email options. The copyable brief remains available.
+- The footer updates form sends a separate request email to the same inbox through FormSubmit. The studio adds addresses manually; no managed mailing list or automatic monthly send is configured. Verify receipt from the deployed footer before relying on it.
 - Delivery and activation could not be verified from the agent environment because external FormSubmit requests failed. Do not describe inbox receipt as tested until the owner confirms it.
 - Focused checks: `node --experimental-strip-types --test tests/contact.test.mjs tests/intro-bootstrap.test.mjs`, `npm run lint`, `npm run build`.
 - LAN development: `next.config.ts` allows `192.168.1.5` as well as existing local origins. Restart `npm run dev` if a running server has not reloaded config; do not use a wildcard allow-all.

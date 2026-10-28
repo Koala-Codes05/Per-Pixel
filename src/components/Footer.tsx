@@ -1,19 +1,48 @@
 "use client";
 
-import { useRef, useState } from "react";
-import Link from "next/link";
+import { useRef, useState, type FormEvent } from "react";
 import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import ProjectLink from "@/components/ProjectLink";
 import { NAV_LINKS, PROJECTS } from "@/lib/site";
 import { useReducedMotionPreference } from "@/lib/use-media-query";
+import { CONTACT_EMAIL, sendUpdatesRequest, UPDATES_SUBJECT } from "@/lib/contact";
 
 export default function Footer() {
-  const [note, setNote] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const submitting = useRef(false);
   const ref = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotionPreference();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end end"] });
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
   const markY = useTransform(smoothProgress, [0, 1], ["30%", "8%"]);
+
+  async function onUpdatesSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    if (submitting.current || status === "sent") return;
+    const data = new FormData(e.currentTarget);
+    if (data.get("_honey")) return;
+    const email = String(data.get("email") ?? "").trim();
+    if (email.length > 254 || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      setError("That email doesn't look right.");
+      return;
+    }
+    submitting.current = true;
+    setError(null);
+    setStatus("sending");
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 20000);
+    try {
+      await sendUpdatesRequest(email, controller.signal);
+      setStatus("sent");
+    } catch {
+      setStatus("idle");
+      setError("We couldn't confirm your request. Please try again or email us directly.");
+    } finally {
+      window.clearTimeout(timeout);
+      submitting.current = false;
+    }
+  }
 
   return (
     <footer ref={ref} className="relative mt-24 overflow-hidden rounded-t-4xl bg-coral text-ink" suppressHydrationWarning>
@@ -21,22 +50,24 @@ export default function Footer() {
         <div className="grid gap-12 md:grid-cols-12">
           <div className="md:col-span-5">
             <p className="font-serif text-[clamp(1.6rem,3vw,2.4rem)] leading-[1.05] tracking-[-0.01em]">
-              Subscribe for new projects
+              New projects and studio notes,
               <br />
-              and insights, once a month.
+              sent to your inbox.
             </p>
+            <p className="mt-3 max-w-sm text-sm text-ink/75">Request updates below. We add addresses manually.</p>
             <form
               className="mt-7 flex max-w-sm items-center gap-3 border-b border-ink/40 pb-2"
-              onSubmit={(e) => {
-                e.preventDefault();
-                const email = new FormData(e.currentTarget).get("email");
-                if (typeof email === "string" && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-                  setNote("no-list");
-                } else {
-                  setNote("invalid");
-                }
-              }}
+              onSubmit={onUpdatesSubmit}
+              onChange={() => setError(null)}
+              action={`https://formsubmit.co/${CONTACT_EMAIL}`}
+              method="POST"
+              noValidate
+              aria-busy={status === "sending"}
             >
+              <input type="hidden" name="_subject" value={UPDATES_SUBJECT} />
+              <input type="hidden" name="_template" value="table" />
+              <input type="hidden" name="request" value="Please add me to PerPixel's studio updates by email." />
+              <input type="text" name="_honey" tabIndex={-1} autoComplete="off" aria-label="Leave this field empty" className="hidden" />
               <label htmlFor="newsletter-email" className="sr-only">
                 Email address
               </label>
@@ -45,27 +76,23 @@ export default function Footer() {
                 name="email"
                 type="email"
                 placeholder="Your email address"
-                className="w-full bg-transparent text-sm placeholder:text-ink/50 focus:outline-none"
+                autoComplete="email"
+                maxLength={254}
+                required
+                disabled={status === "sending" || status === "sent"}
+                className="min-w-0 w-full bg-transparent text-sm placeholder:text-ink/50 focus:outline-none"
               />
               <button
                 type="submit"
-                className="text-[11px] font-semibold uppercase tracking-[0.18em] transition-transform duration-200 ease-out-expo hover:-translate-y-0.5"
+                disabled={status === "sending" || status === "sent"}
+                className="shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] transition-transform duration-200 ease-out-expo hover:-translate-y-0.5 disabled:cursor-default disabled:opacity-60"
               >
-                Submit
+                {status === "sending" ? "Sending…" : status === "sent" ? "Requested" : "Request updates"}
               </button>
             </form>
-            {note === "invalid" && (
-              <p className="mt-2 text-xs text-ink/70">That email doesn&apos;t look right.</p>
-            )}
-            {note === "no-list" && (
-              <p className="mt-2 max-w-sm text-xs text-ink/80">
-                The mailing list isn&apos;t connected yet — reach us through the{" "}
-                <Link href="/contact" className="underline underline-offset-2">
-                  contact page
-                </Link>{" "}
-                instead.
-              </p>
-            )}
+            {error && <p className="mt-2 max-w-sm text-xs text-ink/80" role="alert">{error} <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-2">Email us</a>.</p>}
+            {status === "sent" && <p className="mt-2 max-w-sm text-xs text-ink/80" role="status">Your request was received. We&apos;ll add your address manually.</p>}
+            <p className="mt-3 max-w-sm text-xs text-ink/65">Your address is emailed to PerPixel through FormSubmit for studio updates. You can ask us to remove it at any time.</p>
           </div>
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
