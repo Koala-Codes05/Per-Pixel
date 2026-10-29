@@ -1,12 +1,12 @@
 ﻿# Last summary — PerPixel
 
-## 2026-10-29 — Contact inbox update and deployment diagnosis
+## 2026-10-29 — Contact inbox published
 
-- The shared recipient in `src/lib/contact.ts` is `create@perpixel.agency`, which feeds the contact page mail links, form action, and FormSubmit AJAX request. `README.md`, `memory.md`, and `tests/contact.test.mjs` were updated too.
-- The first update remained local and uncommitted, so the remote `main` branch still served `perpixeldigital@gmail.com`. This explains why a submission from the published site would not activate the new address. The change has now been committed and rebased onto the two newer commits on `origin/main`; publication still needs verification.
-- Contact tests passed (8/8), and targeted ESLint passed. Full `npm run lint` failed because `.eslintcache` is protected (`EPERM`). Build and live browser checks have not yet run for this change.
-- FormSubmit states that changing the recipient requires a new activation. Receipt at `create@perpixel.agency` remains unverified. After publication, submit a test from the live contact page, check the inbox and spam folder for activation, activate, then submit again and verify receipt and Reply-To.
+- The earlier `create@perpixel.agency` edit was only local. The published site still used `perpixeldigital@gmail.com`, explaining why a live test could not trigger FormSubmit activation for the new recipient.
+- Committed the contact change, rebased it onto current `origin/main`, and pushed commit `d3069d5` to `main`. This changes the shared recipient used by the contact page, mail links, form action, and FormSubmit AJAX. README, memory, and the explicit-address contact test were updated.
+- Verification: contact tests passed (8/8); targeted ESLint passed. After the push, `https://perpixel-one.vercel.app/contact` returned HTTP 200 with `create@perpixel.agency` present and the old Gmail address absent. Full `npm run lint` failed due to protected `.eslintcache` (`EPERM`); build was not run for this address-only change.
+- FormSubmit activation and inbox delivery remain unverified. FormSubmit's help says a changed recipient requires activation again. A first submission from the now-updated live page should trigger that message; check spam and mailbox delivery, then submit again after activation to verify receipt and Reply-To.
 
 ### Next useful step
 
-Publish the rebased commit and verify the live form points to `create@perpixel.agency`; then verify FormSubmit activation and receipt.
+Submit a test enquiry from the live contact page and check `create@perpixel.agency` for FormSubmit activation. If none arrives, verify ordinary inbound mail to that address and contact FormSubmit support with the submission time and site URL.
