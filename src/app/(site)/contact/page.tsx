@@ -27,11 +27,7 @@ export default function ContactPage() {
         </p>
       </Reveal>
 
-      <Reveal delay={100} className="mt-12">
-        <ContactForm />
-      </Reveal>
-
-      <section id="faq" className="mt-28 scroll-mt-28 md:mt-36" aria-label="FAQ">
+      <section id="faq" className="mt-20 scroll-mt-28 md:mt-28" aria-label="FAQ">
         <Reveal>
           <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-ink/50">
             FAQ
@@ -61,6 +57,10 @@ export default function ContactPage() {
           </div>
         </Reveal>
       </section>
+
+      <Reveal delay={100} className="mt-20 md:mt-28">
+        <ContactForm />
+      </Reveal>
     </main>
   );
 }

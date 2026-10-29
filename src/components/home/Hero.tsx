@@ -22,12 +22,17 @@ export default function Hero() {
       <div className="hero-bottom">
         <div className="hero-intro">
           <p>
-            We build brand identities and digital experiences with clarity,
-            craft, and intent.
+            Brand identities and websites for founders and teams,
+            from first idea to launch.
           </p>
-          <Link href="/projects" className="hero-work-link group">
-            Explore our work <ArrowUpRight />
-          </Link>
+          <div className="hero-links">
+            <Link href="/contact" className="hero-project-link group">
+              Start a project <ArrowUpRight />
+            </Link>
+            <Link href="/projects" className="hero-work-link group">
+              Explore our work <ArrowUpRight />
+            </Link>
+          </div>
         </div>
         <ul className="hero-capabilities" aria-label="Studio capabilities">
           {CAPABILITIES.map((capability) => <li key={capability}>{capability}</li>)}

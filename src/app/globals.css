@@ -239,13 +239,38 @@ html.pp-intro-pending :is(header, main, footer) {
   letter-spacing: -0.025em;
 }
 
+.hero-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.hero-project-link {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: 999px;
+  background: var(--color-ink);
+  padding: 0.75rem 1.25rem;
+  color: var(--color-paper);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  transition: background-color 250ms var(--ease-out-expo), transform 250ms var(--ease-out-expo);
+}
+
+.hero-project-link:hover { background: color-mix(in srgb, var(--color-ink) 88%, transparent); transform: translateY(-2px); }
+.hero-project-link:active { transform: translateY(0); }
+
 .hero-work-link {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-  margin-top: 1.5rem;
   border-bottom: 1px solid var(--color-ink);
   font-size: 0.8125rem;
 }
@@ -1447,7 +1472,7 @@ html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="tru
   .hero-bottom {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-    margin-top: 3rem;
+    margin-top: 1.5rem;
   }
 
   .hero-capabilities {

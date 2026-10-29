@@ -86,7 +86,7 @@ export default function Footer() {
               title="Contact"
               items={[
                 { label: "Say hello", href: "/contact" },
-                { label: "Project brief", href: "/contact#form" },
+                { label: "Project brief", href: "/contact" },
                 { label: "FAQ", href: "/contact#faq" },
               ]}
             />

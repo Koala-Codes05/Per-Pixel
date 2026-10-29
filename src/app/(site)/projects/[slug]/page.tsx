@@ -202,7 +202,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           </ul>
           <p className="case-note">
             A self-initiated study, made to test an idea end to end. There is no client, launch, or result behind it —
-            if it sounds like a problem you have, <Link href="/contact#form">tell us about it</Link>.
+            if it sounds like a problem you have, <Link href="/contact">tell us about it</Link>.
           </p>
         </div>
       </section>

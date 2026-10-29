@@ -23,7 +23,7 @@ export default function Home() {
             <p className="home-contact-copy">
               Bring an idea, a question, or a brief still taking shape. Start with a few details and see where it could go.
             </p>
-            <Link href="/contact#form" className="home-contact-link">
+            <Link href="/contact" className="home-contact-link">
               Start a project brief
               <span className="home-contact-icon"><ArrowUpRight /></span>
             </Link>

@@ -172,18 +172,14 @@ with sync_playwright() as playwright:
     brief.scroll_into_view_if_needed()
     page.wait_for_timeout(900)
     brief.click()
-    hash_name = inspect_motion(page, "forward")
-    resume_transition(page, hash_name)
-    wait_path(page, "/contact#form")
+    contact_name = inspect_motion(page, "forward")
+    resume_transition(page, contact_name)
+    wait_path(page, "/contact")
     assert_released(page)
-    form_top = page.locator("#form").evaluate("element => element.getBoundingClientRect().top")
-    assert abs(form_top) <= 5, form_top
+    assert abs(page.evaluate("window.scrollY")) <= 5
+    assert page.locator("#faq").evaluate("el => !!(el.compareDocumentPosition(document.querySelector('#form')) & Node.DOCUMENT_POSITION_FOLLOWING)")
     page.wait_for_timeout(1300)
-    assert abs(page.locator("#form").evaluate("element => element.getBoundingClientRect().top") - form_top) <= 2
-    page.evaluate("window.scrollTo({ top: 0, behavior: 'instant' })")
-    # Drop the hash first: a click on '#form' while already at '/contact#form' is
-    # an identical-URL navigation that the router dedupes (no new history entry).
-    page.evaluate("history.replaceState(history.state, '', '/contact')")
+    assert abs(page.evaluate("window.scrollY")) <= 5
     history_length = page.evaluate("history.length")
     page.get_by_role("link", name="Get in touch").click()
     page.wait_for_timeout(100)

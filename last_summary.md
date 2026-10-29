@@ -1,27 +1,23 @@
-﻿# Last summary — PerPixel
+# Last summary — PerPixel
 
-## 2026-10-28 — Kit newsletter integration
+## 2026-10-29 — One-week launch audit against `/playbook`
 
-Replaced the footer's FormSubmit updates-request flow with the owner's Kit HTML embed for form `10109897` (`ab998e1941`). The visible newsletter retains its PerPixel layout, input placeholder, button label, typography, color, and responsive classes. Kit's official script handles pending, errors, and the configured confirmation message. Removed only the obsolete newsletter helper and its tests from the contact module; enquiry FormSubmit remains unchanged.
+Created `research/one-week-launch-readiness-audit-2026-10-29.md`. It compares the playbook's first 30-day proof and positioning standard with the current local site, ranks P0/P1/P2 work, and gives a seven-day sequence and acceptance checks. No application code changed in this task.
 
-### Relevant files
+### Findings
 
-- `src/components/Footer.tsx`: Kit form metadata and PerPixel markup.
-- `src/app/globals.css`: scoped loading, error, and success presentation.
-- `src/lib/contact.ts`, `tests/contact.test.mjs`: obsolete newsletter FormSubmit code removed; enquiry code preserved.
-- `README.md`, `memory.md`: integration and verification notes.
+- Conditional launch in a week is feasible if a real enquiry reaches the inbox and three featured projects gain truthful, buyer-facing context. The FormSubmit and Kit integrations exist, but external receipt/confirmation remain unverified.
+- The hero now has a clear CTA and offer. About still lacks owner-approved practitioner facts; Projects and Contact lack approved scope boundaries or engagement floors.
+- Sorso, Moove, and Ghaslet are strong candidates, but the immersive experiences need clear self-initiated status, role, visible outputs, and honest outcomes before a broad client launch. Journal entries are still excerpts.
+- Contact FAQ copy says “form above” even though the form was recently moved below it. The playbook's fast reply target and the site's two-working-day promise also differ.
+- `/playbook` is reachable directly and serves `noindex`; its intended publication status needs a decision before sharing. No sitemap/social preview configuration was found in app source.
 
-### Verification
+### Verification and limits
 
-- `npm run build`: passed, including TypeScript.
-- Focused ESLint with a separate cache location: passed.
-- `node --experimental-strip-types --test tests/contact.test.mjs`: 8 enquiry tests passed.
-- Local production HTML contains Kit's action, UID, `email_address`, and `ck.5.js` script URL. The contact form still points to FormSubmit.
-- Kit's public script was inspected: it binds the supplied form attributes and owns submitting, error, and success states.
-- Browser access was unavailable and no real subscription or confirmation email was sent. Live behavior and responsive appearance still require a browser check.
+- Read the local `/playbook` route and its data, current site source, previous audit, README, memory, and last summary. Local dev HTTP returned 200 for `/playbook` and `/contact`; `/playbook` response included `noindex`.
+- Consulted Google Search Central, web.dev, and W3C primary guidance for sitemap, performance, and accessibility launch checks.
+- No build, lint, deployed browser check, phone test, form submission, Kit confirmation, or performance measurement was run for this documentation-only task. Previous uncommitted application changes remain untouched.
 
 ### Next useful step
 
-On the deployed site, submit a test address in the footer. Confirm Kit displays its success message, sends the confirmation email, and records the subscriber after confirmation. Check mobile width and ensure the contact form still sends enquiries.
-
-Pre-existing `package-lock.json` changes were left untouched.
+Begin the audit's Day 1 gate: correct the FAQ direction, prove FormSubmit receipt and Reply-To on the deployed origin, and confirm the owner's publication intent for `/playbook`. Then add concise Sorso/Moove/Ghaslet case-study context using owner-verified facts.
