@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { WORDPLAY_WORDS } from "@/lib/site";
-import { wordEmphasis } from "@/lib/scroll-sequence";
+import { wordDrift, wordEmphasis } from "@/lib/scroll-sequence";
 import { useMediaQuery, useReducedMotionPreference } from "@/lib/use-media-query";
 
 const PALE = "#e3e1da";
@@ -13,6 +13,7 @@ export default function Wordplay() {
   const ref = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotionPreference();
   const hasRoom = useMediaQuery("(min-height: 560px)", true);
+  const mobile = useMediaQuery("(max-width: 767px)", false);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
   useLayoutEffect(() => {
@@ -26,7 +27,7 @@ export default function Wordplay() {
     <section ref={ref} className="wordplay-section relative mt-24" data-motion="off" aria-label="What we do">
       <div className="wordplay-viewport flex flex-col justify-center overflow-hidden px-5 md:px-10">
         {WORDPLAY_WORDS.map((word, index) => (
-          <Word key={word} progress={scrollYProgress} index={index} reduced={reduceMotion}>
+          <Word key={word} progress={scrollYProgress} index={index} reduced={reduceMotion} mobile={mobile}>
             {word}
           </Word>
         ))}
@@ -38,15 +39,21 @@ export default function Wordplay() {
   );
 }
 
-function Word({ children, progress, index, reduced }: {
+function Word({ children, progress, index, reduced, mobile }: {
   children: string;
   progress: MotionValue<number>;
   index: number;
   reduced: boolean;
+  mobile: boolean;
 }) {
   const emphasis = useTransform(progress, (p) => wordEmphasis(p, index, WORDPLAY_WORDS.length));
   const color = useTransform(emphasis, [0, 1], [PALE, INK]);
-  const transform = useTransform(emphasis, (value) => `translateY(${(1 - value) * 6}px) scale(${0.995 + value * 0.005})`);
+  const transform = useTransform(progress, (p) => {
+    const value = wordEmphasis(p, index, WORDPLAY_WORDS.length);
+    const settle = `translateY(${(1 - value) * 6}px) scale(${0.995 + value * 0.005})`;
+    if (!mobile) return settle;
+    return `translateX(${wordDrift(p, index).toFixed(2)}vw) ${settle}`;
+  });
 
   return (
     <motion.span

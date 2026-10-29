@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { frameProgress, offerFrameFocus, offerFramePose, offerScrollUnits, portfolioCardPose, portfolioScrollUnits, wordEmphasis } from "../src/lib/scroll-sequence.ts";
+import { featuredMobileCardPose, featuredMobileScrollUnits, frameProgress, offerFrameFocus, offerFramePose, offerScrollUnits, portfolioCardPose, portfolioScrollUnits, wordDrift, wordEmphasis } from "../src/lib/scroll-sequence.ts";
 
 test("process starts with later frames below the viewport", () => {
   assert.equal(frameProgress(0, 1), 0);
@@ -106,6 +106,29 @@ test("portfolio motion is continuous, reversible, and bounded for any card count
     }
     assert.deepEqual(portfolioCardPose(1, count - 1, count), { y: 0, opacity: 1, scale: 1 });
   }
+});
+
+test("mobile featured opens with the first card already visible", () => {
+  const opening = featuredMobileCardPose(0, 0, 3);
+  assert.ok(opening.y > 4 && opening.y < 8);
+  assert.equal(opening.opacity, 1);
+  assert.equal(featuredMobileCardPose(0, 1, 3).y, 100);
+  assert.equal(featuredMobileCardPose(0, 1, 3).opacity, 0);
+  assert.deepEqual(featuredMobileCardPose(1, 2, 3), { y: 0, opacity: 1, scale: 1 });
+  assert.ok(featuredMobileScrollUnits(3) < portfolioScrollUnits(3));
+  const seated = featuredMobileCardPose(0.04, 0, 3);
+  assert.ok(seated.y < opening.y);
+  assert.ok(seated.y >= 0);
+});
+
+test("mobile wordplay drifts sideways and reverses", () => {
+  assert.equal(wordDrift(0, 0), -8);
+  assert.equal(wordDrift(0, 1), 8);
+  assert.equal(wordDrift(0.5, 0), 0);
+  assert.equal(wordDrift(1, 0), 8);
+  assert.equal(wordDrift(1, 1), -8);
+  const forward = [0, 0.25, 0.5, 1].map((p) => wordDrift(p, 2));
+  assert.deepEqual(forward.toReversed(), [1, 0.5, 0.25, 0].map((p) => wordDrift(p, 2)));
 });
 
 test("offer scene opens on the first offer and holds the last", () => {

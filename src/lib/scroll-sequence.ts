@@ -23,6 +23,36 @@ export function offerFramePose(progress: number, index: number, count = 3) {
   return portfolioCardPose(mapped, index, count);
 }
 
+/**
+ * Mobile featured cards skip the blank opening. Time 0.86 leaves card 0
+ * about 6svh below its rest position, so the gap under the intro is small,
+ * then it settles. Desktop keeps the full portfolio timeline.
+ */
+const FEATURED_MOBILE_SETTLE = 0.86;
+
+export function featuredMobileScrollUnits(count = 3) {
+  return Math.max(0.4, portfolioScrollUnits(count) - FEATURED_MOBILE_SETTLE);
+}
+
+export function featuredMobileCardPose(progress: number, index: number, count = 3) {
+  const units = portfolioScrollUnits(count);
+  const start = FEATURED_MOBILE_SETTLE / units;
+  const mapped = start + clamp01(progress) * (1 - start);
+  return portfolioCardPose(mapped, index, count);
+}
+
+export function featuredMobileFocus(index: number, count = 3) {
+  const units = portfolioScrollUnits(count);
+  const time = Math.min(units, 1.02 + Math.max(0, index) * 1.2);
+  return clamp01((time - FEATURED_MOBILE_SETTLE) / (units - FEATURED_MOBILE_SETTLE));
+}
+
+/** Sideways wordplay drift in vw. Even words and odd words travel opposite ways. */
+export function wordDrift(progress: number, index: number) {
+  const direction = index % 2 === 0 ? 1 : -1;
+  return direction * (clamp01(progress) - 0.5) * 16;
+}
+
 /** Scene progress where offer `index` is readable, before the next one covers it. */
 export function offerFrameFocus(index: number, count = 3) {
   const units = portfolioScrollUnits(count);

@@ -2,7 +2,7 @@
 
 import { useLayoutEffect, useRef, type CSSProperties, type ReactNode } from "react";
 import { useScroll } from "motion/react";
-import { portfolioCardPose, portfolioScrollUnits, clamp01 } from "@/lib/scroll-sequence";
+import { featuredMobileCardPose, featuredMobileFocus, featuredMobileScrollUnits, portfolioCardPose, portfolioScrollUnits, clamp01 } from "@/lib/scroll-sequence";
 import { useReducedMotionPreference } from "@/lib/use-media-query";
 
 export default function FeaturedScene({ count, children }: { count: number; children: ReactNode }) {
@@ -15,14 +15,31 @@ export default function FeaturedScene({ count, children }: { count: number; chil
     if (!section) return;
     const cards = [...section.querySelectorAll<HTMLElement>(".featured-card")];
     const images = [...section.querySelectorAll<HTMLImageElement>(".featured-image")];
+    const wordmark = section.querySelector<HTMLElement>(".featured-wordmark");
+    const introduction = section.querySelector<HTMLElement>(".featured-introduction");
 
     const paint = (progress: number) => {
       if (section.dataset.motion !== "on") return;
+      const mobile = window.innerWidth < 768;
       cards.forEach((card, index) => {
-        const pose = portfolioCardPose(progress, index, count);
+        const pose = mobile ? featuredMobileCardPose(progress, index, count) : portfolioCardPose(progress, index, count);
         card.style.transform = `translate3d(-50%, calc(-50% + ${pose.y.toFixed(2)}svh), 0) scale(${pose.scale.toFixed(3)})`;
         card.style.opacity = `${pose.opacity}`;
       });
+      if (!mobile) {
+        wordmark?.style.removeProperty("transform");
+        introduction?.style.removeProperty("opacity");
+        return;
+      }
+      const opening = featuredMobileCardPose(progress, 0, count);
+      const startY = Math.max(1, featuredMobileCardPose(0, 0, count).y);
+      const settled = clamp01(1 - opening.y / startY);
+      if (wordmark) {
+        const scale = (1.14 - settled * 0.14).toFixed(3);
+        const rise = ((1 - settled) * 10).toFixed(2);
+        wordmark.style.transform = `translate3d(0, ${rise}%, 0) scale(${scale})`;
+      }
+      if (introduction) introduction.style.opacity = `${(1 - settled).toFixed(3)}`;
     };
 
     const measure = () => {
@@ -38,6 +55,8 @@ export default function FeaturedScene({ count, children }: { count: number; chil
           card.style.removeProperty("transform");
           card.style.removeProperty("opacity");
         });
+        wordmark?.style.removeProperty("transform");
+        introduction?.style.removeProperty("opacity");
       }
     };
 
@@ -59,7 +78,8 @@ export default function FeaturedScene({ count, children }: { count: number; chil
       if (!link?.matches(":focus-visible") || section.dataset.motion !== "on") return;
       const index = Number(link.closest<HTMLElement>(".featured-card")?.dataset.index);
       if (!Number.isInteger(index)) return;
-      const progress = (1.02 + index * 1.2) / portfolioScrollUnits(count);
+      const mobile = window.innerWidth < 768;
+      const progress = mobile ? featuredMobileFocus(index, count) : (1.02 + index * 1.2) / portfolioScrollUnits(count);
       const top = window.scrollY + section.getBoundingClientRect().top;
       window.scrollTo({ top: top + (section.offsetHeight - window.innerHeight) * progress, behavior: "instant" });
     };
@@ -107,7 +127,10 @@ export default function FeaturedScene({ count, children }: { count: number; chil
       className="featured-section"
       data-motion="off"
       aria-labelledby="featured-heading"
-      style={{ "--featured-height": `${Math.round((portfolioScrollUnits(count) + 1) * 100)}svh` } as CSSProperties}
+      style={{
+        "--featured-height": `${Math.round((portfolioScrollUnits(count) + 1) * 100)}svh`,
+        "--featured-height-mobile": `${Math.round((featuredMobileScrollUnits(count) + 1) * 100)}svh`,
+      } as CSSProperties}
     >
       {children}
     </section>

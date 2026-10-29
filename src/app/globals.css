@@ -1094,7 +1094,8 @@ html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="tru
   .featured-heading { padding: 0.55rem 0.7rem; font-size: 0.625rem; }
   .featured-introduction { width: min(27ch, 56vw); margin-top: 1rem; font-size: 0.8125rem; }
   .featured-all { width: min(32vw, 130px); gap: 0.25rem; font-size: 0.6875rem; }
-  .featured-wordmark { bottom: -0.08em; font-size: clamp(9rem, 45vw, 18rem); }
+  .featured-wordmark { bottom: -0.08em; font-size: clamp(9rem, 45vw, 18rem); transform-origin: 50% 100%; }
+  .featured-section[data-motion="on"] { height: var(--featured-height-mobile, var(--featured-height)); }
   .featured-section[data-motion="on"] .featured-card { top: 56%; }
 }
 
@@ -1453,10 +1454,18 @@ html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="tru
 
   .hero-title sup { font-size: 0.16em; }
 
-  .wordplay-word,
-  .wordplay-section[data-motion="on"] .wordplay-word { font-size: 18vw; }
+  .wordplay-section { margin-top: 2.5rem; }
 
-  .wordplay-section[data-motion="on"] { height: 220svh; }
+  /* 8vw matches the drift; the extra 8px keeps glyphs off the clip edge. */
+  .wordplay-section[data-motion="on"] .wordplay-viewport { padding-inline: calc(8vw + 8px); }
+
+  .wordplay-word,
+  .wordplay-section[data-motion="on"] .wordplay-word {
+    font-size: 17vw;
+    line-height: 1.22;
+  }
+
+  .wordplay-section[data-motion="on"] { height: 170svh; }
 
   .hero-support {
     grid-template-columns: 1fr;
@@ -2947,6 +2956,16 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(43, 11, 16, 0.14);
 }
+.sorso-brand-lockup { position: relative; flex: 0 0 auto; }
+@media (min-width: 1280px) {
+  .sorso-clock {
+    position: absolute;
+    left: 50%;
+    top: 0.75rem;
+    translate: -50% 0;
+  }
+  .sorso-nav-links .sorso-pill { padding-inline: 0.7rem; }
+}
 .sorso-nav-links { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
 .sorso-pill {
   display: inline-flex;
@@ -2977,12 +2996,17 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 .sorso-pill-showreel { background: var(--sorso-vino); color: var(--sorso-latte); border-color: var(--sorso-corallo); }
 .sorso-pill-back { border-style: dashed; background: transparent; }
 .sorso-pill-concept {
+  position: absolute;
+  left: calc(100% + 0.45rem);
+  top: 50%;
+  translate: 0 -50%;
   border-style: dashed;
   background: transparent;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -3374,6 +3398,9 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 @media (max-width: 620px) {
   .sorso-clock-label { display: none; }
   .sorso-nav { padding-inline: 0.75rem; gap: 0.5rem; flex-wrap: wrap; }
+  .sorso-clock { position: static; translate: none; }
+  .sorso-brand-lockup { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .sorso-pill-concept { position: static; translate: none; }
   .sorso-nav-links { width: 100%; justify-content: flex-start; }
   .sorso-m-grid { grid-template-columns: 1fr; }
   .sorso-bento { grid-template-columns: 1fr; }
