@@ -32,7 +32,8 @@ export default function FeaturedScene({ count, children }: { count: number; chil
         return;
       }
       const opening = featuredMobileCardPose(progress, 0, count);
-      const settled = clamp01(1 - opening.y / 40);
+      const startY = Math.max(1, featuredMobileCardPose(0, 0, count).y);
+      const settled = clamp01(1 - opening.y / startY);
       if (wordmark) {
         const scale = (1.14 - settled * 0.14).toFixed(3);
         const rise = ((1 - settled) * 10).toFixed(2);
