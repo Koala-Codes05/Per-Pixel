@@ -6,6 +6,7 @@ const enquiry = { name: "Test founder", email: "founder@example.com", phone: "",
 const signal = new AbortController().signal;
 
 test("sends the brief to the studio inbox with the visitor as reply-to", async () => {
+  assert.equal(CONTACT_EMAIL, "create@perpixel.agency");
   await sendEnquiry(enquiry, signal, async (url, options) => {
     assert.equal(url, `https://formsubmit.co/ajax/${CONTACT_EMAIL}`);
     assert.equal(options.method, "POST");

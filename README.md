@@ -1205,7 +1205,7 @@ intent.**
 
 ## Contact delivery setup (2026-10-27)
 
-- Enquiries use FormSubmit AJAX and go to `perpixeldigital@gmail.com`; recipient and subject live in `src/lib/contact.ts`. No Gmail password or API key is required.
+- Enquiries use FormSubmit AJAX and go to `create@perpixel.agency`; recipient and subject live in `src/lib/contact.ts`. No mailbox password or API key is required.
 - First-time setup: submit a test from the contact page, open FormSubmit's activation email in the recipient inbox (check spam), and activate the form. Then submit again and verify receipt and Reply-To. The first submission is a setup step, not proof of delivery. Activate any additional site/domain if the provider requests it after deployment.
 - Sending has a 20-second timeout and an explicit provider acknowledgement check. Failures preserve the entered details and show retry/direct-email options. The copyable brief remains available.
 - The footer newsletter now uses Kit form `10109897` through Kit's HTML form embed and official `ck.5.js` script, with PerPixel's existing input and button styling. Kit handles confirmation and error states. Verify a test subscription and confirmation email from the deployed footer before relying on it; the contact form still uses FormSubmit.

@@ -1,30 +1,12 @@
-# Last summary — PerPixel
+﻿# Last summary — PerPixel
 
-## 2026-10-29 — Phone wordplay stays intact, featured card moves up
+## 2026-10-29 — Contact inbox update and deployment diagnosis
 
-Scoped to ≤767px. Same branch `cursor/concept-nav-slot-d312`, PR #2, not merged. Desktop featured and wordplay are unchanged.
+- The shared recipient in `src/lib/contact.ts` is `create@perpixel.agency`, which feeds the contact page mail links, form action, and FormSubmit AJAX request. `README.md`, `memory.md`, and `tests/contact.test.mjs` were updated too.
+- The first update remained local and uncommitted, so the remote `main` branch still served `perpixeldigital@gmail.com`. This explains why a submission from the published site would not activate the new address. The change has now been committed and rebased onto the two newer commits on `origin/main`; publication still needs verification.
+- Contact tests passed (8/8), and targeted ESLint passed. Full `npm run lint` failed because `.eslintcache` is protected (`EPERM`). Build and live browser checks have not yet run for this change.
+- FormSubmit states that changing the recipient requires a new activation. Receipt at `create@perpixel.agency` remains unverified. After publication, submit a test from the live contact page, check the inbox and spam folder for activation, activate, then submit again and verify receipt and Reply-To.
 
-- Wordplay uses one size, `17vw`, chosen for Branding (the longest word). The sticky viewport is padded by the ±8vw drift plus 8px, so every word stays fully inside the clip at both ends of the drift. Design and Motion no longer lose their last letter.
-- Featured card 0 opens about 5.6svh below its rest (`FEATURED_MOBILE_SETTLE` 0.86) and the phone anchor is `top: 56%`. At the start of the pin the intro-to-card gap is 116px at 390×844 and 104px at 360×800. The intro is fully opaque there and fades as the card settles; the card never covers the intro.
+### Next useful step
 
-### Files
-
-- `src/app/globals.css` — phone wordplay padding and size; featured card `top: 56%`
-- `src/lib/scroll-sequence.ts` — mobile settle 0.86
-- `src/components/home/FeaturedScene.tsx` — intro fade uses the measured opening travel
-- `tests/scroll-sequence.test.mjs`
-
-### Verification
-
-- `npm run build` passed. `node --experimental-strip-types --test tests/scroll-sequence.test.mjs` — 15 passed.
-- Chrome, intro skipped, pin start / mid drift / end drift: ink is at least 8px inside the wordplay clip at 390×844 and 360×800. Tightest right margin is Branding at the end of the drift (22px at 390, 20px at 360).
-- Featured opening: intro opacity 1, no overlap with the heading or the intro. After the settle the intro opacity is 0 and the gap is still positive (68px at 390, 59px at 360).
-- At 1440×900 the featured card still starts at `y: 100svh` with `top: 53%`, the intro stays opaque, and wordplay stays at 189px (21svh cap) with 40px padding and no sideways drift.
-
-### Not verified
-
-- A physical phone.
-
-### Next
-
-- Leave this PR unmerged until the phone frames are accepted.
+Publish the rebased commit and verify the live form points to `create@perpixel.agency`; then verify FormSubmit activation and receipt.
