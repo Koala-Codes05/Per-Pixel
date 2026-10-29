@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
+import Link from "next/link";
 import { FAQ_ITEMS } from "@/lib/site";
 
 export default function Faq() {
@@ -40,7 +41,7 @@ export default function Faq() {
                     isOpen ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
                   }`}
                 >
-                  {item.answer}
+                  <FaqAnswer text={item.answer} />
                 </p>
               </div>
             </div>
@@ -48,5 +49,23 @@ export default function Faq() {
         );
       })}
     </div>
+  );
+}
+
+function FaqAnswer({ text }: { text: string }) {
+  const marker = "offers page";
+  const index = text.indexOf(marker);
+  if (index === -1) return text;
+  const linked: ReactNode = (
+    <Link href="/offers" className="underline decoration-ink/30 underline-offset-4 transition-colors duration-200 hover:decoration-ink">
+      {marker}
+    </Link>
+  );
+  return (
+    <>
+      {text.slice(0, index)}
+      {linked}
+      {text.slice(index + marker.length)}
+    </>
   );
 }

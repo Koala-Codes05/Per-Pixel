@@ -57,9 +57,13 @@ with sync_playwright() as p:
     page.wait_for_url("**/works/dune/index.html", timeout=30000)
     out["static_work"] = page.evaluate("location.pathname")
 
-    # Playbook is reachable directly but not indexed.
-    page.goto(BASE + "/playbook", wait_until="domcontentloaded")
-    out["playbook_robots"] = page.evaluate("document.querySelector('meta[name=robots]')?.content")
+    # Playbook is removed from the public build.
+    try:
+        out["playbook_status"] = urllib.request.urlopen(BASE + "/playbook", timeout=30).status
+    except Exception as exc:  # noqa: BLE001
+        out["playbook_status"] = getattr(exc, "code", str(exc))
+    page.goto(BASE + "/offers", wait_until="domcontentloaded")
+    out["offers_title"] = page.title()
     out["errors"] = errors[:8]
     b.close()
 

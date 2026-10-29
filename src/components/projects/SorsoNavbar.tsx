@@ -7,6 +7,7 @@ export default function SorsoNavbar() {
       <Link className="sorso-pill sorso-brand" href="/projects/sorso" aria-label="Sorso, back to top">
         Sorso<sup>®</sup>
       </Link>
+      <span className="sorso-pill sorso-pill-concept">Concept</span>
       <SorsoClock />
       <nav className="sorso-nav-links" aria-label="Sections">
         <a className="sorso-pill" href="#flavours">Flavours</a>

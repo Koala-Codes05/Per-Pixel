@@ -252,7 +252,7 @@ export default function SorsoPage() {
         <div className="sorso-wordmark" aria-hidden="true">Sorso</div>
         <div className="sorso-night-fine">
           <span>© 2026 Sorso Bevande. A fictional brand, built as a motion study by PerPixel.</span>
-          <span>Photography from Unsplash, standing in until the real shoot.</span>
+          <span>Photography from Unsplash, used illustratively. There is no client shoot behind it.</span>
         </div>
       </footer>
     </main>

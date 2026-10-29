@@ -986,7 +986,7 @@ export default function App() {
                 SNACKVERSE™
               </span>
               <span className="font-psico-pixel text-[8px] text-[#8C65F7] block">
-                3 CRAVE WORLDS
+                CONCEPT
               </span>
             </div>
           </button>

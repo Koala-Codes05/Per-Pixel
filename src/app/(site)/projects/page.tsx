@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import ConceptMark from "@/components/ConceptMark";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
 import ProjectsGallery from "@/components/projects/ProjectsGallery";
@@ -53,7 +54,7 @@ export default function ProjectsPage() {
                 />
               </div>
               <p className="px-1 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em]">
-                Latest — {PROJECTS[0].title}
+                Latest — {PROJECTS[0].title} · Concept
               </p>
             </Link>
           </div>
@@ -66,6 +67,9 @@ export default function ProjectsPage() {
           <h2 className="text-center font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-[-0.01em]">
             Selected Work.
           </h2>
+          <p className="mx-auto mt-4 max-w-[36ch] text-center text-sm leading-relaxed text-ink/65">
+            Self-initiated concepts. Every piece on this page was made in the studio, without a client brief.
+          </p>
         </Reveal>
         <ProjectsGallery />
       </section>
@@ -99,11 +103,9 @@ export default function ProjectsPage() {
                 <span className="col-span-2 text-[11px] font-semibold tabular-nums text-ink/50 sm:col-span-1">
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <span className="col-span-7 flex items-baseline gap-3 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 sm:col-span-6 md:col-span-5">
-                  <span className="whitespace-nowrap">{p.title}</span>
-                  <span className={`hidden whitespace-nowrap rounded-full px-2.5 py-1 font-sans text-[10px] font-semibold uppercase tracking-[0.14em] text-ink sm:inline-block ${p.kind === "site" ? "bg-blush" : "bg-sky"}`}>
-                    {p.kind === "site" ? "Brand site" : "Case study"}
-                  </span>
+                <span className="col-span-7 flex flex-wrap items-center gap-x-3 gap-y-1 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 sm:col-span-6 md:col-span-5">
+                  <span>{p.title}</span>
+                  <ConceptMark />
                 </span>
                 <span className="col-span-3 hidden text-[11px] uppercase tracking-[0.16em] text-ink/60 md:block">
                   {p.category}

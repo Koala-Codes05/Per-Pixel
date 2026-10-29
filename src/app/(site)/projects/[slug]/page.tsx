@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
+import ConceptMark from "@/components/ConceptMark";
 import { ArrowUpRight } from "@/components/home/Bento";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
@@ -52,6 +53,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           <span aria-hidden="true">/</span>
           <span aria-current="page">{project.title}</span>
         </nav>
+        <div className="mt-5"><ConceptMark /></div>
         <h1 className="case-title">{project.title}</h1>
         <div className="case-intro">
           <p className="case-idea">{study.idea}</p>
@@ -209,7 +211,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
 
       <nav className="case-next" aria-label="More projects">
         <ProjectLink href={next.href} className="case-next-link group">
-          <span className="case-next-label">Next project</span>
+          <span className="case-next-label">Next project · Concept</span>
           <span className="case-next-title">{next.title} <ArrowUpRight /></span>
           <span className="case-next-thumb">
             <Image src={next.image} alt="" fill sizes="220px" className="object-cover" />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import PlaybookShowcase from "@/components/playbook/PlaybookShowcase";
+import PlaybookShowcase from "./PlaybookShowcase";
 
 export const metadata: Metadata = {
   title: "Studio Intelligence & Growth Playbook",

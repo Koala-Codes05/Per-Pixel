@@ -86,7 +86,7 @@ export default function Navbar() {
               {[0, 1, 2, 3].map((index) => <span key={index} />)}
             </span>
           </button>
-          <div className="hidden items-center gap-3 md:flex lg:gap-6">
+          <div className="hidden items-center gap-3 min-[920px]:flex lg:gap-6">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.href}

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "@/components/home/Bento";
 import FeaturedScene from "@/components/home/FeaturedScene";
 import LiquidDistortion from "@/components/LiquidDistortion";
+import ConceptMark from "@/components/ConceptMark";
 import ProjectLink from "@/components/ProjectLink";
 import { PROJECTS } from "@/lib/site";
 
@@ -59,6 +60,7 @@ export default function FeaturedProjects() {
                   <LiquidDistortion />
                   <span className="featured-art-shade" aria-hidden="true" />
                   <span className="featured-counter" aria-hidden="true">0{index + 1} / 0{FEATURED.length}</span>
+                  <ConceptMark className="concept-mark--on-media" />
                   <span className="featured-art-center">
                     <span className="featured-art-title">{project.title}</span>
                     <span className="featured-view">view <ArrowUpRight /></span>
