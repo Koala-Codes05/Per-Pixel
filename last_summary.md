@@ -1,5 +1,17 @@
 # Last summary — PerPixel
 
+## 2026-10-29 — Mobile featured pin and wordplay
+
+Scoped to ≤767px. Desktop featured and wordplay math, height, and type are unchanged.
+
+- Featured: card 0 is already on screen at the start of the pin (about 40svh) and settles quickly. The mobile pin is shorter (`--featured-height-mobile`). Cards sit lower (`top: 62%`). The Portfolio wordmark scales during the opening, and the intro line fades as the first card settles so it does not sit under the heading.
+- Wordplay: words are sized to the screen width, the stack is about 60% of the viewport, the section is 170svh, and the top margin is 2.5rem. Even and odd words drift ±8vw with scroll progress. Reduced motion keeps the static stack.
+
+### Verification
+
+- `npm run build` passed. Scroll-sequence tests passed, including the new mobile pose and drift cases.
+- Chrome at 390×844 and 360×800: featured opens with the first card visible and not under the heading; wordplay block is 61% and 60% of the viewport. At 1440×900 the featured height is still 4590px, wordplay is still 2340px, card 0 starts at opacity 0, and the wordmark has no inline transform.
+
 ## 2026-10-29 — Empty hash no longer jumps to offers
 
 `OfferScene` scrolled to the first frame whenever `location.hash` was empty, because homepage offer frames had no `id` and `"".slice` matched `frame.id === ""`. The scroll now runs only when the hash is non-empty. Homepage frames use `launch-sprint`, `brand-system`, and `retainer`, the same ids as `/offers`.
