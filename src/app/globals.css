@@ -2947,6 +2947,16 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(43, 11, 16, 0.14);
 }
+.sorso-brand-lockup { position: relative; flex: 0 0 auto; }
+@media (min-width: 1280px) {
+  .sorso-clock {
+    position: absolute;
+    left: 50%;
+    top: 0.75rem;
+    translate: -50% 0;
+  }
+  .sorso-nav-links .sorso-pill { padding-inline: 0.7rem; }
+}
 .sorso-nav-links { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
 .sorso-pill {
   display: inline-flex;
@@ -2977,12 +2987,17 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 .sorso-pill-showreel { background: var(--sorso-vino); color: var(--sorso-latte); border-color: var(--sorso-corallo); }
 .sorso-pill-back { border-style: dashed; background: transparent; }
 .sorso-pill-concept {
+  position: absolute;
+  left: calc(100% + 0.45rem);
+  top: 50%;
+  translate: 0 -50%;
   border-style: dashed;
   background: transparent;
   font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  white-space: nowrap;
   pointer-events: none;
 }
 
@@ -3374,6 +3389,9 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 @media (max-width: 620px) {
   .sorso-clock-label { display: none; }
   .sorso-nav { padding-inline: 0.75rem; gap: 0.5rem; flex-wrap: wrap; }
+  .sorso-clock { position: static; translate: none; }
+  .sorso-brand-lockup { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+  .sorso-pill-concept { position: static; translate: none; }
   .sorso-nav-links { width: 100%; justify-content: flex-start; }
   .sorso-m-grid { grid-template-columns: 1fr; }
   .sorso-bento { grid-template-columns: 1fr; }

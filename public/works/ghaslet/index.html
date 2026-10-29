@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Ghaslet — Hot sauce with zero brakes</title>
   <meta name="description" content="A PerPixel concept. Ghaslet hot sauce: three bottles, one traffic light. Pick a heat and stay with the idea." />
-  <style>.pp-concept{font-family:Archivo,sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:999px;padding:.3rem .55rem;line-height:1}</style>
+  <style>
+    .nav-brand{position:relative;display:flex;flex:0 0 auto;align-items:center}
+    .pp-concept{position:absolute;left:calc(100% + 10px);top:50%;translate:0 -50%;white-space:nowrap;pointer-events:none;font-family:Archivo,sans-serif;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;border:1.5px solid currentColor;border-radius:999px;padding:.3rem .55rem;line-height:1}
+    @media (width<=880px){.pp-concept{left:0;top:calc(100% + 6px);translate:none}}
+  </style>
   <meta name="theme-color" content="#E5251B" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -27,8 +31,10 @@
   <div class="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
 
   <header class="nav">
-    <a class="nav-logo" href="#top" aria-label="Ghaslet, back to top" data-logo></a>
-    <span class="pp-concept">Concept</span>
+    <div class="nav-brand">
+      <a class="nav-logo" href="#top" aria-label="Ghaslet, back to top" data-logo></a>
+      <span class="pp-concept">Concept</span>
+    </div>
     <nav class="nav-links" aria-label="Sections">
       <a href="#range">The range</a><a href="#flash">Flash</a><a href="#eat">Eat with</a><a href="#shop">Shop</a>
     </nav>

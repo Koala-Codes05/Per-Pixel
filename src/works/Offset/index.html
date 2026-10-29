@@ -143,9 +143,17 @@
   }
   .clock__dot { width: 8px; height: 8px; border-radius: 50%; background: var(--rosso-deep); }
   .clock__label { font-weight: 500; font-stretch: 100%; opacity: .7; }
+  .nav-brand { position: relative; justify-self: start; display: flex; align-items: center; }
+  .nav-concept {
+    position: absolute; left: calc(100% + 8px); top: 50%; translate: 0 -50%;
+    height: 36px; padding: 0 12px; pointer-events: none; white-space: nowrap;
+    font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; border-style: dashed;
+  }
   .nav__links { justify-self: end; display: flex; gap: 8px; }
   .nav__case b { font-variant-numeric: tabular-nums; }
   @media (max-width: 899px) {
+    .nav-brand { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .nav-concept { position: static; translate: none; height: 30px; }
     .nav__links .pill:not(.nav__case) { display: none; }
     .clock__label { display: none; }
     .brand { font-size: 1.35rem; padding: 0 16px; }
@@ -664,14 +672,16 @@
 </svg>
 
 <header class="nav" aria-label="Main">
-  <a class="pill brand" href="#top" aria-label="Sorso, back to top"><span class="brand__word">Sorso</span></a>
+  <div class="nav-brand">
+    <a class="pill brand" href="#top" aria-label="Sorso, back to top"><span class="brand__word">Sorso</span></a>
+    <span class="pill nav-concept">Concept</span>
+  </div>
   <div class="pill clock" title="The page runs from 17:00 to 20:30. Scroll to move the hour along.">
     <span class="clock__dot" aria-hidden="true"></span>
     <span class="clock__time" aria-hidden="true">17:00</span>
     <span class="clock__label" aria-hidden="true">aperitivo time</span>
   </div>
   <nav class="nav__links" aria-label="Sections">
-    <span class="pill" style="pointer-events:none;border-style:dashed;letter-spacing:.14em;text-transform:uppercase;font-size:.62rem">Concept</span>
     <a class="pill" href="#flavours">Flavours</a>
     <a class="pill" href="#serve">Serve</a>
     <a class="pill" href="#moments">Moments</a>
