@@ -4,6 +4,32 @@ export function portfolioScrollUnits(count: number) {
   return 1.7 + Math.max(0, count - 1) * 1.2;
 }
 
+/**
+ * Offer frames reuse the portfolio card travel, but the scene opens on the
+ * first offer already seated. Later offers rise in and the previous one
+ * leaves upward — the same replacement, without a blank pinned frame.
+ * Settle time 0.9 is when card 0's entrance has finished.
+ */
+const OFFER_SETTLE = 0.9;
+
+export function offerScrollUnits(count = 3) {
+  return Math.max(0.4, portfolioScrollUnits(count) - OFFER_SETTLE);
+}
+
+export function offerFramePose(progress: number, index: number, count = 3) {
+  const units = portfolioScrollUnits(count);
+  const start = OFFER_SETTLE / units;
+  const mapped = start + clamp01(progress) * (1 - start);
+  return portfolioCardPose(mapped, index, count);
+}
+
+/** Scene progress where offer `index` is readable, before the next one covers it. */
+export function offerFrameFocus(index: number, count = 3) {
+  const units = portfolioScrollUnits(count);
+  const time = Math.min(units, 1.06 + Math.max(0, index) * 1.2);
+  return clamp01((time - OFFER_SETTLE) / (units - OFFER_SETTLE));
+}
+
 export function portfolioCardPose(progress: number, index: number, count = 3) {
   const time = clamp01(progress) * portfolioScrollUnits(count);
   const enter = clamp01((time - 0.18 - index * 1.2) / 0.72);

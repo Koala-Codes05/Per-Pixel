@@ -1,34 +1,28 @@
 # Last summary — PerPixel
 
-## 2026-10-29 — Offers, concept labels, private playbook, showreel credit
+## 2026-10-29 — Offers pin and change with the scroll
 
-The public site now has priced engagements, every portfolio piece is marked as concept work, the internal growth playbook is no longer a route, and the Offset showreel is credited to PerPixel.
+The homepage offers, and `/offers` when the copy fits the screen, are now a pinned scroll sequence in the same family as the featured projects scene.
 
 ### What changed
 
-- `/playbook` returns 404. The page, interactive showcase, pricing data, and competitor screenshots moved to `docs/playbook/`. Written research in `research/` is unchanged.
-- Homepage offers sheet and `/offers` publish three floors for funded seed-to-Series A teams: 10-Day Launch Sprint from ₹75k, Brand & Web System from ₹2.5L (6–10 weeks), Motion & Editorial retainer from ₹40k/month. Each tier links to `/contact`. Offers is in the primary navigation and the full-screen menu. Desktop text links appear from 920px so they clear the center mark.
-- The contact FAQ timeline matches those durations and links to the offers page.
-- A small Concept tag appears on the homepage bento and featured cards, the projects grid and index, case-study pages, Moove and Sorso, and the Dune, Ghaslet, Snackverse, and Offset pages. Dune no longer claims a Rub' al Khali location shoot. Sorso no longer says the photos are waiting on a real shoot. Moove’s lead calls it a self-initiated concept.
-- `/works/offset/showreel.html` title, kicker, kinetic word, and end lockup say PerPixel. The personal “Anakin / lead motion designer” credit is gone. The pill reads “A concept reel”. The frame structure, type, and colour of the reel are unchanged.
+- `OfferScene` sticks a full-viewport stage. Each offer is a full-screen frame. The first offer is already in place when the section pins. Later offers rise in `svh` and the previous one leaves upward, using the featured-project travel (`offerFramePose` over `portfolioCardPose`).
+- Phones use the same vertical frames, one offer at a time. There is no swipe carousel.
+- If `prefers-reduced-motion` is set, or the copy plus the nav/blur padding does not fit the viewport, the frames stack in normal flow.
+- Copy, prices, and the Start a project links are unchanged. Titles sit below the fixed navigation. The price and CTA sit above the bottom blur.
+- On a 1440×900 desktop, both the homepage and `/offers` pin. On a 390×844 phone the homepage pins; `/offers` stacks because the longer copy does not fit one frame.
 
 ### Files
 
-- `src/lib/offers.ts`, `src/components/home/Offers.tsx`, `src/app/(site)/offers/page.tsx`, `src/app/globals.css`, `src/lib/site.ts`, `src/components/Navbar.tsx`, `src/components/contact/Faq.tsx`
-- `src/components/ConceptMark.tsx` and the homepage, projects, case-study, Moove, Sorso, and footer call sites
-- `public/works/dune/index.html`, `public/works/ghaslet/index.html`, `public/works/snackverse/index.html`, `public/works/offset/index.html`, `public/works/offset/showreel.html`, plus the matching `src/works` sources
-- `docs/playbook/`
+- `src/components/home/OfferScene.tsx`, `src/components/home/Offers.tsx`, `src/app/(site)/offers/page.tsx`
+- `src/lib/scroll-sequence.ts`, `src/app/globals.css`, `tests/scroll-sequence.test.mjs`
 
 ### Verification
 
-- `npm run build` passed. `/offers` is a static route. `/playbook` is not in the route list.
-- Production server on port 3000: `/playbook` and `/research/shots/koto-1.png` returned 404. `/offers` returned 200.
-- Chrome at 1440 and 390: homepage offers sheet, `/offers` bands, and a Concept tag on Moove in the project grid. Start a project landed on `/contact`. The timeline FAQ links to `/offers`. Nav links do not overlap the center mark at 768 (menu only), 920, or 1024. Showreel lockup shows PERPIXEL and “A concept reel”. No horizontal overflow on the checked pages.
+- `npm run build` passed. `node --test tests/scroll-sequence.test.mjs` passed, including the new offer pose tests.
+- Chrome: homepage `data-motion="on"` at 1440×900 and 390×844. Offer titles sit about 350px down, the header ends at 41px, and there is no horizontal overflow. `/offers` pins at 1440×900 and stacks at 390×844.
+- Scroll recordings: `offers-desktop-scroll.mp4` and `offers-mobile-scroll.mp4`.
 
 ### Not verified
 
-- A physical phone, reduced-motion walkthrough of the new sheets, and the deployed Vercel URL. This branch is not merged.
-
-### Next useful step
-
-Review the offers copy and floors with the owner, then look at the still-open enquiry receipt check on the deployed origin.
+- A physical phone, or the deployed Vercel URL. The branch is not merged.

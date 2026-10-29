@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "@/components/home/Bento";
+import OfferScene from "@/components/home/OfferScene";
 import Reveal from "@/components/Reveal";
 import { OFFERS } from "@/lib/offers";
 
@@ -30,37 +31,44 @@ export default function OffersPage() {
         </Reveal>
       </header>
 
-      {OFFERS.map((offer) => (
-        <section
-          key={offer.id}
-          id={offer.id}
-          className={`offer-band offer-band--${offer.surface}`}
-          aria-labelledby={`offer-${offer.id}`}
-        >
-          <p className="offer-band-index" aria-hidden="true">{offer.index}</p>
-          <Reveal className="offer-band-copy">
-            <p className="offer-duration">{offer.duration}</p>
-            <h2 id={`offer-${offer.id}`}>{offer.name}</h2>
-            <p className="offer-detail">{offer.detail}</p>
-            <ul className="offer-includes">
-              {offer.includes.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </Reveal>
-          <Reveal delay={80} className="offer-band-aside">
-            <p className="offer-price offer-price--display">
-              <span>from</span>
-              {offer.price}
-              {offer.unit ? <small>{offer.unit}</small> : null}
-            </p>
-            <Link href="/contact" className="home-contact-link offer-band-cta">
-              Start a project
-              <span className="home-contact-icon"><ArrowUpRight /></span>
-            </Link>
-          </Reveal>
-        </section>
-      ))}
+      <OfferScene id="offer-sequence" count={OFFERS.length} labelId="offer-sequence-label" className="page-offer-scene">
+        <h2 id="offer-sequence-label" className="sr-only">The three offers</h2>
+        {OFFERS.map((offer, index) => (
+          <article
+            key={offer.id}
+            id={offer.id}
+            className={`offer-frame offer-frame--page offer-frame--${offer.surface}`}
+            data-index={index}
+          >
+            <div className="offer-frame-body">
+              <p className="offer-band-index" aria-hidden="true">{offer.index}</p>
+              <div className="offer-frame-content offer-band">
+                <div className="offer-band-copy">
+                  <p className="offer-duration">{offer.duration}</p>
+                  <h3 id={`offer-${offer.id}`}>{offer.name}</h3>
+                  <p className="offer-detail">{offer.detail}</p>
+                  <ul className="offer-includes">
+                    {offer.includes.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="offer-band-aside">
+                  <p className="offer-price offer-price--display">
+                    <span>from</span>
+                    {offer.price}
+                    {offer.unit ? <small>{offer.unit}</small> : null}
+                  </p>
+                  <Link href="/contact" className="home-contact-link offer-band-cta">
+                    Start a project
+                    <span className="home-contact-icon"><ArrowUpRight /></span>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </OfferScene>
 
       <section className="offers-close" aria-labelledby="offers-close-title">
         <Reveal>
