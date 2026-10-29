@@ -1,5 +1,15 @@
 # Last summary — PerPixel
 
+## 2026-10-29 — Empty hash no longer jumps to offers
+
+`OfferScene` scrolled to the first frame whenever `location.hash` was empty, because homepage offer frames had no `id` and `"".slice` matched `frame.id === ""`. The scroll now runs only when the hash is non-empty. Homepage frames use `launch-sprint`, `brand-system`, and `retainer`, the same ids as `/offers`.
+
+### Verification
+
+- Fresh `/` load (intro skipped) stayed at scrollY 0 after 1.5s on desktop and mobile.
+- `/offers#brand-system`, `#launch-sprint`, and `#retainer` still land on those frames.
+- `npm run build` passed.
+
 ## 2026-10-29 — Concept tags leave the nav flex row
 
 Bugbot’s layout notes on the merged offers PR: the Sorso Concept pill was a flex item and pushed the aperitivo clock off centre, and Ghaslet’s Concept chip shifted the centred pill bar and sat alone in the bar below 760px.

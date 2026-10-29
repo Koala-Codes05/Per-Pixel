@@ -81,8 +81,10 @@ export default function OfferScene({
     measure();
 
     const hash = window.location.hash.slice(1);
-    const hashed = frames.findIndex((frame) => frame.id === hash);
-    if (hashed >= 0) scrollToIndex(hashed);
+    if (hash) {
+      const hashed = frames.findIndex((frame) => frame.id === hash);
+      if (hashed >= 0) scrollToIndex(hashed);
+    }
 
     return () => {
       unsubscribe();

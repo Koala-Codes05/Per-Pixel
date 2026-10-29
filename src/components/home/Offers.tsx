@@ -31,6 +31,7 @@ export default function Offers() {
       {OFFERS.map((offer, index) => (
         <article
           key={offer.id}
+          id={offer.id}
           className={`offer-frame offer-frame--home offer-frame--${offer.surface}`}
           data-index={index}
         >
