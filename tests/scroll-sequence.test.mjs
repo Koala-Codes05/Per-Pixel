@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import { frameProgress, portfolioCardPose, portfolioScrollUnits, wordEmphasis } from "../src/lib/scroll-sequence.ts";
+import { frameProgress, offerFrameFocus, offerFramePose, offerScrollUnits, portfolioCardPose, portfolioScrollUnits, wordEmphasis } from "../src/lib/scroll-sequence.ts";
 
 test("process starts with later frames below the viewport", () => {
   assert.equal(frameProgress(0, 1), 0);
@@ -105,5 +105,29 @@ test("portfolio motion is continuous, reversible, and bounded for any card count
       }
     }
     assert.deepEqual(portfolioCardPose(1, count - 1, count), { y: 0, opacity: 1, scale: 1 });
+  }
+});
+
+test("offer scene opens on the first offer and holds the last", () => {
+  assert.deepEqual(offerFramePose(0, 0, 3), { y: 0, opacity: 1, scale: 1 });
+  assert.equal(offerFramePose(0, 1, 3).y, 100);
+  assert.equal(offerFramePose(0, 1, 3).opacity, 0);
+  assert.deepEqual(offerFramePose(1, 2, 3), { y: 0, opacity: 1, scale: 1 });
+  assert.ok(offerScrollUnits(3) > 1);
+  assert.ok(offerFrameFocus(0, 3) < offerFrameFocus(1, 3));
+  assert.ok(offerFrameFocus(1, 3) < offerFrameFocus(2, 3));
+  assert.equal(offerFramePose(offerFrameFocus(1, 3), 1, 3).y, 0);
+});
+
+test("offer frames reverse and stay inside the travel", () => {
+  const positions = [0, 0.12, 0.28, 0.45, 0.63, 0.8, 1];
+  for (let index = 0; index < 3; index++) {
+    const forward = positions.map((p) => offerFramePose(p, index, 3));
+    const backward = positions.toReversed().map((p) => offerFramePose(p, index, 3));
+    assert.deepEqual(forward.toReversed(), backward);
+    for (const pose of forward) {
+      assert.ok(pose.y >= -100 && pose.y <= 100);
+      assert.ok(pose.opacity >= 0 && pose.opacity <= 1);
+    }
   }
 });

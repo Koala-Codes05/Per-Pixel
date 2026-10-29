@@ -4,6 +4,7 @@ import Bento, { ArrowUpRight } from "@/components/home/Bento";
 import Wordplay from "@/components/home/Wordplay";
 import Process from "@/components/home/Process";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
+import Offers from "@/components/home/Offers";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
       <Wordplay />
       <Process />
       <FeaturedProjects />
+      <Offers />
       <section id="contact-us" className="home-contact" aria-labelledby="home-contact-title">
         <div className="home-contact-inner">
           <h2 id="home-contact-title" className="home-contact-title">

@@ -15,7 +15,7 @@ body{background:var(--bg);color:var(--fg);font:300 16px/1.5 Unbounded,system-ui,
 em{font:italic 400 1.15em 'Instrument Serif',Georgia,serif}a{color:inherit;text-decoration:none}
 #ld{position:fixed;inset:0;z-index:99;background:var(--ink);color:var(--sand);display:flex;flex-direction:column;justify-content:flex-end;padding:6vw;clip-path:inset(0)}
 #ld b{font-size:clamp(5rem,28vw,20rem);font-weight:600;line-height:.8}#ld span{font:italic 1.4rem 'Instrument Serif',serif}
-nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;color:var(--sand);mix-blend-mode:difference;font-size:.75rem}
+nav{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 5vw;color:var(--sand);mix-blend-mode:difference;font-size:.75rem}.concept-flag{letter-spacing:.16em;text-transform:uppercase;font-size:.62rem;border:1px solid currentColor;border-radius:999px;padding:.22rem .5rem;line-height:1}
 nav div{display:flex;gap:2rem}nav a:first-child{font-weight:600;letter-spacing:.2em}
 #hero{position:relative;height:100svh;overflow:hidden;background:linear-gradient(#86aed0,#f3cfa3 70%,#e9a86d)}
 .sun{position:absolute;left:50%;top:34%;width:min(34vw,300px);aspect-ratio:1;margin-left:calc(min(34vw,300px)/-2);border-radius:50%;background:radial-gradient(#fff6e2,#ffd9a0 60%,#f2a96b)}
@@ -155,14 +155,14 @@ nav{padding:22px 5vw;font-size:.8rem}nav a{transition:opacity .2s}nav a:hover{op
 
 </style></head><body>
 <div id="ld"><b id="ct">0</b><span>Свобода быть собой</span></div>
-<div id="cv">DUNE</div><nav><a data-go="home" href="#home">DUNE ATELIER</a><div><a href="#campaign-film" class="nav-film-link" id="nav-film-trigger"><span>▶</span> Campaign Film</a><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Photoshoot Notes</a></div></nav>
+<div id="cv">DUNE</div><nav><a data-go="home" href="#home">DUNE ATELIER</a><div><span class="concept-flag">Concept</span><a href="#campaign-film" class="nav-film-link" id="nav-film-trigger"><span>▶</span> Campaign Film</a><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Notes</a></div></nav>
 <main class="pg on" id="home"><header id="hero">
 <h1 class="wm" aria-label="DUNE"><i><b>D</b></i><i><b>U</b></i><i><b>N</b></i><i><b>E</b></i></h1>
 <div class="hz"><img src="assets/images/hero_editorial_flow.jpg" alt="Model in flowing ochre and sand silk robes billowing over colossal desert dunes at golden hour" fetchpriority="high"><div class="wm" aria-hidden="true"><i><b>D</b></i><i><b>U</b></i><i><b>N</b></i><i><b>E</b></i></div></div>
 <p class="ht"><span>Spring / Summer 2026 Collection.</span><span lang="ru">Свобода быть собой.</span></p>
 <div class="hm">
 <div class="hm-left">
-<p>Editorial Photoshoot<em>Empty Quarter 2026</em></p>
+<p>Concept editorial<em>Empty Quarter 2026</em></p>
 <div class="hero-film-trigger" id="hero-film-trigger" role="button" tabindex="0" title="Experience the campaign film">
 <div class="hft-thumb"><video src="assets/videos/desert_sunset.webm" autoplay muted loop playsinline></video><span class="hft-icon">▶</span></div>
 <div class="hft-text"><span>CAMPAIGN FILM</span><em>Watch Video ↓</em></div>
@@ -176,7 +176,7 @@ nav{padding:22px 5vw;font-size:.8rem}nav a{transition:opacity .2s}nav a:hover{op
 <section id="col">
 <div class="col-head">
 <h2>The 2026<br><em>Clothing Collection</em></h2>
-<p class="col-sub">Photographed on location in the Rub' al Khali. Ten signature couture silhouettes tailored from unlined organic fibers, flowing silks, and mineral earth pigments.</p>
+<p class="col-sub">A concept editorial imagined in the Rub' al Khali. Ten signature couture silhouettes tailored from unlined organic fibers, flowing silks, and mineral earth pigments.</p>
 </div>
 <div class="chips"><button class="on" data-filter="Robes">Robes & Caftans</button><button data-filter="Trousers">Desert Trousers</button><button data-filter="Sets">Draped Sets</button><button data-filter="Outer">Capes & Outer</button><button data-filter="Basics">Raw Linen Basics</button></div><div class="trk"></div></section>
 <section id="campaign-film" class="film-clean" aria-label="Campaign Film">
@@ -218,20 +218,20 @@ nav{padding:22px 5vw;font-size:.8rem}nav a{transition:opacity .2s}nav a:hover{op
 </button>
 </section>
 <section class="st"><p id="stm">Dune is an haute couture study in desert movement. We craft unlined garments from raw sand-washed silk, hand-loomed flax linen, and botanical dyes extracted from desert clay and iron-rich volcanic earth. Clothing for people who move like weather.</p></section>
-<section class="ll"><div class="feature-image"><img src="assets/images/hero_editorial_flow.jpg" alt="Model in billowing ochre silk wrap robe catching golden hour desert light" loading="lazy"></div><h2 class="l1">Long light</h2><h2 class="l2">slow silhouettes</h2><p>Photographed on the shifting ridges of the Rub' al Khali at 17:45. As thermal winds rise to 35 knots, our unlined habotai silk robes inflate into kinetic sculptures with fluid aerodynamic grace.</p><a class="pill" data-go="lookbook" href="#lookbook">Explore the Photoshoot Lookbook ↗</a></section>
-<section class="so"><div><h2>Photoshoot<br><em>Field Notes</em></h2><p>Three days in the Empty Quarter with no styling mirrors, no artificial studio lighting, and no synthetic materials. Only natural sun flares, 65mm cameras, and garments shaped by the geometry of wind.</p><a class="pill" data-go="story" href="#story">Read Photoshoot Storyboard ↗</a></div>
+<section class="ll"><div class="feature-image"><img src="assets/images/hero_editorial_flow.jpg" alt="Model in billowing ochre silk wrap robe catching golden hour desert light" loading="lazy"></div><h2 class="l1">Long light</h2><h2 class="l2">slow silhouettes</h2><p>Imagined on the shifting ridges of the Rub' al Khali at 17:45. As thermal winds rise to 35 knots, unlined habotai silk robes inflate into kinetic sculptures with fluid aerodynamic grace.</p><a class="pill" data-go="lookbook" href="#lookbook">Explore the lookbook ↗</a></section>
+<section class="so"><div><h2>Concept<br><em>Field Notes</em></h2><p>Imagined as three days in the Empty Quarter: no styling mirrors, no artificial studio lighting, and no synthetic materials. Natural sun flares, 65mm cameras, and garments shaped by the geometry of wind.</p><a class="pill" data-go="story" href="#story">Read the notes ↗</a></div>
 <div class="stg"><div class="ig"><i>DUNE / RUNWAY LOOK 01</i><div class="sq" data-k="4"></div><p>Raw unbleached linen & hand-forged bronze talisman.</p></div><div class="stv a" data-k="0"><span>Look 01<br>Draped Ochre</span></div><div class="stv b" data-k="3"><span>Look 04<br>Twilight Cape</span></div></div></section>
 <section id="fmt"><div><h2>Four Hours of Sand,<br><em>Four Mineral Dyes.</em></h2><ul><li><strong>05:14 Dawn</strong> — Ice quartz silica & unbleached natural flax (#E3C5A4)</li><li><strong>12:00 Noon</strong> — Sun-bleached sand & raw ochre habotai silk (#C4864F)</li><li><strong>17:45 Dusk</strong> — Burning copper dunes & terracotta wool blend (#7A3F22)</li><li><strong>21:00 Night</strong> — Volcanic obsidian & deep cocoa cupro (#2A130B)</li></ul>
 <div class="sw" aria-label="DUNE palette"><span style="background:#e3c5a4" title="Dawn #E3C5A4"></span><span style="background:#c4864f" title="Noon #C4864F"></span><span style="background:#7a3f22" title="Dusk #7A3F22"></span><span style="background:#2a130b" title="Night #2A130B"></span></div></div>
 <div class="ph"><img src="assets/images/hero_editorial_dawn.jpg" alt="Model portrait in raw fringe collar and bronze desert jewelry" loading="lazy"><span class="ph-caption">Коллекция 2026<br>Свобода быть собой.</span></div>
-<div id="join"><h2>Follow the<br><em>horizon.</em></h2><p class="join-copy">Explore all editorial looks from our Spring/Summer 2026 desert campaign.</p><a class="btn" data-go="lookbook" href="#lookbook">Explore the photoshoot ↗</a></div></section>
+<div id="join"><h2>Follow the<br><em>horizon.</em></h2><p class="join-copy">Editorial looks from a Spring/Summer 2026 desert concept.</p><a class="btn" data-go="lookbook" href="#lookbook">Explore the looks ↗</a></div></section>
 </main>
-<main class="pg sh" id="shop"><h2 class="pgt">The Collection</h2><p class="collection-note">Spring / Summer 2026 Runway & Editorial Photoshoot Catalog. Each garment is hand-tailored from organic, natural fibers and finished with hand-rolled hems.</p><div class="chips"><button class="on" data-f="all">All Looks (10)</button><button data-f="Robes">Robes & Caftans</button><button data-f="Trousers">Desert Trousers</button><button data-f="Sets">Draped Sets</button><button data-f="Outer">Capes & Coats</button><button data-f="Basics">Raw Linen Basics</button></div><div class="gr"></div></main>
+<main class="pg sh" id="shop"><h2 class="pgt">The Collection</h2><p class="collection-note">Spring / Summer 2026 runway and editorial concept. Each garment is drawn as hand-tailored organic fiber, finished with hand-rolled hems.</p><div class="chips"><button class="on" data-f="all">All Looks (10)</button><button data-f="Robes">Robes & Caftans</button><button data-f="Trousers">Desert Trousers</button><button data-f="Sets">Draped Sets</button><button data-f="Outer">Capes & Coats</button><button data-f="Basics">Raw Linen Basics</button></div><div class="gr"></div></main>
 <main class="pg" id="lookbook"></main>
-<main class="pg" id="story"><h2 class="pgt">Four Hours<br><em>of Sand</em></h2><p class="lead">The DUNE 2026 campaign was shot across four distinct light hours in the Rub' al Khali desert. Each colorway and silhouette directly mirrors the temperature and shadows of that hour.</p>
+<main class="pg" id="story"><h2 class="pgt">Four Hours<br><em>of Sand</em></h2><p class="lead">The DUNE 2026 concept follows four imagined light hours in the Rub' al Khali. Each colorway and silhouette mirrors the temperature and shadows of that hour.</p>
 <div class="hrs"><div style="background-image:url('assets/images/hero_editorial_dawn.jpg')"><b>05:14 Dawn</b><p>Pale blue light, unbleached linen fringe, and silence before the heat.</p></div><div style="background-image:url('https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=900&q=78&auto=format&fit=crop')"><b>12:00 Noon</b><p>Sun-bleached quartz sand, fluid silk gauze that breathes with the wind.</p></div><div style="background-image:url('assets/images/hero_editorial_flow.jpg')"><b>17:45 Dusk</b><p>Burning copper ridges, 35-knot wind billowing ochre silk wrap robes.</p></div><div style="background-image:url('assets/images/hero_editorial_silhouette.jpg')"><b>21:00 Night</b><p>Cold desert air, heavy sculptural obsidian wool cape with sheer wings.</p></div></div>
 <section class="ll"><a class="pill" data-go="shop" href="#shop">Shop the Collection Runway ↗</a></section></main>
-<footer><h2>DUNE</h2><div class="pl"><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Story</a><a href="#campaign-film">Film</a></div><p>© DUNE ATELIER 2026. Photographed on location in the Rub' al Khali. Free to be yourself.</p><p class="photo-credit">Editorial photography and cinematic campaign visuals produced by DUNE Atelier.</p></footer>
+<footer><h2>DUNE</h2><div class="pl"><a data-go="shop" href="#shop">Collection</a><a data-go="lookbook" href="#lookbook">Lookbook</a><a data-go="story" href="#story">Story</a><a href="#campaign-film">Film</a></div><p>© DUNE ATELIER 2026. A PerPixel concept. Free to be yourself.</p><p class="photo-credit">Concept photography and cinematic visuals, art-directed as a PerPixel study. Not a location shoot.</p></footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.18/dist/lenis.min.js"></script>
@@ -253,7 +253,7 @@ const E=D.concat([
   ['Solar Flare Gauze Caftan Set','Sets',photo('1602058075555-1261c9b72fa9'),'$820','Look 09 · Golden Dune Triple Gauze'],
   ['Ribbed Earth Layering Tank','Basics',photo('1593432889392-09097dc1a1ad'),'$240','Look 10 · Organic Sand Pima Cotton']
 ]);
-const A=(d,w=850)=>`<div class="ar"><img src="${d[2].replace('w=850',`w=${w}`)}" alt="Editorial Photoshoot: ${d[0]}" loading="lazy"></div>`;
+const A=(d,w=850)=>`<div class="ar"><img src="${d[2].replace('w=850',`w=${w}`)}" alt="Concept editorial: ${d[0]}" loading="lazy"></div>`;
 $('.trk').innerHTML=D.map(d=>`<a class="card" data-go="lookbook" href="#lookbook">${A(d)}<div class="card-caption"><span class="card-look">${d[4]}</span><p><em>${d[0]}</em>${d[1]} · ${d[3]} ↗</p></div></a>`).join('');
 $('.gr').innerHTML=E.map(d=>`<a class="pr" data-go="lookbook" href="#lookbook" data-c="${d[1]}"><div class="pa">${A(d,680)}</div><div class="product-meta"><div class="pm-top"><span class="pm-title">${d[0]}</span><span class="pm-price">${d[3]}</span></div><span class="pm-desc">${d[1]} · ${d[4]}</span></div></a>`).join('');
 const lookbookShoots=[
@@ -262,7 +262,7 @@ const lookbookShoots=[
   {time:'17:45 DUSK',title:'The Colossal Ridge in 35-Knot Wind',look:'Look 03 · Draped Ochre Silk Habotai Wrap Robe',img:'assets/images/hero_editorial_flow.jpg',note:'Sunset slipface. 4 meters of hand-dyed ochre silk inflating in the thermal breeze as shadows stretch 300 meters across the sand.'},
   {time:'21:00 NIGHT',title:'Obsidian Wings & Celestial Shadow',look:'Look 04 · Sculptural Hooded Cape in Desert Wool',img:'assets/images/hero_editorial_silhouette.jpg',note:'Twilight corona. Heavy sculptural wool drape and sheer wing-like panels framing the cold nocturnal horizon.'}
 ];
-$('#lookbook').innerHTML=lookbookShoots.map(s=>`<div class="lb"><div class="ar"><img src="${s.img}" alt="Editorial Photoshoot: ${s.title}" loading="lazy"></div><div class="t"><span class="lb-time-tag">${s.time} // EDITORIAL PHOTOSHOOT</span>${s.title}<em>${s.look}</em><p class="lb-note">${s.note}</p></div></div>`).join('');
+$('#lookbook').innerHTML=lookbookShoots.map(s=>`<div class="lb"><div class="ar"><img src="${s.img}" alt="Concept editorial: ${s.title}" loading="lazy"></div><div class="t"><span class="lb-time-tag">${s.time} // CONCEPT EDITORIAL</span>${s.title}<em>${s.look}</em><p class="lb-note">${s.note}</p></div></div>`).join('');
 document.querySelectorAll('[data-k]').forEach(e=>e.insertAdjacentHTML('afterbegin',A(E[e.dataset.k],850)));
 const s=$('#stm');s.innerHTML=s.textContent.split(' ').map(w=>`<span>${w}</span> `).join('');
 document.querySelectorAll('.mq div').forEach(e=>e.innerHTML+=e.innerHTML);

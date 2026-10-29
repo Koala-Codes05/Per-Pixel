@@ -1,23 +1,28 @@
 # Last summary — PerPixel
 
-## 2026-10-29 — One-week launch audit against `/playbook`
+## 2026-10-29 — Offers pin and change with the scroll
 
-Created `research/one-week-launch-readiness-audit-2026-10-29.md`. It compares the playbook's first 30-day proof and positioning standard with the current local site, ranks P0/P1/P2 work, and gives a seven-day sequence and acceptance checks. No application code changed in this task.
+The homepage offers, and `/offers` when the copy fits the screen, are now a pinned scroll sequence in the same family as the featured projects scene.
 
-### Findings
+### What changed
 
-- Conditional launch in a week is feasible if a real enquiry reaches the inbox and three featured projects gain truthful, buyer-facing context. The FormSubmit and Kit integrations exist, but external receipt/confirmation remain unverified.
-- The hero now has a clear CTA and offer. About still lacks owner-approved practitioner facts; Projects and Contact lack approved scope boundaries or engagement floors.
-- Sorso, Moove, and Ghaslet are strong candidates, but the immersive experiences need clear self-initiated status, role, visible outputs, and honest outcomes before a broad client launch. Journal entries are still excerpts.
-- Contact FAQ copy says “form above” even though the form was recently moved below it. The playbook's fast reply target and the site's two-working-day promise also differ.
-- `/playbook` is reachable directly and serves `noindex`; its intended publication status needs a decision before sharing. No sitemap/social preview configuration was found in app source.
+- `OfferScene` sticks a full-viewport stage. Each offer is a full-screen frame. The first offer is already in place when the section pins. Later offers rise in `svh` and the previous one leaves upward, using the featured-project travel (`offerFramePose` over `portfolioCardPose`).
+- Phones use the same vertical frames, one offer at a time. There is no swipe carousel.
+- If `prefers-reduced-motion` is set, or the copy plus the nav/blur padding does not fit the viewport, the frames stack in normal flow.
+- Copy, prices, and the Start a project links are unchanged. Titles sit below the fixed navigation. The price and CTA sit above the bottom blur.
+- On a 1440×900 desktop, both the homepage and `/offers` pin. On a 390×844 phone the homepage pins; `/offers` stacks because the longer copy does not fit one frame.
 
-### Verification and limits
+### Files
 
-- Read the local `/playbook` route and its data, current site source, previous audit, README, memory, and last summary. Local dev HTTP returned 200 for `/playbook` and `/contact`; `/playbook` response included `noindex`.
-- Consulted Google Search Central, web.dev, and W3C primary guidance for sitemap, performance, and accessibility launch checks.
-- No build, lint, deployed browser check, phone test, form submission, Kit confirmation, or performance measurement was run for this documentation-only task. Previous uncommitted application changes remain untouched.
+- `src/components/home/OfferScene.tsx`, `src/components/home/Offers.tsx`, `src/app/(site)/offers/page.tsx`
+- `src/lib/scroll-sequence.ts`, `src/app/globals.css`, `tests/scroll-sequence.test.mjs`
 
-### Next useful step
+### Verification
 
-Begin the audit's Day 1 gate: correct the FAQ direction, prove FormSubmit receipt and Reply-To on the deployed origin, and confirm the owner's publication intent for `/playbook`. Then add concise Sorso/Moove/Ghaslet case-study context using owner-verified facts.
+- `npm run build` passed. `node --test tests/scroll-sequence.test.mjs` passed, including the new offer pose tests.
+- Chrome: homepage `data-motion="on"` at 1440×900 and 390×844. Offer titles sit about 350px down, the header ends at 41px, and there is no horizontal overflow. `/offers` pins at 1440×900 and stacks at 390×844.
+- Scroll recordings: `offers-desktop-scroll.mp4` and `offers-mobile-scroll.mp4`.
+
+### Not verified
+
+- A physical phone, or the deployed Vercel URL. The branch is not merged.

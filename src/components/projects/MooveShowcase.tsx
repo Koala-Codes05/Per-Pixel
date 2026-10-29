@@ -196,7 +196,7 @@ export function MooveHeroInspector() {
           Sculptural furniture held by <em>a single curve.</em>
         </h1>
         <p className="moove-hero-lead">
-          Moove is a Milan and Lisbon furniture house casting pigment into mineral
+          Moove is a self-initiated concept for a Milan and Lisbon furniture house, casting pigment into mineral
           composite and carving honed travertine into monolithic seating. Every form in
           Collection 01 derives its structural rigidity from one continuous curved crease.
         </p>

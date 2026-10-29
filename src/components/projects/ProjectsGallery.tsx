@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import ConceptMark from "@/components/ConceptMark";
 import LiquidDistortion from "@/components/LiquidDistortion";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
@@ -52,9 +53,7 @@ function Card({ project, index }: { project: Project; index: number }) {
             className="project-image object-cover"
           />
           <LiquidDistortion />
-          <span className="absolute left-4 top-4 rounded-full bg-paper/85 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] backdrop-blur">
-            {project.kind === "site" ? "Brand site" : "Case study"}
-          </span>
+          <ConceptMark className="concept-mark--on-media concept-mark--start" />
         </div>
         <div className="mt-3 flex items-baseline justify-between gap-2 px-1">
           <span className="project-title font-serif text-xl italic">{project.title}</span>

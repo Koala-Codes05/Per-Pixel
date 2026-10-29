@@ -75,7 +75,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 md:col-span-7">
             <FooterCol
-              title="Latest work"
+              title="Latest concepts"
               items={PROJECTS.slice(0, 4).map((p) => ({ label: p.title, href: p.href }))}
             />
             <FooterCol
