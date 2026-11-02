@@ -16,7 +16,7 @@ const SHOWCASE_LINKS = [
 const STUDIO_LINKS = [
   { label: "All projects", href: "/projects" },
   { label: "PerPixel studio", href: "/" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/contact#form" },
 ];
 
 export default function MooveFooter() {

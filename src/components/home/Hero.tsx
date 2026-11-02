@@ -26,7 +26,7 @@ export default function Hero() {
             from first idea to launch.
           </p>
           <div className="hero-links">
-            <Link href="/contact" className="hero-project-link group">
+            <Link href="/contact#form" className="hero-project-link group">
               Start a project <ArrowUpRight />
             </Link>
             <Link href="/projects" className="hero-work-link group">

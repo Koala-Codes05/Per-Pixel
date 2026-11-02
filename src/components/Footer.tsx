@@ -85,8 +85,8 @@ export default function Footer() {
             <FooterCol
               title="Contact"
               items={[
-                { label: "Say hello", href: "/contact" },
-                { label: "Project brief", href: "/contact" },
+                { label: "Say hello", href: "/contact#form" },
+                { label: "Project brief", href: "/contact#form" },
                 { label: "FAQ", href: "/contact#faq" },
               ]}
             />

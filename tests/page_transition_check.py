@@ -176,10 +176,13 @@ with sync_playwright() as playwright:
     resume_transition(page, contact_name)
     wait_path(page, "/contact")
     assert_released(page)
-    assert abs(page.evaluate("window.scrollY")) <= 5
+    assert page.evaluate("location.hash") == "#form"
+    form_top = page.locator("#form").bounding_box()["y"]
+    assert 65 <= form_top < 180, form_top
     assert page.locator("#faq").evaluate("el => !!(el.compareDocumentPosition(document.querySelector('#form')) & Node.DOCUMENT_POSITION_FOLLOWING)")
     page.wait_for_timeout(1300)
-    assert abs(page.evaluate("window.scrollY")) <= 5
+    assert abs(page.locator("#form").bounding_box()["y"] - form_top) <= 5
+    page.evaluate("history.replaceState(history.state, '', '/contact')")
     history_length = page.evaluate("history.length")
     page.get_by_role("link", name="Get in touch").click()
     page.wait_for_timeout(100)

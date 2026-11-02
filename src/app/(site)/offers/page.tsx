@@ -59,7 +59,7 @@ export default function OffersPage() {
                     {offer.price}
                     {offer.unit ? <small>{offer.unit}</small> : null}
                   </p>
-                  <Link href="/contact" className="home-contact-link offer-band-cta">
+                  <Link href="/contact#form" className="home-contact-link offer-band-cta">
                     Start a project
                     <span className="home-contact-icon"><ArrowUpRight /></span>
                   </Link>
@@ -78,7 +78,7 @@ export default function OffersPage() {
             <em>as it is.</em>
           </h2>
           <p>A few lines on the product, the timing, and what the site has to do is enough to start.</p>
-          <Link href="/contact" className="home-contact-link offer-band-cta">
+          <Link href="/contact#form" className="home-contact-link offer-band-cta">
             Start a project
             <span className="home-contact-icon"><ArrowUpRight /></span>
           </Link>

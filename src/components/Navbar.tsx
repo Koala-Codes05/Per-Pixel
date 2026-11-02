@@ -87,18 +87,21 @@ export default function Navbar() {
             </span>
           </button>
           <div className="hidden items-center gap-3 min-[920px]:flex lg:gap-6">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={close}
-                aria-current={pathname === link.href ? "page" : undefined}
-                className={`nav-link group relative text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-200 ${pathname === link.href ? "text-ink" : "text-ink/60 hover:text-ink"}`}
-              >
-                {link.label}
-                <span className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-ink transition-transform duration-300 ease-out-expo ${pathname === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
-              </Link>
-            ))}
+            {NAV_LINKS.map((link) => {
+              const current = pathname === link.href.split("#")[0];
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={close}
+                  aria-current={current ? "page" : undefined}
+                  className={`nav-link group relative text-[11px] font-semibold uppercase tracking-[0.16em] transition-colors duration-200 ${current ? "text-ink" : "text-ink/60 hover:text-ink"}`}
+                >
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-px w-full origin-left bg-ink transition-transform duration-300 ease-out-expo ${current ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"}`} />
+                </Link>
+              );
+            })}
             <span className="text-ink/40" aria-hidden="true">↗</span>
           </div>
         </nav>
@@ -113,7 +116,7 @@ export default function Navbar() {
       >
         <nav className="flex flex-col" aria-label="Menu">
           {NAV_LINKS.map((link, index) => (
-            <Link key={link.href} href={link.href} onClick={close} aria-current={pathname === link.href ? "page" : undefined} className="menu-link group flex items-baseline justify-between border-t border-line py-4 last:border-b">
+            <Link key={link.href} href={link.href} onClick={close} aria-current={pathname === link.href.split("#")[0] ? "page" : undefined} className="menu-link group flex items-baseline justify-between border-t border-line py-4 last:border-b">
               <span className="font-serif text-[clamp(2.5rem,8vw,5.5rem)] leading-none tracking-[-0.02em] transition-transform duration-300 ease-out-expo group-hover:translate-x-1">{link.label}</span>
               <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink/50">0{index + 1}</span>
             </Link>

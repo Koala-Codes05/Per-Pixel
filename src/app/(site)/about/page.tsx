@@ -52,7 +52,7 @@ export default function AboutPage() {
 
       <Reveal className="mt-20">
         <Link
-          href="/contact"
+          href="/contact#form"
           className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-3.5 text-[12px] font-semibold uppercase tracking-[0.16em] text-paper transition-transform duration-200 ease-out-expo hover:-translate-y-0.5"
         >
           Start a project

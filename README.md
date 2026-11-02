@@ -667,6 +667,8 @@ Footer
 
 The page should remain mostly calm.
 
+Enquiry and Contact links across the site open `/contact#form` so the form is immediately visible. Keep `/contact#faq` available for visitors seeking answers. Hash scrolling must respect the form's top scroll margin beneath the fixed navigation.
+
 ## Form
 
 Inputs should have subtle focus transitions.

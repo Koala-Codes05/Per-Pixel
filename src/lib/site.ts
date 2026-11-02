@@ -3,7 +3,7 @@ export const NAV_LINKS = [
   { href: "/offers", label: "Offers" },
   { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact#form", label: "Contact" },
 ] as const;
 
 export const WORDPLAY_WORDS = ["Branding", "Design", "Editorial", "Motion"] as const;

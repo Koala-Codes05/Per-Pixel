@@ -157,7 +157,7 @@ export default function SorsoPage() {
             <a href="/works/offset/showreel.html">Showreel</a>
             <a href="/works/offset/storyboard.html">Storyboard</a>
             <Link href="/projects">PerPixel</Link>
-            <Link href="/contact">Contact</Link>
+            <Link href="/contact#form">Contact</Link>
           </nav>
         </div>
         <div className="sorso-wordmark" aria-hidden="true">Sorso</div>

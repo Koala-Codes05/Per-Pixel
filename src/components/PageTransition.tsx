@@ -187,7 +187,8 @@ export default function PageTransition() {
         const target = document.getElementById(id);
         if (!target) return { x: 0, y: 0 };
         const rect = target.getBoundingClientRect();
-        return { x: rect.left + window.scrollX, y: rect.top + window.scrollY };
+        const scrollMarginTop = Number.parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+        return { x: rect.left + window.scrollX, y: rect.top + window.scrollY - scrollMarginTop };
       };
       const scrollToTarget = () => {
         const target = targetPoint();

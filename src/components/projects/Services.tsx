@@ -73,7 +73,7 @@ export default function Services() {
             </button>
           ))}
         </div>
-        <Link className="services-contact group" href="/contact">
+        <Link className="services-contact group" href="/contact#form">
           Discuss your project <ArrowUpRight />
         </Link>
       </div>

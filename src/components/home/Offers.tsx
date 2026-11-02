@@ -49,7 +49,7 @@ export default function Offers() {
                   {offer.price}
                   {offer.unit ? <small>{offer.unit}</small> : null}
                 </p>
-                <Link href="/contact" className="offer-cta">
+                <Link href="/contact#form" className="offer-cta">
                   Start a project
                   <ArrowUpRight />
                 </Link>

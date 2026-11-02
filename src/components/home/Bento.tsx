@@ -99,7 +99,7 @@ export default function Bento() {
 
         {/* Questions + Contact */}
         <Reveal delay={80} className="bento-contact-slot">
-          <Link href="/contact" className="bento-tile bento-contact group">
+          <Link href="/contact#form" className="bento-tile bento-contact group">
             <span className="bento-contact-top"><span>Have some<br />questions?</span><ArrowUpRight /></span>
             <span className="bento-contact-title">Contact me</span>
           </Link>
