@@ -17,6 +17,7 @@ export default function FeaturedScene({ count, children }: { count: number; chil
     const images = [...section.querySelectorAll<HTMLImageElement>(".featured-image")];
     const wordmark = section.querySelector<HTMLElement>(".featured-wordmark");
     const introduction = section.querySelector<HTMLElement>(".featured-introduction");
+    const scrollCue = section.querySelector<HTMLElement>(".featured-scroll-cue");
 
     const paint = (progress: number) => {
       if (section.dataset.motion !== "on") return;
@@ -29,8 +30,13 @@ export default function FeaturedScene({ count, children }: { count: number; chil
       if (!mobile) {
         wordmark?.style.removeProperty("transform");
         introduction?.style.removeProperty("opacity");
+        if (scrollCue) {
+          const firstCardTravel = 100 - portfolioCardPose(progress, 0, count).y;
+          scrollCue.style.opacity = `${(1 - clamp01(firstCardTravel / 55)).toFixed(3)}`;
+        }
         return;
       }
+      scrollCue?.style.removeProperty("opacity");
       const opening = featuredMobileCardPose(progress, 0, count);
       const startY = Math.max(1, featuredMobileCardPose(0, 0, count).y);
       const settled = clamp01(1 - opening.y / startY);
@@ -57,6 +63,7 @@ export default function FeaturedScene({ count, children }: { count: number; chil
         });
         wordmark?.style.removeProperty("transform");
         introduction?.style.removeProperty("opacity");
+        scrollCue?.style.removeProperty("opacity");
       }
     };
 

@@ -1,12 +1,13 @@
 ﻿# Last summary — PerPixel
 
-## 2026-10-29 — Contact inbox published
+## 2026-11-02 — Featured portfolio opening
 
-- The earlier `create@perpixel.agency` edit was only local. The published site still used `perpixeldigital@gmail.com`, explaining why a live test could not trigger FormSubmit activation for the new recipient.
-- Committed the contact change, rebased it onto current `origin/main`, and pushed commit `d3069d5` to `main`. This changes the shared recipient used by the contact page, mail links, form action, and FormSubmit AJAX. README, memory, and the explicit-address contact test were updated.
-- Verification: contact tests passed (8/8); targeted ESLint passed. After the push, `https://perpixel-one.vercel.app/contact` returned HTTP 200 with `create@perpixel.agency` present and the old Gmail address absent. Full `npm run lint` failed due to protected `.eslintcache` (`EPERM`); build was not run for this address-only change.
-- FormSubmit activation and inbox delivery remain unverified. FormSubmit's help says a changed recipient requires activation again. A first submission from the now-updated live page should trigger that message; check spam and mailbox delivery, then submit again after activation to verify receipt and Reply-To.
+- Added Ghaslet before Moove in the homepage featured sequence. The four cards now run Ghaslet, Moove, Sorso, Dune, with counters and scroll height derived from the count.
+- Added a desktop/tablet "Scroll to explore featured work" cue in the opening pause. Its opacity follows the first card's scroll pose and reverses when scrolling back. Mobile, reduced-motion, and static layouts do not show it.
+- Updated the existing visual-check expectations for four cards and the offers section between portfolio and contact. The three offers themselves were reviewed and left as the current follow-on section.
+- Files: `src/components/home/FeaturedProjects.tsx`, `src/components/home/FeaturedScene.tsx`, `src/app/globals.css`, `tests/visual_check.py`, `memory.md`, `last_summary.md`.
+- Verification: `npm run build` passed; all 15 `tests/scroll-sequence.test.mjs` tests passed; full ESLint passed with an alternate cache path; `git diff --check` passed. Production HTML on localhost:3100 contained the cue, four cards in the intended order, and offers after featured work. `npm run lint` failed at the protected `.eslintcache` with EPERM. Browser automation was unavailable (browser host down; Windows Python launcher inaccessible), so viewport appearance and scrolling still need visual confirmation.
 
 ### Next useful step
 
-Submit a test enquiry from the live contact page and check `create@perpixel.agency` for FormSubmit activation. If none arrives, verify ordinary inbound mail to that address and contact FormSubmit support with the submission time and site URL.
+Preview the homepage at desktop and tablet widths, scroll into the featured section and back, then check that the cue clears before Ghaslet occupies the center. Check the mobile opening and offer transition visually. The earlier FormSubmit activation and inbox delivery check for `create@perpixel.agency` also remains open.

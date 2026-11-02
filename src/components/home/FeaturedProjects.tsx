@@ -9,6 +9,10 @@ import { PROJECTS } from "@/lib/site";
 
 const FEATURED = [
   {
+    project: PROJECTS[3],
+    description: "A hot sauce identity with heat, character, and a product-led digital home.",
+  },
+  {
     project: PROJECTS[0],
     description: "Sculptural furniture and soft rose tones, explored through a quieter visual identity.",
   },
@@ -44,6 +48,10 @@ export default function FeaturedProjects() {
         </div>
 
         <span className="featured-wordmark" aria-hidden="true">Portfolio</span>
+        <p className="featured-scroll-cue" aria-hidden="true">
+          <span>Scroll to explore featured work</span>
+          <span className="featured-scroll-cue-arrow">↓</span>
+        </p>
 
         <div className="featured-track">
           {FEATURED.map(({ project, description }, index) => (

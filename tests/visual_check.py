@@ -315,7 +315,7 @@ class MotionChecks(unittest.TestCase):
                 viewport = section.locator(".featured-viewport")
                 cards = section.locator(".featured-card")
                 word = section.locator(".featured-wordmark")
-                self.assertEqual(cards.count(), 3)
+                self.assertEqual(cards.count(), 4)
                 self.assertGreater(section.evaluate("el => el.offsetHeight"), height * 4)
 
                 def go(progress):
@@ -371,7 +371,7 @@ class MotionChecks(unittest.TestCase):
                 else:
                     page.screenshot(path=str(OUT / "featured-tablet.png"))
 
-                go(2.2 / 4.1)
+                go(2.2 / 5.3)
                 self.assertAlmostEqual(word.bounding_box()["y"], word_y, delta=2)
                 self.assertLess(cards.first.bounding_box()["y"], 0)
                 self.assertGreater(cards.nth(2).bounding_box()["y"], height - 3)
@@ -381,11 +381,11 @@ class MotionChecks(unittest.TestCase):
                     page.reload(wait_until="networkidle")
                     expect(section).to_have_attribute("data-motion", "on")
                     # Scroll restoration + the off→on height growth lands past the pin; re-enter it.
-                    go(2.2 / 4.1)
+                    go(2.2 / 5.3)
                     self.assertAlmostEqual(viewport.bounding_box()["y"], 0, delta=2)
                     self.assertLess(abs(cards.nth(1).bounding_box()["y"] - cards.first.bounding_box()["y"]), height)
 
-                go(3.42 / 4.1)
+                go(4.62 / 5.3)
                 expect(cards.last.locator(".featured-category")).to_be_visible()
                 self.assertAlmostEqual(word.bounding_box()["y"], word_y, delta=2)
                 if name == "desktop":
@@ -439,7 +439,7 @@ class MotionChecks(unittest.TestCase):
         no_js.goto(BASE, wait_until="networkidle")
         fallback = no_js.locator("#featured-projects")
         expect(fallback).to_have_attribute("data-motion", "off")
-        self.assertEqual(fallback.locator(".featured-card").count(), 3)
+        self.assertEqual(fallback.locator(".featured-card").count(), 4)
         self.assertEqual(fallback.locator(".featured-viewport").evaluate("el => getComputedStyle(el).position"), "relative")
 
     def test_home_contact_follows_portfolio(self):
@@ -448,8 +448,8 @@ class MotionChecks(unittest.TestCase):
                 page = self.page(seen=True, viewport={"width": width, "height": height})
                 page.goto(BASE, wait_until="networkidle")
                 self.assertEqual(
-                    page.locator("main > section").evaluate_all("els => els.slice(-2).map(el => el.id)"),
-                    ["featured-projects", "contact-us"],
+                    page.locator("main > section").evaluate_all("els => els.slice(-3).map(el => el.id)"),
+                    ["featured-projects", "offers", "contact-us"],
                 )
                 contact = page.locator("#contact-us")
                 link = contact.get_by_role("link", name="Start a project brief")
