@@ -52,6 +52,31 @@ with sync_playwright() as p:
     bottles = pg.evaluate("document.querySelectorAll('.sorso-flv-bottle').length")
     check("3 flavour bottles", bottles == 3)
 
+    pg.evaluate("document.querySelector('#flavours').scrollIntoView()")
+    pg.wait_for_timeout(400)
+    motion = pg.evaluate("document.querySelector('.sorso-flavours-section')?.dataset.motion")
+    check(f"flavours sticky engages on desktop ({motion})", motion == "on")
+    if motion == "on":
+        stage_top = pg.evaluate(
+            "(() => { const s = document.querySelector('#flavours'); const start = s.getBoundingClientRect().top + scrollY; window.scrollTo(0, start + innerHeight * 0.2); return document.querySelector('.sorso-flv-stage')?.getBoundingClientRect().top; })()"
+        )
+        pg.wait_for_timeout(350)
+        bg_early = pg.evaluate("getComputedStyle(document.querySelector('.sorso-flv-stage')).backgroundColor")
+        active_early = pg.evaluate(
+            "[...document.querySelectorAll('.sorso-flv-tab')].findIndex(b => b.getAttribute('aria-current') === 'true')"
+        )
+        pg.evaluate(
+            "(() => { const s = document.querySelector('#flavours'); const start = s.getBoundingClientRect().top + scrollY; window.scrollTo(0, start + innerHeight * 2.4); })()"
+        )
+        pg.wait_for_timeout(350)
+        bg_late = pg.evaluate("getComputedStyle(document.querySelector('.sorso-flv-stage')).backgroundColor")
+        active_late = pg.evaluate(
+            "[...document.querySelectorAll('.sorso-flv-tab')].findIndex(b => b.getAttribute('aria-current') === 'true')"
+        )
+        check("flavours scene pins (stage near top)", stage_top is not None and stage_top < 120)
+        check("flavour backdrop shifts on scroll", bg_early != bg_late)
+        check("flavour tabs track scroll", active_early != active_late)
+
     # Mixed case button
     case_btn = pg.query_selector(".sorso-order-btn")
     if case_btn:
