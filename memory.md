@@ -157,11 +157,11 @@ worth remembering across sessions, not a changelog (that goes in `last_summary.m
 ## Sorso aperitivo port — 2026-10-17
 
 - Second native work route after Moove: `/projects/sorso` under `src/app/(sorso)/projects/sorso/` with its own chrome (`SorsoNavbar` sticky pill bar). Standalone original stays at `/works/offset/` (dir kept the historical name; slug + card point at the Next route).
-- Deliberate simplification vs the 1745-line GSAP standalone: flavour tabs → three stacked full-bleed articles (`.sorso-flv`, per-flavour bg); keep everything else — aperitivo clock, tag marquees, bitter bento, serve ritual, filterable moments, mixed-case order, "Salute." wordmark footer.
-- `SorsoShowcase.tsx` client islands: `SorsoClock` (scroll-progress 17:00→20:30, passive listener, no React state, reduced-motion off), `SorsoMoments` (`hidden`-attr filtering + `aria-pressed`), `SorsoCaseButton` (`data-added` toggle + `aria-live` announcement). Bottle SVGs are inline server-side in `page.tsx` (`SorsoBottle`, shared `<defs>` + `liq-*` gradient ids).
+- **Flavours pinned scene (2026-11-02)**: `SorsoFlavours.tsx` — section scrolls ~340svh while `.sorso-flv-viewport` stays sticky; stage `background-color` / text color crossfade; each flavour’s **copy** translates in/out (`flavourSceneCopyOffset` in `scroll-sequence.ts`); bottles crossfade in the art column; bottom `.sorso-flv-tab` pills jump scroll via `lenisRef`. Not Process/Moove frame stacking. `data-motion="on"` when tallest `.sorso-flv-panel` + 56px fits (`innerHeight >= 520`); else flex column stack with per-flavour bg.
+- `SorsoShowcase.tsx` client islands: `SorsoClock` (scroll-progress 17:00→20:30, passive listener, no React state, reduced-motion off), `SorsoMoments` (`hidden`-attr filtering + `aria-pressed`), `SorsoCaseButton` (`data-added` toggle + `aria-live` announcement).
 - `.sorso-*` CSS block at end of `globals.css` — its own palette (`--sorso-blush` etc.), NOT `@theme` tokens. Bodoni/display serif fallback stack local to the block.
 - Mobile nav ≤620px: `.sorso-nav { flex-wrap: wrap }` + `.sorso-nav-links { width:100%; justify-content:flex-start }` — pills must drop to left-aligned rows under brand+clock, not stack as a squeezed right column (first attempt without `flex-wrap` did exactly that).
-- Checks: `python tests/sorso_check.py` (16 asserts: filters, articles, case button, clock, reduced motion, overflow), `python tests/sorso_shots.py` (shots; seed `sessionStorage pp-intro-done` and point at the dev server :3000 — `next start` builds serve stale CSS).
+- Checks: `python tests/sorso_check.py` (sticky `data-motion` + transform asserts on desktop, filters, case button, clock, reduced motion, overflow), `python tests/sorso_shots.py` (shots; seed `sessionStorage pp-intro-done` and point at the dev server :3000 — `next start` builds serve stale CSS).
 
 ## Finish pass: mobile, links, case studies — 2026-10-27
 

@@ -33,6 +33,29 @@ export function frameProgress(progress: number, panel: number, count = 3) {
  * Wordplay emphasis: words peak at 0 / .25 / .5 / .75, blend across their
  * neighbors, and hold the final word through the end. Pure and reversible.
  */
+/** Pinned Sorso flavour scene: copy lines travel in/out while the viewport stays fixed. */
+export function flavourSceneCopyOffset(progress: number, index: number, count = 3) {
+  if (count < 2) return 0;
+  const unit = 1 / count;
+  const trans = unit * 0.26;
+  const enterStart = index * unit - trans * 0.35;
+  const enterEnd = index * unit + trans * 0.65;
+  const exitStart = (index + 1) * unit - trans * 0.85;
+  const exitEnd = (index + 1) * unit + trans * 0.45;
+
+  if (progress <= enterStart) return 110;
+  if (progress >= exitEnd) return -110;
+  if (progress < enterEnd) {
+    const p = clamp01((progress - enterStart) / (enterEnd - enterStart));
+    return 110 * (1 - p);
+  }
+  if (progress > exitStart) {
+    const p = clamp01((progress - exitStart) / (exitEnd - exitStart));
+    return -110 * p;
+  }
+  return 0;
+}
+
 export function wordEmphasis(progress: number, index: number, count = 4) {
   if (count < 2) return 1;
   const peak = index / count;

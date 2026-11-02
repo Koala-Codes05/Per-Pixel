@@ -3063,15 +3063,119 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
   to { transform: translateX(-50%); }
 }
 
-/* Flavours */
-.sorso-flavours { display: flex; flex-direction: column; }
-.sorso-flv {
+/* Flavours — pinned scene (content morphs in place) or editorial stack */
+.sorso-flavours-section { --sorso-flv-scene-height: 340; position: relative; }
+
+.sorso-flv-stage {
+  min-height: 82svh;
+  transition: background-color 80ms linear, color 80ms linear;
+}
+
+.sorso-flv-pin { position: relative; width: 100%; height: 100%; }
+
+.sorso-flv-panel {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
   align-items: center;
   gap: clamp(1.5rem, 5vw, 4rem);
-  min-height: 82svh;
+  width: 100%;
+  height: 100%;
+}
+
+.sorso-flv {
   padding: clamp(2.5rem, 7vh, 5rem) clamp(1.25rem, 6vw, 6rem);
+}
+
+.sorso-flavours-section[data-motion="on"] {
+  height: calc(var(--sorso-flv-scene-height, 340) * 1svh);
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-viewport {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-stage {
+  height: 100%;
+  min-height: 0;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-pin {
+  height: 100%;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-layer {
+  position: absolute;
+  inset: 0;
+  padding: clamp(4.75rem, 11vh, 6.5rem) clamp(1.25rem, 6vw, 6rem) clamp(4.5rem, 10vh, 5.5rem);
+  background: transparent !important;
+  color: inherit;
+  pointer-events: none;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-copy {
+  overflow: clip;
+  will-change: transform;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-art {
+  will-change: opacity;
+}
+
+.sorso-flavours-section[data-motion="on"] .sorso-flv-tabs {
+  display: flex;
+}
+
+.sorso-flv-tabs {
+  display: none;
+  gap: 0.35rem;
+  position: absolute;
+  z-index: 7;
+  left: clamp(1.25rem, 6vw, 6rem);
+  bottom: max(1.25rem, env(safe-area-inset-bottom));
+  pointer-events: auto;
+}
+
+.sorso-flv-tab {
+  height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, currentColor 45%, transparent);
+  background: transparent;
+  color: inherit;
+  font-family: var(--sorso-sans);
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.16s var(--ease-out-expo);
+}
+
+.sorso-flv-tab:active { transform: scale(0.96); }
+
+.sorso-flv-tab[aria-current="true"] {
+  background: currentColor;
+  color: var(--sorso-flv-tab-on, var(--sorso-rosso-deep));
+  border-color: currentColor;
+}
+
+.sorso-flavours-section[data-motion="off"] .sorso-flv-pin {
+  display: flex;
+  flex-direction: column;
+}
+
+.sorso-flavours-section[data-motion="off"] .sorso-flv-layer {
+  min-height: 82svh;
+}
+
+.sorso-flavours-section[data-motion="off"] .sorso-flv-layer + .sorso-flv-layer {
+  margin-top: 0;
+}
+
+.sorso-flavours-section[data-motion="off"] :is(.sorso-flv-copy, .sorso-flv-art) {
+  transform: none !important;
+  opacity: 1 !important;
 }
 .sorso-flv-name {
   font-family: var(--sorso-display);
@@ -3328,7 +3432,8 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 
 /* Responsive */
 @media (max-width: 900px) {
-  .sorso-flv { grid-template-columns: 1fr; min-height: auto; gap: 2rem; }
+  .sorso-flv-panel { grid-template-columns: 1fr; gap: 2rem; }
+  .sorso-flv-layer { min-height: auto; }
   .sorso-flv-art { order: -1; }
   .sorso-flv-bottle { height: clamp(14rem, 36vh, 22rem); }
   .sorso-serve { grid-template-columns: 1fr; }
@@ -3352,6 +3457,23 @@ html[data-page-transition] .menu-panel[data-open='false'] { transition: none; }
 @media (prefers-reduced-motion: reduce) {
   .sorso-tags-track { animation: none; }
   .sorso-clock-dot { animation: none; }
+  .sorso-flavours-section[data-motion] { height: auto; }
+  .sorso-flavours-section[data-motion] .sorso-flv-viewport {
+    position: relative;
+    height: auto;
+    overflow: visible;
+  }
+  .sorso-flavours-section[data-motion] .sorso-flv-layer {
+    position: relative;
+    inset: auto;
+    transform: none !important;
+  }
+  .sorso-flavours-section[data-motion] .sorso-flv-copy,
+  .sorso-flavours-section[data-motion] .sorso-flv-art {
+    transform: none !important;
+    opacity: 1 !important;
+  }
+  .sorso-flv-tabs { display: none !important; }
   .sorso-trio-bottle,
   .sorso-trio-rosa,
   .sorso-trio-chinotto,
