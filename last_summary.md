@@ -11,7 +11,8 @@
 - `npm run build`: passed before commit `932e2eb`.
 
 ### Git / deploy
-- Commit on `main`; push + Vercel production deploy requested this session.
+- Pushed `39ded1c` to `main` (includes merge with homepage reorder from origin).
+- Vercel production deploy **READY** — https://www.perpixel.agency (`/projects/sorso` for the pinned flavour scene).
 
 ### Next useful step
 - Confirm production `/projects/sorso` flavours pin on desktop; phone should fall back to static stack when panels do not fit.
