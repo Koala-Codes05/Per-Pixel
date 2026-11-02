@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
-import PlaybookShowcase from "./PlaybookShowcase";
+import PlaybookShowcase from "@/components/playbook/PlaybookShowcase";
 
 export const metadata: Metadata = {
   title: "Studio Intelligence & Growth Playbook",
   description:
     "Competitor intelligence, live website critiques, global vs India pricing benchmarks, case-study anatomy, client acquisition pipeline, and PerPixel's 30/60/90-day growth plan.",
-  // Internal research: reachable by direct URL only, never listed or indexed.
+  // Direct URL only: keep the research page out of search results and navigation.
   robots: { index: false, follow: false },
 };
 

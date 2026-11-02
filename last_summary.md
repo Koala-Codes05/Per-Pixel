@@ -1,12 +1,12 @@
 # Last summary — PerPixel
 
-## 2026-11-02 — Mobile hero handoff and scrolled navbar
+## 2026-11-02 — Restored direct-URL playbook
 
-- Tightened the gap between the mobile homepage hero and studio tiles. At 390×844, the studio section now starts at 759px rather than 892px; the last hero content still ends at 711px. Desktop and tablet spacing is unchanged.
-- The navbar gains a light frosted background after 24px of scrolling, and a dark one over featured work. The open menu keeps the light header; reduced-transparency preference uses an opaque background. CSS declaration order matters here: prefix before standard `backdrop-filter` so the production CSS retains both.
-- Verified in headless Edge at 360×640, 390×844, and 768×1024. No phone horizontal overflow; menu and featured header remain legible. Production preview computed `blur(16px)` after scroll. `npm run build`, targeted ESLint, and `git diff --check` passed.
-- Changes remain local and uncommitted. Current turn changed `src/components/Navbar.tsx` and `src/app/globals.css`; earlier mobile spacing, wordmark, and sticky-offers changes remain in the working tree. `memory.md` records the durable details.
+- Restored `/playbook` from the archived source at `docs/playbook/`: the route is `src/app/(site)/playbook/page.tsx`, interactive component/data are in `src/components/playbook/`, and all 26 competitor screenshots are back under `public/research/shots/`. Updated `docs/playbook/README.md` and the corresponding durable memory entries.
+- The page remains absent from site navigation and retains `robots: { index: false, follow: false }`. Its URL can be shared directly.
+- `npm run build` passed and lists `/playbook` as a static route. Targeted ESLint passed. Headless Edge returned HTTP 200 on 390px and 1440px viewports with no page errors or horizontal overflow; `meta[name=robots]` is `noindex, nofollow`, there are no `/playbook` navigation links, and a restored screenshot returns HTTP 200. Visual screenshots showed the hero and media on both widths.
+- This work is local and has not been deployed. Earlier mobile spacing, wordmark, sticky-offer, and navbar edits are still uncommitted in the same working tree.
 
 ### Next useful step
 
-Review the hero and header on a real phone, then deploy the mobile changes when approved.
+Deploy the combined local changes when the user requests publication; then verify the live `/playbook` URL and its image assets.
