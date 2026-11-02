@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "@/components/home/Bento";
+import ConceptMark from "@/components/ConceptMark";
 
 const MOOVE_ANCHORS = [
   { label: "Collection", href: "#collection" },
@@ -14,6 +15,7 @@ export default function MooveNavbar() {
       <nav className="moove-header-nav" aria-label="Moove brand navigation">
         <div className="moove-header-brand">
           <span className="moove-wordmark-badge">MOOVE®</span>
+          <ConceptMark />
           <span className="moove-header-meta tabular-nums">
             Branding · 2026 · Collection 01
           </span>

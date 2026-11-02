@@ -315,7 +315,7 @@ class MotionChecks(unittest.TestCase):
                 viewport = section.locator(".featured-viewport")
                 cards = section.locator(".featured-card")
                 word = section.locator(".featured-wordmark")
-                self.assertEqual(cards.count(), 3)
+                self.assertEqual(cards.count(), 4)
                 self.assertGreater(section.evaluate("el => el.offsetHeight"), height * 4)
 
                 def go(progress):
@@ -371,7 +371,7 @@ class MotionChecks(unittest.TestCase):
                 else:
                     page.screenshot(path=str(OUT / "featured-tablet.png"))
 
-                go(2.2 / 4.1)
+                go(2.2 / 5.3)
                 self.assertAlmostEqual(word.bounding_box()["y"], word_y, delta=2)
                 self.assertLess(cards.first.bounding_box()["y"], 0)
                 self.assertGreater(cards.nth(2).bounding_box()["y"], height - 3)
@@ -381,11 +381,11 @@ class MotionChecks(unittest.TestCase):
                     page.reload(wait_until="networkidle")
                     expect(section).to_have_attribute("data-motion", "on")
                     # Scroll restoration + the off→on height growth lands past the pin; re-enter it.
-                    go(2.2 / 4.1)
+                    go(2.2 / 5.3)
                     self.assertAlmostEqual(viewport.bounding_box()["y"], 0, delta=2)
                     self.assertLess(abs(cards.nth(1).bounding_box()["y"] - cards.first.bounding_box()["y"]), height)
 
-                go(3.42 / 4.1)
+                go(4.62 / 5.3)
                 expect(cards.last.locator(".featured-category")).to_be_visible()
                 self.assertAlmostEqual(word.bounding_box()["y"], word_y, delta=2)
                 if name == "desktop":
@@ -439,21 +439,21 @@ class MotionChecks(unittest.TestCase):
         no_js.goto(BASE, wait_until="networkidle")
         fallback = no_js.locator("#featured-projects")
         expect(fallback).to_have_attribute("data-motion", "off")
-        self.assertEqual(fallback.locator(".featured-card").count(), 3)
+        self.assertEqual(fallback.locator(".featured-card").count(), 4)
         self.assertEqual(fallback.locator(".featured-viewport").evaluate("el => getComputedStyle(el).position"), "relative")
 
-    def test_home_contact_follows_portfolio(self):
+    def test_home_section_order_and_contact(self):
         for name, width, height in VIEWPORTS + [("narrow-mobile", 320, 700)]:
             with self.subTest(viewport=name):
                 page = self.page(seen=True, viewport={"width": width, "height": height})
                 page.goto(BASE, wait_until="networkidle")
                 self.assertEqual(
-                    page.locator("main > section").evaluate_all("els => els.slice(-2).map(el => el.id)"),
-                    ["featured-projects", "contact-us"],
+                    page.locator("main > section").evaluate_all("els => els.slice(-5).map(el => el.id || (el.classList.contains('wordplay-section') ? 'wordplay' : ''))"),
+                    ["wordplay", "featured-projects", "offers", "process", "contact-us"],
                 )
                 contact = page.locator("#contact-us")
                 link = contact.get_by_role("link", name="Start a project brief")
-                self.assertEqual(link.get_attribute("href"), "/contact#form")
+                self.assertEqual(link.get_attribute("href"), "/contact")
                 scroll_to(page, contact.evaluate("el => el.getBoundingClientRect().top + scrollY"))
                 expect(contact.get_by_role("heading", name="Have something in mind?")).to_be_visible()
                 expect(link).to_be_visible()
@@ -462,8 +462,10 @@ class MotionChecks(unittest.TestCase):
                     link.focus()
                     expect(link).to_be_focused()
                     link.click()
-                    page.wait_for_url("**/contact#form")
-                    expect(page.locator("#form")).to_be_visible()
+                    page.wait_for_url("**/contact")
+                    expect(page.get_by_role("heading", name="Let's talk.")).to_be_visible()
+                    self.assertLessEqual(abs(page.evaluate("window.scrollY")), 5)
+                    self.assertTrue(page.locator("#faq").evaluate("el => !!(el.compareDocumentPosition(document.querySelector('#form')) & Node.DOCUMENT_POSITION_FOLLOWING)"))
 
         reduced = self.page(seen=True, reduced_motion="reduce", viewport={"width": 390, "height": 844})
         reduced.goto(BASE, wait_until="networkidle")

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ConceptMark from "@/components/ConceptMark";
 import LiquidDistortion from "@/components/LiquidDistortion";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
@@ -34,7 +35,7 @@ export default function Bento() {
           <ProjectLink
             href={portrait.href}
             className="bento-tile bento-portrait group"
-            aria-label={`${portrait.title} project`}
+            aria-label={`${portrait.title}, concept`}
           >
             <Image
               src={portrait.image}
@@ -44,6 +45,7 @@ export default function Bento() {
               className="bento-image object-cover"
             />
             <LiquidDistortion />
+            <ConceptMark className="concept-mark--on-media concept-mark--start" />
           </ProjectLink>
         </Reveal>
 
@@ -51,7 +53,10 @@ export default function Bento() {
         <Reveal delay={100} className="bento-projects-slot">
           <div className="bento-projects-card">
             <Link href={moove.href} className="bento-feature group">
-              <span className="bento-project-heading">{moove.title}<ArrowUpRight /></span>
+              <span className="bento-project-heading">
+                <span className="bento-project-name">{moove.title}<ConceptMark /></span>
+                <ArrowUpRight />
+              </span>
               <span className="bento-project-image">
                 <Image
                   src={moove.image}
@@ -67,7 +72,7 @@ export default function Bento() {
             <div className="bento-project-list">
               {rows.map((project) => (
                 <ProjectLink key={project.slug} href={project.href} className="bento-project-link group">
-                  <span>{project.title}</span><ArrowUpRight />
+                  <span className="bento-project-name">{project.title}<ConceptMark /></span><ArrowUpRight />
                 </ProjectLink>
               ))}
             </div>

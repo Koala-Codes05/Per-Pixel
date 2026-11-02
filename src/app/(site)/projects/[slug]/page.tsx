@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { CSSProperties } from "react";
+import ConceptMark from "@/components/ConceptMark";
 import { ArrowUpRight } from "@/components/home/Bento";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
@@ -52,6 +53,7 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           <span aria-hidden="true">/</span>
           <span aria-current="page">{project.title}</span>
         </nav>
+        <div className="mt-5"><ConceptMark /></div>
         <h1 className="case-title">{project.title}</h1>
         <div className="case-intro">
           <p className="case-idea">{study.idea}</p>
@@ -202,14 +204,14 @@ export default async function CaseStudyPage({ params }: PageProps<"/projects/[sl
           </ul>
           <p className="case-note">
             A self-initiated study, made to test an idea end to end. There is no client, launch, or result behind it —
-            if it sounds like a problem you have, <Link href="/contact#form">tell us about it</Link>.
+            if it sounds like a problem you have, <Link href="/contact">tell us about it</Link>.
           </p>
         </div>
       </section>
 
       <nav className="case-next" aria-label="More projects">
         <ProjectLink href={next.href} className="case-next-link group">
-          <span className="case-next-label">Next project</span>
+          <span className="case-next-label">Next project · Concept</span>
           <span className="case-next-title">{next.title} <ArrowUpRight /></span>
           <span className="case-next-thumb">
             <Image src={next.image} alt="" fill sizes="220px" className="object-cover" />

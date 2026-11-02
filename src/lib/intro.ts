@@ -8,7 +8,8 @@ export type IntroWindow = Window & { __ppIntroStart?: number };
 export const INTRO_BOOTSTRAP = `(() => {
   const root = document.documentElement;
   let seen = false;
-  try { seen = sessionStorage.getItem('${INTRO_STORAGE_KEY}') === '1'; } catch {}
+  const replay = new URLSearchParams(window.location.search).get('intro') === '1';
+  try { seen = !replay && sessionStorage.getItem('${INTRO_STORAGE_KEY}') === '1'; } catch {}
   if (seen) { root.classList.add('pp-intro-seen'); return; }
   root.classList.add('pp-intro-pending');
   window.__ppIntroStart = performance.now();

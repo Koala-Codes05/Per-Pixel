@@ -4,6 +4,7 @@ import Bento, { ArrowUpRight } from "@/components/home/Bento";
 import Wordplay from "@/components/home/Wordplay";
 import Process from "@/components/home/Process";
 import FeaturedProjects from "@/components/home/FeaturedProjects";
+import Offers from "@/components/home/Offers";
 
 export default function Home() {
   return (
@@ -11,8 +12,9 @@ export default function Home() {
       <Hero />
       <Bento />
       <Wordplay />
-      <Process />
       <FeaturedProjects />
+      <Offers />
+      <Process />
       <section id="contact-us" className="home-contact" aria-labelledby="home-contact-title">
         <div className="home-contact-inner">
           <h2 id="home-contact-title" className="home-contact-title">
@@ -23,7 +25,7 @@ export default function Home() {
             <p className="home-contact-copy">
               Bring an idea, a question, or a brief still taking shape. Start with a few details and see where it could go.
             </p>
-            <Link href="/contact#form" className="home-contact-link">
+            <Link href="/contact" className="home-contact-link">
               Start a project brief
               <span className="home-contact-icon"><ArrowUpRight /></span>
             </Link>

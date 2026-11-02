@@ -196,7 +196,7 @@ export function MooveHeroInspector() {
           Sculptural furniture held by <em>a single curve.</em>
         </h1>
         <p className="moove-hero-lead">
-          Moove is a Milan and Lisbon furniture house casting pigment into mineral
+          Moove is a self-initiated concept for a Milan and Lisbon furniture house, casting pigment into mineral
           composite and carving honed travertine into monolithic seating. Every form in
           Collection 01 derives its structural rigidity from one continuous curved crease.
         </p>
@@ -983,7 +983,7 @@ export function MooveDossierBuilder() {
               <strong>Your Moove specification sheet is ready.</strong>
               <span>
                 This showcase generates a local trade brief — copy it below or bring it to{" "}
-                <Link href="/contact#form" className="underline underline-offset-2">
+                <Link href="/contact" className="underline underline-offset-2">
                   PerPixel&apos;s project form
                 </Link>
                 .
@@ -998,7 +998,7 @@ export function MooveDossierBuilder() {
               >
                 {copied ? "Copied dossier" : "Copy dossier"}
               </button>
-              <Link href="/contact#form" className="moove-btn-link group">
+              <Link href="/contact" className="moove-btn-link group">
                 <span>Continue to studio contact</span>
                 <ArrowUpRight />
               </Link>

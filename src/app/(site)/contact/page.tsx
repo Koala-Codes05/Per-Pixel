@@ -3,6 +3,7 @@ import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/contact/ContactForm";
 import Faq from "@/components/contact/Faq";
+import { CONTACT_EMAIL } from "@/lib/contact";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -19,13 +20,14 @@ export default function ContactPage() {
           Tell us where your project stands and where it needs to go. We&apos;ll
           reply with a thoughtful read on scope, timing, and approach.
         </p>
+        <p className="mt-4 text-center text-sm">
+          <a href={`mailto:${CONTACT_EMAIL}`} className="underline underline-offset-4">
+            {CONTACT_EMAIL}
+          </a>
+        </p>
       </Reveal>
 
-      <Reveal delay={100} className="mt-12">
-        <ContactForm />
-      </Reveal>
-
-      <section id="faq" className="mt-28 scroll-mt-28 md:mt-36" aria-label="FAQ">
+      <section id="faq" className="mt-20 scroll-mt-28 md:mt-28" aria-label="FAQ">
         <Reveal>
           <p className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-ink/50">
             FAQ
@@ -55,6 +57,10 @@ export default function ContactPage() {
           </div>
         </Reveal>
       </section>
+
+      <Reveal delay={100} className="mt-20 md:mt-28">
+        <ContactForm />
+      </Reveal>
     </main>
   );
 }

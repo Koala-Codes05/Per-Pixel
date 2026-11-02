@@ -1,5 +1,6 @@
 export const NAV_LINKS = [
   { href: "/projects", label: "Projects" },
+  { href: "/offers", label: "Offers" },
   { href: "/journal", label: "Journal" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
@@ -188,7 +189,7 @@ export const FAQ_ITEMS = [
   {
     question: "How long does a project usually take?",
     answer:
-      "A focused identity runs four to six weeks. A full site with motion runs eight to twelve. We scope honestly before anything is signed.",
+      "A launch sprint takes ten working days. A brand and web system runs six to ten weeks. Motion and editorial work continues as a monthly retainer. The floors and what each includes are on the offers page. We scope honestly before anything is signed.",
   },
   {
     question: "Can we improve an existing site?",
