@@ -442,14 +442,14 @@ class MotionChecks(unittest.TestCase):
         self.assertEqual(fallback.locator(".featured-card").count(), 4)
         self.assertEqual(fallback.locator(".featured-viewport").evaluate("el => getComputedStyle(el).position"), "relative")
 
-    def test_home_contact_follows_portfolio(self):
+    def test_home_section_order_and_contact(self):
         for name, width, height in VIEWPORTS + [("narrow-mobile", 320, 700)]:
             with self.subTest(viewport=name):
                 page = self.page(seen=True, viewport={"width": width, "height": height})
                 page.goto(BASE, wait_until="networkidle")
                 self.assertEqual(
-                    page.locator("main > section").evaluate_all("els => els.slice(-3).map(el => el.id)"),
-                    ["featured-projects", "offers", "contact-us"],
+                    page.locator("main > section").evaluate_all("els => els.slice(-5).map(el => el.id || (el.classList.contains('wordplay-section') ? 'wordplay' : ''))"),
+                    ["wordplay", "featured-projects", "offers", "process", "contact-us"],
                 )
                 contact = page.locator("#contact-us")
                 link = contact.get_by_role("link", name="Start a project brief")

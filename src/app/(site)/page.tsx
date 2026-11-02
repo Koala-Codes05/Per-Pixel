@@ -12,9 +12,9 @@ export default function Home() {
       <Hero />
       <Bento />
       <Wordplay />
-      <Process />
       <FeaturedProjects />
       <Offers />
+      <Process />
       <section id="contact-us" className="home-contact" aria-labelledby="home-contact-title">
         <div className="home-contact-inner">
           <h2 id="home-contact-title" className="home-contact-title">
