@@ -1,13 +1,13 @@
 ﻿# Last summary — PerPixel
 
-## 2026-11-02 — Homepage section order
+## 2026-11-02 — Contact enquiry delivery check
 
-- Moved the featured portfolio and three offers directly after the Branding / Design / Editorial / Motion wordplay. The process section now follows offers, then the contact invitation. Hero and Bento remain first.
-- Updated the homepage order assertion in `tests/visual_check.py` to reflect the new sequence.
-- Current featured work remains Ghaslet, Moove, Sorso, Dune. The desktop/tablet opening scroll cue remains in place.
-- Files changed this task: `src/app/(site)/page.tsx`, `tests/visual_check.py`, `memory.md`, `last_summary.md`.
-- Verification: `npm run build` passed, full ESLint passed using an alternate cache path, and `git diff --check` passed. Generated homepage HTML places wordplay, featured work, offers, process, and contact in that order. Browser visual checks were unavailable in this environment and the Python visual suite was not run.
+- Confirmed the published `https://perpixel-one.vercel.app/contact` returns HTTP 200, includes `create@perpixel.agency` as its form recipient, and does not contain the former Gmail address.
+- The domain has MX records pointing to `smtp.secureserver.net` and `mailstore1.secureserver.net`. This establishes a mail route, not that this mailbox receives mail.
+- Reviewed the client submission path: it posts JSON to FormSubmit's AJAX endpoint and only shows success after an explicit provider acknowledgement. All 8 local contact tests passed.
+- FormSubmit says a changed recipient must activate the form again from an email sent after the first submission. I attempted one labeled test submission; the request timed out outside the sandbox. It may or may not have reached FormSubmit. No connected inbox integration can verify activation or receipt.
+- No application code changed. `memory.md` and `last_summary.md` were updated with the check and its limits.
 
 ### Next useful step
 
-Preview the transition from wordplay into the featured portfolio and from offers into process on desktop, tablet, and mobile. The FormSubmit activation and inbox delivery check for `create@perpixel.agency` also remains open.
+Check `create@perpixel.agency` Inbox and Spam for a FormSubmit activation email or a message titled `PerPixel contact form delivery test` around 2026-11-02 09:49 UTC. If activation arrives, activate it, then submit once from the live contact page and confirm the enquiry arrives with the visitor email as Reply-To. If nothing arrives, first verify that the mailbox receives ordinary email, then contact FormSubmit support with the site URL and test time.
