@@ -10,7 +10,7 @@ export default function ContactForm() {
   const [brief, setBrief] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "unconfirmed">("idle");
   const submitting = useRef(false);
   const copyTimer = useRef<number | undefined>(undefined);
 
@@ -18,7 +18,7 @@ export default function ContactForm() {
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    if (submitting.current || status === "sent") return;
+    if (submitting.current || status === "sent" || status === "unconfirmed") return;
     const data = new FormData(e.currentTarget);
     if (data.get("_honey")) return;
     const name = String(data.get("name") ?? "").trim();
@@ -62,8 +62,7 @@ export default function ContactForm() {
       await sendEnquiry({ name, email, phone, message }, controller.signal);
       setStatus("sent");
     } catch {
-      setStatus("idle");
-      setError("We couldn't confirm your enquiry was sent. Your details are still here — try again, or email us directly below.");
+      setStatus("unconfirmed");
     } finally {
       window.clearTimeout(timeout);
       submitting.current = false;
@@ -87,7 +86,7 @@ export default function ContactForm() {
       <form
         onSubmit={onSubmit}
         onChange={() => {
-          if (status === "sent") setStatus("idle");
+          if (status === "sent" || status === "unconfirmed") setStatus("idle");
           setError(null);
         }}
         action={`https://formsubmit.co/${inbox}`}
@@ -142,11 +141,16 @@ export default function ContactForm() {
 
         <button
           type="submit"
-          disabled={status === "sending" || status === "sent"}
+          disabled={status === "sending" || status === "sent" || status === "unconfirmed"}
           className="mt-6 w-full rounded-lg bg-ink py-3.5 text-sm font-semibold text-paper transition-[background-color,transform] duration-200 ease-out-expo hover:bg-ink/90 active:scale-[0.99] disabled:cursor-default disabled:opacity-60 motion-reduce:transform-none"
         >
-          {status === "sending" ? "Sending…" : status === "sent" ? "Enquiry submitted" : "Send enquiry"}
+          {status === "sending" ? "Sending…" : status === "sent" ? "Enquiry submitted" : status === "unconfirmed" ? "Enquiry may be on its way" : "Send enquiry"}
         </button>
+        {status === "unconfirmed" && (
+          <p className="mt-4 text-sm text-ink/80" role="status">
+            We could not get a confirmation from FormSubmit, but your enquiry may still arrive. Please wait before trying again. You can email us directly below if it is urgent.
+          </p>
+        )}
         {status === "sent" && (
           <p className="mt-4 text-sm text-ink/80" role="status">
             Thank you — your enquiry has been submitted. We aim to reply within two working days.
