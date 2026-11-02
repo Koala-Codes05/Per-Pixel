@@ -38,7 +38,8 @@ export function featuredMobileCardPose(progress: number, index: number, count = 
   const units = portfolioScrollUnits(count);
   const start = FEATURED_MOBILE_SETTLE / units;
   const mapped = start + clamp01(progress) * (1 - start);
-  return portfolioCardPose(mapped, index, count);
+  const pose = portfolioCardPose(mapped, index, count);
+  return { ...pose, y: pose.y * 0.5 };
 }
 
 export function featuredMobileFocus(index: number, count = 3) {

@@ -136,7 +136,7 @@ export default function FeaturedScene({ count, children }: { count: number; chil
       aria-labelledby="featured-heading"
       style={{
         "--featured-height": `${Math.round((portfolioScrollUnits(count) + 1) * 100)}svh`,
-        "--featured-height-mobile": `${Math.round((featuredMobileScrollUnits(count) + 1) * 100)}svh`,
+        "--featured-height-mobile": `${Math.round((featuredMobileScrollUnits(count) + 1) * 76)}svh`,
       } as CSSProperties}
     >
       {children}

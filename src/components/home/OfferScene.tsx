@@ -33,7 +33,8 @@ export default function OfferScene({
       if (section.dataset.motion !== "on") return;
       frames.forEach((frame, index) => {
         const pose = offerFramePose(progress, index, count);
-        frame.style.transform = `translate3d(0, ${pose.y.toFixed(2)}svh, 0)`;
+        const travel = window.innerWidth < 768 ? pose.y * 0.4 : pose.y;
+        frame.style.transform = `translate3d(0, ${travel.toFixed(2)}svh, 0)`;
         frame.style.opacity = `${pose.opacity}`;
         const focused = frame.contains(document.activeElement);
         frame.style.pointerEvents = pose.opacity > 0.55 || focused ? "auto" : "none";
@@ -101,7 +102,10 @@ export default function OfferScene({
       className={`offer-scene ${className}`.trim()}
       data-motion="off"
       aria-labelledby={labelId}
-      style={{ "--offer-height": `${Math.round((offerScrollUnits(count) + 1) * 100)}svh` } as CSSProperties}
+      style={{
+        "--offer-height": `${Math.round((offerScrollUnits(count) + 1) * 100)}svh`,
+        "--offer-height-mobile": `${Math.round((offerScrollUnits(count) + 1) * 76)}svh`,
+      } as CSSProperties}
     >
       <div className="offer-scene-viewport">
         {header}

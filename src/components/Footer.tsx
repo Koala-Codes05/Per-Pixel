@@ -101,7 +101,7 @@ export default function Footer() {
 
       <motion.div
         className="footer-mark pointer-events-none select-none whitespace-nowrap text-center font-sans font-black leading-[0.78] tracking-[-0.04em] text-paper"
-        style={{ fontSize: "clamp(6rem, 21.5vw, 24rem)", y: reducedMotion ? "8%" : markY }}
+        style={{ fontSize: "clamp(2rem, 18vw, 24rem)", y: reducedMotion ? "8%" : markY }}
         aria-hidden="true"
       >
         PERPIXEL

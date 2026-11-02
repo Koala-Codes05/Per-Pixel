@@ -21,6 +21,23 @@ export default function Navbar() {
   }
 
   useEffect(() => {
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (root.current) root.current.dataset.scrolled = String(window.scrollY > 24);
+    };
+    const schedule = () => {
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
     if (!open) return;
     const navigation = root.current;
     const button = toggle.current;
@@ -43,6 +60,7 @@ export default function Navbar() {
     <div
       ref={root}
       className="site-navigation"
+      data-scrolled="false"
       role={open ? "dialog" : undefined}
       aria-modal={open ? true : undefined}
       aria-label={open ? "Site navigation" : undefined}

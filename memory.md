@@ -202,6 +202,17 @@ worth remembering across sessions, not a changelog (that goes in `last_summary.m
 - Playwright's Windows WebKit renders variable Archivo at regular weight even though `@font-face` declares `font-weight: 100 900` â€” treat as an engine-build quirk unless confirmed on a real iPhone.
 - `tests/interaction_check.py` line 48 (hero-phrase mid-crossfade opacity) fails with `[1, 0]` against the deployed pre-change site too â€” pre-existing timing assertion, not a regression.
 
+## Mobile spacing pass — 2026-11-02
+
+- On phones (≤767px), keep pinned scenes short enough that each card or frame arrives without a prolonged empty scroll: wordplay 145svh, process 250svh, Moove shell 230svh, Sorso flavours 265svh. Featured and home offers use 76% of their scroll-unit height on mobile; the progress mapping remains continuous and reversible.
+- Mobile featured cards travel 50svh between frames (`featuredMobileCardPose`), instead of 100svh. The larger travel left an almost empty black viewport between projects even after shortening the section.
+- Keep mobile-only section spacing in the existing responsive CSS: process top margin 4rem, home contact top padding 3.5rem, case-study section gaps 4rem. Check both 390×844 and short 360×640 phones; scenes can switch to their static layouts when content does not fit.
+- For local visual QA, headless Edge with `playwright-core` can inspect the production preview at phone widths. The project `npm run lint` uses `.eslintcache`, which was locked during this pass; `npx eslint src --cache --cache-location .eslintcache-mobile` passed with a separate cache file.
+- The home offers sticky fallback must reserve only the space actually used by the mobile intro and offer content. With 480px `--offer-pin-pad`, 360×640 and 375×667 phones silently switched to `data-motion="off"`; 320px paired with 19rem frame top padding keeps all three offers readable and sticky from 360×640 upward. On mobile, 40svh card travel prevents an empty gap between offers.
+- Oversized footer and Portfolio wordmarks must be checked by measuring the text bounds, not just the element bounds. Footer `clamp(2rem, 18vw, 24rem)` and mobile Portfolio `18.5vw` fit 320–430px screens, including Portfolio's opening scale.
+- Mobile hero handoff: the full-height `.home-hero` and 3rem `.bento-section` gap left 181px between the last hero content and the studio tiles at 390×844. On ≤767px use `min-height: 0`, 1.5rem hero bottom padding, and 1.5rem bento top margin; the gap becomes 48px without changing tablet/desktop.
+- Scrolled navbar uses a binary `data-scrolled` flag updated in a rAF-backed passive scroll listener, with a light frosted background and a dark version over featured work. Keep menu-open header light and honor `prefers-reduced-transparency`. In `globals.css`, put `-webkit-backdrop-filter` before unprefixed `backdrop-filter`: this build's CSS optimizer dropped the unprefixed declaration when they were reversed, leaving Edge with no blur.
+
 ## Bugs and prevention
 
 | Date | Issue | Root cause | Fix / prevention |
