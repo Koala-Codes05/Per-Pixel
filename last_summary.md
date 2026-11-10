@@ -1,12 +1,13 @@
 # Last summary — PerPixel
 
-## 2026-11-02 — Restored direct-URL playbook
+## 2026-11-10 — Navbar logo and light-background favicon
 
-- Restored `/playbook` from the archived source at `docs/playbook/`: the route is `src/app/(site)/playbook/page.tsx`, interactive component/data are in `src/components/playbook/`, and all 26 competitor screenshots are back under `public/research/shots/`. Updated `docs/playbook/README.md` and the corresponding durable memory entries.
-- The page remains absent from site navigation and retains `robots: { index: false, follow: false }`. Its URL can be shared directly.
-- `npm run build` passed and lists `/playbook` as a static route. Targeted ESLint passed. Headless Edge returned HTTP 200 on 390px and 1440px viewports with no page errors or horizontal overflow; `meta[name=robots]` is `noindex, nofollow`, there are no `/playbook` navigation links, and a restored screenshot returns HTTP 200. Visual screenshots showed the hero and media on both widths.
-- This work is local and has not been deployed. Earlier mobile spacing, wordmark, sticky-offer, and navbar edits are still uncommitted in the same working tree.
+- Added the transparent PerPixel mark at `public/brand-mark.png` before the left navbar name in `src/components/Navbar.tsx`. `src/app/globals.css` inverts it while the header sits over the dark featured section.
+- Replaced `src/app/favicon.ico` and `src/app/icon.png` with cropped, resized versions of the newly supplied light-background logo. The favicon has 16, 32, and 48 pixel entries; the app icon is 192 pixels.
+- `npm run build` passed. Full ESLint passed with `npx eslint . --cache --cache-location ./.eslintcache-task`; the default cache file caused `EPERM` for `npm run lint`.
+- Restarted the local production server. The homepage returns HTTP 200 and contains the nav mark and new icon links; `/favicon.ico`, `/icon.png`, and `/brand-mark.png` return HTTP 200.
+- Changes remain local and uncommitted. Browser visual inspection was not run.
 
 ### Next useful step
 
-Deploy the combined local changes when the user requests publication; then verify the live `/playbook` URL and its image assets.
+Refresh the browser tab to clear any cached favicon, then inspect navbar spacing on desktop and mobile. Deploy when publication is requested.

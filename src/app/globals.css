@@ -1109,6 +1109,10 @@ html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="tru
   color: var(--color-paper);
 }
 
+html[data-featured-visible] .site-navigation:not(:has(.menu-panel[data-open="true"])) .nav-logo {
+  filter: invert(1);
+}
+
 html[data-featured-visible] .site-navigation[data-scrolled="true"]:not(:has(.menu-panel[data-open="true"])) header {
   background-color: rgba(20, 20, 20, 0.78);
   box-shadow: 0 1px 0 rgba(244, 242, 238, 0.12);

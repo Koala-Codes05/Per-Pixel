@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type MouseEvent } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { NAV_LINKS } from "@/lib/site";
 import { lockScroll, setRegionsInert, unlockScroll } from "@/lib/lenis";
@@ -88,8 +89,9 @@ export default function Navbar() {
     >
       <header className="fixed inset-x-0 top-0 z-50 px-5 pt-4 md:px-8" suppressHydrationWarning>
         <nav className="relative mx-auto flex max-w-350 items-center justify-between" aria-label="Primary navigation">
-          <Link href="/" onClick={close} className="text-[13px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em]" aria-label="PerPixel home">
-            Per<br />Pixel<sup className="text-[8px] font-bold">®</sup>
+          <Link href="/" onClick={close} className="flex items-center gap-2 text-[13px] font-extrabold uppercase leading-[0.95] tracking-[-0.02em]" aria-label="PerPixel home">
+            <Image src="/brand-mark.png" alt="" width={32} height={32} className="nav-logo h-8 w-8 object-contain" />
+            <span>Per<br />Pixel<sup className="text-[8px] font-bold">®</sup></span>
           </Link>
           <button
             ref={toggle}
