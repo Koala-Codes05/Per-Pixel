@@ -8,7 +8,7 @@ import { OFFERS } from "@/lib/offers";
 export const metadata: Metadata = {
   title: "Offers",
   description:
-    "Three PerPixel engagements for funded seed-to-Series A teams: a 10-day launch sprint from ₹75k, a brand and web system from ₹2.5L, and a motion and editorial retainer from ₹40k a month.",
+    `Three PerPixel engagements for funded seed-to-Series A teams: a 10-day launch sprint from ${OFFERS[0].price}, a brand and web system from ${OFFERS[1].price}, and a motion and editorial retainer from ${OFFERS[2].price} a month. Prices in USD.`,
 };
 
 export default function OffersPage() {
@@ -23,10 +23,10 @@ export default function OffersPage() {
         </Reveal>
         <Reveal delay={60} className="offers-intro-copy">
           <p>
-            PerPixel works with funded seed-to-Series A founders who need the public face to catch up with the product. Three ways in. Each one has a starting price in INR and a scope we write down before kickoff.
+            PerPixel works with funded seed-to-Series A founders who need the public face to catch up with the product. Three ways in. Each one has a starting fee in USD and a scope we write down before kickoff.
           </p>
           <p>
-            Travel, paid media, and third-party tools sit outside the fee. If the work falls between these, write anyway.
+            Starting fees assume a defined review cycle and supplied core content. Travel, paid media, third-party tools, filming, complex integrations, and extra pages are scoped separately. If the work falls between these, write anyway.
           </p>
         </Reveal>
       </header>

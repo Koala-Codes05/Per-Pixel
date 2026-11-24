@@ -19,7 +19,7 @@ export default function Offers() {
             </h2>
           </div>
           <p className="home-offers-lede">
-            Starting floors for funded seed-to-Series A teams. A sprint, a system, or a monthly seat. Scope is agreed before anything is signed.
+            USD starting fees for funded seed-to-Series A teams. A sprint, a system, or a monthly seat. Scope is agreed before anything is signed.
           </p>
           <Link href="/offers" className="offer-scene-more">
             Read the three offers

@@ -19,7 +19,7 @@ export const OFFERS: readonly Offer[] = [
     index: "01",
     name: "10-Day Launch Sprint",
     duration: "10 working days",
-    price: "₹75k",
+    price: "$4,500",
     summary:
       "A public face in ten working days. One positioning line, a wordmark, type and colour, and a short site you can send before a launch, a raise, or a first hire.",
     detail:
@@ -38,7 +38,7 @@ export const OFFERS: readonly Offer[] = [
     index: "02",
     name: "Brand & Web System",
     duration: "6–10 weeks",
-    price: "₹2.5L",
+    price: "$15,000",
     summary:
       "Identity and a marketing site designed as one system. For a seed to Series A company whose product is ahead of its website.",
     detail:
@@ -58,18 +58,18 @@ export const OFFERS: readonly Offer[] = [
     index: "03",
     name: "Motion & Editorial retainer",
     duration: "Monthly",
-    price: "₹40k",
+    price: "$2,500",
     unit: "/month",
     summary:
-      "After the system exists. One priority a month: a launch film, a product explainer, a campaign page, or an editorial update.",
+      "After the system exists. One scoped priority a month: a short motion asset, a campaign section, or an editorial update.",
     detail:
-      "The work does not stop once the site is up. The retainer holds one priority at a time, art-directed against the identity you already have. A standing review, not a ticket queue. Three months minimum, so the second piece can learn from the first.",
+      "The work continues once the site is up. The retainer holds one scoped priority at a time, art-directed against the identity you already have: short motion made with existing assets, a focused campaign section, or an editorial update. Full film production and new sites require separate quotes. A standing review and a three-month minimum give each piece room to build on the last.",
     includes: [
-      "One active piece a month",
-      "Launch film, explainer, campaign page, or editorial update",
+      "One scoped motion or editorial piece a month",
+      "Short motion using supplied assets, a campaign section, or an editorial update",
       "Art direction held to the existing system",
       "A standing review",
-      "Three-month minimum",
+      "Three-month minimum; larger productions quoted separately",
     ],
     surface: "sage",
   },

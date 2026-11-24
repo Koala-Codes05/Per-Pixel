@@ -802,7 +802,7 @@ export const NEXT_PLAN_PHASES = [
       {
         id: "t2",
         title: "Publish 'What We Do / What We Don't Do' + Engagement Floors on /projects and /contact",
-        detail: "Steal Thought Over Design's scope honesty + Studio Freight's floor anchor (e.g. Launches from ₹75k / $3.5k; Full Systems from ₹2.5L / $10k).",
+        detail: "Use scope honesty and a clear USD floor: Launch Sprints from $4.5k; Brand & Web Systems from $15k. Define the work before kickoff.",
       },
       {
         id: "t3",
