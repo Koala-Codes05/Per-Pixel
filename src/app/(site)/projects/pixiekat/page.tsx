@@ -32,6 +32,7 @@ export default function PixieKatPage() {
         <div className="flex flex-wrap items-center gap-3 pb-4 text-[11px] font-bold uppercase tracking-[0.18em]">
           <span className="rounded-full bg-[#edff66] px-4 py-2">Live project</span>
           <span>Gaming commerce · 2026</span>
+          <a href="https://www.pixiekat.store/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center rounded-full border border-[#5724ff] px-4 py-2 text-[#5724ff] transition-colors hover:bg-[#5724ff] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#5724ff] md:ml-auto">Visit the live store ↗</a>
         </div>
         <div className="grid gap-6 pb-10 md:grid-cols-[1.25fr_0.75fr] md:items-end md:gap-12">
           <h1 className="font-sans text-[clamp(4.5rem,13vw,11rem)] font-black leading-[0.85] tracking-[-0.085em]">PixieKat<span className="text-[#5724ff]">.</span></h1>

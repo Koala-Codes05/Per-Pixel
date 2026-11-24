@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { ArrowUpRight } from "@/components/home/Bento";
 import ConceptMark from "@/components/ConceptMark";
 import ProjectLink from "@/components/ProjectLink";
 import Reveal from "@/components/Reveal";
@@ -13,8 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
-  const hero = PROJECTS[2];
-  const latest = PROJECTS.find((project) => project.slug === "pixiekat")!;
+  const hero = PROJECTS.find((project) => project.slug === "pixiekat")!;
 
   return (
     <main className="pt-28" suppressHydrationWarning>
@@ -29,35 +29,26 @@ export default function ProjectsPage() {
                 fill
                 preload
                 sizes="(min-width: 1400px) 1400px, 100vw"
-                className="object-cover"
+                className="object-cover object-left-top"
               />
             </div>
-            <div className="absolute inset-0 bg-linear-to-t from-ink/35 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#0e041d]/85 via-transparent to-transparent" />
             <div className="absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/30 to-transparent" />
             <div className="absolute inset-x-6 top-6 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-paper/90 md:inset-x-8 md:top-8">
-              <span>Selected work, 2024–2026</span>
+              <span>Selected work · Live project</span>
               <span>PerPixel</span>
             </div>
-            <h1 className="absolute inset-x-6 bottom-6 max-w-[16ch] font-sans text-[clamp(2rem,5.4vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-paper md:inset-x-8 md:bottom-8">
-              We build design on clarity, speed, and care.
-            </h1>
-            <Link
-              href={latest.href}
-              className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 md:block"
-            >
-              <div className="relative aspect-4/3 overflow-hidden rounded-lg">
-                <Image
-                  src={latest.image}
-                  alt={latest.alt}
-                  fill
-                  sizes="180px"
-                  className="object-cover"
-                />
+            <div className="absolute inset-x-6 bottom-6 flex flex-col items-start gap-5 md:inset-x-8 md:bottom-8 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#edff66]">PixieKat · Gaming commerce</p>
+                <h1 className="max-w-[15ch] font-sans text-[clamp(2rem,5.4vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-paper">
+                  A live store built for play.
+                </h1>
               </div>
-              <p className="px-1 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em]">
-                Live work — {latest.title}
-              </p>
-            </Link>
+              <Link href={hero.href} className="inline-flex min-h-11 shrink-0 items-center gap-3 rounded-full bg-paper px-5 py-3 text-xs font-bold uppercase tracking-[0.1em] text-ink transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-paper">
+                Explore the case study <ArrowUpRight />
+              </Link>
+            </div>
           </div>
         </Reveal>
       </section>
