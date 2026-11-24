@@ -253,3 +253,7 @@ worth remembering across sessions, not a changelog (that goes in `last_summary.m
 - Project records live in `src/lib/site.ts`. Use `status: "Live"` for verified launched work and omit it for concepts; homepage and gallery cards use that status for their badge. The homepage's four featured projects are explicitly selected in `src/components/home/FeaturedProjects.tsx`; keep PixieKat immediately after Ghaslet while Moove, Sorso, and Dune remain on `/projects`.
 - PixieKat's dedicated route is `src/app/(site)/projects/pixiekat/page.tsx`. Optimized screenshots extracted from the user-supplied case study PDF live in `public/projects/pixiekat/`; avoid linking the private PDF or exposing customer/admin details.
 - On this Windows workspace, the old `.eslintcache` still causes `EPERM` for `npm run lint` and `--no-cache`. Run `npx eslint . --cache --cache-location ./.eslintcache-task`, then remove that temporary cache file. Keep temporary extraction scripts outside the linted tree or remove them before the check.
+
+## LAN development access — 2026-11-25
+
+- `next.config.ts` lists exact hostnames under `allowedDevOrigins`; include the LAN IP used to open the dev site (currently `192.168.1.3`) without a scheme or port. Next.js 16 checks `Origin` for dev resources and `Referer` for no-cors cross-site loads such as fonts. After config changes, verify a request to `/__nextjs_font/geist-latin.woff2` with the LAN origin and a no-cors request with the LAN referer both return 200 from the dev server. Restart `next dev` if it has not picked up the config change.
