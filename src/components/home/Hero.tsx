@@ -7,6 +7,10 @@ const CAPABILITIES = ["Brand identity", "Web design", "Editorial systems", "Moti
 export default function Hero() {
   return (
     <section className="home-hero mx-auto max-w-350 px-5 md:px-8" aria-labelledby="hero-heading">
+      <a className="hero-live-link group" href="https://www.pixiekat.store/" target="_blank" rel="noopener noreferrer">
+        <span className="hero-live-project"><span className="hero-live-dot" aria-hidden="true" /> PixieKat is live</span>
+        <span className="hero-live-action">Visit the live store <ArrowUpRight /></span>
+      </a>
       <div className="hero-meta">
         <span>PerPixel® — Independent design studio</span>
         <span>Brand &amp; digital experiences</span>

@@ -1,11 +1,12 @@
 # Last summary — PerPixel
 
-## 2026-11-25 — Allow LAN dev origin
+## 2026-11-25 — PixieKat first and live store link
 
-- Added `192.168.1.3` to `allowedDevOrigins` in `next.config.ts`, preserving the existing local and LAN entries. This addresses Next.js blocking dev-only resources when the site is opened at `http://192.168.1.3:3000/`.
-- `npm run build` and `npx eslint . --cache --cache-location ./.eslintcache-task` passed. The existing dev server on port 3000 returned HTTP 200 for `/__nextjs_font/geist-latin.woff2` with `Origin: http://192.168.1.3:3000` and for a no-cors request with that address as the referer. A separate dev server could not start because this project already has one running on port 3000.
-- Changes are local and uncommitted. The prior PixieKat portfolio work remains in the project.
+- Added a prominent "PixieKat is live / Visit the live store" link above the homepage headline in `src/components/home/Hero.tsx`, styled in `src/app/globals.css`. It opens `https://www.pixiekat.store/` in a new tab.
+- Reordered the homepage featured cards to PixieKat, Ghaslet, Moove, Sorso and placed PixieKat before Ghaslet in the shared project list, which also controls the full Projects gallery and rows. The PixieKat cards still open the PerPixel case study.
+- `npm run build`, ESLint with the alternate cache path, and `git diff --check` passed. Generated HTML checks confirmed the hero link appears before the headline and PixieKat precedes Ghaslet in both project sections. Browser visual inspection was unavailable because the browser access host was unavailable.
+- Changes are local and uncommitted. The prior LAN origin fix remains in place.
 
 ### Next useful step
 
-Refresh the site from the LAN address and confirm the console warning is gone. If the running dev server still logs the old warning, restart it so it loads the updated config. The later US dollar pricing and About location updates remain outstanding.
+Review the new hero link on desktop and mobile in the local site. The requested US dollar pricing and About location updates remain outstanding.

@@ -250,8 +250,9 @@ worth remembering across sessions, not a changelog (that goes in `last_summary.m
 ## Live portfolio work — 2026-11-25
 
 - PixieKat is PerPixel's live gaming top-up store at `https://www.pixiekat.store/`. The supplied PDF case study is the source for its scope and launch facts: brand and storefront UX, checkout, Pixie Wallet, admin tools; version 1.0 shipped in August 2026 and the store remains in active development. Do not invent usage metrics or testimonials.
-- Project records live in `src/lib/site.ts`. Use `status: "Live"` for verified launched work and omit it for concepts; homepage and gallery cards use that status for their badge. The homepage's four featured projects are explicitly selected in `src/components/home/FeaturedProjects.tsx`; keep PixieKat immediately after Ghaslet while Moove, Sorso, and Dune remain on `/projects`.
+- Project records live in `src/lib/site.ts`. Use `status: "Live"` for verified launched work and omit it for concepts; homepage and gallery cards use that status for their badge. The homepage's four featured projects are explicitly selected in `src/components/home/FeaturedProjects.tsx`; show PixieKat before Ghaslet in both featured work and the full Projects list. The featured order is PixieKat, Ghaslet, Moove, Sorso, while Dune remains on `/projects`.
 - PixieKat's dedicated route is `src/app/(site)/projects/pixiekat/page.tsx`. Optimized screenshots extracted from the user-supplied case study PDF live in `public/projects/pixiekat/`; avoid linking the private PDF or exposing customer/admin details.
+- The homepage hero has a prominent direct link to the live PixieKat store above the main headline. Keep the case-study card linked to `/projects/pixiekat`, so visitors can choose between the live product and the studio story.
 - On this Windows workspace, the old `.eslintcache` still causes `EPERM` for `npm run lint` and `--no-cache`. Run `npx eslint . --cache --cache-location ./.eslintcache-task`, then remove that temporary cache file. Keep temporary extraction scripts outside the linted tree or remove them before the check.
 
 ## LAN development access — 2026-11-25

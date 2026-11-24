@@ -9,12 +9,12 @@ import { PROJECTS } from "@/lib/site";
 
 const FEATURED = [
   {
-    project: PROJECTS.find((project) => project.slug === "ghaslet")!,
-    description: "A hot sauce identity with heat, character, and a product-led digital home.",
-  },
-  {
     project: PROJECTS.find((project) => project.slug === "pixiekat")!,
     description: "A live gaming top-up store, from bold brand to checkout and admin tools.",
+  },
+  {
+    project: PROJECTS.find((project) => project.slug === "ghaslet")!,
+    description: "A hot sauce identity with heat, character, and a product-led digital home.",
   },
   {
     project: PROJECTS.find((project) => project.slug === "moove")!,
