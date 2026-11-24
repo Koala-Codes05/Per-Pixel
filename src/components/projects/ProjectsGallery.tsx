@@ -53,7 +53,7 @@ function Card({ project, index }: { project: Project; index: number }) {
             className="project-image object-cover"
           />
           <LiquidDistortion />
-          <ConceptMark className="concept-mark--on-media concept-mark--start" />
+          {project.status === "Live" ? <span className="concept-mark concept-mark--on-media concept-mark--start">Live</span> : <ConceptMark className="concept-mark--on-media concept-mark--start" />}
         </div>
         <div className="mt-3 flex items-baseline justify-between gap-2 px-1">
           <span className="project-title font-serif text-xl italic">{project.title}</span>

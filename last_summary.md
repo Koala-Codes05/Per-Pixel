@@ -1,13 +1,12 @@
 # Last summary — PerPixel
 
-## 2026-11-10 — Navbar logo and light-background favicon
+## 2026-11-25 — PixieKat live portfolio project
 
-- Added the transparent PerPixel mark at `public/brand-mark.png` before the left navbar name in `src/components/Navbar.tsx`. `src/app/globals.css` inverts it while the header sits over the dark featured section.
-- Replaced `src/app/favicon.ico` and `src/app/icon.png` with cropped, resized versions of the newly supplied light-background logo. The favicon has 16, 32, and 48 pixel entries; the app icon is 192 pixels.
-- `npm run build` passed. Full ESLint passed with `npx eslint . --cache --cache-location ./.eslintcache-task`; the default cache file caused `EPERM` for `npm run lint`.
-- Restarted the local production server. The homepage returns HTTP 200 and contains the nav mark and new icon links; `/favicon.ico`, `/icon.png`, and `/brand-mark.png` return HTTP 200.
-- Changes remain local and uncommitted. Browser visual inspection was not run.
+- Added PixieKat to the shared project list as live work and created `/projects/pixiekat` with the challenge, experience, capabilities, launch status, and a link to the live store. Its imagery comes from the user-supplied case study PDF and is optimized under `public/projects/pixiekat/`.
+- Homepage featured order is now Ghaslet, PixieKat, Moove, Sorso. Dune remains in the full Projects gallery. Home and gallery badges distinguish PixieKat from concept projects, and the Projects page intro and latest-work card now acknowledge live work.
+- `npm run build` passed, including TypeScript and static generation of `/projects/pixiekat`. `npx eslint . --cache --cache-location ./.eslintcache-task` passed after temporary PDF extraction scripts were removed; `npm run lint` remains blocked by `EPERM` on the existing `.eslintcache`. `git diff --check` passed before the final notes update. Generated HTML checks confirmed the featured order, the full gallery's Dune and Moove entries, and the PixieKat route and live link.
+- Changes are local and uncommitted. Browser visual inspection was unavailable because the browser access host was unavailable; the extracted cover image and PDF screenshot contact sheet were inspected locally.
 
 ### Next useful step
 
-Refresh the browser tab to clear any cached favicon, then inspect navbar spacing on desktop and mobile. Deploy when publication is requested.
+Visually review the new case study and featured card on desktop, tablet, and mobile, then continue with the requested US dollar pricing and About location updates. Deployment has not been requested.

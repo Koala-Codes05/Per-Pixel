@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   const hero = PROJECTS[2];
+  const latest = PROJECTS.find((project) => project.slug === "pixiekat")!;
 
   return (
     <main className="pt-28" suppressHydrationWarning>
@@ -41,20 +42,20 @@ export default function ProjectsPage() {
               We build design on clarity, speed, and care.
             </h1>
             <Link
-              href={PROJECTS[0].href}
+              href={latest.href}
               className="absolute bottom-6 right-6 hidden w-44 overflow-hidden rounded-xl bg-paper/90 p-2 backdrop-blur transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 md:block"
             >
               <div className="relative aspect-4/3 overflow-hidden rounded-lg">
                 <Image
-                  src={PROJECTS[0].image}
-                  alt={PROJECTS[0].alt}
+                  src={latest.image}
+                  alt={latest.alt}
                   fill
                   sizes="180px"
                   className="object-cover"
                 />
               </div>
               <p className="px-1 pb-1 pt-2 text-[10px] font-semibold uppercase tracking-[0.14em]">
-                Latest — {PROJECTS[0].title} · Concept
+                Live work — {latest.title}
               </p>
             </Link>
           </div>
@@ -68,7 +69,7 @@ export default function ProjectsPage() {
             Selected Work.
           </h2>
           <p className="mx-auto mt-4 max-w-[36ch] text-center text-sm leading-relaxed text-ink/65">
-            Self-initiated concepts. Every piece on this page was made in the studio, without a client brief.
+            Live work and self-initiated concepts, made by the PerPixel studio.
           </p>
         </Reveal>
         <ProjectsGallery />
@@ -105,7 +106,7 @@ export default function ProjectsPage() {
                 </span>
                 <span className="col-span-7 flex flex-wrap items-center gap-x-3 gap-y-1 font-serif text-[clamp(1.5rem,3vw,2.4rem)] leading-none transition-transform duration-300 ease-out-expo group-hover:translate-x-2 sm:col-span-6 md:col-span-5">
                   <span>{p.title}</span>
-                  <ConceptMark />
+                  {p.status === "Live" ? <span className="concept-mark">Live</span> : <ConceptMark />}
                 </span>
                 <span className="col-span-3 hidden text-[11px] uppercase tracking-[0.16em] text-ink/60 md:block">
                   {p.category}

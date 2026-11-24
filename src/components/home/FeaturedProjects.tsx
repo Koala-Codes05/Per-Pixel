@@ -9,20 +9,20 @@ import { PROJECTS } from "@/lib/site";
 
 const FEATURED = [
   {
-    project: PROJECTS[3],
+    project: PROJECTS.find((project) => project.slug === "ghaslet")!,
     description: "A hot sauce identity with heat, character, and a product-led digital home.",
   },
   {
-    project: PROJECTS[0],
+    project: PROJECTS.find((project) => project.slug === "pixiekat")!,
+    description: "A live gaming top-up store, from bold brand to checkout and admin tools.",
+  },
+  {
+    project: PROJECTS.find((project) => project.slug === "moove")!,
     description: "Sculptural furniture and soft rose tones, explored through a quieter visual identity.",
   },
   {
-    project: PROJECTS[1],
+    project: PROJECTS.find((project) => project.slug === "sorso")!,
     description: "A bitter Italian aperitivo soda, built as a sunlit brand site from bottle to serve.",
-  },
-  {
-    project: PROJECTS[2],
-    description: "A desert fashion editorial told through dawn light and long-form imagery.",
   },
 ] as const;
 
@@ -39,7 +39,7 @@ export default function FeaturedProjects() {
               Featured projects
             </h2>
             <p className="featured-introduction">
-              Selected concepts in identity, image, and the spaces between. Imagery is illustrative.
+              Selected work across live products and studio concepts.
             </p>
           </div>
           <Link href="/projects" className="featured-all group">
@@ -68,7 +68,7 @@ export default function FeaturedProjects() {
                   <LiquidDistortion />
                   <span className="featured-art-shade" aria-hidden="true" />
                   <span className="featured-counter" aria-hidden="true">0{index + 1} / 0{FEATURED.length}</span>
-                  <ConceptMark className="concept-mark--on-media" />
+                  {project.status === "Live" ? <span className="concept-mark concept-mark--on-media">Live</span> : <ConceptMark className="concept-mark--on-media" />}
                   <span className="featured-art-center">
                     <span className="featured-art-title">{project.title}</span>
                     <span className="featured-view">view <ArrowUpRight /></span>

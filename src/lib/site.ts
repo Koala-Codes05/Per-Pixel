@@ -49,6 +49,7 @@ export type Project = {
   href: string;
   /** "site" = a built brand website; "case-study" = a written concept study page. */
   kind: "site" | "case-study";
+  status?: "Live";
 };
 
 export const PROJECTS: Project[] = [
@@ -96,6 +97,18 @@ export const PROJECTS: Project[] = [
     tone: "neutral",
     href: "/works/ghaslet/index.html",
     kind: "site",
+  },
+  {
+    slug: "pixiekat",
+    title: "PixieKat",
+    category: "Design",
+    year: "2026",
+    image: "/projects/pixiekat/cover.webp",
+    alt: "PixieKat gaming top-up storefront with its bold wordmark and game artwork",
+    tone: "blue",
+    href: "/projects/pixiekat",
+    kind: "site",
+    status: "Live",
   },
   {
     slug: "snackverse",
