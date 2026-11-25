@@ -1,23 +1,25 @@
-# Latest task — Projects page hierarchy
+# Latest task — Assembly case study
 
 ## Changed
 
-- Moved “Selected Work.” and its introduction above the PixieKat featured case-study banner on `/projects`. The filterable grid follows the banner.
-- Made “Selected Work.” the page `h1` and the banner headline an `h2`. Gave the banner a compact, legible “Featured project” badge, with more detail on wider screens.
+- Added Assembly to the `/projects` gallery and project rows, linking to a dedicated `/projects/assembly` case study. The PixieKat feature on `/projects` and all homepage featured cards remain unchanged.
+- Built the case study around Assembly's live visual identity, fictional editorial studies, Culinary Atelier and local event brief planner. It labels the project as a concept and links to the live demo.
+- Copied two optimized photographs and two SVG illustrations from the live Assembly site into `public/projects/assembly/`.
 
 ## Relevant files
 
-- `src/app/(site)/projects/page.tsx`
+- `src/lib/site.ts`
+- `src/app/(site)/projects/assembly/page.tsx`
+- `public/projects/assembly/`
 - `memory.md`, `last_summary.md`
 
 ## Verification
 
-- `npm run build` passed, including TypeScript.
-- Targeted ESLint passed.
-- Local production browser checks at 360px, 820px and 1440px confirmed the heading, banner and filters appear in that order, with no horizontal overflow or page errors. Screenshots were inspected at mobile and desktop widths.
-- Published commit `d6a49d6` to PerPixel `main`. A fresh public `/projects` response returned 200 and confirmed the heading appears before the featured badge and gallery filters.
-- The full visual test suite was not run.
+- `npm run build` passed, including TypeScript and static generation of `/projects/assembly`.
+- Targeted ESLint passed with a task-specific cache; `git diff --check` passed.
+- Local production HTTP checks returned 200 for `/projects/assembly` and `/projects`; expected case study copy, live link and Assembly gallery listing were present.
+- Browser screenshot QA could not run because the browser access host was unavailable.
 
 ## Current state and next step
 
-- The change is live on the public Projects page. The PerPixel working tree is clean after the handoff commit.
+- Publish the verified change to `main`, then check the public case study and project listing once deployment completes.

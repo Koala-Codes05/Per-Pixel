@@ -122,6 +122,17 @@ export const PROJECTS: Project[] = [
     status: "Live",
   },
   {
+    slug: "assembly",
+    title: "Assembly",
+    category: "Design",
+    year: "2026",
+    image: "/projects/assembly/installation.webp",
+    alt: "Sculptural fabric and floral installation in Assembly's imagined gathering space",
+    tone: "neutral",
+    href: "/projects/assembly",
+    kind: "case-study",
+  },
+  {
     slug: "ghaslet",
     title: "Ghaslet",
     category: "Branding",
