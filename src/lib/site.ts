@@ -54,6 +54,17 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "auriel",
+    title: "Auriel",
+    category: "Design",
+    year: "2026",
+    image: "/works/auriel/courtyard.webp",
+    alt: "An imagined limewashed Auriel courtyard overlooking the Aravalli hills",
+    tone: "neutral",
+    href: "/projects/auriel",
+    kind: "site",
+  },
+  {
     slug: "other-table",
     title: "Other Table",
     category: "Design",

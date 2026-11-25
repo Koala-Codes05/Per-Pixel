@@ -1,27 +1,26 @@
-# Latest task — Other Table in PerPixel
+# Latest task — Auriel case study in PerPixel
 
 ## Changed
 
-- Added a dedicated `/projects/other-table` case study with an early and closing live-demo link to `https://ot.perpixel.agency/`, original editorial imagery, guest-journey links, and an explicitly synthetic redesign exercise. The text identifies the restaurant and booking flow as fictional.
-- Linked the Other Table gallery record and a new homepage featured card to the case study. The concept badge remains in place. Updated the featured-card fallback assertion for five cards.
-- Kept `/case-studies/other-table` as a permanent redirect to the new route.
-- Copied the original room, aubergine and seal assets from the standalone repository into `public/works/other-table/` beside the existing table image.
+- Added `/projects/auriel`, an editorial case study for the fictional Auriel retreat. It covers the proposition, material-led identity, interactive atlas, day selector and local stay planner. A visible concept badge and explicit fictional-data disclosures accompany early and closing links to `https://auriel.perpixel.agency/`.
+- Added Auriel to the Projects gallery and homepage featured work, with the featured no-JS assertion updated to six cards.
+- Copied five original generated concept images and two interface captures from the independent Auriel repository into `public/works/auriel/`.
 
 ## Relevant files
 
-- `src/app/(site)/projects/other-table/page.tsx`
-- `src/app/(site)/case-studies/other-table/page.tsx`
+- `src/app/(site)/projects/auriel/page.tsx`
 - `src/lib/site.ts`, `src/components/home/FeaturedProjects.tsx`, `tests/visual_check.py`
-- `public/works/other-table/`
+- `public/works/auriel/`, `memory.md`, `last_summary.md`
 
 ## Verification
 
-- `npm run build` passed, including TypeScript and both Other Table routes.
-- `npx eslint . --cache --cache-location ./.eslintcache-other-table` passed.
-- Production HTTP check: case study and homepage returned 200; the case study included the live URL and fictional disclosure; the homepage included the new featured description; the old route returned 308 with location `/projects/other-table`.
-- Published commit `3e66471` to PerPixel `main`. The public `https://perpixel.agency/projects/other-table` returned 200 with the expected title, case study text and live-demo link.
-- `git diff --check` passed. Browser viewport inspection and the visual test suite were not run.
+- Auriel's live homepage, stay, reserve and atlas routes returned 200 before the PerPixel changes.
+- `npm run build` passed, including TypeScript and `/projects/auriel`.
+- `npx eslint . --cache --cache-location ./.eslintcache-auriel-case` passed.
+- Local production HTTP checks: case study, homepage and Projects returned 200; the case study included the live URL and concept disclosure; Auriel appeared in featured work and the gallery.
+- Browser checks at 360px, 820px and 1440px found no horizontal overflow or page errors, three homepage-to-demo links, and no broken loaded images. The homepage had six featured cards, including Auriel. Mobile and desktop screenshots were inspected.
+- `git diff --check` passed. The full `tests/visual_check.py` suite was not run.
 
 ## Current state and next step
 
-- The case study is deployed. Inspect the page and five-card featured sequence at desktop and mobile sizes when a browser viewport is available.
+- The case study is ready to publish to PerPixel main. Verify its public URL after deployment.

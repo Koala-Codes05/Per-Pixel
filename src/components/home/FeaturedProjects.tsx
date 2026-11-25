@@ -13,6 +13,10 @@ const FEATURED = [
     description: "A live gaming top-up store, from bold brand to checkout and admin tools.",
   },
   {
+    project: PROJECTS.find((project) => project.slug === "auriel")!,
+    description: "An imagined heritage retreat with an interactive atlas and a transparent stay planner.",
+  },
+  {
     project: PROJECTS.find((project) => project.slug === "other-table")!,
     description: "A live restaurant concept pairing an editorial identity with useful guest journeys.",
   },
