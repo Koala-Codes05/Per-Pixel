@@ -1,27 +1,27 @@
-# Latest task — Auriel case study in PerPixel
+# Latest task — trim homepage featured portfolio
 
 ## Changed
 
-- Added `/projects/auriel`, an editorial case study for the fictional Auriel retreat. It covers the proposition, material-led identity, interactive atlas, day selector and local stay planner. A visible concept badge and explicit fictional-data disclosures accompany early and closing links to `https://auriel.perpixel.agency/`.
-- Added Auriel to the Projects gallery and homepage featured work, with the featured no-JS assertion updated to six cards.
-- Copied five original generated concept images and two interface captures from the independent Auriel repository into `public/works/auriel/`.
+- Removed Other Table and Moove from the homepage's scrolling featured portfolio. The four cards are PixieKat, Auriel, Ghaslet and Sorso, in that order. Both removed projects remain in the full Projects gallery and their dedicated routes.
+- Updated the no-JS featured-card count assertion to four.
+- Corrected the mobile featured opening offset and its stale scroll-sequence test expectation so the first card starts about 5.6svh below rest, matching the recorded visual intent.
 
 ## Relevant files
 
-- `src/app/(site)/projects/auriel/page.tsx`
-- `src/lib/site.ts`, `src/components/home/FeaturedProjects.tsx`, `tests/visual_check.py`
-- `public/works/auriel/`, `memory.md`, `last_summary.md`
+- `src/components/home/FeaturedProjects.tsx`
+- `src/lib/scroll-sequence.ts`
+- `tests/visual_check.py`, `tests/scroll-sequence.test.mjs`
+- `memory.md`, `last_summary.md`
 
 ## Verification
 
-- Auriel's live homepage, stay, reserve and atlas routes returned 200 before the PerPixel changes.
-- `npm run build` passed, including TypeScript and `/projects/auriel`.
-- `npx eslint . --cache --cache-location ./.eslintcache-auriel-case` passed.
-- Local production HTTP checks: case study, homepage and Projects returned 200; the case study included the live URL and concept disclosure; Auriel appeared in featured work and the gallery.
-- Browser checks at 360px, 820px and 1440px found no horizontal overflow or page errors, three homepage-to-demo links, and no broken loaded images. The homepage had six featured cards, including Auriel. Mobile and desktop screenshots were inspected.
-- Published case study commit `3017565` to PerPixel `main`. The public `https://perpixel.agency/projects/auriel` returned 200 with the expected title, live Auriel link and fictional-property disclosure.
-- `git diff --check` passed. The full `tests/visual_check.py` suite was not run.
+- `npm run build` passed, including TypeScript.
+- `npx eslint . --cache --cache-location ./.eslintcache-featured-trim` passed.
+- `node --experimental-strip-types --test tests/scroll-sequence.test.mjs` passed all 15 tests after the opening correction. The first run exposed the stale assertion; it did not pass until corrected.
+- Local production HTTP checks: homepage and Projects returned 200; the homepage rendered four featured cards without the removed descriptions; Other Table and Moove remained linked from the Projects gallery.
+- Browser checks at 360px, 820px and 1440px with reduced motion showed four cards in the intended order, no horizontal overflow and no page errors.
+- `git diff --check` passed. The full visual test suite was not run.
 
 ## Current state and next step
 
-- The case study is deployed and the PerPixel working tree is clean. The full visual test suite remains an optional follow-up.
+- The focused change is ready to publish to PerPixel main. Verify the public homepage after deployment.

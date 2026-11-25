@@ -109,14 +109,14 @@ test("portfolio motion is continuous, reversible, and bounded for any card count
 });
 
 test("mobile featured opens with the first card already visible", () => {
-  const opening = featuredMobileCardPose(0, 0, 3);
+  const opening = featuredMobileCardPose(0, 0, 4);
   assert.ok(opening.y > 4 && opening.y < 8);
   assert.equal(opening.opacity, 1);
-  assert.equal(featuredMobileCardPose(0, 1, 3).y, 100);
-  assert.equal(featuredMobileCardPose(0, 1, 3).opacity, 0);
-  assert.deepEqual(featuredMobileCardPose(1, 2, 3), { y: 0, opacity: 1, scale: 1 });
-  assert.ok(featuredMobileScrollUnits(3) < portfolioScrollUnits(3));
-  const seated = featuredMobileCardPose(0.04, 0, 3);
+  assert.equal(featuredMobileCardPose(0, 1, 4).y, 50);
+  assert.equal(featuredMobileCardPose(0, 1, 4).opacity, 0);
+  assert.deepEqual(featuredMobileCardPose(1, 3, 4), { y: 0, opacity: 1, scale: 1 });
+  assert.ok(featuredMobileScrollUnits(4) < portfolioScrollUnits(4));
+  const seated = featuredMobileCardPose(0.04, 0, 4);
   assert.ok(seated.y < opening.y);
   assert.ok(seated.y >= 0);
 });

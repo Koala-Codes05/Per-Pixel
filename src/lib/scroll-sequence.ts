@@ -24,11 +24,11 @@ export function offerFramePose(progress: number, index: number, count = 3) {
 }
 
 /**
- * Mobile featured cards skip the blank opening. Time 0.86 leaves card 0
+ * Mobile featured cards skip the blank opening. Time 0.82 leaves card 0
  * about 6svh below its rest position, so the gap under the intro is small,
  * then it settles. Desktop keeps the full portfolio timeline.
  */
-const FEATURED_MOBILE_SETTLE = 0.86;
+const FEATURED_MOBILE_SETTLE = 0.82;
 
 export function featuredMobileScrollUnits(count = 3) {
   return Math.max(0.4, portfolioScrollUnits(count) - FEATURED_MOBILE_SETTLE);

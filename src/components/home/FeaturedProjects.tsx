@@ -17,16 +17,8 @@ const FEATURED = [
     description: "An imagined heritage retreat with an interactive atlas and a transparent stay planner.",
   },
   {
-    project: PROJECTS.find((project) => project.slug === "other-table")!,
-    description: "A live restaurant concept pairing an editorial identity with useful guest journeys.",
-  },
-  {
     project: PROJECTS.find((project) => project.slug === "ghaslet")!,
     description: "A hot sauce identity with heat, character, and a product-led digital home.",
-  },
-  {
-    project: PROJECTS.find((project) => project.slug === "moove")!,
-    description: "Sculptural furniture and soft rose tones, explored through a quieter visual identity.",
   },
   {
     project: PROJECTS.find((project) => project.slug === "sorso")!,
