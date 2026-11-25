@@ -1,13 +1,26 @@
-# Last summary — PerPixel
+# Latest task — Other Table in PerPixel
 
-## 2026-11-25 — Global USD offer pricing
+## Changed
 
-- Changed the three public offer floors in `src/lib/offers.ts` to $4,500 for the 10-day launch sprint, $15,000 for the brand and web system, and $2,500/month for the motion and editorial retainer. Both the homepage and `/offers` use this shared data.
-- Updated the homepage offer introduction, Offers page copy and metadata, and the public playbook's floor note for USD pricing. The Offers page states the assumptions behind starting fees and identifies separately scoped work. The retainer now promises one scoped motion or editorial piece per month; full film production and new sites require separate quotes.
-- Pricing is based on published 2026 Clutch branding and web-design ranges and current motion service comparisons, not an INR conversion. These are proposed commercial floors for a small studio targeting global funded startups; final quotes remain scope dependent.
-- `npm run build`, ESLint with the alternate cache path, and `git diff --check` passed. Generated homepage and Offers HTML contain all three USD prices and none of the prior INR offer prices. Browser visual inspection was not run.
-- Changes are local and uncommitted.
+- Added a dedicated `/projects/other-table` case study with an early and closing live-demo link to `https://ot.perpixel.agency/`, original editorial imagery, guest-journey links, and an explicitly synthetic redesign exercise. The text identifies the restaurant and booking flow as fictional.
+- Linked the Other Table gallery record and a new homepage featured card to the case study. The concept badge remains in place. Updated the featured-card fallback assertion for five cards.
+- Kept `/case-studies/other-table` as a permanent redirect to the new route.
+- Copied the original room, aubergine and seal assets from the standalone repository into `public/works/other-table/` beside the existing table image.
 
-### Next useful step
+## Relevant files
 
-Review the price positioning and scope assumptions with the studio, and inspect the offer layouts on mobile. The requested About location update remains outstanding.
+- `src/app/(site)/projects/other-table/page.tsx`
+- `src/app/(site)/case-studies/other-table/page.tsx`
+- `src/lib/site.ts`, `src/components/home/FeaturedProjects.tsx`, `tests/visual_check.py`
+- `public/works/other-table/`
+
+## Verification
+
+- `npm run build` passed, including TypeScript and both Other Table routes.
+- `npx eslint . --cache --cache-location ./.eslintcache-other-table` passed.
+- Production HTTP check: case study and homepage returned 200; the case study included the live URL and fictional disclosure; the homepage included the new featured description; the old route returned 308 with location `/projects/other-table`.
+- `git diff --check` passed. Browser viewport inspection and the visual test suite were not run.
+
+## Current state and next step
+
+- After deployment, inspect the case study and five-card featured sequence at desktop and mobile sizes.

@@ -439,7 +439,7 @@ class MotionChecks(unittest.TestCase):
         no_js.goto(BASE, wait_until="networkidle")
         fallback = no_js.locator("#featured-projects")
         expect(fallback).to_have_attribute("data-motion", "off")
-        self.assertEqual(fallback.locator(".featured-card").count(), 4)
+        self.assertEqual(fallback.locator(".featured-card").count(), 5)
         self.assertEqual(fallback.locator(".featured-viewport").evaluate("el => getComputedStyle(el).position"), "relative")
 
     def test_home_section_order_and_contact(self):

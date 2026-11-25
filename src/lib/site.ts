@@ -54,6 +54,17 @@ export type Project = {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "other-table",
+    title: "Other Table",
+    category: "Design",
+    year: "2026",
+    image: "/works/other-table/table.webp",
+    alt: "Friends passing shared plates around the Other Table dinner table",
+    tone: "neutral",
+    href: "/projects/other-table",
+    kind: "site",
+  },
+  {
     slug: "moove",
     title: "Moove",
     category: "Branding",

@@ -13,6 +13,10 @@ const FEATURED = [
     description: "A live gaming top-up store, from bold brand to checkout and admin tools.",
   },
   {
+    project: PROJECTS.find((project) => project.slug === "other-table")!,
+    description: "A live restaurant concept pairing an editorial identity with useful guest journeys.",
+  },
+  {
     project: PROJECTS.find((project) => project.slug === "ghaslet")!,
     description: "A hot sauce identity with heat, character, and a product-led digital home.",
   },
