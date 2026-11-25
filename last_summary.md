@@ -19,8 +19,9 @@
 - `npx eslint . --cache --cache-location ./.eslintcache-auriel-case` passed.
 - Local production HTTP checks: case study, homepage and Projects returned 200; the case study included the live URL and concept disclosure; Auriel appeared in featured work and the gallery.
 - Browser checks at 360px, 820px and 1440px found no horizontal overflow or page errors, three homepage-to-demo links, and no broken loaded images. The homepage had six featured cards, including Auriel. Mobile and desktop screenshots were inspected.
+- Published case study commit `3017565` to PerPixel `main`. The public `https://perpixel.agency/projects/auriel` returned 200 with the expected title, live Auriel link and fictional-property disclosure.
 - `git diff --check` passed. The full `tests/visual_check.py` suite was not run.
 
 ## Current state and next step
 
-- The case study is ready to publish to PerPixel main. Verify its public URL after deployment.
+- The case study is deployed and the PerPixel working tree is clean. The full visual test suite remains an optional follow-up.
