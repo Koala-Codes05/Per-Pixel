@@ -18,8 +18,19 @@ export default function ProjectsPage() {
 
   return (
     <main className="pt-28" suppressHydrationWarning>
+      <section className="mx-auto max-w-350 px-5 md:px-8" aria-labelledby="selected-work-heading">
+        <Reveal>
+          <h1 id="selected-work-heading" className="text-center font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-[-0.01em]">
+            Selected Work.
+          </h1>
+          <p className="mx-auto mt-4 max-w-[36ch] text-center text-sm leading-relaxed text-ink/65">
+            Live work and self-initiated concepts, made by the PerPixel studio.
+          </p>
+        </Reveal>
+      </section>
+
       {/* Hero */}
-      <section className="mx-auto max-w-350 px-5 md:px-8">
+      <section className="mx-auto mt-12 max-w-350 px-5 md:mt-16 md:px-8" aria-label="Featured case study">
         <Reveal variant="media">
           <div className="relative overflow-hidden rounded-card">
             <div className="relative aspect-4/5 sm:aspect-16/10 md:aspect-21/9">
@@ -35,15 +46,17 @@ export default function ProjectsPage() {
             <div className="absolute inset-0 bg-linear-to-t from-[#0e041d]/85 via-transparent to-transparent" />
             <div className="absolute inset-x-0 top-0 h-1/3 bg-linear-to-b from-ink/30 to-transparent" />
             <div className="absolute inset-x-6 top-6 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-paper/90 md:inset-x-8 md:top-8">
-              <span>Selected work · Live project</span>
+              <span className="rounded-full bg-ink/75 px-3 py-2 text-paper backdrop-blur-sm">
+                Featured project<span className="hidden sm:inline"> · Live case study</span>
+              </span>
               <span>PerPixel</span>
             </div>
             <div className="absolute inset-x-6 bottom-6 flex flex-col items-start gap-5 md:inset-x-8 md:bottom-8 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#edff66]">PixieKat · Gaming commerce</p>
-                <h1 className="max-w-[15ch] font-sans text-[clamp(2rem,5.4vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-paper">
+                <h2 className="max-w-[15ch] font-sans text-[clamp(2rem,5.4vw,4.6rem)] font-extrabold leading-[0.98] tracking-[-0.035em] text-paper">
                   A live store built for play.
-                </h1>
+                </h2>
               </div>
               <Link href={hero.href} className="inline-flex min-h-11 shrink-0 items-center gap-3 rounded-full bg-paper px-5 py-3 text-xs font-bold uppercase tracking-[0.1em] text-ink transition-transform duration-300 ease-out-expo hover:-translate-y-0.5 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-paper">
                 Explore the case study <ArrowUpRight />
@@ -53,16 +66,8 @@ export default function ProjectsPage() {
         </Reveal>
       </section>
 
-      {/* Selected work */}
+      {/* Project gallery */}
       <section className="mx-auto mt-20 max-w-350 px-5 md:mt-28 md:px-8">
-        <Reveal>
-          <h2 className="text-center font-serif text-[clamp(2.4rem,5vw,4.5rem)] leading-none tracking-[-0.01em]">
-            Selected Work.
-          </h2>
-          <p className="mx-auto mt-4 max-w-[36ch] text-center text-sm leading-relaxed text-ink/65">
-            Live work and self-initiated concepts, made by the PerPixel studio.
-          </p>
-        </Reveal>
         <ProjectsGallery />
       </section>
 

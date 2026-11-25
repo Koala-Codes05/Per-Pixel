@@ -22,6 +22,8 @@ worth remembering across sessions, not a changelog (that goes in `last_summary.m
 
 ## Design decisions
 
+- **Projects page hierarchy (2026-11-25):** `/projects` opens with the “Selected Work.” page heading and intro, followed by the full-width PixieKat featured case-study banner, then the filterable project grid. Keep the page heading above the feature so the banner reads as part of the selected work. The page heading is the `h1`, and the banner headline is an `h2`.
+
 - **Contact entry point (2026-11-02):** Enquiry and Contact links use `/contact#form` so the form appears immediately after navigation; the explicit FAQ footer link remains `/contact#faq`. `PageTransition.targetPoint()` must subtract the target's computed `scroll-margin-top` when scrolling to hashes, or the fixed header covers the form. Navbar active state compares the pathname without the hash. Keep the FAQ on the page, accessible by scrolling or its direct link.
 
 - **Featured opening and order (2026-11-02):** Keep the desktop/tablet opening pause and show the small "Scroll to explore featured work" cue only while that pinned scene is active; fade it from the first card's continuous scroll pose so it reverses naturally. Mobile already opens with card one visible, and reduced-motion/static layouts do not show the cue. Featured section height and card counters derive from the featured count. Homepage order after Bento is wordplay, featured work, offers, process, then contact. `npm run lint` still hits the protected `.eslintcache`; use a task-specific cache location. The local browser host and Windows Python launcher were unavailable, so a visual browser pass could not be completed in that session.
