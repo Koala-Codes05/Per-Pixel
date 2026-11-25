@@ -18,8 +18,9 @@
 - `npm run build` passed, including TypeScript and static generation of `/projects/assembly`.
 - Targeted ESLint passed with a task-specific cache; `git diff --check` passed.
 - Local production HTTP checks returned 200 for `/projects/assembly` and `/projects`; expected case study copy, live link and Assembly gallery listing were present.
+- Published commit `a0facd2` to PerPixel `main`. Public checks returned 200 for `/projects/assembly` on both apex and `www`, and for `/projects` on the apex. The case study contains the live Assembly link; the Projects page contains Assembly and retains the PixieKat feature.
 - Browser screenshot QA could not run because the browser access host was unavailable.
 
 ## Current state and next step
 
-- Publish the verified change to `main`, then check the public case study and project listing once deployment completes.
+- The case study is live at `https://perpixel.agency/projects/assembly`. No further implementation is pending.
