@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 import Reveal from "@/components/Reveal";
 import PlaybookShowcase from "@/components/playbook/PlaybookShowcase";
 import { HOW_TO_USE } from "@/components/playbook/playbook-data";
-import { isInternalPlaybookServed } from "@/lib/playbook-access";
 
 export const metadata: Metadata = {
   title: "Internal growth playbook",
@@ -13,8 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function PlaybookPage() {
-  if (!isInternalPlaybookServed()) notFound();
-
   return (
     <main className="pt-28 md:pt-36" suppressHydrationWarning>
       <header className="px-5 pb-14 md:px-8 md:pb-20">
