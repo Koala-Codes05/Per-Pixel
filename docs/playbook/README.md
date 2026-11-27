@@ -1,14 +1,14 @@
 # Internal growth playbook
 
-This is the studio's private operating note. It is not a public page and it is not linked from the site.
+Anyone with the address can open the dossier. It is not linked from the site.
 
-The interactive dossier is:
+The interactive page is:
 
 - `src/app/(site)/playbook/page.tsx`
 - `src/components/playbook/PlaybookShowcase.tsx`
 - `src/components/playbook/playbook-data.ts`
 
-`next dev` renders it at `http://localhost:3000/playbook`. Production builds call `notFound()` for that route, so a deployed site, including a Vercel preview, returns 404. Do not add the route to navigation, the footer, or a sitemap.
+Open it at `/playbook` on a local or deployed site. The page metadata is `noindex, nofollow`. `src/app/robots.ts` disallows `/playbook`. Do not add the route to navigation, the footer, or a sitemap.
 
 Competitor screenshots used by the dossier are in `public/research/shots/`. Longer research notes stay in `research/`.
 
