@@ -9,19 +9,26 @@ import {
   CASE_STUDY_BLUEPRINTS,
   DELIVERABLE_PRICING,
   NEXT_PLAN_PHASES,
+  OPERATING_CHANNELS,
+  OPERATING_PROCESS,
+  OPERATING_RESULTS,
   PIPELINE_STAGES,
+  PITCH_RULES,
+  PUBLISHED_FLOORS,
   SITE_CRITIQUES,
   STUDIOS,
+  TEAM,
 } from "./playbook-data";
 
 const CHAPTERS = [
-  { num: "01", label: "Global & India Comps", id: "comps" },
-  { num: "02", label: "Website Critique", id: "critique" },
-  { num: "03", label: "Pricing & Estimator", id: "pricing" },
-  { num: "04", label: "Case Study Anatomy", id: "anatomy" },
-  { num: "05", label: "Acquisition & Pipeline", id: "pipeline" },
-  { num: "06", label: "Cold-Start & Blueprints", id: "cold-start" },
-  { num: "07", label: "Next Plan Roadmap", id: "next-plan" },
+  { num: "01", label: "What we're doing", id: "now" },
+  { num: "02", label: "Studios we study", id: "comps" },
+  { num: "03", label: "Site notes", id: "critique" },
+  { num: "04", label: "Price research", id: "pricing" },
+  { num: "05", label: "Case studies", id: "anatomy" },
+  { num: "06", label: "How studios get work", id: "pipeline" },
+  { num: "07", label: "Work we can show", id: "proof" },
+  { num: "08", label: "What's next", id: "next" },
 ] as const;
 
 const STUDIO_FILTERS = [
@@ -65,7 +72,7 @@ export default function PlaybookShowcase() {
   const [revenueTarget, setRevenueTarget] = useState(1000000);
   const [closeRatePct, setCloseRatePct] = useState(25);
   const [activePhaseId, setActivePhaseId] = useState<string>(NEXT_PLAN_PHASES[0].id);
-  const [completedTasks, setCompletedTasks] = useState<string[]>(["t1"]);
+  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
 
   const filteredStudios = useMemo(() => {
     return STUDIOS.filter((s) => {
@@ -120,8 +127,8 @@ export default function PlaybookShowcase() {
         className="sticky top-18 z-20 border-y border-line bg-paper/90 px-5 py-3 backdrop-blur-md md:px-8"
       >
         <div className="mx-auto flex max-w-350 items-center justify-between gap-4 overflow-x-auto">
-          <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-paper">
-            FIELD DOSSIER · 2026
+            <span className="shrink-0 rounded-full bg-ink px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-paper">
+            Internal · 27 Nov 2026
           </span>
           <div className="flex items-center gap-5 text-xs font-medium">
             {CHAPTERS.map((ch) => (
@@ -137,22 +144,184 @@ export default function PlaybookShowcase() {
         </div>
       </nav>
 
-      {/* SECTION 01: COMP MATRIX */}
-      <section id="comps" className="scroll-mt-32 px-5 pt-20 md:px-8 md:pt-28">
+      <section id="now" className="scroll-mt-32 px-5 pt-20 md:px-8 md:pt-28">
         <div className="mx-auto max-w-350">
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
-                01 / COMPARABLE STUDIOS (9 GLOBAL · 9 INDIA)
+                01 / What we are doing
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                Who we are benchmarking against.
+                The work we are running now.
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
-              LinkedIn follower counts do not equal prestige — Studio Yukiko and OK-RM sit near
-              ~1k followers while winning Nike, Apple, and Guggenheim briefs. Self-initiated
-              platforms and narrative case studies do the heavy lifting.
+              This is the operating note for 27 Nov 2026. The research chapters after it explain
+              other studios. They do not override these rules.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-6 lg:grid-cols-12">
+            <article className="rounded-card border border-line bg-white p-6 lg:col-span-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/50">
+                Who we are
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                We&apos;re PerPixel, a design and development studio. We do branding and web
+                together: branding, visual identity, web and store design, motion, and development.
+                The public site is{" "}
+                <a
+                  href="https://www.perpixel.agency/"
+                  className="font-medium text-ink underline decoration-ink/30 underline-offset-2"
+                >
+                  perpixel.agency
+                </a>
+                .
+              </p>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {TEAM.map((person) => (
+                  <li key={person.name} className="rounded-xl bg-blush/70 p-4">
+                    <p className="font-serif text-2xl leading-none">{person.name}</p>
+                    <p className="mt-2 text-xs text-ink/70">{person.role}</p>
+                  </li>
+                ))}
+              </ul>
+            </article>
+
+            <article className="rounded-card bg-sage p-6 lg:col-span-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/55">
+                What we can show
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">
+                <li>
+                  <strong>PixieKat</strong> is live client work. We designed and built the gaming
+                  top-up store at{" "}
+                  <a
+                    href="https://www.pixiekat.store"
+                    className="font-medium text-ink underline decoration-ink/30 underline-offset-2"
+                  >
+                    pixiekat.store
+                  </a>
+                  .
+                </li>
+                <li>
+                  Two Shopify themes were built. They are offline because that business closed.
+                </li>
+                <li>Everything else in the portfolio is concept work. Label it that way.</li>
+                <li>We have no testimonials yet. Do not write one.</li>
+              </ul>
+            </article>
+          </div>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {OPERATING_CHANNELS.map((channel) => (
+              <article
+                key={channel.num}
+                className="flex flex-col justify-between rounded-card border border-line bg-white/80 p-6"
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/50">
+                    <span>{channel.num}</span>
+                    <span className="rounded-full bg-butter px-3 py-1 text-ink">{channel.status}</span>
+                  </div>
+                  <h3 className="mt-4 font-serif text-3xl leading-none tracking-[-0.02em]">
+                    {channel.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-relaxed text-ink/75">{channel.summary}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+            <article className="rounded-card border border-line bg-white p-6 lg:col-span-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/50">
+                How we pitch
+              </p>
+              <ul className="mt-4 space-y-3 text-sm leading-relaxed text-ink/80">
+                {PITCH_RULES.map((rule) => (
+                  <li key={rule}>{rule}</li>
+                ))}
+              </ul>
+            </article>
+            <article className="rounded-card bg-ink p-6 text-paper lg:col-span-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-coral">
+                The shape of a note
+              </p>
+              <ol className="mt-4 grid gap-3 sm:grid-cols-2">
+                {[
+                  ["1", "One problem we actually saw"],
+                  ["2", "What we would do about it"],
+                  ["3", "How long that takes"],
+                  ["4", "One next step, by reply"],
+                ].map(([n, line]) => (
+                  <li key={n} className="rounded-xl bg-paper/10 p-4">
+                    <p className="text-[11px] font-semibold text-coral">{n}</p>
+                    <p className="mt-1 text-sm">{line}</p>
+                  </li>
+                ))}
+              </ol>
+              <p className="mt-4 text-xs leading-relaxed text-paper/75">
+                Sign-off: Hritik Jaiswal, Project lead / The PerPixel team.
+              </p>
+            </article>
+          </div>
+
+          <div className="mt-8 rounded-card border border-line bg-white p-6 md:p-8">
+            <h3 className="font-serif text-3xl">From a name to a reply</h3>
+            <div className="mt-6 grid gap-2 md:grid-cols-3 xl:grid-cols-6">
+              {OPERATING_PROCESS.map((step) => (
+                <article key={step.step} className="rounded-xl border border-line bg-word-pale/50 p-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-ink/45">
+                    {step.step}
+                  </p>
+                  <p className="mt-3 font-serif text-2xl leading-none">{step.name}</p>
+                  <p className="mt-3 text-xs leading-relaxed text-ink/70">{step.detail}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-6 lg:grid-cols-12">
+            <div className="grid grid-cols-2 gap-3 lg:col-span-7">
+              {OPERATING_RESULTS.map((item) => (
+                <div key={item.label} className="rounded-card border border-line bg-white p-5">
+                  <p className="font-serif text-4xl leading-none">{item.figure}</p>
+                  <p className="mt-2 text-xs text-ink/70">{item.label}</p>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-card bg-butter/80 p-6 lg:col-span-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/55">
+                As of 27 Nov 2026
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-ink/80">
+                About 224 leads are in the tracker. About 12 of those became a human reply, and 5
+                conversations are still active. None has become paid work. Keep usage and costs
+                low. The gap is converting those conversations. The next lever is proof of work: a
+                showcase file and case studies.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 02: COMP MATRIX */}
+      <section id="comps" className="scroll-mt-32 border-t border-line px-5 pt-20 md:px-8 md:pt-28">
+        <div className="mx-auto max-w-350">
+          <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
+                02 / Studios we study (9 global, 9 in India)
+              </p>
+              <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
+                Other studios, for context.
+              </h2>
+            </div>
+            <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
+              Research from October 2026, not a list of our clients. A small following can sit
+              next to famous work. Studio Yukiko and OK-RM are the examples in these notes.
+              Use this to see patterns. Do not copy their claims onto PerPixel.
             </p>
           </div>
 
@@ -236,7 +405,7 @@ export default function PlaybookShowcase() {
                     {studio.culturePricingSignal}
                   </p>
                   <p className="rounded-lg bg-butter/60 p-3 text-ink/85">
-                    <strong>Growth Playbook:</strong> {studio.playbook}
+                    <strong>How they get work:</strong> {studio.playbook}
                   </p>
                 </div>
               </article>
@@ -254,10 +423,10 @@ export default function PlaybookShowcase() {
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-paper/15 pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-paper/55">
-                02 / LIVE WEBSITE CRITIQUE (26 VIEWPORT CAPTURES)
+                03 / Notes on their websites
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                Why their sites work — and where they fail.
+                What their sites do well, and what to skip.
               </h2>
             </div>
             <div className="flex gap-2" role="group" aria-label="Screenshot view mode">
@@ -440,16 +609,16 @@ export default function PlaybookShowcase() {
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
-                03 / GLOBAL VS INDIA PRICING & SCOPE CALCULATOR
+                04 / Price research, not our rate card
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                The 8–10× rate delta — and how to price each job.
+                What the market charges.
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
-              Top studios never publish itemized menus — they publish engagement floors (Studio
-              Freight: $80k minimum) or price by client stage. Indian domestic rates run ~8–10×
-              below global agency rates, making dual INR/USD positioning a major margin lever.
+              {PUBLISHED_FLOORS} The bands below are October 2026 market research. A common market
+              habit is to charge less in India than in the US or Europe. That gap is not a second
+              PerPixel price list.
             </p>
           </div>
 
@@ -458,7 +627,7 @@ export default function PlaybookShowcase() {
             <div className="rounded-card bg-ink p-6 text-paper md:p-8 lg:col-span-6">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <span className="text-xs font-semibold uppercase tracking-[0.14em] text-coral">
-                  INTERACTIVE DUAL-MARKET ESTIMATOR
+                  Market band estimator
                 </span>
                 <div className="flex rounded-full border border-paper/20 p-1 text-xs">
                   {(["INR", "USD"] as const).map((m) => (
@@ -525,14 +694,15 @@ export default function PlaybookShowcase() {
 
               <div className="mt-8 rounded-xl border border-paper/15 bg-paper/5 p-5">
                 <p className="text-xs uppercase tracking-[0.12em] text-paper/60">
-                  Recommended Engagement Band ({activeDeliverable.timeline})
+                  Research band ({activeDeliverable.timeline})
                 </p>
                 <p className="mt-2 font-serif text-4xl md:text-5xl">
                   {formatMoney(priceBand[0])} – {formatMoney(priceBand[1])}
                 </p>
                 <p className="mt-2 text-xs text-paper/70">
-                  Standard 50/50 payment schedule: {formatMoney(priceBand[0] / 2)}–
-                  {formatMoney(priceBand[1] / 2)} on kickoff · balance before final asset handoff.
+                  A common market schedule is half at the start and half before the files go out
+                  ({formatMoney(priceBand[0] / 2)}–{formatMoney(priceBand[1] / 2)} on the low and
+                  high ends). That is not our contract.
                 </p>
                 <ul className="mt-4 grid gap-1.5 border-t border-paper/15 pt-4 text-xs text-paper/85 sm:grid-cols-2">
                   {activeDeliverable.included.map((inc) => (
@@ -540,7 +710,7 @@ export default function PlaybookShowcase() {
                   ))}
                 </ul>
                 <p className="mt-4 rounded-lg bg-coral/20 p-3 text-xs leading-relaxed text-paper">
-                  <strong className="text-coral">Positioning Note:</strong>{" "}
+                  <strong className="text-coral">Read this as research:</strong>{" "}
                   {activeDeliverable.strategicNote}
                 </p>
               </div>
@@ -548,9 +718,10 @@ export default function PlaybookShowcase() {
 
             {/* Full Deliverable Comparison Table */}
             <div className="overflow-x-auto rounded-card border border-line bg-white p-6 lg:col-span-6">
-              <h3 className="font-serif text-3xl">Per-Deliverable Market Benchmarks</h3>
+              <h3 className="font-serif text-3xl">Market ranges by deliverable</h3>
               <p className="mt-1 text-xs text-ink/60">
-                Comparing Global agency rates (Clutch 2026 / Studio Freight) vs Indian studio packages.
+                Global agency ranges beside Indian studio packages. Research only. Our floors are
+                the three published offers.
               </p>
               <table className="mt-5 w-full border-collapse text-left text-xs">
                 <thead>
@@ -604,16 +775,17 @@ export default function PlaybookShowcase() {
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
-                04 / WHAT A CASE STUDY ACTUALLY IS (KOTO / UNIQODE TEMPLATE)
+                05 / How to write a case study
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                One project = four growth assets.
+                Six parts, in this order.
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
-              A case study is not an image gallery. It is a 6-part strategic proof document that
-              simultaneously serves as your sales conversion page, LinkedIn carousel, awards
-              submission, and design-press pitch.
+              A case study is not a gallery. Koto&apos;s Uniqode page is the reference for the six
+              parts. The Moove lines are a writing example for concept work. PixieKat is the live
+              client project. Do not invent a result, a metric, or a quote. Awards and press
+              pitches are not the current plan.
             </p>
           </div>
 
@@ -667,7 +839,7 @@ export default function PlaybookShowcase() {
                   </div>
                   <div className="rounded-xl bg-sage p-5">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/55">
-                      PERPIXEL / MOOVE APPLICATION
+                      Writing example
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-ink">
                       {activeAnatomy.perpixelApplication}
@@ -678,10 +850,10 @@ export default function PlaybookShowcase() {
 
               <div className="mt-6 grid grid-cols-2 gap-2 border-t border-line pt-5 text-xs md:grid-cols-4">
                 {[
-                  ["Asset 01", "Sales Conversion Page"],
-                  ["Asset 02", "8-Slide LinkedIn Carousel"],
-                  ["Asset 03", "Kyoorius / Awwwards Entry"],
-                  ["Asset 04", "Design Press Pitch"],
+                  ["Part 01", "The page a prospect can read"],
+                  ["Part 02", "Optional later: a short post"],
+                  ["Part 03", "Not the current plan: awards"],
+                  ["Part 04", "Not the current plan: press"],
                 ].map(([num, label]) => (
                   <div key={num} className="rounded-lg bg-butter/65 p-3">
                     <p className="font-semibold text-ink/55">{num}</p>
@@ -700,23 +872,23 @@ export default function PlaybookShowcase() {
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
-                05 / HOW STUDIOS GET CUSTOMERS & THE 6-STAGE PIPELINE
+                06 / How other studios find clients
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                Referrals start it. Systems scale it.
+                Industry research, not our numbers.
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
-              Across 4,000+ agency reviews and the State of Brand survey, referrals (34.2%) and
-              organic search (20.6%) drive over half of all new clients — while case studies act as
-              the conversion layer for every single channel.
+              These shares and close rates come from agency surveys. Referrals and search are the
+              largest slices in that research. They are not PerPixel&apos;s results. Our counts
+              are in &ldquo;What we&apos;re doing.&rdquo; We do not ask for or offer a call.
             </p>
           </div>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-12">
             {/* Channel Bars */}
             <div className="space-y-3 rounded-card border border-line bg-white p-6 lg:col-span-7">
-              <h3 className="font-serif text-3xl">Client Discovery by Channel</h3>
+              <h3 className="font-serif text-3xl">Where surveyed studios say clients come from</h3>
               <div className="mt-4 space-y-3.5">
                 {ACQUISITION_CHANNELS.map((ch) => (
                   <div key={ch.name} className="rounded-xl border border-line/70 p-3.5">
@@ -747,7 +919,7 @@ export default function PlaybookShowcase() {
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink/60">
                   PIPELINE COVERAGE CALCULATOR
                 </p>
-                <h3 className="mt-2 font-serif text-3xl">How much pipeline do you need?</h3>
+                <h3 className="mt-2 font-serif text-3xl">A planning sketch</h3>
                 <label className="mt-5 block text-xs font-medium">
                   Quarterly Revenue Goal ({market})
                   <input
@@ -773,18 +945,19 @@ export default function PlaybookShowcase() {
                   <p className="text-xs text-ink/60">Required Qualified Pipeline</p>
                   <p className="mt-1 font-serif text-4xl">{formatMoney(requiredPipeline)}</p>
                   <p className="mt-1 text-xs text-ink/65">
-                    30%+ close rates require confirming budget, authority, need & timeline before
-                    Call #1 ends.
+                    This is arithmetic on a goal you type in. It is not our pipeline. We have not
+                    won a project yet, and we do not book a first call.
                   </p>
                 </div>
               </div>
 
               <div className="rounded-card bg-ink p-6 text-paper md:p-8">
                 <p className="text-xs font-semibold uppercase tracking-[0.14em] text-coral">
-                  REAL STUDIO OUTBOUND BENCHMARK (12 MONTHS)
+                  Someone else&apos;s published year
                 </p>
                 <p className="mt-2 text-xs leading-relaxed text-paper/75">
-                  How a referral-only identity studio built a $660k pipeline from scratch:
+                  A referral-led studio&apos;s published outbound year. Not PerPixel. Do not use
+                  these figures as our target or our result.
                 </p>
                 <div className="mt-4 grid grid-cols-2 gap-3 text-center">
                   <div className="rounded-lg bg-paper/10 p-3">
@@ -811,9 +984,9 @@ export default function PlaybookShowcase() {
           {/* 6-Stage Interactive Funnel */}
           <div className="mt-10 rounded-card border border-line bg-white p-6 md:p-8">
             <div className="flex flex-wrap items-center justify-between gap-3">
-              <h3 className="font-serif text-3xl">The 6-Stage New Business Funnel</h3>
+              <h3 className="font-serif text-3xl">Six stages other studios describe</h3>
               <span className="text-xs text-ink/60">
-                Click any stage to inspect exit criteria & conversion rates
+                Survey ranges. Our rule on every stage: email or chat, never a call.
               </span>
             </div>
 
@@ -848,7 +1021,7 @@ export default function PlaybookShowcase() {
               </div>
               <div>
                 <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/55">
-                  STUDIO PLAYBOOK MOVE
+                  Our rule at this stage
                 </p>
                 <p className="mt-1 text-sm text-ink/85">{activePipeline.ownerAction}</p>
               </div>
@@ -857,25 +1030,21 @@ export default function PlaybookShowcase() {
         </div>
       </section>
 
-      {/* SECTION 06: COLD-START PLAYBOOK & CONCRETE CASE STUDY BLUEPRINTS */}
-      <section
-        id="cold-start"
-        className="scroll-mt-32 border-t border-line px-5 pt-20 md:px-8 md:pt-28"
-      >
+      <section id="proof" className="scroll-mt-32 border-t border-line px-5 pt-20 md:px-8 md:pt-28">
         <div className="mx-auto max-w-350">
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-line pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/50">
-                06 / COLD-START PLAYBOOK & SUGGESTED CASE STUDIES
+                07 / Work we can show
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.6rem,6vw,5.2rem)] leading-[0.92] tracking-[-0.03em]">
-                How to win clients before you have client logos.
+                Live work, offline work, and concept work.
               </h2>
             </div>
             <p className="max-w-[48ch] text-sm leading-relaxed text-ink/70">
-              Every top studio broke the portfolio paradox the same way: self-initiated flagships,
-              honest concept studies in a target vertical, and open tools that make peers refer
-              them.
+              PixieKat is the live client store. Two Shopify themes were built and are offline
+              because that business closed. The rest of the portfolio is concept work. There are
+              no testimonials yet.
             </p>
           </div>
 
@@ -886,17 +1055,28 @@ export default function PlaybookShowcase() {
                 className="flex flex-col justify-between overflow-hidden rounded-card border border-line bg-white"
               >
                 <div>
-                  <div className="grid aspect-16/10 grid-cols-2 overflow-hidden border-b border-line bg-ink">
-                    <div className="relative h-full w-full">
-                      <Image
-                        src={bp.image}
-                        alt={bp.title}
-                        fill
-                        sizes="(min-width: 768px) 25vw, 50vw"
-                        className="object-cover"
-                      />
-                    </div>
-                    <AmbientVideo src={bp.video} />
+                  <div
+                    className={`grid aspect-16/10 overflow-hidden border-b border-line bg-ink ${
+                      bp.image && bp.video ? "grid-cols-2" : "grid-cols-1"
+                    }`}
+                  >
+                    {bp.image ? (
+                      <div className="relative h-full w-full">
+                        <Image
+                          src={bp.image}
+                          alt={bp.title}
+                          fill
+                          sizes="(min-width: 768px) 25vw, 50vw"
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : null}
+                    {bp.video ? <AmbientVideo src={bp.video} /> : null}
+                    {!bp.image && !bp.video && "mediaNote" in bp ? (
+                      <div className="flex h-full items-end p-6 text-sm leading-relaxed text-paper">
+                        {bp.mediaNote}
+                      </div>
+                    ) : null}
                   </div>
 
                   <div className="p-6">
@@ -910,15 +1090,15 @@ export default function PlaybookShowcase() {
 
                     <dl className="mt-4 space-y-2.5 text-xs leading-relaxed">
                       <div>
-                        <dt className="font-semibold text-ink">The Challenge:</dt>
+                        <dt className="font-semibold text-ink">The situation:</dt>
                         <dd className="text-ink/75">{bp.problem}</dd>
                       </div>
                       <div>
-                        <dt className="font-semibold text-ink">The Strategy:</dt>
+                        <dt className="font-semibold text-ink">How we talk about it:</dt>
                         <dd className="text-ink/75">{bp.strategy}</dd>
                       </div>
                       <div>
-                        <dt className="font-semibold text-ink">System Deliverables:</dt>
+                        <dt className="font-semibold text-ink">What exists:</dt>
                         <dd className="text-ink/75">{bp.deliverables}</dd>
                       </div>
                     </dl>
@@ -927,23 +1107,25 @@ export default function PlaybookShowcase() {
 
                 <div className="border-t border-line bg-word-pale/50 p-6">
                   <p className="text-xs leading-relaxed text-ink/80">
-                    <strong>Why this converts leads:</strong> {bp.whyItSells}
+                    <strong>Why it is in this list:</strong> {bp.whyItSells}
                   </p>
                   <div className="mt-4 flex flex-wrap gap-3">
-                    <Link
-                      href={bp.href}
-                      className="rounded-full bg-ink px-4 py-2 text-xs font-medium text-paper transition-colors hover:bg-coral hover:text-ink"
-                    >
-                      Inspect live work →
-                    </Link>
-                    {"secondaryHref" in bp && bp.secondaryHref && (
+                    {bp.href ? (
+                      <Link
+                        href={bp.href}
+                        className="rounded-full bg-ink px-4 py-2 text-xs font-medium text-paper transition-colors hover:bg-coral hover:text-ink"
+                      >
+                        {bp.linkLabel}
+                      </Link>
+                    ) : null}
+                    {"secondaryHref" in bp && bp.secondaryHref ? (
                       <Link
                         href={bp.secondaryHref}
                         className="rounded-full border border-ink px-4 py-2 text-xs font-medium text-ink hover:bg-ink hover:text-paper"
                       >
-                        Inspect Ghaslet →
+                        {"secondaryLabel" in bp ? bp.secondaryLabel : "Open related work"}
                       </Link>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </article>
@@ -952,27 +1134,29 @@ export default function PlaybookShowcase() {
         </div>
       </section>
 
-      {/* SECTION 07: NEXT PLAN (30 / 60 / 90-DAY EXECUTION ROADMAP) */}
       <section
-        id="next-plan"
+        id="next"
         className="mt-24 scroll-mt-32 border-t border-line bg-butter/45 px-5 py-20 md:px-8 md:py-28"
       >
         <div className="mx-auto max-w-350">
           <div className="flex flex-wrap items-end justify-between gap-6 border-b border-ink/15 pb-8">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-ink/60">
-                07 / NEXT PLAN — 30 / 60 / 90-DAY EXECUTION ROADMAP
+                08 / What&apos;s next
               </p>
               <h2 className="mt-3 font-serif text-[clamp(2.8rem,6.5vw,5.6rem)] leading-[0.9] tracking-[-0.03em]">
-                The exact next plan for PerPixel.
+                The short list.
               </h2>
             </div>
             <div className="rounded-card border border-ink/15 bg-white px-5 py-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-ink/55">
-                EXECUTION PROGRESS
+                Checked on this screen
               </p>
               <p className="mt-1 font-serif text-3xl">
                 {completedTasks.length} / {allTaskIds.length} steps ({progressPct}%)
+              </p>
+              <p className="mt-1 max-w-[22ch] text-[11px] leading-relaxed text-ink/55">
+                Refreshing the page clears these checks.
               </p>
             </div>
           </div>
@@ -1006,7 +1190,7 @@ export default function PlaybookShowcase() {
                 <p className="mt-2 max-w-2xl text-sm text-ink/70">{activePhase.objective}</p>
               </div>
               <div className="rounded-xl bg-sage px-4 py-3 text-xs font-medium text-ink">
-                <strong>Target KPI:</strong> {activePhase.kpi}
+                <strong>Status:</strong> {activePhase.kpi}
               </div>
             </div>
 
@@ -1039,29 +1223,30 @@ export default function PlaybookShowcase() {
             </ul>
 
             <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-line pt-6">
-              <p className="text-xs text-ink/60">
-                Rule #1: Never invent fake client claims — label self-initiated and concept work
-                honestly, lead with strategic narrative, and let craft close the referral.
+              <p className="max-w-[46ch] text-xs leading-relaxed text-ink/60">
+                Checks stay in this browser tab. Refreshing clears them. Do not invent clients,
+                metrics, or testimonials. Concept work stays labelled concept work. PixieKat is the
+                live client store. Do not ask for a call.
               </p>
               <div className="flex flex-wrap gap-3">
                 <Link
-                  href="/projects/moove"
+                  href="/projects/pixiekat"
                   className="rounded-full bg-ink px-5 py-2.5 text-xs font-semibold text-paper transition-colors hover:bg-coral hover:text-ink"
                 >
-                  Open Moove Flagship →
+                  Open the PixieKat case study
                 </Link>
                 <Link
                   href="/projects"
                   className="rounded-full border border-ink px-5 py-2.5 text-xs font-semibold text-ink hover:bg-ink hover:text-paper"
                 >
-                  Explore All Works →
+                  Open all projects
                 </Link>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://www.pixiekat.store"
                   className="rounded-full border border-ink px-5 py-2.5 text-xs font-semibold text-ink hover:bg-ink hover:text-paper"
                 >
-                  Contact / Brief Builder →
-                </Link>
+                  Open the live store
+                </a>
               </div>
             </div>
           </div>
